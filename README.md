@@ -16,8 +16,9 @@ npm install collect.js --save
 Using Laravel as your backend? Collect.js offers an identical api to Laravel Collections
 
 ### Usage
-[all](#all)	|	[implode](#implode)	|	[reverse](#reverse)
+All | available | methods
 ---|---|---
+[all](#all)	|	[implode](#implode)	|	[reverse](#reverse)
 [avg](#avg)	|	[intersect](#intersect)	|	[search](#search)
 [chunk](#chunk)	|	[isEmpty](#isempty)	|	[shift](#shift)
 [collapse](#collapse)	|	[keyBy](#keyby)	|	[shuffle](#shuffle)
