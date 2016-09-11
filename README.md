@@ -1,5 +1,4 @@
-# <img src="https://raw.githubusercontent.com/ecrmnn/collect.js/master/collectjs.jpg" alt="collect.js">
-
+# collect.js
 > Convenient wrapper for working with arrays and objects
 
 [![Travis](https://img.shields.io/travis/ecrmnn/collect.js.svg?style=flat-square)](https://travis-ci.org/ecrmnn/collect.js.svg?branch=master)
@@ -17,7 +16,7 @@ npm install collect.js --save
 Using Laravel as your backend? Collect.js offers an identical api to Laravel Collections
 
 ### Usage
-#### all()
+#### ``all()``
 The all method returns the underlying array represented by the collection:
 ```js
 collect([1, 2, 3]).all();
@@ -25,7 +24,7 @@ collect([1, 2, 3]).all();
 //=> [1, 2, 3]
 ```
 
-#### avg
+#### ``avg()``
 The avg method returns the average of all items in the collection:
 ```js
 collect([1, 3, 3, 7]).avg();
@@ -49,7 +48,7 @@ collection.avg('pages');
 //=> 636
 ```
 
-#### chunk
+#### ``chunk()``
 The chunk method breaks the collection into multiple, smaller collections of a given size:
 ```js
 const collection = collect([1, 2, 3, 4, 5, 6, 7]);
@@ -60,7 +59,7 @@ chunks.all();
 
 //=> [[1, 2, 3, 4], [5, 6, 7]]
 ```
-#### collapse
+#### ``collapse()``
 The collapse method collapses a collection of arrays into a single, flat collection:
 ```js
 const collection = collect([[1], [{}, 5, {}], ['xoxo']]);
@@ -81,7 +80,7 @@ collapsed.all();
 
 //=> [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
-#### combine
+#### ``combine()``
 The combine method combines the keys of the collection with the values of another array or collection:
 ```js
 const collection = collect(['name', 'number']);
@@ -95,7 +94,7 @@ combine.all();
 //=>   number: 8
 //=> }
 ```
-#### contains
+#### ``contains()``
 The contains method determines whether the collection contains a given item:
 ```js
 const collection = collect({
@@ -131,7 +130,7 @@ collection.contains(function (value, key) {
 //=> false
 ```
 
-#### count
+#### ``count()``
 The count method returns the total number of items in the collection:
 ```js
 const collection = collect([1, 2, 3, 4]);
@@ -141,7 +140,7 @@ collection.count();
 //=> 4
 ```
 
-#### diff
+#### ``diff()``
 The diff method compares the collection against another collection or a plain PHP array based on its values. This method will return the values in the original collection that are not present in the given collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -153,7 +152,7 @@ diff.all();
 //=> [4, 5]
 ```
 
-#### diffKeys
+#### ``diffKeys()``
 The diffKeys method compares the collection against another collection or a plain PHP array based on its keys. This method will return the key / value pairs in the original collection that are not present in the given collection:
 ```js
 const collection = collect({
@@ -172,7 +171,7 @@ diff.all();
 
 //=> {a: 'a', c: 'c'}
 ```
-#### each
+#### ``each()``
 The each method iterates over the items in the collection and passes each item to a callback:
 ```js
 let sum = 0;
@@ -205,7 +204,7 @@ collection.each(function (item) {
 //=> 7
 ```
 
-#### every
+#### ``every()``
 The every method creates a new collection consisting of every n-th element:
 ```js
 const collection = collect([
@@ -225,7 +224,7 @@ collection.every(4, 3);
 //=> ['d', 'h']
 ```
 
-#### except
+#### ``except()``
 The except method returns all items in the collection except for those with the specified keys:
 ```js
 const collection = collect({
@@ -243,7 +242,7 @@ filtered.all();
 
 > For the inverse of ``except``, see the ``only`` method.
 
-#### filter
+#### ``filter()``
 The filter method filters the collection using the given callback, keeping only those items that pass a given truth test:
 ```js
 const collection = collect([1, 2, 3, 4]);
@@ -259,7 +258,7 @@ filtered.all();
 
 > For the inverse of ``filter``, see the ``reject`` method.
 
-#### first
+#### ``first()``
 The first method returns the first element in the collection that passes a given truth test:
 ```js
 collect([1, 2, 3, 4).first(function (item) {
@@ -275,7 +274,7 @@ collect([1, 2, 3, 4]).first();
 //=> 1
 ```
 
-#### flatMap
+#### ``flatMap()``
 The flatMap method iterates through the collection and passes each value to the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items. Then, the array is flattened by a level:
 ```js
 const collection = collect({
@@ -299,7 +298,7 @@ flatMapped.all();
 //=> }
 ```
 
-#### flatten
+#### ``flatten()``
 The flatten method flattens a multi-dimensional collection into a single dimension:
 ```js
 const collection = collect({
@@ -338,7 +337,7 @@ flattened.all();
 
 In this example, calling flatten without providing the depth would have also flattened the nested arrays, resulting in ``['iPhone 6S', 'Apple', 'Galaxy S7', 'Samsung']``. Providing a depth allows you to restrict the levels of nested arrays that will be flattened.
 
-#### flip
+#### ``flip()``
 The flip method swaps the collection's keys with their corresponding values:
 ```js
 const collection = collect({
@@ -356,7 +355,7 @@ flipped.all();
 //=> }
 ```
 
-#### forget
+#### ``forget()``
 The forget method removes an item from the collection by its key:
 ```js
 const collection = collect({
@@ -374,7 +373,7 @@ collection.all();
 ```
 > Unlike most other collection methods, forget does not return a new modified collection; it modifies the collection it is called on.
 
-#### forPage
+#### ``forPage()``
 The forPage method returns a new collection containing the items that would be present on a given page number. The method accepts the page number as its first argument and the number of items to show per page as its second argument:
 ```js
 const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -386,7 +385,7 @@ forPage.all();
 //=> [4, 5, 6]
 ```
 
-#### get
+#### ``get()``
 The get method returns the item at a given key. If the key does not exist, ``null`` is returned:
 ```js
 const collection = collect({
@@ -412,8 +411,8 @@ const collection = collect({
 collection.get('middlename', 'default-value');
 //=> default-value
 ```
-
 You may even pass a callback as the default value. The result of the callback will be returned if the specified key does not exist:
+
 ```js
 const collection = collect({
   firstname: 'Chuck',
@@ -426,7 +425,7 @@ collection.get('middlename', function () {
 
 //=> default-value
 ```
-#### groupBy
+#### ``groupBy()``
 The groupBy method groups the collection's items by a given key:
 ```js
 const collection = collect([
@@ -475,6 +474,7 @@ grouped.all();
 ```
 
 In addition to passing a string key, you may also pass a callback. The callback should return the value you wish to key the group by:
+
 ```js
 const collection = collect([
   {
@@ -523,7 +523,7 @@ grouped.all();
 //=> }
 ```
 
-#### has
+#### ``has()``
 The has method determines if a given key exists in the collection:
 ```js
 const collection = collect({
@@ -550,7 +550,7 @@ collection.has('ability');
 //=> true
 ```
 
-#### implode
+#### ``implode()``
 The implode method joins the items in a collection. Its arguments depend on the type of items in the collection. If the collection contains arrays or objects, you should pass the key of the attributes you wish to join, and the "glue" string you wish to place between the values:
 ```js
 const collection = collect([{
@@ -575,7 +575,7 @@ collect([1, 2, 3, 4, 5]).implode('-');
 //=> 1-2-3-4-5
 ```
 
-#### intersect
+#### ``intersect()``
 The intersect method removes any values from the original collection that are not present in the given ``array`` or ``collection``. The resulting collection will preserve the original collection's keys:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -597,7 +597,7 @@ intersect.all();
 
 //=> [1, 2, 3]
 ```
-#### isEmpty
+#### ``isEmpty()``
 The isEmpty method returns true if the collection is empty; otherwise, false is returned:
 ```js
 collect([]).isEmpty();
@@ -605,7 +605,7 @@ collect([]).isEmpty();
 //=>  true
 ```
 
-#### keyBy
+#### ``keyBy()``
 The keyBy method keys the collection by the given key. If multiple items have the same key, only the last one will appear in the new collection:
 ```js
 const collection = collect([
@@ -657,7 +657,7 @@ keyedUpperCase.all();
 //=> }
 ```
 
-#### keys
+#### ``keys()``
 The keys method returns all of the collection's keys:
 ```js
 const collection = collect([{
@@ -673,7 +673,7 @@ keys = collection.keys();
 //=> ['name', 'number', 'club', 'nickname']
 ```
 
-#### last
+#### ``last()``
 The last method returns the last element in the collection that passes a given truth test:
 ```js
 const collection = collect([1, 2, 3]);
@@ -691,7 +691,7 @@ collect([1, 2, 3, 4]).last();
 //=> 4
 ```
 
-#### map
+#### ``map()``
 The map method iterates through the collection and passes each value to the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -707,7 +707,7 @@ multiplied.all();
 
 > Like most other collection methods, ``map`` returns a new collection instance; it does not modify the collection it is called on. If you want to transform the original collection, use the ``transform`` method.
 
-#### mapWithKeys
+#### ``mapWithKeys()``
 The mapWithKeys method iterates through the collection and passes each value to the given callback. The callback should return an array where the first element represents the key and the second element represents the value pair:
 ```js
 const collection = collect([{
@@ -732,7 +732,7 @@ keyed.all();
 //=> }
 ```
 
-#### max
+#### ``max()``
 The max method returns the maximum value of a given key:
 ```js
 const collection = collect([{
@@ -754,7 +754,7 @@ collect([-1, -2345, 12, 11, 3]).max();
 
 //=> 12
 ```
-#### merge
+#### ``merge()``
 The merge method merges the given object into the original collection. If a key in the given object matches a key in the original collection, the given objects value will overwrite the value in the original collection:
 ```js
 const collection = collect({
@@ -782,7 +782,7 @@ merged.all();
 //=> ['Unicorn', 'Rainbow', 'Sunshine', 'Rainbow']
 ```
 
-#### min
+#### ``min()``
 The min method returns the minimum value of a given key:
 ```js
 const collection = collect[{
@@ -803,7 +803,7 @@ collect([1, 2, 3, 4, 5]).min();
 //=> 1
 ```
 
-#### only
+#### ``only()``
 The only method returns the items in the collection with the specified keys:
 ```js
 const collection = collect({
@@ -819,7 +819,7 @@ const filtered = collection.only(['name', 'email']);
 ```
 > For the inverse of ``only``, see the ``except`` method.
 
-#### pipe
+#### ``pipe()``
 The pipe method passes the collection to the given callback and returns the result:
 ```js
 const collection = collect([1, 2, 3]);
@@ -831,7 +831,7 @@ const piped = collection.pipe(function (collection) {
 //=> 6
 ```
 
-#### pluck
+#### ``pluck()``
 The pluck method retrieves all of the values for a given key:
 ```js
 const collection = collect([{
@@ -869,7 +869,7 @@ plucked.all();
 //=> }
 ```
 
-#### pop
+#### ``pop()``
 The pop method removes and returns the last item from the collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -883,7 +883,7 @@ collection.all();
 // => [1, 2, 3, 4]
 ```
 
-#### prepend
+#### ``prepend()``
 The prepend method adds an item to the beginning of the collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -914,7 +914,7 @@ collection.all():
 //=> }
 ```
 
-#### pull
+#### ``pull()``
 The pull method removes and returns an item from the collection by its key:
 ```js
 const collection = collect({
@@ -931,7 +931,7 @@ collection.all();
 //=> {firstname: 'Michael'}
 ```
 
-#### push
+#### ``push()``
 The push method appends an item to the end of the collection:
 ```js
 const collection = collect([1, 2, 3, 4]);
@@ -943,7 +943,7 @@ collection.all();
 //=> [1, 2, 3, 4, 5]
 ```
 
-#### put
+#### ``put()``
 The put method sets the given key and value in the collection:
 ```js
 const collection = collect(['JavaScript', 'Python']);
@@ -955,7 +955,7 @@ collection.all();
 //=> ['JavaScript', 'Python', 'Ruby']
 ```
 
-#### random
+#### ``random()``
 The random method returns a random item from the collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -972,7 +972,7 @@ const random = collection.random(3);
 //=> [5, 3, 4] (retrieved randomly)
 ```
 
-#### reduce
+#### ``reduce()``
 The reduce method reduces the collection to a single value, passing the result of each iteration into the subsequent iteration:
 ```js
 const collection = collect([1, 2, 3]);
@@ -993,7 +993,7 @@ const total = collection.reduce(function (carry, item) {
 //=> 10
 ```
 
-#### reject
+#### ``reject()``
 The reject method filters the collection using the given callback. The callback should return true if the item should be removed from the resulting collection:
 ```js
 const collection = collect([1, 2, 3, 4]);
@@ -1007,7 +1007,7 @@ const filtered = collection.reject(function (value) {
 
 > For the inverse of the ``reject`` method, see the ``filter`` method.
 
-#### reverse
+#### ``reverse()``
 The reverse method reverses the order of the collection's items:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -1019,7 +1019,7 @@ reversed.all();
 //=> [5, 4, 3, 2, 1]
 ```
 
-#### search
+#### ``search()``
 The search method searches the collection for the given value and returns its key if found. If the item is not found, false is returned.
 ```js
 const collection = collect([2, 4, 6, 8]);
@@ -1045,7 +1045,7 @@ collection.search(function (item, key) {
 //=> 2
 ```
 
-#### shift
+#### ``shift()``
 The shift method removes and returns the first item from the collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -1059,7 +1059,7 @@ collection.all();
 //=> [2, 3, 4, 5]
 ```
 
-#### shuffle
+#### ``shuffle()``
 The shuffle method randomly shuffles the items in the collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -1071,7 +1071,7 @@ shuffled.all();
 //=> [3, 5, 1, 2, 4] (generated randomly)
 ```
 
-#### slice
+#### ``slice()``
 The slice method returns a slice of the collection starting at the given index:
 ```js
 const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -1093,7 +1093,7 @@ slice.all();
 //=> [5, 6]
 ```
 
-#### sort
+#### ``sort()``
 The sort method sorts the collection:
 ```js
 const collection = collect([5, 3, 1, 2, 4]);
@@ -1121,7 +1121,7 @@ sorted.all();
 
 > If you need to sort a collection of nested arrays or objects, see the ``sortBy`` and ``sortByDesc`` methods.
 
-#### sortBy
+#### ``sortBy()``
 The sortBy method sorts the collection by the given key. The sorted collection keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
 ```js
 const collection = collect([
@@ -1162,10 +1162,10 @@ sorted.all();
 //=> ]
 ```
 
-#### sortByDesc
+#### ``sortByDesc()``
 This method has the same signature as the ``sortBy`` method, but will sort the collection in the opposite order.
 
-#### splice
+#### ``splice()``
 The splice method removes and returns a slice of items starting at the specified index:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -1210,7 +1210,7 @@ collection.all();
 //=> [1, 2, 10, 11, 4, 5]
 ```
 
-#### sum
+#### ``sum()``
 The sum method returns the sum of all items in the collection:
 ```js
 collect([1, 2, 3]).sum();
@@ -1245,7 +1245,7 @@ const total = collection.sum(function (product) {
 //=> 6
 ```
 
-#### take
+#### ``take()``
 The take method returns a new collection with the specified number of items:
 You may also pass a negative integer to take the specified amount of items from the end of the collection:
 ```js
@@ -1258,11 +1258,11 @@ chunk.all();
 //=> [0, 1, 2]
 ```
 
-#### toArray
+#### ``toArray()``
 > Use ``all`` instead of ``toArray``
 
 
-#### toJson
+#### ``toJson()``
 The toJson method converts the collection into JSON string:
 ```js
 const collection = collect({
@@ -1276,7 +1276,7 @@ const json = collection.toJson();
 //=> {"id": 384, "name": "Rayquaza", "gender": "NA"}
 ```
 
-#### transform
+#### ``transform()``
 The transform method iterates over the collection and calls the given callback with each item in the collection. The items in the collection will be replaced by the values returned by the callback:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -1292,7 +1292,7 @@ collection.all();
 
 > Unlike most other collection methods, ``transform`` modifies the collection itself. If you wish to create a new collection instead, use the ``map`` method.
 
-#### union
+#### ``union()``
 The union method adds the given array to the collection. If the given array contains keys that are already in the original collection, the original collection's values will be preferred:
 ```js
 const collection = collect({
@@ -1315,7 +1315,7 @@ union.all();
 //=> }
 ```
 
-#### unique
+#### ``unique()``
 The unique method returns all of the unique items in the collection:
 ```js
 const collection = collect([1, 1, 1, 2, 3, 3]);
@@ -1371,7 +1371,7 @@ unique.all();
 //=> ]
 ```
 
-#### values
+#### ``values()``
 The values method returns a new collection with the keys reset to consecutive integers:
 ```js
 const collection = collect({a: 'xoxo', b: 'abab', 'c': '1337', 1337: 12});
@@ -1384,7 +1384,7 @@ values.all();
 ```
 
 
-#### where
+#### ``where()``
 The where method filters the collection by a given key / value pair:
 ```js
 const collection = collect([
@@ -1428,10 +1428,10 @@ filtered.all();
 //=> []
 ```
 
-#### whereStrict
+#### ``whereStrict()``
 This method has the same signature as the ``where`` method; however, all values are compared using "strict" comparisons.
 
-#### whereIn
+#### ``whereIn()``
 The whereIn method filters the collection by a given key / value contained within the given array.
 ```js
 const collection = collect([
@@ -1453,10 +1453,10 @@ filtered.all();
 ```
 > The ``whereIn`` method uses strict comparisons when checking item values. Use the ``whereInLoose`` method to filter using "loose" comparisons.
 
-#### whereInLoose
+#### ``whereInLoose()``
 This method has the same signature as the ``whereIn`` method; however, all values are compared using "loose" comparisons.
 
-#### zip
+#### ``zip()``
 The zip method merges together the values of the given array with the values of the original collection at the corresponding index:
 ```js
 const collection = collect(['Chair', 'Desk']);
