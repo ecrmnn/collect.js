@@ -1,4 +1,5 @@
-# collect.js
+# <img src="https://raw.githubusercontent.com/ecrmnn/collect.js/master/collectjs.jpg" alt="collect.js">
+
 > Convenient wrapper for working with arrays and objects
 
 [![Travis](https://img.shields.io/travis/ecrmnn/collect.js.svg?style=flat-square)](https://travis-ci.org/ecrmnn/collect.js.svg?branch=master)
