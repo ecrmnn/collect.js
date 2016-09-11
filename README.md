@@ -16,29 +16,28 @@ npm install collect.js --save
 Using Laravel as your backend? Collect.js offers an identical api to Laravel Collections
 
 ### Usage
-||||
----|---|---
 [all](#all)	|	[implode](#implode)	|	[reverse](#reverse)
+---|---|---
 [avg](#avg)	|	[intersect](#intersect)	|	[search](#search)
-[chunk](#chunk)	|	[isEmpty](#isEmpty)	|	[shift](#shift)
-[collapse](#collapse)	|	[keyBy](#keyBy)	|	[shuffle](#shuffle)
+[chunk](#chunk)	|	[isEmpty](#isempty)	|	[shift](#shift)
+[collapse](#collapse)	|	[keyBy](#keyby)	|	[shuffle](#shuffle)
 [combine](#combine)	|	[keys](#keys)	|	[slice](#slice)
 [contains](#contains)	|	[last](#last)	|	[sort](#sort)
-[count](#count)	|	[map](#map)	|	[sortBy](#sortBy)
-[diff](#diff)	|	[mapWithKeys](#mapWithKeys)	|	[sortByDesc](#sortByDesc)
-[diffKeys](#diffKeys)	|	[max](#max)	|	[splice](#splice)
+[count](#count)	|	[map](#map)	|	[sortBy](#sortby)
+[diff](#diff)	|	[mapWithKeys](#mapwithkeys)	|	[sortByDesc](#sortbydesc)
+[diffKeys](#diffkeys)	|	[max](#max)	|	[splice](#splice)
 [each](#each)	|	[merge](#merge)	|	[sum](#sum)
 [every](#every)	|	[min](#min)	|	[take](#take)
-[except](#except)	|	[only](#only)	|	[toArray](#toArray)
-[filter](#filter)	|	[pipe](#pipe)	|	[toJson](#toJson)
+[except](#except)	|	[only](#only)	|	[toArray](#toarray)
+[filter](#filter)	|	[pipe](#pipe)	|	[toJson](#tojson)
 [first](#first)	|	[pluck](#pluck)	|	[transform](#transform)
-[flatMap](#flatMap)	|	[pop](#pop)	|	[union](#union)
+[flatMap](#flatmap)	|	[pop](#pop)	|	[union](#union)
 [flatten](#flatten)	|	[prepend](#prepend)	|	[unique](#unique)
 [flip](#flip)	|	[pull](#pull)	|	[values](#values)
 [forget](#forget)	|	[push](#push)	|	[where](#where)
-[forPage](#forPage)	|	[put](#put)	|	[whereStrict](#whereStrict)
-[get](#get)	|	[random](#random)	|	[whereIn](#whereIn)
-[groupBy](#groupBy)	|	[reduce](#reduce)	|	[whereInLoose](#whereInLoose)
+[forPage](#forpage)	|	[put](#put)	|	[whereStrict](#wherestrict)
+[get](#get)	|	[random](#random)	|	[whereIn](#wherein)
+[groupBy](#groupby)	|	[reduce](#reduce)	|	[whereInLoose](#whereinloose)
 [has](#has)	|	[reject](#reject)	|	[zip](#zip)
 
 #### ``all()``
