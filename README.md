@@ -16,6 +16,31 @@ npm install collect.js --save
 Using Laravel as your backend? Collect.js offers an identical api to Laravel Collections
 
 ### Usage
+||||
+---|---|---
+[all](#all)	|	[implode](#implode)	|	[reverse](#reverse)
+[avg](#avg)	|	[intersect](#intersect)	|	[search](#search)
+[chunk](#chunk)	|	[isEmpty](#isEmpty)	|	[shift](#shift)
+[collapse](#collapse)	|	[keyBy](#keyBy)	|	[shuffle](#shuffle)
+[combine](#combine)	|	[keys](#keys)	|	[slice](#slice)
+[contains](#contains)	|	[last](#last)	|	[sort](#sort)
+[count](#count)	|	[map](#map)	|	[sortBy](#sortBy)
+[diff](#diff)	|	[mapWithKeys](#mapWithKeys)	|	[sortByDesc](#sortByDesc)
+[diffKeys](#diffKeys)	|	[max](#max)	|	[splice](#splice)
+[each](#each)	|	[merge](#merge)	|	[sum](#sum)
+[every](#every)	|	[min](#min)	|	[take](#take)
+[except](#except)	|	[only](#only)	|	[toArray](#toArray)
+[filter](#filter)	|	[pipe](#pipe)	|	[toJson](#toJson)
+[first](#first)	|	[pluck](#pluck)	|	[transform](#transform)
+[flatMap](#flatMap)	|	[pop](#pop)	|	[union](#union)
+[flatten](#flatten)	|	[prepend](#prepend)	|	[unique](#unique)
+[flip](#flip)	|	[pull](#pull)	|	[values](#values)
+[forget](#forget)	|	[push](#push)	|	[where](#where)
+[forPage](#forPage)	|	[put](#put)	|	[whereStrict](#whereStrict)
+[get](#get)	|	[random](#random)	|	[whereIn](#whereIn)
+[groupBy](#groupBy)	|	[reduce](#reduce)	|	[whereInLoose](#whereInLoose)
+[has](#has)	|	[reject](#reject)	|	[zip](#zip)
+
 #### ``all()``
 The all method returns the underlying array represented by the collection:
 ```js
