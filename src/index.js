@@ -14,16 +14,6 @@ Collection.prototype.unique = function (key) {
   } else {
     collection = [];
 
-    //for (let iterator = 0; iterator < this.items.length; iterator++) {
-    //  const exists = collection.filter(function (item) {
-    //    return item[key] === this.items[iterator][key];
-    //  }.bind(this)).length;
-    //
-    //  if (!exists) {
-    //    collection.push(this.items[iterator]);
-    //  }
-    //}
-
     const usedKeys = [];
 
     for (let iterator = 0; iterator < this.items.length; iterator++) {
