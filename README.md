@@ -167,7 +167,7 @@ collection.count();
 ```
 
 #### ``diff()``
-The diff method compares the collection against another collection or a plain PHP array based on its values. This method will return the values in the original collection that are not present in the given collection:
+The diff method compares the collection against another collection or a plain array based on its values. This method will return the values in the original collection that are not present in the given collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
 
@@ -179,7 +179,7 @@ diff.all();
 ```
 
 #### ``diffKeys()``
-The diffKeys method compares the collection against another collection or a plain PHP array based on its keys. This method will return the key / value pairs in the original collection that are not present in the given collection:
+The diffKeys method compares the collection against another collection or a plain object based on its keys. This method will return the key / value pairs in the original collection that are not present in the given collection:
 ```js
 const collection = collect({
   a: 'a',

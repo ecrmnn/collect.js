@@ -261,6 +261,10 @@ Collection.prototype.whereIn = function (key, values) {
 }
 
 Collection.prototype.diff = function (values) {
+  if (values instanceof Collection) {
+    values = values.all();
+  }
+
   const collection = this.items.filter(function (item) {
     return values.indexOf(item) === -1;
   });

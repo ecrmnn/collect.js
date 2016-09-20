@@ -502,6 +502,10 @@ describe('Collect.js Test Suite', function () {
     const diff = collection.diff([1, 2, 3, 9]);
     expect(diff.all()).to.eql([4, 5]);
     expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
+
+    const diffCollection = collect([1, 2, 3, 9]);
+    const diff2 = collection.diff(diffCollection);
+    expect(diff2.all()).to.eql([4, 5]);
   });
 
   it('should return the matching values from collection', function () {
@@ -829,6 +833,10 @@ describe('Collect.js Test Suite', function () {
 
       expect(_diff.all()).to.eql({a: 'a', c: 'c'});
       expect(collection.all()).to.eql(data);
+
+      const diffCollection = collect(diff);
+      const _diff2 = collection.diffKeys(diffCollection);
+      expect(_diff2.all()).to.eql({a: 'a', c: 'c'});
     });
 
 
