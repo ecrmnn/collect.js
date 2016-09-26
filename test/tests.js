@@ -370,6 +370,75 @@ describe('Collect.js Test Suite', function () {
           price: '9990 NOK'
         }]
     });
+
+    const collection2 = collect([{
+      "id": 10,
+      "title": "Quia dolorem consequatur voluptatibus totam doloribus impedit.",
+      "description": "Consequuntur et ab cum sit omnis architecto maiores est voluptate cupiditate odio sed assumenda.",
+      "value": "6",
+      "order": null,
+      "parent_id": null,
+      "estimate_id": 10,
+      "created_at": "2016-09-26 17:08:40",
+      "updated_at": "2016-09-26 17:08:40"
+    }, {
+      "id": 21,
+      "title": "Quia dolorem consequatur voluptatibus totam doloribus impedit.",
+      "description": "Consequuntur et ab cum sit omnis architecto maiores est voluptate cupiditate odio sed assumenda.",
+      "value": "6",
+      "order": null,
+      "parent_id": 10,
+      "estimate_id": 10,
+      "created_at": "2016-09-26 17:08:40",
+      "updated_at": "2016-09-26 17:08:40"
+    }, {
+      "id": 22,
+      "title": "Quia dolorem consequatur voluptatibus totam doloribus impedit.",
+      "description": "Consequuntur et ab cum sit omnis architecto maiores est voluptate cupiditate odio sed assumenda.",
+      "value": "6",
+      "order": null,
+      "parent_id": 10,
+      "estimate_id": 10,
+      "created_at": "2016-09-26 17:08:40",
+      "updated_at": "2016-09-26 17:08:40"
+    }]);
+
+    const grouped3 = collection2.groupBy('parent_id');
+
+    expect(grouped3.all()).to.eql({
+      10: [{
+        "id": 21,
+        "title": "Quia dolorem consequatur voluptatibus totam doloribus impedit.",
+        "description": "Consequuntur et ab cum sit omnis architecto maiores est voluptate cupiditate odio sed assumenda.",
+        "value": "6",
+        "order": null,
+        "parent_id": 10,
+        "estimate_id": 10,
+        "created_at": "2016-09-26 17:08:40",
+        "updated_at": "2016-09-26 17:08:40"
+      }, {
+        "id": 22,
+        "title": "Quia dolorem consequatur voluptatibus totam doloribus impedit.",
+        "description": "Consequuntur et ab cum sit omnis architecto maiores est voluptate cupiditate odio sed assumenda.",
+        "value": "6",
+        "order": null,
+        "parent_id": 10,
+        "estimate_id": 10,
+        "created_at": "2016-09-26 17:08:40",
+        "updated_at": "2016-09-26 17:08:40"
+      }],
+      null: [{
+        "id": 10,
+        "title": "Quia dolorem consequatur voluptatibus totam doloribus impedit.",
+        "description": "Consequuntur et ab cum sit omnis architecto maiores est voluptate cupiditate odio sed assumenda.",
+        "value": "6",
+        "order": null,
+        "parent_id": null,
+        "estimate_id": 10,
+        "created_at": "2016-09-26 17:08:40",
+        "updated_at": "2016-09-26 17:08:40"
+      }]
+    });
   });
 
   it('should only return the specified properties', function () {

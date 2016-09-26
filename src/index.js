@@ -179,7 +179,7 @@ Collection.prototype.groupBy = function (key) {
       resolvedKey = item[key];
     }
 
-    if (Object.keys(collection).indexOf(resolvedKey) === -1) {
+    if (!collection.hasOwnProperty(resolvedKey)) {
       collection[resolvedKey] = [];
     }
 
