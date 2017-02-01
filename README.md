@@ -14,33 +14,77 @@ npm install collect.js --save
 ```
 
 ### Tip
-Using Laravel as your backend? Collect.js offers an identical api to Laravel Collections
+Using Laravel as your backend? Collect.js offers an identical api to Laravel Collections 5.4.
 
 ### Usage
 All | available | methods
----|---|---
-[all](#all)	|	[implode](#implode)	|	[reverse](#reverse)
-[avg](#avg)	|	[intersect](#intersect)	|	[search](#search)
-[chunk](#chunk)	|	[isEmpty](#isempty)	|	[shift](#shift)
-[collapse](#collapse)	|	[keyBy](#keyby)	|	[shuffle](#shuffle)
-[combine](#combine)	|	[keys](#keys)	|	[slice](#slice)
-[contains](#contains)	|	[last](#last)	|	[sort](#sort)
-[count](#count)	|	[map](#map)	|	[sortBy](#sortby)
-[diff](#diff)	|	[mapWithKeys](#mapwithkeys)	|	[sortByDesc](#sortbydesc)
-[diffKeys](#diffkeys)	|	[max](#max)	|	[splice](#splice)
-[each](#each)	|	[merge](#merge)	|	[sum](#sum)
-[every](#every)	|	[min](#min)	|	[take](#take)
-[except](#except)	|	[only](#only)	|	[toArray](#toarray)
-[filter](#filter)	|	[pipe](#pipe)	|	[toJson](#tojson)
-[first](#first)	|	[pluck](#pluck)	|	[transform](#transform)
-[flatMap](#flatmap)	|	[pop](#pop)	|	[union](#union)
-[flatten](#flatten)	|	[prepend](#prepend)	|	[unique](#unique)
-[flip](#flip)	|	[pull](#pull)	|	[values](#values)
-[forget](#forget)	|	[push](#push)	|	[where](#where)
-[forPage](#forpage)	|	[put](#put)	|	[whereStrict](#wherestrict)
-[get](#get)	|	[random](#random)	|	[whereIn](#wherein)
-[groupBy](#groupby)	|	[reduce](#reduce)	|	[whereInLoose](#whereinloose)
-[has](#has)	|	[reject](#reject)	|	[zip](#zip)
+[all](#all)
+[avg](#avg)
+[chunk](#chunk)
+[collapse](#collapse)
+[combine](#combine)
+[contains](#contains)
+[count](#count)
+[diff](#diff)
+[diffKeys](#diffkeys)
+[each](#each)
+[every](#every)
+[except](#except)
+[filter](#filter)
+[first](#first)
+[flatMap](#flatmap)
+[flatten](#flatten)
+[flip](#flip)
+[forget](#forget)
+[forPage](#forpage)
+[get](#get)
+[groupBy](#groupby)
+[has](#has)
+[implode](#implode)
+[intersect](#intersect)
+[isEmpty](#isempty)
+[keyBy](#keyby)
+[keys](#keys)
+[last](#last)
+[map](#map)
+[mapWithKeys](#mapwithkeys)
+[max](#max)
+[merge](#merge)
+[min](#min)
+[nth](#nth)
+[only](#only)
+[pipe](#pipe)
+[pluck](#pluck)
+[pop](#pop)
+[prepend](#prepend)
+[pull](#pull)
+[push](#push)
+[put](#put)
+[random](#random)
+[reduce](#reduce)
+[reject](#reject)
+[reverse](#reverse)
+[search](#search)
+[shift](#shift)
+[shuffle](#shuffle)
+[slice](#slice)
+[sort](#sort)
+[sortBy](#sortby)
+[sortByDesc](#sortbydesc)
+[splice](#splice)
+[sum](#sum)
+[take](#take)
+[toArray](#toarray)
+[toJson](#tojson)
+[transform](#transform)
+[union](#union)
+[unique](#unique)
+[values](#values)
+[where](#where)
+[whereIn](#wherein)
+[whereInLoose](#whereinloose)
+[whereStrict](#wherestrict)
+[zip](#zip)
 
 #### ``all()``
 The all method returns the underlying array represented by the collection:
@@ -231,23 +275,13 @@ collection.each(function (item) {
 ```
 
 #### ``every()``
-The every method creates a new collection consisting of every n-th element:
+The every method may be used to verify that all elements of a collection pass a given truth test:
 ```js
-const collection = collect([
-  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'
-]);
+collect([1, 2, 3, 4]).every(function (value, key) {
+  return value > 2;
+});
 
-collection.every(4);
-
-//=> ['a', 'e', 'i']
-```
-You may optionally pass an offset as the second argument:
-```js
-collection.every(4, 1);
-//=> ['b', 'f']
-
-collection.every(4, 3);
-//=> ['d', 'h']
+//=> false
 ```
 
 #### ``except()``
@@ -827,6 +861,18 @@ collection.min('worth');
 collect([1, 2, 3, 4, 5]).min();
 
 //=> 1
+```
+
+#### ``nth()``
+The nth method creates a new collection consisting of every n-th element:
+```js
+const collection = collect(['a', 'b', 'c', 'd', 'e', 'f']);
+
+const nth = collection.nth(4);
+
+nth.all();
+
+//=> ['a', 'e']
 ```
 
 #### ``only()``

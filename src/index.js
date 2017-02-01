@@ -449,16 +449,22 @@ Collection.prototype.diffKeys = function (object) {
   return new Collection(Object.create(this.items)).only(diffKeys);
 }
 
-Collection.prototype.every = function (n, offset) {
+Collection.prototype.every = function (fn) {
+  return this.items.filter(fn).length === this.items.length;
+}
+
+Collection.prototype.nth = function (n, offset) {
   if (offset === undefined) {
     offset = 0;
   }
 
-  return Object.create(this.items)
+  const collection = this.items
     .slice(offset)
     .filter(function (item, index) {
       return index % n === 0;
     });
+
+  return new Collection(collection);
 }
 
 Collection.prototype.flatMap = function (fn) {

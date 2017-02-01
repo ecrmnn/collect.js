@@ -908,19 +908,34 @@ describe('Collect.js Test Suite', function () {
       expect(_diff2.all()).to.eql({a: 'a', c: 'c'});
     });
 
+  it('The every method may be used to verify that all elements of a collection pass a given truth test', function () {
+    const collection = collect([1, 2, 3, 4]);
+
+    const shouldBeFalse = collection.every(function (value, key) {
+      return value > 2;
+    });
+
+    expect(shouldBeFalse).to.eql(false);
+
+    const shouldBeTrue = collection.every(function (value, key) {
+      return value <= 4;
+    });
+
+    expect(shouldBeTrue).to.eql(true);
+  });
 
   it('should create a new collection consisting of every n-th element', function () {
     const collection = collect(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']);
 
-    const every_4 = collection.every(4);
+    const nth_4 = collection.nth(4);
 
-    const every_4_offset_1 = collection.every(4, 1);
+    const nth_4_offset_1 = collection.nth(4, 1);
 
-    const every_4_offset_3 = collection.every(4, 3);
+    const nth_4_offset_3 = collection.nth(4, 3);
 
-    expect(every_4).to.eql(['a', 'e', 'i']);
-    expect(every_4_offset_1).to.eql(['b', 'f']);
-    expect(every_4_offset_3).to.eql(['d', 'h']);
+    expect(nth_4.all()).to.eql(['a', 'e', 'i']);
+    expect(nth_4_offset_1.all()).to.eql(['b', 'f']);
+    expect(nth_4_offset_3.all()).to.eql(['d', 'h']);
   });
 
   it('should iterate through the collection and passes each value to the given callback', function () {
