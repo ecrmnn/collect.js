@@ -422,7 +422,7 @@ Collection.prototype.pipe = function (fn) {
 };
 
 Collection.prototype.contains = function (key, value) {
-  if (typeof value === 'string') {
+  if (typeof value !== 'undefined') {
     return (this.items.hasOwnProperty(key) && this.items[key] === value);
   }
 
@@ -430,6 +430,10 @@ Collection.prototype.contains = function (key, value) {
     return this.items.filter(function (item, index) {
         return key(item, index);
       }).length > 0;
+  }
+
+  if (Array.isArray(this.items)) {
+    return this.items.indexOf(key) !== -1;
   }
 
   return this.items.hasOwnProperty(key);

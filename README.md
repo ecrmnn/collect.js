@@ -178,6 +178,13 @@ collection.contains('name');
 collection.contains('age');
 //=> false
 ```
+You may also work with arrays
+```js
+const collection = collect([1, 2, 3]);
+
+collection.contains(3);
+//=> true
+```
 You may also pass a key / value pair to the contains method, which will determine if the given pair exists in the collection:
 ```js
 const collection = collect({
