@@ -1391,7 +1391,7 @@ describe('Collect.js Test Suite', function () {
     expect(collection2.all()).to.eql([0, 1, 2, 3, 4, 5]);
   });
 
-  it('sould return a JSON representation of the collection', function () {
+  it('should return a JSON representation of the collection', function () {
     const collection = collect({
       id: 384,
       name: 'Rayquaza',
