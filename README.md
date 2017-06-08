@@ -14,12 +14,12 @@ npm install collect.js --save
 ```
 
 ### Tip
-Using Laravel as your backend? Collect.js offers an identical api to Laravel Collections 5.4.
+Using Laravel as your backend? Collect.js offers an (almost) identical api to Laravel Collections 5.4.
 
 ### Usage
 All available methods
 - [all](#all)
-- [avg](#avg)
+- [average](#average)
 - [chunk](#chunk)
 - [collapse](#collapse)
 - [combine](#combine)
@@ -43,16 +43,20 @@ All available methods
 - [implode](#implode)
 - [intersect](#intersect)
 - [isEmpty](#isempty)
+- [isNotEmpty](#isnotempty)
 - [keyBy](#keyby)
 - [keys](#keys)
 - [last](#last)
 - [map](#map)
 - [mapWithKeys](#mapwithkeys)
 - [max](#max)
+- [median](#median)
 - [merge](#merge)
 - [min](#min)
+- [mode](#mode)
 - [nth](#nth)
 - [only](#only)
+- [partition](#partition)
 - [pipe](#pipe)
 - [pluck](#pluck)
 - [pop](#pop)
@@ -72,19 +76,35 @@ All available methods
 - [sortBy](#sortby)
 - [sortByDesc](#sortbydesc)
 - [splice](#splice)
+- [split](#split)
 - [sum](#sum)
 - [take](#take)
+- [tap](#tap)
+- [times](#times)
 - [toArray](#toarray)
 - [toJson](#tojson)
 - [transform](#transform)
 - [union](#union)
 - [unique](#unique)
 - [values](#values)
+- [when](#when)
 - [where](#where)
 - [whereIn](#wherein)
 - [whereInLoose](#whereinloose)
+- [whereNotIn](#whereNotIn)
 - [whereStrict](#wherestrict)
 - [zip](#zip)
+
+### Strictness and comparisons
+All comparisons in ``collect.js`` are done using strict equality. Using loose equality comparisons are generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offer several "strict" comparison methods. These methods have not been implemented in ``collect.js`` because all methods are strict by default. 
+
+#####  Methods that have not been implemented:
+- containsStrict
+- toArray
+- uniqueStrict
+- whereStrict
+- whereInStrict
+- whereNotInStrict
 
 #### ``all()``
 The all method returns the underlying array represented by the collection:
@@ -93,6 +113,9 @@ collect([1, 2, 3]).all();
 
 //=> [1, 2, 3]
 ```
+
+#### ``average()``
+Alias for the [``avg()``](#avg) method
 
 #### ``avg()``
 The avg method returns the average of all items in the collection:
@@ -661,10 +684,19 @@ intersect.all();
 
 //=> [1, 2, 3]
 ```
+
 #### ``isEmpty()``
 The isEmpty method returns true if the collection is empty; otherwise, false is returned:
 ```js
 collect([]).isEmpty();
+
+//=>  true
+```
+
+#### ``isNotEmpty()``
+The isNotEmpty method returns true if the collection is not empty; otherwise, false is returned:
+```js
+collect([1, 2, 3]).isNotEmpty();
 
 //=>  true
 ```
@@ -818,6 +850,29 @@ collect([-1, -2345, 12, 11, 3]).max();
 
 //=> 12
 ```
+
+#### ``median()``
+The median method returns the median value of a given key:
+```js
+collect([1, 3, 3, 6, 7, 8, 9]).median();
+
+//=> 6
+```
+
+```js
+collect([{
+  foo: 1
+}, {
+  foo: 1
+}, {
+  foo: 2
+}, {
+  foo: 4
+}]).median('foo');
+
+//=> 1.5
+```
+
 #### ``merge()``
 The merge method merges the given object into the original collection. If a key in the given object matches a key in the original collection, the given objects value will overwrite the value in the original collection:
 ```js
@@ -867,6 +922,28 @@ collect([1, 2, 3, 4, 5]).min();
 //=> 1
 ```
 
+#### ``mode()``
+The mode method returns the mode value of a given key:
+```js
+collect([1, 3, 3, 6, 7, 8, 9]).mode();
+
+//=> [3]
+```
+
+```js
+collect([{
+  foo: 1
+}, {
+  foo: 1
+}, {
+  foo: 2
+}, {
+  foo: 4
+}]).mode('foo');
+
+//=> [1]
+```
+
 #### ``nth()``
 The nth method creates a new collection consisting of every n-th element:
 ```js
@@ -894,6 +971,16 @@ const filtered = collection.only(['name', 'email']);
 //=> {name: 'John Doe', email: 'john@doe.com'}
 ```
 > For the inverse of ``only``, see the ``except`` method.
+
+#### ``partition()``
+The partition method may be combined with destructuring to separate elements that pass a given truth test from those that do not:
+```js
+const collection = collect([1, 2, 3, 4, 5, 6]);
+
+const [underThree, underThree] = collection.partition(function (i) {
+  return i < 3;
+});
+```
 
 #### ``pipe()``
 The pipe method passes the collection to the given callback and returns the result:
@@ -1271,6 +1358,16 @@ collection.all();
 //=> [1, 2, 4, 5]
 ```
 
+#### ``split()``
+The split method breaks a collection into the given number of groups:
+```js
+const collection = collect([1, 2, 3, 4, 5]);
+
+const groups = collection.split(3);
+
+//=> [[1, 2], [3, 4], [5]]
+```
+
 In addition, you can pass a third argument containing the new items to replace the items removed from the collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
@@ -1332,6 +1429,33 @@ const chunk = collection.take(3);
 chunk.all();
 
 //=> [0, 1, 2]
+```
+
+#### ``tap()``
+The tap method passes the collection to the given callback, allowing you to "tap" into the collection at a specific point and do something with the items while not affecting the collection itself:
+```js
+const collect([2, 4, 3, 1, 5])
+  .sort()
+  .tap(function (collection) {
+    console.log(collection.all());
+
+    //=> [1, 2, 3, 4, 5]
+  })
+  .shift();
+
+//=> 1
+```
+
+#### ``times()``
+The times method creates a new collection by invoking the callback a given amount of times:
+```js
+const collection = collect().times(10, function (number) {
+  return number * 9;
+});
+
+collection.all();
+
+//=> [9, 18, 27, 36, 45, 54, 63, 72, 81, 90]
 ```
 
 #### ``toArray()``
@@ -1459,6 +1583,19 @@ values.all();
 //=> [12, 'xoxo', 'abab', '1337']
 ```
 
+#### ``when()``
+The when method will execute the given callback when the first argument given to the method evaluates to true:
+```js
+const collection = collect([1, 2, 3]);
+
+collection.when(true, function (collection) {
+  return collection.push(4);
+});
+
+collection.all();
+
+// [1, 2, 3, 4]
+```
 
 #### ``where()``
 The where method filters the collection by a given key / value pair:
@@ -1479,8 +1616,6 @@ filtered.all();
 //=>   {'product': 'Door', 'price': '100'}
 //=> ]
 ```
-
-The **where method uses loose comparisons** when checking item values. Use the ``whereStrict`` method to filter using "strict" comparisons.
 
 The where method also allows for custom comparisons:
 **Non-identity / strict inequality ``(!==)``**
@@ -1531,6 +1666,26 @@ filtered.all();
 
 #### ``whereInLoose()``
 This method has the same signature as the ``whereIn`` method; however, all values are compared using "loose" comparisons.
+
+#### ``whereNotIn()``
+The whereNotIn method filters the collection by a given key / value not contained within the given array:
+```js
+const collection = collect([
+  { product: 'Desk', price: 200 },
+  { product: 'Chair', price: 100 },
+  { product: 'Bookcase', price: 150 },
+  { product: 'Door', price: 100 }
+]);
+
+const filtered = collection.whereNotIn('price', [150, 200]);
+
+filtered.all();
+
+//=> [
+//=>   { product: 'Chair', price: 100 },
+//=>   { product: 'Door', price: 100 }
+//=> ]
+```
 
 #### ``zip()``
 The zip method merges together the values of the given array with the values of the original collection at the corresponding index:

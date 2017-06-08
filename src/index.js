@@ -1,8 +1,12 @@
 'use strict';
 
 function Collection(collection) {
-  this.items = collection;
-}
+  if (typeof collection === 'undefined') {
+    this.items = [];
+  } else {
+    this.items = collection;
+  }
+};
 
 Collection.prototype.unique = function (key) {
   let collection;
@@ -54,27 +58,84 @@ Collection.prototype.sum = function (key) {
   return total;
 };
 
+Collection.prototype.average = function (key) {
+  return this.avg(key);
+};
+
 Collection.prototype.avg = function (key) {
   if (key === undefined) {
     return this.sum() / this.items.length;
   }
 
   return new Collection(this.items).pluck(key).sum() / this.items.length;
-}
+};
+
+Collection.prototype.median = function (key) {
+  const length = this.items.length;
+
+  if (typeof key === 'undefined') {
+    if (length % 2 === 0) {
+      return (this.items[length / 2 - 1] + this.items[length / 2]) / 2;
+    }
+
+    return this.items[Math.floor(length / 2)];
+  }
+
+  if (length % 2 === 0) {
+    return (this.items[length / 2 - 1][key] + this.items[length / 2][key]) / 2;
+  }
+
+  return this.items[Math.floor(length / 2)][key];
+};
+
+Collection.prototype.mode = function (key) {
+  let values = [];
+  let highestCount = 0;
+
+  this.items.forEach(function (item) {
+    const _values = values.filter(function (value) {
+      if (typeof key !== 'undefined') {
+        return value.key === item[key];
+      }
+
+      return value.key === item;
+    });
+
+    if (!_values.length) {
+      if (typeof key !== 'undefined') {
+        values.push({ key: item[key], count: 1 });
+      } else {
+        values.push({ key: item, count: 1 });
+      }
+    } else {
+      const count = ++_values[0].count;
+
+      if (count > highestCount) {
+        highestCount = count;
+      }
+    }
+  });
+
+  return values.filter(function (value) {
+    return value.count === highestCount;
+  }).map(function (value) {
+    return value.key;
+  });
+};
 
 Collection.prototype.count = function () {
   return this.items.length
-}
+};
 
 Collection.prototype.isEmpty = function () {
   return !this.items.length;
-}
+};
 
 Collection.prototype.each = function (fn) {
   this.items.forEach(fn);
 
   return this;
-}
+};
 
 Collection.prototype.map = function (fn) {
   const collection = this.items.map(function (item) {
@@ -82,7 +143,7 @@ Collection.prototype.map = function (fn) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.mapWithKeys = function (fn) {
   const collection = {};
@@ -93,7 +154,7 @@ Collection.prototype.mapWithKeys = function (fn) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.filter = function (fn) {
   const collection = this.items.filter(function (item) {
@@ -101,7 +162,7 @@ Collection.prototype.filter = function (fn) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.has = function (key) {
   if (Array.isArray(this.items)) {
@@ -111,7 +172,7 @@ Collection.prototype.has = function (key) {
   }
 
   return this.items.hasOwnProperty(key);
-}
+};
 
 Collection.prototype.first = function (fn) {
   if (typeof fn === 'function') {
@@ -119,7 +180,7 @@ Collection.prototype.first = function (fn) {
   }
 
   return this.items[0];
-}
+};
 
 Collection.prototype.last = function (fn) {
   if (typeof fn === 'function') {
@@ -129,7 +190,7 @@ Collection.prototype.last = function (fn) {
   }
 
   return this.items[this.items.length - 1];
-}
+};
 
 Collection.prototype.get = function (key, defaultValue) {
   if (this.items.hasOwnProperty(key)) {
@@ -141,7 +202,7 @@ Collection.prototype.get = function (key, defaultValue) {
   }
 
   return defaultValue || null;
-}
+};
 
 Collection.prototype.only = function (properties) {
   const collection = {};
@@ -153,7 +214,7 @@ Collection.prototype.only = function (properties) {
   }
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.except = function (properties) {
   const collection = {};
@@ -165,7 +226,7 @@ Collection.prototype.except = function (properties) {
   }
 
   return collection;
-}
+};
 
 Collection.prototype.groupBy = function (key) {
   let collection = {};
@@ -187,12 +248,12 @@ Collection.prototype.groupBy = function (key) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.where = function (key, operator, value) {
   if (typeof value === 'undefined') {
     value = operator;
-    operator = '==';
+    operator = '===';
   }
 
   const comparisons = {
@@ -246,11 +307,7 @@ Collection.prototype.where = function (key, operator, value) {
   };
 
   return new Collection(comparisons[operator](key, value));
-}
-
-Collection.prototype.whereStrict = function (key, value) {
-  return this.where(key, '===', value);
-}
+};
 
 Collection.prototype.whereIn = function (key, values) {
   const collection = this.items.filter(function (item) {
@@ -258,7 +315,7 @@ Collection.prototype.whereIn = function (key, values) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.diff = function (values) {
   if (values instanceof Collection) {
@@ -270,7 +327,7 @@ Collection.prototype.diff = function (values) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.intersect = function (values) {
   if (values instanceof Collection) {
@@ -282,7 +339,7 @@ Collection.prototype.intersect = function (values) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.pluck = function (value, key) {
   if (typeof key !== 'undefined') {
@@ -302,7 +359,7 @@ Collection.prototype.pluck = function (value, key) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.implode = function (key, glue) {
   if (typeof glue === 'undefined') {
@@ -310,29 +367,29 @@ Collection.prototype.implode = function (key, glue) {
   }
 
   return new Collection(this.items).pluck(key).all().join(glue);
-}
+};
 
 Collection.prototype.pull = function (key) {
   const value = this.items[key] || null;
   delete this.items[key];
   return value;
-}
+};
 
 Collection.prototype.push = function (item) {
   this.items.push(item);
 
   return this;
-}
+};
 
 Collection.prototype.put = function (key, value) {
   this.items[key] = value;
 
   return this;
-}
+};
 
 Collection.prototype.shift = function () {
   return this.items.shift();
-}
+};
 
 Collection.prototype.chunk = function (size) {
   const chunks = [];
@@ -342,11 +399,11 @@ Collection.prototype.chunk = function (size) {
   }
 
   return new Collection(chunks);
-}
+};
 
 Collection.prototype.collapse = function () {
   return new Collection([].concat.apply([], this.items));
-}
+};
 
 Collection.prototype.combine = function (array) {
   const collection = {};
@@ -356,7 +413,7 @@ Collection.prototype.combine = function (array) {
   }.bind(this));
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.flip = function () {
   const collection = {};
@@ -366,18 +423,18 @@ Collection.prototype.flip = function () {
   }.bind(this));
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.forget = function (key) {
   delete this.items[key];
   return this;
-}
+};
 
 Collection.prototype.forPage = function (page, chunk) {
   const collection = this.items.slice(page * chunk - chunk, page * chunk);
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.keys = function () {
   if (Array.isArray(this.items)) {
@@ -393,7 +450,7 @@ Collection.prototype.keys = function () {
   }
 
   return new Collection(Object.keys(this.items));
-}
+};
 
 Collection.prototype.merge = function (objectOrArray) {
   if (Array.isArray(objectOrArray)) {
@@ -407,7 +464,7 @@ Collection.prototype.merge = function (objectOrArray) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.max = function (key) {
   if (typeof key === 'string') {
@@ -415,7 +472,7 @@ Collection.prototype.max = function (key) {
   }
 
   return Math.max.apply(Math, this.items);
-}
+};
 
 Collection.prototype.pipe = function (fn) {
   return fn(this);
@@ -437,7 +494,7 @@ Collection.prototype.contains = function (key, value) {
   }
 
   return this.items.hasOwnProperty(key);
-}
+};
 
 Collection.prototype.diffKeys = function (object) {
   if (object instanceof Collection) {
@@ -451,11 +508,11 @@ Collection.prototype.diffKeys = function (object) {
   });
 
   return new Collection(Object.create(this.items)).only(diffKeys);
-}
+};
 
 Collection.prototype.every = function (fn) {
   return this.items.filter(fn).length === this.items.length;
-}
+};
 
 Collection.prototype.nth = function (n, offset) {
   if (offset === undefined) {
@@ -469,7 +526,7 @@ Collection.prototype.nth = function (n, offset) {
     });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.flatMap = function (fn) {
   const values = [];
@@ -487,7 +544,7 @@ Collection.prototype.flatMap = function (fn) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.flatten = function (depth) {
   if (typeof depth === 'undefined') {
@@ -541,7 +598,7 @@ Collection.prototype.flatten = function (depth) {
   }
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.keyBy = function (key) {
   let collection = {};
@@ -557,7 +614,7 @@ Collection.prototype.keyBy = function (key) {
   }
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.min = function (key) {
   if (key !== undefined) {
@@ -565,11 +622,11 @@ Collection.prototype.min = function (key) {
   }
 
   return Math.min.apply(Math, this.items);
-}
+};
 
 Collection.prototype.pop = function () {
   return this.items.pop();
-}
+};
 
 Collection.prototype.prepend = function (value, key) {
   if (typeof key !== 'undefined') {
@@ -579,7 +636,7 @@ Collection.prototype.prepend = function (value, key) {
   this.items.unshift(value);
 
   return this;
-}
+};
 
 Collection.prototype.shuffle = function () {
   let j, x, i;
@@ -591,7 +648,7 @@ Collection.prototype.shuffle = function () {
   }
 
   return this;
-}
+};
 
 Collection.prototype.random = function (length) {
   this.shuffle();
@@ -603,7 +660,7 @@ Collection.prototype.random = function (length) {
   }
 
   return this.items[0];
-}
+};
 
 Collection.prototype.reduce = function (fn, carry) {
   let result = null;
@@ -619,7 +676,7 @@ Collection.prototype.reduce = function (fn, carry) {
   });
 
   return result;
-}
+};
 
 Collection.prototype.reject = function (fn) {
   const collection = this.items.filter(function (item) {
@@ -627,13 +684,13 @@ Collection.prototype.reject = function (fn) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.reverse = function () {
   const collection = [].concat(this.items).reverse();
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.search = function (valueOrFunction, strict) {
   if (typeof valueOrFunction === 'function') {
@@ -670,7 +727,7 @@ Collection.prototype.search = function (valueOrFunction, strict) {
   }
 
   return index;
-}
+};
 
 Collection.prototype.slice = function (remove, limit) {
   let collection = this.items.slice(remove);
@@ -680,7 +737,7 @@ Collection.prototype.slice = function (remove, limit) {
   }
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.sort = function (fn) {
   const collection = [].concat(this.items);
@@ -692,7 +749,7 @@ Collection.prototype.sort = function (fn) {
   }
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.sortBy = function (valueOrFunction) {
   const collection = [].concat(this.items);
@@ -716,7 +773,7 @@ Collection.prototype.sortBy = function (valueOrFunction) {
   }
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.splice = function (index, limit, replace) {
   const slicedCollection = this.slice(index, limit);
@@ -730,11 +787,11 @@ Collection.prototype.splice = function (index, limit, replace) {
   }
 
   return slicedCollection;
-}
+};
 
 Collection.prototype.sortByDesc = function (valueOrFunction) {
   return this.sortBy(valueOrFunction).reverse();
-}
+};
 
 Collection.prototype.take = function (length) {
   if (length < 0) {
@@ -742,11 +799,11 @@ Collection.prototype.take = function (length) {
   }
 
   return new Collection(this.items.slice(0, length));
-}
+};
 
 Collection.prototype.toJson = function () {
   return JSON.stringify(this.items);
-}
+};
 
 Collection.prototype.transform = function (fn) {
   this.items = this.items.map(function (item) {
@@ -754,7 +811,7 @@ Collection.prototype.transform = function (fn) {
   });
 
   return this;
-}
+};
 
 Collection.prototype.union = function (object) {
   const collection = Object.create(this.items);
@@ -766,21 +823,19 @@ Collection.prototype.union = function (object) {
   }
 
   return new Collection(collection);
-}
+};
 
-Collection.prototype.whereInLoose = function (key, values) {
-  const collection = [];
+Collection.prototype.whereNotIn = function (key, values) {
+  let collection = this.items;
 
   values.forEach(function (value) {
-    this.items.filter(function (item) {
-      return item[key] == value;
-    }).forEach(function (item) {
-      collection.push(item);
+    collection = collection.filter(function (item) {
+      return item[key] !== value
     });
   }.bind(this));
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.zip = function (array) {
   const collection = this.items.map(function (item, index) {
@@ -788,7 +843,7 @@ Collection.prototype.zip = function (array) {
   });
 
   return new Collection(collection);
-}
+};
 
 Collection.prototype.values = function () {
   const collection = [];
@@ -798,11 +853,61 @@ Collection.prototype.values = function () {
   }
 
   return new Collection(collection);
-}
+};
+
+Collection.prototype.isNotEmpty = function () {
+  return !this.isEmpty();
+};
+
+Collection.prototype.partition = function (fn) {
+  const arrays = [[], []];
+
+  this.items.forEach(function (item) {
+    if (fn(item) === true) {
+      arrays[0].push(item);
+    } else {
+      arrays[1].push(item);
+    }
+  });
+
+  return arrays;
+};
+
+Collection.prototype.split = function (numberOfGroups) {
+  const itemsPerGroup = Math.round(this.items.length / numberOfGroups);
+
+  const items = JSON.parse(JSON.stringify(this.items));
+  const collection = [];
+
+  for (let iterator = 0; iterator < numberOfGroups; iterator++) {
+    collection.push(items.splice(0, itemsPerGroup));
+  }
+
+  return collection;
+};
+
+Collection.prototype.when = function (value, fn) {
+  if (value) {
+    fn(this);
+  }
+};
+
+Collection.prototype.times = function (times, fn) {
+  for (let iterator = 1; iterator <= times; iterator++) {
+    this.items.push(fn(iterator));
+  }
+
+  return this;
+};
+
+Collection.prototype.tap = function (fn) {
+  fn(this);
+  return this;
+};
 
 Collection.prototype.all = function () {
   return this.items;
-}
+};
 
 module.exports = function (collection) {
   return new Collection(collection);

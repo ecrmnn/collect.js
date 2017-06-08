@@ -1,5 +1,6 @@
 'use strict';
 
+const it = require('mocha').it;
 const chai = require('chai');
 const expect = require('chai').expect;
 const collect = require('../src');
@@ -22,39 +23,22 @@ describe('Collect.js Test Suite', function () {
 
   it('should return an array of unique items', function () {
     expect(collect([1, 1, 1, 2, 3, 3]).unique().all()).to.eql([1, 2, 3]);
+    expect(collect([1, 1, 1, 2, 3, 3, '3']).unique().all()).to.eql([1, 2, 3, '3']);
 
     const collection = collect([
-      { name: 'iPhone 6', brand: 'Apple', type: 'phone' },
-      { name: 'iPhone 5', brand: 'Apple', type: 'phone' },
-      { name: 'Apple Watch', brand: 'Apple', type: 'watch' },
-      { name: 'Galaxy S6', brand: 'Samsung', type: 'phone' },
-      { name: 'Galaxy Gear', brand: 'Samsung', type: 'watch' }
+      { name: 'iPhone 6', brand: 'Apple', type: 'phone', price: 999 },
+      { name: 'iPhone 5', brand: 'Apple', type: 'phone', price: '999' },
+      { name: 'Apple Watch', brand: 'Apple', type: 'watch', price: 1999 },
+      { name: 'Galaxy S6', brand: 'Samsung', type: 'phone', price: 1999 },
+      { name: 'Galaxy Gear', brand: 'Samsung', type: 'watch', price: 999 }
     ]);
 
-    const unique = collection.unique('brand');
+    const unique = collection.unique('price');
 
     expect(unique.all()).to.eql([
-      { name: 'iPhone 6', brand: 'Apple', type: 'phone' },
-      { name: 'Galaxy S6', brand: 'Samsung', type: 'phone' },
-    ]);
-
-    const unique2 = collection.unique(function (item) {
-      return item.brand + item.type;
-    });
-
-    expect(unique2.all()).to.eql([
-      { name: 'iPhone 6', brand: 'Apple', type: 'phone' },
-      { name: 'Apple Watch', brand: 'Apple', type: 'watch' },
-      { name: 'Galaxy S6', brand: 'Samsung', type: 'phone' },
-      { name: 'Galaxy Gear', brand: 'Samsung', type: 'watch' },
-    ]);
-
-    expect(collection.all()).to.eql([
-      { name: 'iPhone 6', brand: 'Apple', type: 'phone' },
-      { name: 'iPhone 5', brand: 'Apple', type: 'phone' },
-      { name: 'Apple Watch', brand: 'Apple', type: 'watch' },
-      { name: 'Galaxy S6', brand: 'Samsung', type: 'phone' },
-      { name: 'Galaxy Gear', brand: 'Samsung', type: 'watch' }
+      { name: 'iPhone 6', brand: 'Apple', type: 'phone', price: 999 },
+      { name: 'iPhone 5', brand: 'Apple', type: 'phone', price: '999' },
+      { name: 'Apple Watch', brand: 'Apple', type: 'watch', price: 1999 }
     ]);
   });
 
@@ -87,6 +71,7 @@ describe('Collect.js Test Suite', function () {
 
   it('should return the average value of collection values', function () {
     expect(collect([1, 3, 3, 7]).avg()).to.eql(3.5);
+    expect(collect([1, 3, 3, 7]).average()).to.eql(3.5);
 
     const collection = collect(dataset.products);
 
@@ -97,6 +82,86 @@ describe('Collect.js Test Suite', function () {
     expect(collection.all()).to.eql(dataset.products);
 
     expect(collect([1, 3, 3, 7]).unique().avg()).to.eql(3.6666666666666665);
+  });
+
+  it('should return the median value of collection values', function () {
+    const collection = collect([10, 10, 20, 40]);
+
+    expect(collection.median()).to.eql(15);
+    expect(collection.all()).to.eql([10, 10, 20, 40]);
+
+    expect(collect([1, 3, 3, 6, 7, 8, 9]).median()).to.eql(6);
+
+    const collectionOfObjects = collect([{
+      foo: 1
+    }, {
+      foo: 1
+    }, {
+      foo: 2
+    }, {
+      foo: 4
+    }]);
+
+    expect(collectionOfObjects.median('foo')).to.eql(1.5);
+
+    const collectionOfObjects2 = collect([{
+      foo: 1
+    }, {
+      foo: 3
+    }, {
+      foo: 3
+    }, {
+      foo: 6
+    }, {
+      foo: 7
+    }, {
+      foo: 8
+    }, {
+      foo: 9
+    }]);
+
+    expect(collectionOfObjects2.median('foo')).to.eql(6);
+  });
+
+  it('should return the mode value of collection values', function () {
+    const collection = collect([10, 10, 20, 40]);
+
+    expect(collection.mode()).to.eql([10]);
+    expect(collection.all()).to.eql([10, 10, 20, 40]);
+
+    expect(collect([1, 3, 3, 6, 7, 8, 9]).mode()).to.eql([3]);
+
+    const collectionOfObjects = collect([{
+      foo: 1
+    }, {
+      foo: 1
+    }, {
+      foo: 2
+    }, {
+      foo: 4
+    }]);
+
+    expect(collectionOfObjects.mode('foo')).to.eql([1]);
+
+    const collectionOfObjects2 = collect([{
+      foo: 1
+    }, {
+      foo: 3
+    }, {
+      foo: 3
+    }, {
+      foo: 6
+    }, {
+      foo: 7
+    }, {
+      foo: 8
+    }, {
+      foo: 9
+    }]);
+
+    expect(collectionOfObjects2.mode('foo')).to.eql([3]);
+
+    expect(collect([1, 1, 2, 4, 4]).mode()).to.eql([1, 4]);
   });
 
   it('should return the count of the collection', function () {
@@ -484,7 +549,7 @@ describe('Collect.js Test Suite', function () {
       { 'product': 'Door', 'price': '100' },
     ]);
 
-    const filtered2 = collection2.where('price', 100);
+    const filtered2 = collection2.where('price', '==', 100);
 
     expect(filtered2.all()).to.eql([{ 'product': 'Chair', 'price': 100 }, { 'product': 'Door', 'price': '100' }]);
 
@@ -516,7 +581,7 @@ describe('Collect.js Test Suite', function () {
       { 'product': 'Door', 'price': '100' },
     ]);
 
-    const filtered = collection.whereStrict('price', 100);
+    const filtered = collection.where('price', 100);
 
     expect(filtered.all()).to.eql([{ 'product': 'Chair', 'price': 100 }]);
 
@@ -866,6 +931,9 @@ describe('Collect.js Test Suite', function () {
     const contains3 = collection.contains('name', 'Steven Gerrard');
     expect(contains3).to.eql(true);
 
+    const contains9 = collection.contains('number', '8');
+    expect(contains9).to.eql(false);
+
     const contains8 = collection.contains('number', 28);
     expect(contains8).to.eql(false);
 
@@ -914,7 +982,7 @@ describe('Collect.js Test Suite', function () {
       expect(_diff2.all()).to.eql({ a: 'a', c: 'c' });
     });
 
-  it('The every method may be used to verify that all elements of a collection pass a given truth test', function () {
+  it('should verify that all elements of a collection pass a given truth test', function () {
     const collection = collect([1, 2, 3, 4]);
 
     const shouldBeFalse = collection.every(function (value, key) {
@@ -1446,42 +1514,6 @@ describe('Collect.js Test Suite', function () {
     });
   });
 
-  it('should return the same signature as the whereIn method; however, ' +
-    'all values are compared using "loose" comparisons', function () {
-    const data = [{
-      product: 'Chair',
-      price: 100
-    }, {
-      product: 'Desk',
-      price: '100'
-    }, {
-      product: 'Lamp',
-      price: 90
-    }, {
-      product: 'Sofa',
-      price: '200'
-    }];
-
-    const collection = collect(data);
-
-    const filtered = collection.whereInLoose('price', [100, 200]);
-
-    expect(filtered.all()).to.eql([
-      {
-        product: 'Chair',
-        price: 100
-      }, {
-        product: 'Desk',
-        price: '100'
-      }, {
-        product: 'Sofa',
-        price: '200'
-      }
-    ]);
-
-    expect(collection.all()).to.eql(data);
-  });
-
   it('should merge together the values of the given array with the values of the collection at the corresponding index',
     function () {
       const collection = collect(['Chair', 'Desk']);
@@ -1501,5 +1533,87 @@ describe('Collect.js Test Suite', function () {
     expect(values.all()).to.eql([12, 'xoxo', 'abab', '1337']);
 
     expect(collection.all()).to.eql({ a: 'xoxo', b: 'abab', 'c': '1337', 1337: 12 });
+  });
+
+  it('should return true if the collection is not empty; otherwise, false is returned', function () {
+    expect(collect().isNotEmpty()).to.eql(false);
+    expect(collect([]).isNotEmpty()).to.eql(false);
+    expect(collect([1]).isNotEmpty()).to.eql(true);
+  });
+
+  it('should filter the collection by a given key / value not contained within the given array', function () {
+    const data = [
+      { product: 'Desk', price: 200 },
+      { product: 'Chair', price: 100 },
+      { product: 'Bookcase', price: 150 },
+      { product: 'Door', price: 100 }
+    ];
+
+    const collection = collect(data);
+
+    const filtered = collection.whereNotIn('price', ['150', 200]);
+
+    expect(filtered.all()).to.eql([
+      { product: 'Chair', price: 100 },
+      { product: 'Bookcase', price: 150 },
+      { product: 'Door', price: 100 }
+    ]);
+
+    expect(collection.all()).to.eql(data);
+  });
+
+  it('should separate elements that pass a given truth test from those that do not', function () {
+    const collection = collect([1, 2, 3, 4, 5, 6]);
+
+    const arr = collection.partition(function (i) {
+      return i < 3;
+    });
+
+    expect(arr[0]).to.eql([1, 2]);
+    expect(arr[1]).to.eql([3, 4, 5, 6]);
+    expect(collection.all()).to.eql([1, 2, 3, 4, 5, 6]);
+  });
+
+  it('should split a collection into the given number of groups', function () {
+    const collection = collect([1, 2, 3, 4, 5]);
+
+    expect(collection.split(1)).to.eql([[1, 2, 3, 4, 5]]);
+    expect(collection.split(2)).to.eql([[1, 2, 3], [4, 5]]);
+    expect(collection.split(3)).to.eql([[1, 2], [3, 4], [5]]);
+    expect(collection.split(6)).to.eql([[1], [2], [3], [4], [5], []]);
+
+    expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
+  });
+
+  it('should execute the given callback when the first argument given to the method evaluates to true', function () {
+    const collection = collect([1, 2, 3]);
+
+    collection.when(true, function (c) {
+      c.push(4);
+    });
+
+    expect(collection.all()).to.eql([1, 2, 3, 4]);
+  });
+
+  it('should create a new collection by invoking the callback a given amount of times', function () {
+    const collection = collect().times(10, function (number) {
+      return number * 9;
+    });
+
+    expect(collection.all()).to.eql([9, 18, 27, 36, 45, 54, 63, 72, 81, 90]);
+  });
+
+  it('should passes the collection to the given callback', function () {
+    let tapped = null;
+
+    const number = collect([2, 4, 3, 1, 5])
+      .sort()
+      .tap(function (collection) {
+        tapped = collection.all();
+      })
+      .shift();
+
+    expect(tapped).to.eql([2, 3, 4, 5]);
+    expect(number).to.eql(1);
   });
 });
