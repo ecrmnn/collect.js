@@ -90,7 +90,11 @@ Collection.prototype.median = function (key) {
 
 Collection.prototype.mode = function (key) {
   let values = [];
-  let highestCount = 0;
+  let highestCount = 1;
+
+  if (!this.items.length) {
+    return null;
+  }
 
   this.items.forEach(function (item) {
     const _values = values.filter(function (value) {
@@ -100,6 +104,7 @@ Collection.prototype.mode = function (key) {
 
       return value.key === item;
     });
+
 
     if (!_values.length) {
       if (typeof key !== 'undefined') {
