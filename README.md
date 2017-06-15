@@ -99,12 +99,12 @@ All available methods
 All comparisons in ``collect.js`` are done using strict equality. Using loose equality comparisons are generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offer several "strict" comparison methods. These methods have not been implemented in ``collect.js`` because all methods are strict by default. 
 
 #####  Methods that have not been implemented:
-- ``containsStrict`` use ``contains()``
-- ``toArray`` use ``all()``
-- ``uniqueStrict`` use ``unique()``
-- ``whereStrict`` use ``where()``
-- ``whereInStrict`` use ``whereIn()``
-- ``whereNotInStrict`` use ``whereNotIn()``
+- ~~``containsStrict``~~ use ``contains()``
+- ~~``toArray``~~ use ``all()``
+- ~~``uniqueStrict``~~ use ``unique()``
+- ~~``whereStrict``~~ use ``where()``
+- ~~``whereInStrict``~~ use ``whereIn()``
+- ~~``whereNotInStrict``~~ use ``whereNotIn()``
 
 #### ``all()``
 The all method returns the underlying array represented by the collection:
