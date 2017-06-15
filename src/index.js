@@ -225,7 +225,7 @@ Collection.prototype.except = function (properties) {
     }
   }
 
-  return collection;
+  return new Collection(collection);
 };
 
 Collection.prototype.groupBy = function (key) {

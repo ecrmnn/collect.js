@@ -517,7 +517,10 @@ describe('Collect.js Test Suite', function () {
   });
 
   it('should return everything except specified properties', function () {
-    expect(collect(dataset.products[0]).except(['id', 'product'])).to.eql({ manufacturer: 'IKEA', price: '1490 NOK' });
+    const collection = collect(dataset.products[0]);
+
+    expect(collection.except(['id', 'product']).all()).to.eql({ manufacturer: 'IKEA', price: '1490 NOK' });
+    expect(collection.all()).to.eql(dataset.products[0]);
   });
 
   it('should return everything that matches', function () {
