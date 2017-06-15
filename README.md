@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/ecrmnn/collect.js/master/collectjs.jpg" alt="collect.js">
 
-> Convenient wrapper for working with arrays and objects
+> Convenient and dependency free wrapper for working with arrays and objects
 
 [![Travis](https://img.shields.io/travis/ecrmnn/collect.js.svg?style=flat-square)](https://travis-ci.org/ecrmnn/collect.js.svg?branch=master)
 [![npm version](https://img.shields.io/npm/v/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
@@ -14,7 +14,7 @@ npm install collect.js --save
 ```
 
 ### Tip
-Using Laravel as your backend? Collect.js offers an (almost) identical api to Laravel Collections 5.4.
+Using Laravel as your backend? Collect.js offers an (almost) identical api to Laravel Collections 5.4. [See differences](#strictness-and-comparisons).
 
 ### Usage
 All available methods
@@ -99,12 +99,12 @@ All available methods
 All comparisons in ``collect.js`` are done using strict equality. Using loose equality comparisons are generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offer several "strict" comparison methods. These methods have not been implemented in ``collect.js`` because all methods are strict by default. 
 
 #####  Methods that have not been implemented:
-- containsStrict
-- toArray
-- uniqueStrict
-- whereStrict
-- whereInStrict
-- whereNotInStrict
+- ``containsStrict`` use ``contains()``
+- ``toArray`` use ``all()``
+- ``uniqueStrict`` use ``unique()``
+- ``whereStrict`` use ``where()``
+- ``whereInStrict`` use ``whereIn()``
+- ``whereNotInStrict`` use ``whereNotIn()``
 
 #### ``all()``
 The all method returns the underlying array represented by the collection:
