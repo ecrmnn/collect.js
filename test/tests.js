@@ -592,6 +592,12 @@ describe('Collect.js Test Suite', function () {
     const filtered5 = collection2.where('price', '<', 100);
 
     expect(filtered5.all()).to.eql([]);
+
+    const filtered6 = collection2.where('price', 100);
+
+    expect(filtered6.all()).to.eql([
+      { 'product': 'Chair', 'price': 100 }
+    ]);
   });
 
   it('should strictly filter the collection by a given key / value pair', function () {

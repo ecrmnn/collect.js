@@ -90,9 +90,7 @@ All available methods
 - [when](#when)
 - [where](#where)
 - [whereIn](#wherein)
-- [whereInLoose](#whereinloose)
 - [whereNotIn](#whereNotIn)
-- [whereStrict](#wherestrict)
 - [zip](#zip)
 
 ### Strictness and comparisons
@@ -1601,10 +1599,10 @@ collection.all();
 The where method filters the collection by a given key / value pair:
 ```js
 const collection = collect([
-  {'product': 'Desk', 'price': 200},
-  {'product': 'Chair', 'price': 100},
-  {'product': 'Bookcase', 'price': 150},
-  {'product': 'Door', 'price': '100'},
+  {product: 'Desk', price: 200},
+  {product: 'Chair', price: 100},
+  {product: 'Bookcase', price: 150},
+  {product: 'Door', price: 100},
 ]);
 
 const filtered = collection.where('price', 100);
@@ -1612,8 +1610,8 @@ const filtered = collection.where('price', 100);
 filtered.all();
 
 //=> [
-//=>   {'product': 'Chair', 'price': 100},
-//=>   {'product': 'Door', 'price': '100'}
+//=>   {product: 'Chair', price: 100},
+//=>   {product: 'Door', price: 100}
 //=> ]
 ```
 
@@ -1625,9 +1623,8 @@ const filtered = collection.where('price', '!==', 100);
 filtered.all();
 
 //=> [
-//=>   {'product': 'Desk', 'price': 200},
-//=>   {'product': 'Bookcase', 'price': 150},
-//=>   {'product': 'Door', 'price': '100'},
+//=>   {product: 'Desk', price: 200},
+//=>   {product: 'Bookcase', price: 150}
 //=> ]
 ```
 **Less than operator ``(<)``**
@@ -1638,9 +1635,6 @@ filtered.all();
 
 //=> []
 ```
-
-#### ``whereStrict()``
-This method has the same signature as the ``where`` method; however, all values are compared using "strict" comparisons.
 
 #### ``whereIn()``
 The whereIn method filters the collection by a given key / value contained within the given array.
@@ -1662,10 +1656,6 @@ filtered.all();
 //=>   {product: 'Door', price: 100},
 //=> ]
 ```
-> The ``whereIn`` method uses strict comparisons when checking item values. Use the ``whereInLoose`` method to filter using "loose" comparisons.
-
-#### ``whereInLoose()``
-This method has the same signature as the ``whereIn`` method; however, all values are compared using "loose" comparisons.
 
 #### ``whereNotIn()``
 The whereNotIn method filters the collection by a given key / value not contained within the given array:
