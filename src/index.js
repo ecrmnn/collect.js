@@ -914,6 +914,18 @@ Collection.prototype.all = function () {
   return this.items;
 };
 
+Collection.prototype.concat = function (collection) {
+  if (collection instanceof Collection) {
+    collection = collection.all();
+  }
+
+  for (let iterator = 1; iterator <= collection.count(); iterator++) {
+    this.items.push(collection[iterator]));
+  }
+
+  return this;
+};
+
 module.exports = function (collection) {
   return new Collection(collection);
 };
