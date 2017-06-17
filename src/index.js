@@ -920,7 +920,7 @@ Collection.prototype.concat = function (collection) {
   }
 
   for (let iterator = 1; iterator <= collection.count(); iterator++) {
-    this.items.push(collection[iterator]));
+    this.items.push(collection[iterator]);
   }
 
   return this;
