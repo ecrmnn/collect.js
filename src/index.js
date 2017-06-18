@@ -926,6 +926,19 @@ Collection.prototype.concat = function (collection) {
   return this;
 };
 
+Collection.prototype[Symbol.iterator] = function () {
+  let index = 0;
+
+  return {
+    next: function () {
+      return {
+        value: this.items[index++],
+        done: index > this.items.length
+      }
+    }.bind(this)
+  }
+};
+
 module.exports = function (collection) {
   return new Collection(collection);
 };
