@@ -1708,4 +1708,23 @@ describe('Collect.js Test Suite', function () {
     expect(firstCollection.count()).to.eql(12);
     expect(firstCollection.all()).to.eql(expected);
   });
+
+  it('should be iterable', function () {
+    let result = '';
+
+    for (let item of collect([1, 2, 3, 4, 5])) {
+      result += item;
+    }
+
+    expect(result).to.eql('12345');
+
+    const result2 = [];
+    const clubs = collect([{ name: 'Liverpool' }, { name: 'Arsenal' }, { name: 'Chelsea' }]);
+
+    for (let club of clubs) {
+      result2.push(club);
+    }
+
+    expect(result2).to.eql(clubs.all());
+  });
 });
