@@ -39,19 +39,19 @@ Collection.prototype.unique = function (key) {
 };
 
 Collection.prototype.sum = function (key) {
-  let total = 0;
+  let total;
 
   if (typeof key === 'undefined') {
     for (let i = 0; i < this.items.length; i++) {
-      total += this.items[i];
+      total = i ? total + this.items[i] : this.items[i];
     }
   } else if (typeof key === 'function') {
     for (let i = 0; i < this.items.length; i++) {
-      total += key(this.items[i]);
+      total = i ? total + key(this.items[i]) : key(this.items[i]);
     }
   } else {
     for (let i = 0; i < this.items.length; i++) {
-      total += this.items[i][key];
+      total = i ? total + this.items[i][key] : this.items[i][key];
     }
   }
 
