@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "src/index.js",
   "scripts": {
