@@ -914,6 +914,19 @@ Collection.prototype.all = function () {
   return this.items;
 };
 
+Collection.prototype[Symbol.iterator] = function () {
+  let index = 0;
+
+  return {
+    next: function () {
+      return {
+        value: this.items[index++],
+        done: index > this.items.length
+      }
+    }.bind(this)
+  }
+};
+
 module.exports = function (collection) {
   return new Collection(collection);
 };
