@@ -14,7 +14,7 @@ npm install collect.js --save
 ```
 
 ### Tip
-Using Laravel as your backend? Collect.js offers an (almost) identical api to Laravel Collections 5.4. [See differences](#strictness-and-comparisons).
+Using Laravel as your backend? Collect.js offers an (almost) identical api to [Laravel Collections](https://laravel.com/docs/5.4/collections) 5.4. [See differences](#strictness-and-comparisons).
 
 ### Usage
 All available methods
