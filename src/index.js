@@ -261,57 +261,35 @@ Collection.prototype.where = function (key, operator, value) {
     operator = '===';
   }
 
-  const comparisons = {
-    '==': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] == value;
-      });
-    }.bind(this),
+  return new Collection(
+    this.items.filter(function(item) {
+      switch (operator) {
+        case '==':
+          return item[key] == value;
 
-    '===': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] === value;
-      });
-    }.bind(this),
+        case '===':
+          return item[key] === value;
 
-    '!=': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] != value;
-      });
-    }.bind(this),
+        case '!=':
+          return item[key] != value;
 
-    '!==': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] !== value;
-      });
-    }.bind(this),
+        case '!==':
+          return item[key] !== value;
 
-    '<': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] < value;
-      });
-    }.bind(this),
+        case '<':
+          return item[key] < value;
 
-    '<=': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] <= value;
-      });
-    }.bind(this),
+        case '<=':
+          return item[key] <= value;
 
-    '>': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] > value;
-      });
-    }.bind(this),
+        case '>':
+          return item[key] > value;
 
-    '>=': function (key, value) {
-      return this.items.filter(function (item) {
-        return item[key] >= value;
-      });
-    }.bind(this)
-  };
-
-  return new Collection(comparisons[operator](key, value));
+        case '>=':
+          return item[key] >= value;
+      }
+    })
+  );
 };
 
 Collection.prototype.whereIn = function (key, values) {
