@@ -44,6 +44,8 @@ describe('Collect.js Test Suite', function () {
 
   it('should return the sum of collection values', function () {
     expect(collect([1, 3, 3, 7]).sum()).to.eql(14);
+    expect(collect(['1', 3, 3, 7]).sum()).to.eql('1337');
+    expect(collect([1, 3, 3, '7']).sum()).to.eql('77');
     expect(collect([1, 3, 3, 7]).unique().sum()).to.eql(11);
 
     const collection2 = collect([
