@@ -1,7 +1,7 @@
 'use strict';
 
 function Collection(collection) {
-  if (typeof collection === 'undefined') {
+  if (collection === undefined) {
     this.items = [];
   } else {
     this.items = collection;
@@ -11,7 +11,7 @@ function Collection(collection) {
 Collection.prototype.unique = function (key) {
   let collection;
 
-  if (typeof key === 'undefined') {
+  if (key === undefined) {
     collection = this.items.filter(function (element, index, self) {
       return self.indexOf(element) === index;
     });
@@ -41,7 +41,7 @@ Collection.prototype.unique = function (key) {
 Collection.prototype.sum = function (key) {
   let total = 0;
 
-  if (typeof key === 'undefined') {
+  if (key === undefined) {
     for (let i = 0; i < this.items.length; i++) {
       total += this.items[i];
     }
@@ -73,7 +73,7 @@ Collection.prototype.avg = function (key) {
 Collection.prototype.median = function (key) {
   const length = this.items.length;
 
-  if (typeof key === 'undefined') {
+  if (key === undefined) {
     if (length % 2 === 0) {
       return (this.items[length / 2 - 1] + this.items[length / 2]) / 2;
     }
@@ -98,7 +98,7 @@ Collection.prototype.mode = function (key) {
 
   this.items.forEach(function (item) {
     const _values = values.filter(function (value) {
-      if (typeof key !== 'undefined') {
+      if ( key !== undefined) {
         return value.key === item[key];
       }
 
@@ -107,7 +107,7 @@ Collection.prototype.mode = function (key) {
 
 
     if (!_values.length) {
-      if (typeof key !== 'undefined') {
+      if (key !== undefined) {
         values.push({ key: item[key], count: 1 });
       } else {
         values.push({ key: item, count: 1 });
@@ -256,7 +256,7 @@ Collection.prototype.groupBy = function (key) {
 };
 
 Collection.prototype.where = function (key, operator, value) {
-  if (typeof value === 'undefined') {
+  if ( value === undefined) {
     value = operator;
     operator = '===';
   }
@@ -347,7 +347,7 @@ Collection.prototype.intersect = function (values) {
 };
 
 Collection.prototype.pluck = function (value, key) {
-  if (typeof key !== 'undefined') {
+  if ( key !== undefined) {
     const collection = {};
 
     this.items.forEach(function (item) {
@@ -367,7 +367,7 @@ Collection.prototype.pluck = function (value, key) {
 };
 
 Collection.prototype.implode = function (key, glue) {
-  if (typeof glue === 'undefined') {
+  if ( glue === undefined) {
     return this.items.join(key);
   }
 
@@ -484,7 +484,7 @@ Collection.prototype.pipe = function (fn) {
 };
 
 Collection.prototype.contains = function (key, value) {
-  if (typeof value !== 'undefined') {
+  if ( value !== undefined) {
     return (this.items.hasOwnProperty(key) && this.items[key] === value);
   }
 
@@ -552,7 +552,7 @@ Collection.prototype.flatMap = function (fn) {
 };
 
 Collection.prototype.flatten = function (depth) {
-  if (typeof depth === 'undefined') {
+  if (depth === undefined) {
     depth = Infinity;
   }
 
@@ -634,7 +634,7 @@ Collection.prototype.pop = function () {
 };
 
 Collection.prototype.prepend = function (value, key) {
-  if (typeof key !== 'undefined') {
+  if (key !== undefined) {
     return this.put(key, value);
   }
 
