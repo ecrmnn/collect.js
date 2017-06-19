@@ -47,6 +47,7 @@ All available methods
 - [keyBy](#keyby)
 - [keys](#keys)
 - [last](#last)
+- [macro](#macro)
 - [map](#map)
 - [mapWithKeys](#mapwithkeys)
 - [max](#max)
@@ -98,7 +99,6 @@ All comparisons in ``collect.js`` are done using strict equality. Using loose eq
 
 #####  Methods that have not been implemented:
 - ~~``containsStrict``~~ use ``contains()``
-- ~~``toArray``~~ use ``all()``
 - ~~``uniqueStrict``~~ use ``unique()``
 - ~~``whereStrict``~~ use ``where()``
 - ~~``whereInStrict``~~ use ``whereIn()``
@@ -785,6 +785,24 @@ collect([1, 2, 3, 4]).last();
 //=> 4
 ```
 
+#### ``macro()``
+The macro method lets you register custom methods
+```js
+collect().macro('uppercase', function () {
+  return this.map(function (item) {
+    return item.toUpperCase();
+  });
+});
+
+const collection = collect(['a', 'b', 'c']);
+
+collection.uppercase();
+
+collection.all();
+
+//=> ['A', 'B', 'C']
+```
+
 #### ``map()``
 The map method iterates through the collection and passes each value to the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items:
 ```js
@@ -1457,8 +1475,30 @@ collection.all();
 ```
 
 #### ``toArray()``
-> Use ``all`` instead of ``toArray``
+The toArray method converts the collection into a plain array.
+If the collection is an object, an array containing the values will be returned.
+```js
+const collection = collect([1, 2, 3, 'b', 'c']);
 
+collection.toArray();
+
+//=> [1, 2, 3, 'b', 'c']
+```
+
+```js
+const collection = collect({
+  name: 'Elon Musk',
+  companies: [
+    'Tesla',
+    'Space X',
+    'SolarCity'
+  ]
+});
+
+collection.toArray();
+
+//=> ['Elon Musk', ['Tesla', 'Space X', 'SolarCity']]
+```
 
 #### ``toJson()``
 The toJson method converts the collection into JSON string:
