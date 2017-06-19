@@ -346,7 +346,7 @@ filtered.all();
 #### ``first()``
 The first method returns the first element in the collection that passes a given truth test:
 ```js
-collect([1, 2, 3, 4).first(function (item) {
+collect([1, 2, 3, 4]).first(function (item) {
   return item > 1;
 });
 
