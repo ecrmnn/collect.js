@@ -1644,6 +1644,45 @@ describe('Collect.js Test Suite', function () {
     expect(number).to.eql(1);
   });
 
+  it('should be able to register a custom macro/method', function () {
+    collect().macro('uppercase', function () {
+      return this.map(function (item) {
+        return item.toUpperCase();
+      });
+    });
+
+    const collection = collect(['a', 'b', 'c']);
+    expect(collection.uppercase().all()).to.eql(['A', 'B', 'C']);
+    expect(collection.all()).to.eql(['a', 'b', 'c']);
+
+    collect().macro('prefix', function (prefix) {
+      return this.map(function (item) {
+        return prefix + item;
+      });
+    });
+
+    expect(collect(['a', 'b', 'c']).prefix('xoxo').all()).to.eql(['xoxoa', 'xoxob', 'xoxoc']);
+  });
+
+  it('should convert the collection into a plain array', function () {
+    const collectionArray = collect([1, 2, 3, 'b', 'c', 'ø']);
+
+    expect(collectionArray.toArray()).to.eql([1, 2, 3, 'b', 'c', 'ø']);
+    expect(collectionArray.toArray()).to.eql(collectionArray.all());
+
+    const collectionObject = collect({
+      name: 'Elon Musk',
+      companies: [
+        'Tesla',
+        'Space X',
+        'SolarCity'
+      ]
+    });
+
+    expect(collectionObject.toArray()).to.eql(['Elon Musk', ['Tesla', 'Space X', 'SolarCity']]);
+    expect(collectionObject.toArray()).to.eql(collectionObject.values().all());
+  });
+
   it('should be iterable', function () {
     let result = '';
 
