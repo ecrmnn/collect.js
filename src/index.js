@@ -98,7 +98,7 @@ Collection.prototype.mode = function (key) {
 
   this.items.forEach(function (item) {
     const _values = values.filter(function (value) {
-      if ( key !== undefined) {
+      if (key !== undefined) {
         return value.key === item[key];
       }
 
@@ -256,13 +256,13 @@ Collection.prototype.groupBy = function (key) {
 };
 
 Collection.prototype.where = function (key, operator, value) {
-  if ( value === undefined) {
+  if (value === undefined) {
     value = operator;
     operator = '===';
   }
 
   return new Collection(
-    this.items.filter(function(item) {
+    this.items.filter(function (item) {
       switch (operator) {
         case '==':
           return item[key] == value;
@@ -325,7 +325,7 @@ Collection.prototype.intersect = function (values) {
 };
 
 Collection.prototype.pluck = function (value, key) {
-  if ( key !== undefined) {
+  if (key !== undefined) {
     const collection = {};
 
     this.items.forEach(function (item) {
@@ -345,7 +345,7 @@ Collection.prototype.pluck = function (value, key) {
 };
 
 Collection.prototype.implode = function (key, glue) {
-  if ( glue === undefined) {
+  if (glue === undefined) {
     return this.items.join(key);
   }
 
@@ -462,7 +462,7 @@ Collection.prototype.pipe = function (fn) {
 };
 
 Collection.prototype.contains = function (key, value) {
-  if ( value !== undefined) {
+  if (value !== undefined) {
     return (this.items.hasOwnProperty(key) && this.items[key] === value);
   }
 
@@ -890,6 +890,18 @@ Collection.prototype.tap = function (fn) {
 
 Collection.prototype.all = function () {
   return this.items;
+};
+
+Collection.prototype.toArray = function () {
+  if (Array.isArray(this.items)) {
+    return this.all();
+  }
+
+  return this.values().all();
+};
+
+Collection.prototype.macro = function (name, fn) {
+  Collection.prototype[name] = fn;
 };
 
 Collection.prototype[Symbol.iterator] = function () {
