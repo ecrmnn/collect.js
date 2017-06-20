@@ -1,11 +1,9 @@
 'use strict';
 
 module.exports = function nth(n, offset) {
-  if (offset === undefined) {
-    offset = 0;
-  }
+  const _offset = offset || 0;
 
-  const collection = this.items.slice(offset).filter(function(item, index) {
+  const collection = this.items.slice(_offset).filter(function(item, index) {
     return index % n === 0;
   });
 

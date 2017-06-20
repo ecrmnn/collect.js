@@ -1,11 +1,7 @@
 'use strict';
 
 function Collection(collection) {
-  if (collection === undefined) {
-    this.items = [];
-  } else {
-    this.items = collection;
-  }
+  this.items = collection || [];
 }
 
 Collection.prototype[Symbol.iterator] = require('./methods/symbol.iterator');
