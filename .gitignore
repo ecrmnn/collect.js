@@ -3,3 +3,6 @@ node_modules
 .npm-debug.log
 test/benchmark.js
 test/implementations.js
+coverage
+.nyc_output
+.DS_Store
