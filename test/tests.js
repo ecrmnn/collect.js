@@ -3,7 +3,7 @@
 const it = require('mocha').it;
 const chai = require('chai');
 const expect = require('chai').expect;
-const collect = require('../src');
+const collect = require('../lib');
 const dataset = require('./data');
 
 describe('Collect.js Test Suite', function () {
