@@ -516,12 +516,10 @@ Collection.prototype.every = function (fn) {
 };
 
 Collection.prototype.nth = function (n, offset) {
-  if (offset === undefined) {
-    offset = 0;
-  }
+  const _offset = offset || 0;
 
   const collection = this.items
-    .slice(offset)
+    .slice(_offset)
     .filter(function (item, index) {
       return index % n === 0;
     });
