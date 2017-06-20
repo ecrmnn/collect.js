@@ -1701,4 +1701,8 @@ describe('Collect.js Test Suite', function () {
 
     expect(result2).to.eql(clubs.all());
   });
+
+  it('can convert from array to collection', function () {
+    expect([1, 2, 3].toCollection().all()).to.eql([1, 2, 3]);
+  });
 });

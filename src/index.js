@@ -913,6 +913,10 @@ Collection.prototype[Symbol.iterator] = function () {
   }
 };
 
+Array.prototype.toCollection = function () {
+  return new Collection(this);
+};
+
 module.exports = function (collection) {
   return new Collection(collection);
 };
