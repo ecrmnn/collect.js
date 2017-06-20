@@ -39,23 +39,15 @@ Collection.prototype.unique = function (key) {
 };
 
 Collection.prototype.sum = function (key) {
-  let total = 0;
-
-  if (key === undefined) {
-    for (let i = 0; i < this.items.length; i++) {
-      total += this.items[i];
+  return this.items.reduce(function(a, b) {
+    if (key === undefined) {
+      return a + b;
+    } else if (typeof key === 'function') {
+      return key(a) + key(b);
+    } else {
+      return a[key] + b[key];
     }
-  } else if (typeof key === 'function') {
-    for (let i = 0; i < this.items.length; i++) {
-      total += key(this.items[i]);
-    }
-  } else {
-    for (let i = 0; i < this.items.length; i++) {
-      total += this.items[i][key];
-    }
-  }
-
-  return total;
+  }, 0);
 };
 
 Collection.prototype.average = function (key) {
