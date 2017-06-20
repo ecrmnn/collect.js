@@ -1263,6 +1263,10 @@ describe('Collect.js Test Suite', function () {
     expect(arrayOfRandomValues.all()[1]).to.be.within(1, 5);
     expect(arrayOfRandomValues.all()[2]).to.be.within(1, 5);
     expect(arrayOfRandomValues.all()[3]).to.eql(undefined);
+
+    const collection2 = collect([1, 2, 3, 4, 5, 8, 6]);
+    collection2.random();
+    expect(collection2.items).to.eql([1, 2, 3, 4, 5, 8, 6]);
   });
 
   it('should reduce the collection to a single value, ' +
