@@ -1701,4 +1701,10 @@ describe('Collect.js Test Suite', function () {
 
     expect(result2).to.eql(clubs.all());
   });
+
+  it('should not mutate the array in random function', () => {
+    const collection = collect([1, 2, 3, 4, 5, 8, 6]);
+    collection.random();
+    expect(collection.items).to.eql([1, 2, 3, 4, 5, 8, 6]);
+  });
 });

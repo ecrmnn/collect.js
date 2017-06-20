@@ -634,12 +634,13 @@ Collection.prototype.shuffle = function () {
 };
 
 Collection.prototype.random = function (length) {
-  this.shuffle();
+  const randomItemFromArray = this.slice(0);
+  randomItemFromArray.shuffle();
 
   if (length !== undefined || length === 1) {
-    this.items.splice(0, this.items.length - length);
+    randomItemFromArray.items.splice(0, randomItemFromArray.items.length - length);
 
-    return this;
+    return randomItemFromArray;
   }
 
   return this.items[0];
