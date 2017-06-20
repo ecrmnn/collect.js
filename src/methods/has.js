@@ -2,11 +2,12 @@
 
 module.exports = function has(key) {
   if (Array.isArray(this.items)) {
-    return (
-      this.items.filter(function(item) {
-        return item.hasOwnProperty(key);
-      }).length > 0
-    );
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].hasOwnProperty(key)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   return this.items.hasOwnProperty(key);
