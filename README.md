@@ -1675,6 +1675,40 @@ filtered.all();
 
 //=> []
 ```
+**Less than or equal operator ``(<=)``**
+```js
+const filtered = collection.where('price', '<=', 100);
+
+filtered.all();
+
+//=> [
+//=>   {product: 'Chair', price: 100},
+//=>   {product: 'Door', price: 100}
+//=> ]
+```
+
+**Greater than operator ``(>)``**
+```js
+const filtered = collection.where('price', '>', 100);
+
+filtered.all();
+
+//=> [
+//=>   {product: 'Desk', price: 200},
+//=>   {product: 'Bookcase', price: 150}
+//=> ]
+```
+**Greater than or equal operator ``(>=)``**
+```js
+const filtered = collection.where('price', '>=', 150);
+
+filtered.all();
+
+//=> [
+//=>   {product: 'Desk', price: 200},
+//=>   {product: 'Bookcase', price: 150}
+//=> ]
+```
 
 #### ``whereIn()``
 The whereIn method filters the collection by a given key / value contained within the given array.
