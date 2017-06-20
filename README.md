@@ -341,6 +341,18 @@ filtered.all();
 //=> [3, 4]
 ```
 
+If no callback is supplied, all entries of the collection that are equivalent to false will be removed:
+
+```js
+const collection = collect([1, 2, 3, null, false, '', 0, []]);
+
+const filtered = collection.filter();
+
+filtered.all();
+
+=> [1, 2, 3]
+```
+
 > For the inverse of ``filter``, see the ``reject`` method.
 
 #### ``first()``
