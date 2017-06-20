@@ -598,6 +598,28 @@ describe('Collect.js Test Suite', function () {
     expect(filtered6.all()).to.eql([
       { 'product': 'Chair', 'price': 100 }
     ]);
+
+    const filtered7 = collection2.where('price', '<=', 150);
+
+    expect(filtered7.all()).to.eql([
+      { product: 'Chair', price: 100 },
+      { product: 'Bookcase', price: 150 },
+      { product: 'Door', price: '100' }
+    ]);
+
+    const filtered8 = collection2.where('price', '>', 100);
+
+    expect(filtered8.all()).to.eql([
+      { product: 'Desk', price: 200 },
+      { product: 'Bookcase', price: 150 }
+    ]);
+
+    const filtered9 = collection2.where('price', '>=', 150);
+
+    expect(filtered9.all()).to.eql([
+      { product: 'Desk', price: 200 },
+      { product: 'Bookcase', price: 150 }
+    ]);
   });
 
   it('should strictly filter the collection by a given key / value pair', function () {
