@@ -1265,6 +1265,12 @@ describe('Collect.js Test Suite', function () {
     expect(arrayOfRandomValues.all()[3]).to.eql(undefined);
   });
 
+  it('should not mutate the array in random function', () => {
+    const collection = collect([1, 2, 3, 4, 5, 8, 6]);
+    collection.random();
+    expect(collection.items).to.eql([1, 2, 3, 4, 5, 8, 6]);
+  });
+
   it('should reduce the collection to a single value, ' +
     'passing the result of each iteration into the subsequent iteration', function () {
     const collection = collect([1, 2, 3, 4, 5, 6, 7]);
@@ -1700,11 +1706,5 @@ describe('Collect.js Test Suite', function () {
     }
 
     expect(result2).to.eql(clubs.all());
-  });
-
-  it('should not mutate the array in random function', () => {
-    const collection = collect([1, 2, 3, 4, 5, 8, 6]);
-    collection.random();
-    expect(collection.items).to.eql([1, 2, 3, 4, 5, 8, 6]);
   });
 });
