@@ -1361,12 +1361,12 @@ describe('Collect.js Test Suite', function () {
   });
 
   it('should sort the collection', function () {
-    const collection = collect([5, 3, 1, 2, 4]);
+    const collection = collect([5, 3, 1, 2, 10, 4]);
 
     const sorted = collection.sort();
 
-    expect(sorted.all()).to.eql([1, 2, 3, 4, 5]);
-    expect(collection.all()).to.eql([5, 3, 1, 2, 4]);
+    expect(sorted.all()).to.eql([1, 2, 3, 4, 5, 10]);
+    expect(collection.all()).to.eql([5, 3, 1, 2, 10, 4]);
 
     const collection2 = collect([5, 3, 1, 2, 4]);
 

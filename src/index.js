@@ -748,7 +748,11 @@ Collection.prototype.sort = function (fn) {
   const collection = [].concat(this.items);
 
   if (fn === undefined) {
-    collection.sort();
+    if (this.every(item => typeof item === 'number')) {
+      collection.sort((a, b) => a - b);
+    } else {
+      collection.sort();
+    }
   } else {
     collection.sort(fn);
   }
