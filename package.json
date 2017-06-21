@@ -43,5 +43,8 @@
     "benchmark": "^2.1.0",
     "chai": "^3.5.0",
     "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "group-by-object": "^1.2.4"
   }
 }
