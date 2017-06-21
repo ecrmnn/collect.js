@@ -1,12 +1,14 @@
 {
   "name": "collect.js",
-  "version": "3.0.24",
+  "version": "3.0.25",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "src/index.js",
   "typings": "index.d.ts",
   "scripts": {
     "test": "node_modules/.bin/mocha test/tests.js",
-    "test:watch": "node_modules/.bin/mocha -w test/tests.js"
+    "test:watch": "node_modules/.bin/mocha -w test/tests.js",
+    "coverage": "node_modules/.bin/nyc mocha test/tests.js",
+    "reporter": "node_modules/.bin/nyc report --reporter=html"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,7 @@
   "devDependencies": {
     "benchmark": "^2.1.0",
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "nyc": "^11.0.2"
   }
 }

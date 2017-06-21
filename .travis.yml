@@ -3,3 +3,5 @@ node_js:
   - 'stable'
   - '5'
   - '4'
+script:
+  - npm run coverage
