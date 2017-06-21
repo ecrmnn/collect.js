@@ -1,10 +1,12 @@
 'use strict';
 
 module.exports = function every(fn) {
-  for (let i = 0; i < this.items.length; i++) {
-    if (!fn(this.items[i])) {
+  let index = 0;
+  for (const item of this.items) {
+    if (! fn(item, index++)) {
       return false;
     }
-    return true;
   }
+
+  return true;
 };
