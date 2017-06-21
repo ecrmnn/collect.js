@@ -16,6 +16,7 @@ module.exports = function where(key, operator, value) {
           return item[key] === value;
 
         case '!=':
+        case '<>':
           return item[key] != value;
 
         case '!==':
