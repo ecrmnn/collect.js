@@ -583,11 +583,13 @@ describe('Collect.js Test Suite', function () {
     ]);
 
     const filtered4 = collection2.where('price', '!=', 100);
+    const filtered4_2 = collection2.where('price', '<>', 100);
 
     expect(filtered4.all()).to.eql([
       { 'product': 'Desk', 'price': 200 },
       { 'product': 'Bookcase', 'price': 150 }
     ]);
+    expect(filtered4_2).to.eql(filtered4);
 
     const filtered5 = collection2.where('price', '<', 100);
 
