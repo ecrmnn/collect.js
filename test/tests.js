@@ -1040,7 +1040,12 @@ describe('Collect.js Test Suite', function () {
       return value > 2;
     });
 
+    const shouldBeFalse2 = collection.every(function (value, key) {
+      return value < 2;
+    });
+
     expect(shouldBeFalse).to.eql(false);
+    expect(shouldBeFalse2).to.eql(false);
 
     const shouldBeTrue = collection.every(function (value, key) {
       return value <= 4;
