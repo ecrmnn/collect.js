@@ -738,7 +738,22 @@ describe('Collect.js Test Suite', function () {
   it('should return the collection in chunks', function () {
     expect(collect([1, 2, 3, 4, 5]).chunk(4).all()).to.eql([[1, 2, 3, 4], [5]]);
 
-    const collection = collect(dataset.products);
+    const collection = collect([{
+      id: 100,
+      product: 'Chair',
+      manufacturer: 'IKEA',
+      price: '1490 NOK'
+    }, {
+      id: 150,
+      product: 'Desk',
+      manufacturer: 'IKEA',
+      price: '900 NOK'
+    }, {
+      id: 200,
+      product: 'Chair',
+      manufacturer: 'Herman Miller',
+      price: '9990 NOK'
+    }]);
 
     const chunk = collection.chunk(1);
 
@@ -762,8 +777,22 @@ describe('Collect.js Test Suite', function () {
         price: '9990 NOK'
       }]
     ]);
-
-    expect(collection.all()).to.eql(dataset.products);
+    expect(collection.all()).to.eql([{
+      id: 100,
+      product: 'Chair',
+      manufacturer: 'IKEA',
+      price: '1490 NOK'
+    }, {
+      id: 150,
+      product: 'Desk',
+      manufacturer: 'IKEA',
+      price: '900 NOK'
+    }, {
+      id: 200,
+      product: 'Chair',
+      manufacturer: 'Herman Miller',
+      price: '9990 NOK'
+    }]);
   });
 
   it('should collapse a collection of arrays into a flat collection', function () {
