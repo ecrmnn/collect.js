@@ -1,14 +1,8 @@
 'use strict';
 
 module.exports = function random(length) {
-  const randomItemFromArray = this.slice(0);
-  randomItemFromArray.shuffle();
+  length = length || 1;
+  const randomCollection = this.slice().shuffle().take(length);
 
-  if (length !== undefined || length === 1) {
-    randomItemFromArray.items.splice(0, randomItemFromArray.items.length - length);
-
-    return randomItemFromArray;
-  }
-
-  return this.items[0];
+  return length === 1 ? randomCollection.first() : randomCollection;
 };
