@@ -279,7 +279,7 @@ describe('Collect.js Test Suite', function () {
     expect(piped).to.eql(6);
   });
 
-  it('should filter the collection by a given callback', function () {
+  it('should filter the collection by a given callback, filtering based on value', function () {
     const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
     const filtered = collection.filter(function (item) {
@@ -289,6 +289,28 @@ describe('Collect.js Test Suite', function () {
     expect(filtered.all()).to.eql([2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
     expect(collection.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  });
+
+  it('should filter the collection by a given callback, filtering based on value', function () {
+    const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+    const filtered = collection.filter(function (item, key) {
+      return key > 3 && key < 7;
+    });
+
+    expect(filtered.all()).to.eql([5, 6, 7]);
+
+    expect(collection.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  });
+
+  it('should filter the collection removing falsy values if no call back is passed', function () {
+    const collection = collect([0, 1, 2, null, 3, 4, undefined, 5, 6, 7, [], 8, 9, {}, 10]);
+
+    const filtered = collection.filter();
+
+    expect(filtered.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+    expect(collection.all()).to.eql([0, 1, 2, null, 3, 4, undefined, 5, 6, 7, [], 8, 9, {}, 10]);
   });
 
   it('should determine if a key exists in the collection', function () {
