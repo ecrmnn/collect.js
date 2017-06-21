@@ -1,8 +1,9 @@
 {
   "name": "collect.js",
-  "version": "3.0.23",
+  "version": "3.0.24",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "src/index.js",
+  "typings": "index.d.ts",
   "scripts": {
     "test": "node_modules/.bin/mocha test/tests.js",
     "test:watch": "node_modules/.bin/mocha -w test/tests.js"
