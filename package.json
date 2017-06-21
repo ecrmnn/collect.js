@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "3.0.19",
+  "version": "3.0.20",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "src/index.js",
   "scripts": {
@@ -23,10 +23,8 @@
     "pluck",
     "pie",
     "mapWithKeys",
-    "whereStrict",
     "laravel",
     "whereIn",
-    "whereInLoose",
     "values",
     "unique"
   ],
