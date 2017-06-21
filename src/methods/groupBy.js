@@ -1,7 +1,7 @@
 'use strict';
 const groupByObject = require('group-by-object');
 
-module.exports = function groupBy(key, complexKeys = false) {
+module.exports = function groupBy(key, complexKeys) {
   if (!complexKeys) {
     let collection = {};
 
