@@ -7,4 +7,3 @@ test/implementations.js
 coverage
 .nyc_output
 .DS_Store
-dist
