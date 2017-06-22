@@ -12,7 +12,7 @@ module.exports = function unique(key) {
 
     const usedKeys = [];
 
-    for (let iterator = 0; iterator < this.items.length; iterator++) {
+    for (let iterator = 0, length = this.items.length; iterator < length; iterator++) {
       let uniqueKey;
       if (typeof key === 'function') {
         uniqueKey = key(this.items[iterator]);
