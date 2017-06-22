@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "3.0.28",
+  "version": "3.0.29",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
@@ -10,7 +10,7 @@
     "eslint": "node_modules/.bin/eslint src/",
     "coverage": "node_modules/.bin/nyc mocha test/tests.js",
     "reporter": "node_modules/.bin/nyc report --reporter=html",
-    "prepublish": "npm run transpile"
+    "prepublishOnly": "npm run transpile"
   },
   "babel": {
     "presets": [
