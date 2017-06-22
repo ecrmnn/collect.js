@@ -2,7 +2,7 @@
 
 module.exports = function first(fn) {
   if (typeof fn === 'function') {
-    for (let i = 0; i < this.items.length; i++) {
+    for (let i = 0, length = this.items.length; i < length; i++) {
       const item = this.items[i];
       if (fn(item)) {
         return item;
