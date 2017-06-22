@@ -4,7 +4,7 @@ module.exports = function filter(fn) {
   fn = fn || false;
 
   const filteredArray = [];
-  for (let i = 0; i < this.items.length; i++) {
+  for (let i = 0,length = this.items.length; i < length; i++) {
     const item = this.items[i];
     if (fn) {
       if (fn(item, i)) {
