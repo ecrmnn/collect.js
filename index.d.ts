@@ -1,4 +1,4 @@
-type Operator = "===" | "==" | "!==" | "!=" | ">" | "<" | ">=" | "<="
+type Operator = "===" | "==" | "!==" | "!=" | "<>" | ">" | "<" | ">=" | "<="
 
 interface CollectionInstance<Item> {
   items: Item[] | Object
@@ -864,6 +864,6 @@ interface CollectionInstance<Item> {
   macro(name: string, fn: Function): void;
 }
 
-declare module 'collect' {
+declare module 'collect.js' {
   export default function <T>(collection?: T[] | Object): CollectionInstance<T>;
 }
