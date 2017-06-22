@@ -10,7 +10,7 @@
     "eslint": "node_modules/.bin/eslint src/",
     "coverage": "node_modules/.bin/nyc mocha test/tests.js",
     "reporter": "node_modules/.bin/nyc report --reporter=html",
-    "prepublishOnly": "npm run transpile"
+    "prepare": "npm run transpile"
   },
   "babel": {
     "presets": [
