@@ -1,14 +1,13 @@
-'use strict';
-
 module.exports = function has(key) {
   if (Array.isArray(this.items)) {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].hasOwnProperty(key)) {
+    for (let i = 0; i < this.items.length; i += 1) {
+      if (this.items[i][key] !== undefined) {
         return true;
       }
     }
+
     return false;
   }
 
-  return this.items.hasOwnProperty(key);
+  return this.items[key] !== undefined;
 };

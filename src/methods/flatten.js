@@ -1,9 +1,5 @@
-'use strict';
-
 module.exports = function flatten(depth) {
-  if (depth === undefined) {
-    depth = Infinity;
-  }
+  let flattenDepth = depth || Infinity;
 
   let fullyFlattened = false;
   let collection = [];
@@ -12,42 +8,40 @@ module.exports = function flatten(depth) {
     collection = [];
 
     if (Array.isArray(items)) {
-      items.forEach(function(item) {
+      items.forEach((item) => {
         if (typeof item === 'string') {
           collection.push(item);
         } else if (Array.isArray(item)) {
           collection = collection.concat(item);
         } else {
-          for (const prop in item) {
-            collection = collection.concat(item[prop]);
-          }
+          Object.keys(item).forEach((property) => {
+            collection = collection.concat(item[property]);
+          });
         }
       });
     } else {
-      for (const prop in items) {
-        if (typeof items[prop] === 'string') {
-          collection.push(items[prop]);
-        } else if (Array.isArray(items[prop])) {
-          collection = collection.concat(items[prop]);
+      Object.keys(items).forEach((property) => {
+        if (typeof items[property] === 'string') {
+          collection.push(items[property]);
+        } else if (Array.isArray(items[property])) {
+          collection = collection.concat(items[property]);
         } else {
-          for (const prop in items) {
+          Object.keys(items).forEach((prop) => {
             collection = collection.concat(items[prop]);
-          }
+          });
         }
-      }
+      });
     }
 
-    fullyFlattened =
-      collection.filter(function(item) {
-        return typeof item === 'object';
-      }).length === 0;
+    fullyFlattened = collection.filter(item => typeof item === 'object');
+    fullyFlattened = fullyFlattened.length === 0;
 
-    depth--;
+    flattenDepth -= 1;
   };
 
   flat(this.items);
 
-  while (!fullyFlattened && depth > 0) {
+  while (!fullyFlattened && flattenDepth > 0) {
     flat(collection);
   }
 

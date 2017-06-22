@@ -1,13 +1,14 @@
-'use strict';
-
 module.exports = function diff(values) {
+  let valuesToDiff;
+
   if (values instanceof this.constructor) {
-    values = values.all();
+    valuesToDiff = values.all();
+  } else {
+    valuesToDiff = values;
   }
 
-  const collection = this.items.filter(function(item) {
-    return values.indexOf(item) === -1;
-  });
+  const collection =
+    this.items.filter(item => valuesToDiff.indexOf(item) === -1);
 
   return new this.constructor(collection);
 };

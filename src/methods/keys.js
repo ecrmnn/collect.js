@@ -1,11 +1,9 @@
-'use strict';
-
 module.exports = function keys() {
   if (Array.isArray(this.items)) {
     const keys = [];
 
-    this.items.forEach(function(object) {
-      Object.keys(object).forEach(function(key) {
+    this.items.forEach((object) => {
+      Object.keys(object).forEach((key) => {
         keys.push(key);
       });
     });

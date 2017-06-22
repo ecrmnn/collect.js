@@ -44,6 +44,9 @@
   "devDependencies": {
     "benchmark": "^2.1.0",
     "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.5.0",
     "mocha": "^2.4.5",
     "nyc": "^11.0.2"
   }

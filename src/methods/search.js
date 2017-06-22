@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function search(valueOrFunction, strict) {
   if (typeof valueOrFunction === 'function') {
     valueOrFunction = this.items.filter(function(value, key) {
