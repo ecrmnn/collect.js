@@ -25,6 +25,7 @@ All available methods
 - [combine](#combine)
 - [contains](#contains)
 - [count](#count)
+- [compact](#compact)
 - [diff](#diff)
 - [diffKeys](#diffkeys)
 - [each](#each)
@@ -233,6 +234,18 @@ const collection = collect([1, 2, 3, 4]);
 collection.count();
 
 //=> 4
+```
+
+#### ``compact()``
+The compact method returns all items that evaluate as truthy:
+```js
+const collection = collect([ hello', 1, true, [], {}, -4, '', 0, false, null, undefined, NaN]);
+
+const compact = collection.compact();
+
+compact.all();
+
+//=> ['hello', 1, true, [], {}, -4]
 ```
 
 #### ``diff()``

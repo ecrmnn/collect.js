@@ -231,6 +231,14 @@ describe('Collect.js Test Suite', function () {
     expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
   });
 
+  it('should remove all falsey values', function () {
+    const collection = collect(['hello', 1, true, [], {}, -4, '', 0, false, null, undefined, NaN]);
+
+    const compact = collection.compact();
+
+    expect(compact.all()).to.eql(['hello', 1, true, [], {}, -4]);
+  });
+
   it('should iterate through the collection and passes each value to the given callback.' +
     'The callback should return an associative array containing a single key / value pair:', function () {
     const collection = collect([
