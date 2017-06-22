@@ -168,6 +168,15 @@ collapsed.all();
 
 //=> [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
+#### ``combinations()``
+The combinations method returns the combinations of the values of the array. Only for 1 level deep arrays of strings.
+```js
+const collection = collect(['1', '2']);
+
+const combinations = collection.combinations();
+
+//=> [['1', '1'], ['1', '2'], ['2', '1'], ['2', '2']]
+```
 #### ``combine()``
 The combine method combines the keys of the collection with the values of another array or collection:
 ```js
