@@ -5,22 +5,12 @@ module.exports = function search(valueOrFunction, strict) {
     valueFn = this.items.filter((value, key) => valueOrFunction(value, key))[0];
   }
 
-  const operators = {
-    normal(a, b) {
-      return a == b;
-    },
-
-    strict(a, b) {
-      return a === b;
-    },
-  };
-
   const itemKey = this.items.filter((item) => {
-    if (strict === undefined) {
-      return operators.normal(item, valueFn);
+    if (strict === true) {
+      return item === valueFn;
     }
 
-    return operators.strict(item, valueFn);
+    return item === Number(valueFn) || item === valueFn.toString();
   })[0];
 
   const index = this.items.indexOf(itemKey);

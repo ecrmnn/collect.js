@@ -10,7 +10,8 @@ module.exports = function where(key, operator, value) {
   const collection = this.items.filter((item) => {
     switch (comparisonOperator) {
       case '==':
-        return item[key] == comparisonValue;
+        return item[key] === Number(comparisonValue) ||
+          item[key] === comparisonValue.toString();
 
       default:
       case '===':
@@ -18,7 +19,8 @@ module.exports = function where(key, operator, value) {
 
       case '!=':
       case '<>':
-        return item[key] != comparisonValue;
+        return item[key] !== Number(comparisonValue) &&
+          item[key] !== comparisonValue.toString();
 
       case '!==':
         return item[key] !== comparisonValue;
@@ -34,6 +36,7 @@ module.exports = function where(key, operator, value) {
 
       case '>=':
         return item[key] >= comparisonValue;
+
     }
   });
 

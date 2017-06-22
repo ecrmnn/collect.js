@@ -7,6 +7,7 @@
   "scripts": {
     "test": "node_modules/.bin/mocha test/tests.js",
     "test:watch": "node_modules/.bin/mocha -w test/tests.js",
+    "eslint": "node_modules/.bin/eslint src/",
     "coverage": "node_modules/.bin/nyc mocha test/tests.js",
     "reporter": "node_modules/.bin/nyc report --reporter=html"
   },
