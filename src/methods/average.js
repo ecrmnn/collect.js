@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function average(key) {
   if (key === undefined) {
     return this.sum() / this.items.length;

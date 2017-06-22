@@ -1,9 +1,3 @@
-'use strict';
-
 module.exports = function reject(fn) {
-  const collection = this.items.filter(function(item) {
-    return !fn(item);
-  });
-
-  return new this.constructor(collection);
+  return new this.constructor(this.items.filter(item => !fn(item)));
 };

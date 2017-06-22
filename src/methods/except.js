@@ -1,13 +1,11 @@
-'use strict';
-
 module.exports = function except(properties) {
   const collection = {};
 
-  for (const prop in this.items) {
-    if (properties.indexOf(prop) === -1) {
-      collection[prop] = this.items[prop];
+  Object.keys(this.items).forEach((property) => {
+    if (properties.indexOf(property) === -1) {
+      collection[property] = this.items[property];
     }
-  }
+  });
 
   return new this.constructor(collection);
 };

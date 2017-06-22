@@ -1,12 +1,5 @@
-'use strict';
-
 module.exports = function every(fn) {
-  let index = 0;
-  for (const item of this.items) {
-    if (!fn(item, index++)) {
-      return false;
-    }
-  }
-
-  return true;
+  return this.items
+    .map((item, index) => fn(item, index))
+    .indexOf(false) === -1;
 };

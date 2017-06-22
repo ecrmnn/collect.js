@@ -1,10 +1,8 @@
-'use strict';
-
 module.exports = function pluck(value, key) {
   if (key !== undefined) {
     const collection = {};
 
-    this.items.forEach(function(item) {
+    this.items.forEach((item) => {
       collection[item[key]] = item[value];
     });
 
@@ -12,12 +10,8 @@ module.exports = function pluck(value, key) {
   }
 
   const collection = this.items
-    .filter(function(item) {
-      return item.hasOwnProperty(value);
-    })
-    .map(function(item) {
-      return item[value];
-    });
+    .filter(item => item[value] !== undefined)
+    .map(item => item[value]);
 
   return new this.constructor(collection);
 };

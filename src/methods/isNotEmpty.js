@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function isNotEmpty() {
-  return !this.isEmpty();
+  return !!this.items.length;
 };

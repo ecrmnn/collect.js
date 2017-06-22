@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function chunk(size) {
   const chunks = [];
   let index = 0;

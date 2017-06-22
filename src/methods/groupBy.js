@@ -1,9 +1,7 @@
-'use strict';
-
 module.exports = function groupBy(key) {
-  let collection = {};
+  const collection = {};
 
-  this.items.forEach(function(item, index) {
+  this.items.forEach((item, index) => {
     let resolvedKey;
 
     if (typeof key === 'function') {
@@ -12,7 +10,7 @@ module.exports = function groupBy(key) {
       resolvedKey = item[key];
     }
 
-    if (!collection.hasOwnProperty(resolvedKey)) {
+    if (collection[resolvedKey] === undefined) {
       collection[resolvedKey] = [];
     }
 

@@ -3,7 +3,7 @@
 const it = require('mocha').it;
 const chai = require('chai');
 const expect = require('chai').expect;
-const collect = require('../src');
+const collect = require('../dist');
 const dataset = require('./data');
 
 describe('Collect.js Test Suite', function () {
@@ -823,7 +823,7 @@ describe('Collect.js Test Suite', function () {
         price: '9990 NOK'
       }]
     ]);
-    
+
     expect(collection.all()).to.eql([{
       id: 100,
       product: 'Chair',
@@ -1300,7 +1300,7 @@ describe('Collect.js Test Suite', function () {
     expect(collectionPlainArray.all()).to.eql([34, 345345, 34, 11234, 64, 77, 84, 5, 7]);
   });
 
-  it('should  remove and returns the last item from the collection', function () {
+  it('should remove and returns the last item from the collection', function () {
     const collection = collect([1, 2, 3, 4, 5]);
 
     expect(collection.pop()).to.eql(5);
@@ -1393,6 +1393,9 @@ describe('Collect.js Test Suite', function () {
     'If the item is not found, false is returned', function () {
     const collection = collect([2, 4, 6, 8]);
     expect(collection.search(4)).to.eql(1);
+
+    const collection2 = collect([.2, .4, .6, .8]);
+    expect(collection2.search(.4)).to.eql(1);
 
     // The search is done using a "loose" comparison.
     // To use strict comparison, pass true as the second argument to the method:

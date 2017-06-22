@@ -1,13 +1,11 @@
-'use strict';
-
 module.exports = function filter(fn) {
-  fn = fn || false;
+  const func = fn || false;
 
   const filteredArray = [];
-  for (let i = 0; i < this.items.length; i++) {
+  for (let i = 0; i < this.items.length; i += 1) {
     const item = this.items[i];
-    if (fn) {
-      if (fn(item, i)) {
+    if (func) {
+      if (func(item, i)) {
         filteredArray.push(item);
       }
     } else if (Array.isArray(item)) {
@@ -15,7 +13,7 @@ module.exports = function filter(fn) {
         filteredArray.push(item);
       }
     } else if (item !== undefined && item !== null &&
-        typeof item === 'object') {
+      typeof item === 'object') {
       if (Object.keys(item).length) {
         filteredArray.push(item);
       }

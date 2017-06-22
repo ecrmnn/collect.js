@@ -1,16 +1,14 @@
-'use strict';
-
 module.exports = function keys() {
   if (Array.isArray(this.items)) {
-    const keys = [];
+    const collection = [];
 
-    this.items.forEach(function(object) {
-      Object.keys(object).forEach(function(key) {
-        keys.push(key);
+    this.items.forEach((object) => {
+      Object.keys(object).forEach((key) => {
+        collection.push(key);
       });
     });
 
-    return new this.constructor(keys).unique();
+    return new this.constructor(collection).unique();
   }
 
   return new this.constructor(Object.keys(this.items));

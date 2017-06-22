@@ -1,13 +1,9 @@
-'use strict';
-
 module.exports = function combine(array) {
   const collection = {};
 
-  this.items.map(
-    function(key, iterator) {
-      collection[key] = array[iterator];
-    }.bind(this)
-  );
+  this.items.forEach((key, iterator) => {
+    collection[key] = array[iterator];
+  });
 
   return new this.constructor(collection);
 };

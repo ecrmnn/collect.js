@@ -1,16 +1,14 @@
-'use strict';
-
 module.exports = function reduce(fn, carry) {
   let result = null;
-  let _carry = null;
+  let reduceCarry = null;
 
   if (carry !== undefined) {
-    _carry = carry;
+    reduceCarry = carry;
   }
 
-  this.items.forEach(function(item) {
-    result = fn(_carry, item);
-    _carry = result;
+  this.items.forEach((item) => {
+    result = fn(reduceCarry, item);
+    reduceCarry = result;
   });
 
   return result;
