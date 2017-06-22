@@ -1,18 +1,15 @@
-'use strict';
-
 module.exports = function unique(key) {
   let collection;
 
   if (key === undefined) {
-    collection = this.items.filter(function(element, index, self) {
-      return self.indexOf(element) === index;
-    });
+    collection = this.items
+      .filter((element, index, self) => self.indexOf(element) === index);
   } else {
     collection = [];
 
     const usedKeys = [];
 
-    for (let iterator = 0; iterator < this.items.length; iterator++) {
+    for (let iterator = 0; iterator < this.items.length; iterator += 1) {
       let uniqueKey;
       if (typeof key === 'function') {
         uniqueKey = key(this.items[iterator]);

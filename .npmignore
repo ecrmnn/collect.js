@@ -1,3 +1,5 @@
 test
 coverage
 .nyc_output
+dist
+npm-debug.log

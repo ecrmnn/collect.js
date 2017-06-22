@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function collapse() {
-  return new this.constructor([].concat.apply([], this.items));
+  return new this.constructor([].concat(...this.items));
 };

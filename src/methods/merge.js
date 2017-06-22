@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function merge(objectOrArray) {
   if (Array.isArray(objectOrArray)) {
     return new this.constructor(this.items.concat(objectOrArray));
@@ -7,7 +5,7 @@ module.exports = function merge(objectOrArray) {
 
   const collection = Object.create(this.items);
 
-  Object.keys(objectOrArray).map(function(key) {
+  Object.keys(objectOrArray).forEach((key) => {
     collection[key] = objectOrArray[key];
   });
 

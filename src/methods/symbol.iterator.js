@@ -1,14 +1,14 @@
-'use strict';
-
 module.exports = function SymbolIterator() {
-  let index = 0;
+  let index = -1;
 
   return {
-    next: function() {
+    next: () => {
+      index += 1;
+
       return {
-        value: this.items[index++],
-        done: index > this.items.length,
+        value: this.items[index],
+        done: index >= this.items.length,
       };
-    }.bind(this),
+    },
   };
 };

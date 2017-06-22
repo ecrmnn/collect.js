@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = function get(key, defaultValue) {
-  if (this.items.hasOwnProperty(key)) {
+  if (this.items[key] !== undefined) {
     return this.items[key];
   }
 
