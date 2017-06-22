@@ -22,7 +22,8 @@ module.exports = function mode(key) {
         values.push({ key: item, count: 1 });
       }
     } else {
-      const count = ++tempValues[0].count;
+      tempValues[0].count += 1;
+      const count = tempValues[0].count;
 
       if (count > highestCount) {
         highestCount = count;

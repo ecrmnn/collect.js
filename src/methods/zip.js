@@ -1,9 +1,5 @@
-'use strict';
-
 module.exports = function zip(array) {
-  const collection = this.items.map(function(item, index) {
-    return [item, array[index]];
-  });
+  const collection = this.items.map((item, index) => [item, array[index]]);
 
   return new this.constructor(collection);
 };

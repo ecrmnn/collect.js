@@ -1,39 +1,41 @@
-'use strict';
-
 module.exports = function where(key, operator, value) {
+  let comparisonOperator = operator;
+  let comparisonValue = value;
+
   if (value === undefined) {
-    value = operator;
-    operator = '===';
+    comparisonValue = operator;
+    comparisonOperator = '===';
   }
 
-  return new this.constructor(
-    this.items.filter(function(item) {
-      switch (operator) {
-        case '==':
-          return item[key] == value;
+  const collection = this.items.filter((item) => {
+    switch (comparisonOperator) {
+      case '==':
+        return item[key] == comparisonValue;
 
-        case '===':
-          return item[key] === value;
+      default:
+      case '===':
+        return item[key] === comparisonValue;
 
-        case '!=':
-        case '<>':
-          return item[key] != value;
+      case '!=':
+      case '<>':
+        return item[key] != comparisonValue;
 
-        case '!==':
-          return item[key] !== value;
+      case '!==':
+        return item[key] !== comparisonValue;
 
-        case '<':
-          return item[key] < value;
+      case '<':
+        return item[key] < comparisonValue;
 
-        case '<=':
-          return item[key] <= value;
+      case '<=':
+        return item[key] <= comparisonValue;
 
-        case '>':
-          return item[key] > value;
+      case '>':
+        return item[key] > comparisonValue;
 
-        case '>=':
-          return item[key] >= value;
-      }
-    })
-  );
+      case '>=':
+        return item[key] >= comparisonValue;
+    }
+  });
+
+  return new this.constructor(collection);
 };

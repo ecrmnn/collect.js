@@ -1,14 +1,14 @@
 module.exports = function keys() {
   if (Array.isArray(this.items)) {
-    const keys = [];
+    const collection = [];
 
     this.items.forEach((object) => {
       Object.keys(object).forEach((key) => {
-        keys.push(key);
+        collection.push(key);
       });
     });
 
-    return new this.constructor(keys).unique();
+    return new this.constructor(collection).unique();
   }
 
   return new this.constructor(Object.keys(this.items));

@@ -4,7 +4,7 @@ module.exports = function flatten(depth) {
   let fullyFlattened = false;
   let collection = [];
 
-  const flat = function(items) {
+  const flat = function flat(items) {
     collection = [];
 
     if (Array.isArray(items)) {

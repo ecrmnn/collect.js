@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function sort(fn) {
   const collection = [].concat(this.items);
 

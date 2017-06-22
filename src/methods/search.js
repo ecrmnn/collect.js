@@ -1,29 +1,26 @@
 module.exports = function search(valueOrFunction, strict) {
+  let valueFn = valueOrFunction;
+
   if (typeof valueOrFunction === 'function') {
-    valueOrFunction = this.items.filter(function(value, key) {
-      return valueOrFunction(value, key);
-    })[0];
+    valueFn = this.items.filter((value, key) => valueOrFunction(value, key))[0];
   }
 
   const operators = {
-    normal: function(a, b) {
+    normal(a, b) {
       return a == b;
     },
-    strict: function(a, b) {
+
+    strict(a, b) {
       return a === b;
     },
   };
 
-  const itemKey = this.items.filter(function(item, key) {
+  const itemKey = this.items.filter((item) => {
     if (strict === undefined) {
-      if (operators.normal(item, valueOrFunction)) {
-        return item;
-      }
-    } else {
-      if (operators.strict(item, valueOrFunction)) {
-        return item;
-      }
+      return operators.normal(item, valueFn);
     }
+
+    return operators.strict(item, valueFn);
   })[0];
 
   const index = this.items.indexOf(itemKey);
