@@ -1,8 +1,6 @@
 type Operator = "===" | "==" | "!==" | "!=" | "<>" | ">" | "<" | ">=" | "<="
 
 interface CollectionInstance<Item> {
-  items: Item[] | Object
-
   /**
    * The unique method returns all of the unique items in the collection.
    * 
@@ -862,6 +860,8 @@ interface CollectionInstance<Item> {
    * @memberof CollectionInstance
    */
   macro(name: string, fn: Function): void;
+
+  [macroFn: string]: Function;
 }
 
 declare module 'collect.js' {
