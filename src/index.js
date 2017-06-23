@@ -84,3 +84,4 @@ Collection.prototype.zip = require('./methods/zip');
 module.exports = function collect(collection) {
   return new Collection(collection);
 };
+module.exports.default = collection => new Collection(collection);
