@@ -83,6 +83,9 @@ Collection.prototype.whereIn = require('./methods/whereIn');
 Collection.prototype.whereNotIn = require('./methods/whereNotIn');
 Collection.prototype.zip = require('./methods/zip');
 
-module.exports = function collect(collection) {
+module.exports = function (collection) {
+  return new Collection(collection);
+};
+module.exports.default = function (collection) {
   return new Collection(collection);
 };
