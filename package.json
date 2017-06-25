@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "postinstall": "npm run transpile",
     "pretest": "npm run transpile",
     "test": "node_modules/.bin/mocha test/tests.js",
     "transpile": "node_modules/babel-cli/bin/babel.js src --out-dir dist",
