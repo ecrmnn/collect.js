@@ -229,6 +229,16 @@ describe('Collect.js Test Suite', function () {
     expect(multiplied.all()).to.eql([2, 4, 6, 8, 10]);
 
     expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
+
+    const collection2 = collect([1, 2, 3, 4, 5]);
+
+    const multiplied2 = collection2.map(function (item, key) {
+      return key * 2;
+    });
+
+    expect(multiplied2.all()).to.eql([0, 2, 4, 6, 8]);
+
+    expect(collection2.all()).to.eql([1, 2, 3, 4, 5]);
   });
 
   it('should iterate through the collection and passes each value to the given callback.' +
