@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function combine(array) {
   const collection = {};
 

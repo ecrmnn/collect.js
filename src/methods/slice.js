@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function slice(remove, limit) {
   let collection = this.items.slice(remove);
 

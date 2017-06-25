@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function keys() {
   if (Array.isArray(this.items)) {
     const collection = [];

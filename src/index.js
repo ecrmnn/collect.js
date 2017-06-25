@@ -1,3 +1,5 @@
+'use strict';
+
 function Collection(collection) {
   this.items = collection || [];
 }

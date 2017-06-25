@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function flatten(depth) {
   let flattenDepth = depth || Infinity;
 

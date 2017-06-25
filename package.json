@@ -1,11 +1,12 @@
 {
   "name": "collect.js",
-  "version": "3.0.34",
+  "version": "3.0.35",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "test": "npm run transpile && node_modules/.bin/mocha test/tests.js",
+    "pretest": "npm run transpile",
+    "test": "node_modules/.bin/mocha test/tests.js",
     "transpile": "node_modules/babel-cli/bin/babel.js src --out-dir dist",
     "eslint": "node_modules/.bin/eslint src/",
     "coverage": "node_modules/.bin/nyc mocha test/tests.js",

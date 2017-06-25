@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function reduce(fn, carry) {
   let result = null;
   let reduceCarry = null;

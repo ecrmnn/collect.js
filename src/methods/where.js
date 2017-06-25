@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function where(key, operator, value) {
   let comparisonOperator = operator;
   let comparisonValue = value;

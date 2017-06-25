@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function implode(key, glue) {
   if (glue === undefined) {
     return this.items.join(key);

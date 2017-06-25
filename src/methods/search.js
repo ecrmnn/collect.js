@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function search(valueOrFunction, strict) {
   let valueFn = valueOrFunction;
 

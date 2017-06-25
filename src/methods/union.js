@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function union(object) {
   const collection = Object.create(this.items);
 

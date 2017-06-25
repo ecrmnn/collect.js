@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function random(length) {
   const randomLength = length || 1;
 

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function nth(n, offset) {
   const ntnOffset = offset || 0;
 

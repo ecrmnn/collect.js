@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function merge(objectOrArray) {
   if (Array.isArray(objectOrArray)) {
     return new this.constructor(this.items.concat(objectOrArray));
