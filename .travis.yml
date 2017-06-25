@@ -4,6 +4,5 @@ node_js:
   - '5'
   - '4'
 script:
-  - npm run transpile
   - npm run eslint
   - npm run coverage
