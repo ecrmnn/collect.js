@@ -1,13 +1,21 @@
 'use strict';
 
 module.exports = function sum(key) {
-  return this.items.reduce((accumulator, current) => {
-    if (key === undefined) {
-      return accumulator + current;
-    } else if (typeof key === 'function') {
-      return accumulator + key(current);
-    }
+  let total = 0;
 
-    return accumulator + current[key];
-  }, 0);
+  if (key === undefined) {
+    for (let i = 0; i < this.items.length; i += 1) {
+      total += this.items[i];
+    }
+  } else if (typeof key === 'function') {
+    for (let i = 0; i < this.items.length; i += 1) {
+      total += key(this.items[i]);
+    }
+  } else {
+    for (let i = 0; i < this.items.length; i += 1) {
+      total += this.items[i][key];
+    }
+  }
+
+  return total;
 };
