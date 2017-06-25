@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function reverse() {
   const collection = [].concat(this.items).reverse();
 

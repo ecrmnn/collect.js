@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function forPage(page, chunk) {
   const collection = this.items.slice((page * chunk) - chunk, page * chunk);
 

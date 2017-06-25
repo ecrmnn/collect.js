@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function mode(key) {
   const values = [];
   let highestCount = 1;

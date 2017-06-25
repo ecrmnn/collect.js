@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function every(fn) {
   return this.items
     .map((item, index) => fn(item, index))

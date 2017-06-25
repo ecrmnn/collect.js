@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function unique(key) {
   let collection;
 

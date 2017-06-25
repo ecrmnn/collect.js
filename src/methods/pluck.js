@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function pluck(value, key) {
   if (key !== undefined) {
     const collection = {};

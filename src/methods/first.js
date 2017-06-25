@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function first(fn) {
   if (typeof fn === 'function') {
     for (let i = 0; i < this.items.length; i += 1) {
