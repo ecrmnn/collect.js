@@ -1,13 +1,21 @@
 'use strict';
 
 module.exports = function sum(key) {
-  return this.items.reduce(function (accumulator, current) {
-    if (key === undefined) {
-      return accumulator + current;
-    } else if (typeof key === 'function') {
-      return accumulator + key(current);
-    }
+  var total = 0;
 
-    return accumulator + current[key];
-  }, 0);
+  if (key === undefined) {
+    for (var i = 0; i < this.items.length; i += 1) {
+      total += this.items[i];
+    }
+  } else if (typeof key === 'function') {
+    for (var _i = 0; _i < this.items.length; _i += 1) {
+      total += key(this.items[_i]);
+    }
+  } else {
+    for (var _i2 = 0; _i2 < this.items.length; _i2 += 1) {
+      total += this.items[_i2][key];
+    }
+  }
+
+  return total;
 };
