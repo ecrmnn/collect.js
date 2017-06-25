@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function median(key) {
   const length = this.items.length;
 

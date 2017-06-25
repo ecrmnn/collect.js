@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function contains(key, value) {
   if (value !== undefined) {
     return this.items[key] !== undefined && this.items[key] === value;

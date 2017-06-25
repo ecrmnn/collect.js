@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function split(numberOfGroups) {
   const itemsPerGroup = Math.round(this.items.length / numberOfGroups);
 

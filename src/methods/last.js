@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function last(fn) {
   if (typeof fn === 'function') {
     const collection = this.items.filter(fn);

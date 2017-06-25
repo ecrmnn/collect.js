@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function diff(values) {
   let valuesToDiff;
 

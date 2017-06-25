@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function splice(index, limit, replace) {
   const slicedCollection = this.slice(index, limit);
 
