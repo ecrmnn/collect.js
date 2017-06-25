@@ -1,10 +1,8 @@
 'use strict';
 
-module.exports = function nth(n, offset) {
-  const ntnOffset = offset || 0;
-
+module.exports = function nth(n, offset = 0) {
   const collection = this.items
-    .slice(ntnOffset)
+    .slice(offset)
     .filter((item, index) => index % n === 0);
 
   return new this.constructor(collection);

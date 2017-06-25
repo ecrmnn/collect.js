@@ -1,8 +1,6 @@
 'use strict';
 
-module.exports = function filter(fn) {
-  const func = fn || false;
-
+module.exports = function filter(func = false) {
   const filteredArray = [];
   for (let i = 0; i < this.items.length; i += 1) {
     const item = this.items[i];

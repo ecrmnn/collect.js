@@ -1,0 +1,5 @@
+node_modules/*
+dist/*
+test/*
+karma.conf.js
+webpack.config.js

@@ -1,10 +1,11 @@
 'use strict';
 
-const it = require('mocha').it;
-const chai = require('chai');
-const expect = require('chai').expect;
-const collect = require('../dist');
-const dataset = require('./data');
+if (typeof require !== 'undefined') {
+  var chai = require('chai');
+  var expect = require('chai').expect;
+  var collect = require('../dist/collect');
+  var dataset = require('./data');
+}
 
 describe('Collect.js Test Suite', function () {
   it('should return all items, simple array', function () {

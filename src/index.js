@@ -1,10 +1,14 @@
 'use strict';
 
 function Collection(collection) {
-  this.items = collection || [];
+  this.items = collection;
 }
 
-Collection.prototype[Symbol.iterator] = require('./methods/symbol.iterator');
+const SymbolIterator = require('./methods/symbol.iterator');
+
+if (typeof Symbol !== 'undefined') {
+  Collection.prototype[Symbol.iterator] = SymbolIterator;
+}
 
 Collection.prototype.all = require('./methods/all');
 Collection.prototype.average = require('./methods/average');
@@ -83,5 +87,5 @@ Collection.prototype.whereIn = require('./methods/whereIn');
 Collection.prototype.whereNotIn = require('./methods/whereNotIn');
 Collection.prototype.zip = require('./methods/zip');
 
-module.exports = collection => new Collection(collection);
-module.exports.default = collection => new Collection(collection);
+module.exports = (collection = []) => new Collection(collection);
+module.exports.default = (collection = []) => new Collection(collection);
