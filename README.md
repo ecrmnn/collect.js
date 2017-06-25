@@ -11,8 +11,30 @@
 [![eslint](https://img.shields.io/badge/code_style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
 
 ### Installation
+Using npm:
 ```bash
 npm install collect.js --save
+```
+
+Using yarn:
+```bash
+yarn add collect.js
+```
+
+Using `script` tag in browser:
+```html
+<script src="path/to/collect.js"></script>
+```
+
+*Notice of Compatibility*
+
+In this library, you can use `for ... of` to iterate a collection. However, it is based on `Symbol.iterator`, which doesn't support ES5 browsers. If you want to use iterator in ES5 browsers, you should add polyfill.
+
+Add a script tag:
+
+```html
+<!-- For Chrome 37, IE 11, UC Browser and Android browser users -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 ```
 
 ### Tip

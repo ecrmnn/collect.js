@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+const data = {
   products: [{
     id: 100,
     product: 'Chair',
@@ -19,3 +19,9 @@ module.exports = {
   }],
   clubs: ['Liverpool', 'Arsenal', 'Chelsea', 'Spurs', 'Everton']
 };
+
+if (typeof window !== 'undefined') {
+  window.dataset = data
+} else {
+  module.exports = data
+}
