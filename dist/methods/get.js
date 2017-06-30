@@ -1,6 +1,8 @@
 'use strict';
 
-module.exports = function get(key, defaultValue) {
+module.exports = function get(key) {
+  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
   if (this.items[key] !== undefined) {
     return this.items[key];
   }
@@ -9,5 +11,9 @@ module.exports = function get(key, defaultValue) {
     return defaultValue();
   }
 
-  return defaultValue || null;
+  if (defaultValue !== null) {
+    return defaultValue;
+  }
+
+  return null;
 };
