@@ -301,6 +301,41 @@ describe('Collect.js Test Suite', function () {
         'email': 'jane@example.com'
       }
     ]);
+
+    const hashMap = collect({
+      'player1': {
+        'name': 'John',
+        'department': 'Sales',
+        'email': 'john@example.com'
+      },
+      'player2': {
+        'name': 'Jane',
+        'department': 'Marketing',
+        'email': 'jane@example.com'
+      }
+    });
+
+    const keyedHashmap = hashMap.mapWithKeys(function (item) {
+      return [item.email, item.name];
+    });
+
+    expect(keyedHashmap.all()).to.eql({
+      'john@example.com': 'John',
+      'jane@example.com': 'Jane',
+    });
+
+    expect(hashMap.all()).to.eql({
+      'player1': {
+        'name': 'John',
+        'department': 'Sales',
+        'email': 'john@example.com'
+      },
+      'player2': {
+        'name': 'Jane',
+        'department': 'Marketing',
+        'email': 'jane@example.com'
+      }
+    });
   });
 
   it('should pass the collection to the given callback and returns the result', function () {
