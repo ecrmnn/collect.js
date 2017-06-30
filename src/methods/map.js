@@ -7,9 +7,9 @@ module.exports = function map(fn) {
 
   const hashmap = {};
 
-  for(let key in this.items) {
-    hashmap[key] = fn(this.items[key]);
-  }
+  Object.keys(this.items).forEach((key) => {
+      hashmap[key] = fn(this.items[key]);
+  });
 
   return new this.constructor(hashmap);
 };
