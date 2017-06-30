@@ -427,6 +427,9 @@ describe('Collect.js Test Suite', function () {
       firstname: 'Daniel',
       lastname: 'Eckermann'
     });
+
+    expect(collection.get('missingKey')).to.eql(null);
+    expect(collection.get('missingKey', 0)).to.eql(0);
   });
 
   it('should group the collections items by a given key', function () {
