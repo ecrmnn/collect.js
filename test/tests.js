@@ -217,6 +217,17 @@ describe('Collect.js Test Suite', function () {
 
     expect(summed.all()).to.eql([1, 3, 3, 7]);
     expect(sum2).to.eql(7);
+
+    let sum3 = 0;
+
+    const collection2 = collect({a:1,b:3,c:3,d:7});
+
+    const summed2 = collection2.each(function(item) {
+      sum3+=item;
+    });
+
+    expect(collection2.all()).to.eql({a:1,b:3,c:3,d:7});
+    expect(sum3).to.eql(14);
   });
 
   it('should map over and modify the collection', function () {
