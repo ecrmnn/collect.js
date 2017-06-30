@@ -241,6 +241,30 @@ describe('Collect.js Test Suite', function () {
     expect(collection2.all()).to.eql([1, 2, 3, 4, 5]);
   });
 
+  it('should map over a hashmap/object and modify the hashmap/object', function() {
+    const collection = collect({
+      'foo': 1,
+      'bar': 2,
+      'baz': 3
+    });
+
+    const multiplied = collection.map(function (item) {
+      return item * 2;
+    });
+
+    expect(multiplied.all()).to.eql({
+      'foo': 2,
+      'bar': 4,
+      'baz': 6
+    });
+
+    expect(collection.all()).to.eql({
+      'foo': 1,
+      'bar': 2,
+      'baz': 3
+    });
+  });
+
   it('should iterate through the collection and passes each value to the given callback.' +
     'The callback should return an associative array containing a single key / value pair:', function () {
     const collection = collect([
