@@ -7,11 +7,11 @@ module.exports = function map(fn) {
     return new this.constructor(this.items.map(fn));
   }
 
-  var hashmap = {};
+  var collection = {};
 
   Object.keys(this.items).forEach(function (key) {
-    hashmap[key] = fn(_this.items[key]);
+    collection[key] = fn(_this.items[key], key, _this.items);
   });
 
-  return new this.constructor(hashmap);
+  return new this.constructor(collection);
 };

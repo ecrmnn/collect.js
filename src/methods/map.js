@@ -5,11 +5,11 @@ module.exports = function map(fn) {
     return new this.constructor(this.items.map(fn));
   }
 
-  const hashmap = {};
+  const collection = {};
 
   Object.keys(this.items).forEach((key) => {
-    hashmap[key] = fn(this.items[key]);
+    collection[key] = fn(this.items[key], key, this.items);
   });
 
-  return new this.constructor(hashmap);
+  return new this.constructor(collection);
 };
