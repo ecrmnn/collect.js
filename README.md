@@ -25,6 +25,7 @@ All available methods
 - [chunk](#chunk)
 - [collapse](#collapse)
 - [combine](#combine)
+- [concat](#concat)
 - [contains](#contains)
 - [count](#count)
 - [diff](#diff)
@@ -184,6 +185,27 @@ combine.all();
 //=>   number: 8
 //=> }
 ```
+
+#### ``concat()``
+The concat method is used to merge two or more collections/arrays/objects:
+
+*You can also ``concat()`` an array of objects, or a multidimensional array*
+
+```js
+const collection = collect([1, 2, 3]);
+
+collection
+  .concat(['a', 'b', 'c'])
+  .concat({
+    name: 'Steven Gerrard',
+    number: 8
+  });
+
+collection.all();
+
+//=> [1, 2, 3, 'a', 'b', 'c', 'Steven Gerrard', 8]
+```
+
 #### ``contains()``
 The contains method determines whether the collection contains a given item:
 ```js

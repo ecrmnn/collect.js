@@ -12,6 +12,7 @@ Collection.prototype.avg = require('./methods/average');
 Collection.prototype.chunk = require('./methods/chunk');
 Collection.prototype.collapse = require('./methods/collapse');
 Collection.prototype.combine = require('./methods/combine');
+Collection.prototype.concat = require('./methods/concat');
 Collection.prototype.contains = require('./methods/contains');
 Collection.prototype.count = require('./methods/count');
 Collection.prototype.diff = require('./methods/diff');
