@@ -6,7 +6,7 @@ module.exports = function filter(fn) {
   var func = fn || false;
 
   var filteredArray = [];
-  for (var i = 0; i < this.items.length; i += 1) {
+  for (var i = 0, length = this.items.length; i < length; i += 1) {
     var item = this.items[i];
     if (func) {
       if (func(item, i)) {
