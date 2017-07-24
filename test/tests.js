@@ -1060,6 +1060,31 @@ describe('Collect.js Test Suite', function () {
     expect(merged3.all()).to.eql(['Unicorn', 'Rainbow', 'Sunshine', 'Rainbow']);
 
     expect(collection3.all()).to.eql(['Unicorn', 'Rainbow']);
+
+    const collection4 = collect({
+      a: 'A',
+      b: 'B',
+      d: 'D',
+    });
+
+    const merged = collection4.merge({
+      a: 'AAA',
+      b: 'BBB',
+      c: 'CCC',
+    });
+
+    expect(merged.all()).to.eql({
+      a: 'AAA',
+      b: 'BBB',
+      d: 'D',
+      c: 'CCC',
+    });
+
+    expect(merged.all().b).to.eql('BBB');
+
+    merged.forget('b');
+
+    expect(merged.all().b).to.eql(undefined);
   });
 
   it('should return the maximum value of a given key', function () {
@@ -1728,6 +1753,12 @@ describe('Collect.js Test Suite', function () {
       a: 'A',
       b: 'B'
     });
+
+    expect(union.all().b).to.eql('B');
+
+    union.forget('b');
+
+    expect(union.all().b).to.eql(undefined);
   });
 
   it('should merge together the values of the given array with the values of the collection at the corresponding index',

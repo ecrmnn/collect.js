@@ -5,7 +5,7 @@ module.exports = function merge(objectOrArray) {
     return new this.constructor(this.items.concat(objectOrArray));
   }
 
-  const collection = Object.create(this.items);
+  const collection = JSON.parse(JSON.stringify(this.items));
 
   Object.keys(objectOrArray).forEach((key) => {
     collection[key] = objectOrArray[key];
