@@ -8,7 +8,7 @@ module.exports = function map(fn) {
   const collection = {};
 
   Object.keys(this.items).forEach((key) => {
-    collection[key] = fn(this.items[key], key, this.items);
+    collection[key] = fn(this.items[key], key);
   });
 
   return new this.constructor(collection);

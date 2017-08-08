@@ -1,9 +1,17 @@
 'use strict';
 
 module.exports = function transform(fn) {
-  this.items = this.items.map(function (item) {
-    return fn(item);
-  });
+  var _this = this;
 
-  return this;
+  if (Array.isArray(this.items)) {
+    this.items = this.items.map(fn);
+  } else {
+    var collection = {};
+
+    Object.keys(this.items).forEach(function (key) {
+      collection[key] = fn(_this.items[key], key);
+    });
+
+    this.items = collection;
+  }
 };

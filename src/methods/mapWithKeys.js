@@ -5,13 +5,13 @@ module.exports = function mapWithKeys(fn) {
 
   if (Array.isArray(this.items)) {
     this.items.forEach((item) => {
-      const array = fn(item);
-      collection[array[0]] = array[1];
+      const [keyed, value] = fn(item);
+      collection[keyed] = value;
     });
   } else {
     Object.keys(this.items).forEach((key) => {
-      const array = fn(this.items[key]);
-      collection[array[0]] = array[1];
+      const [keyed, value] = fn(this.items[key]);
+      collection[keyed] = value;
     });
   }
 

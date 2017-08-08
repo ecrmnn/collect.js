@@ -223,7 +223,7 @@ describe('Collect.js Test Suite', function () {
     const collection2 = collect({a:1,b:3,c:3,d:7});
 
     const summed2 = collection2.each(function(item) {
-      sum3+=item;
+      sum3 += item;
     });
 
     expect(collection2.all()).to.eql({a:1,b:3,c:3,d:7});
@@ -252,11 +252,11 @@ describe('Collect.js Test Suite', function () {
     expect(collection2.all()).to.eql([1, 2, 3, 4, 5]);
   });
 
-  it('should map over a hashmap/object and modify the hashmap/object', function() {
+  it('should map over an object and modify the object', function() {
     const collection = collect({
-      'foo': 1,
-      'bar': 2,
-      'baz': 3
+      foo: 1,
+      bar: 2,
+      baz: 3,
     });
 
     const multiplied = collection.map(function (item) {
@@ -264,15 +264,15 @@ describe('Collect.js Test Suite', function () {
     });
 
     expect(multiplied.all()).to.eql({
-      'foo': 2,
-      'bar': 4,
-      'baz': 6
+      foo: 2,
+      bar: 4,
+      baz: 6,
     });
 
     expect(collection.all()).to.eql({
-      'foo': 1,
-      'bar': 2,
-      'baz': 3
+      foo: 1,
+      bar: 2,
+      baz: 3,
     });
   });
 
@@ -280,14 +280,14 @@ describe('Collect.js Test Suite', function () {
     'The callback should return an associative array containing a single key / value pair:', function () {
     const collection = collect([
       {
-        'name': 'John',
-        'department': 'Sales',
-        'email': 'john@example.com'
+        name: 'John',
+        department: 'Sales',
+        email: 'john@example.com'
       },
       {
-        'name': 'Jane',
-        'department': 'Marketing',
-        'email': 'jane@example.com'
+        name: 'Jane',
+        department: 'Marketing',
+        email: 'jane@example.com'
       }
     ]);
 
@@ -302,27 +302,27 @@ describe('Collect.js Test Suite', function () {
 
     expect(collection.all()).to.eql([
       {
-        'name': 'John',
-        'department': 'Sales',
-        'email': 'john@example.com'
+        name: 'John',
+        department: 'Sales',
+        email: 'john@example.com'
       },
       {
-        'name': 'Jane',
-        'department': 'Marketing',
-        'email': 'jane@example.com'
+        name: 'Jane',
+        department: 'Marketing',
+        email: 'jane@example.com'
       }
     ]);
 
     const hashMap = collect({
-      'player1': {
-        'name': 'John',
-        'department': 'Sales',
-        'email': 'john@example.com'
+      player1: {
+        name: 'John',
+        department: 'Sales',
+        email: 'john@example.com'
       },
-      'player2': {
-        'name': 'Jane',
-        'department': 'Marketing',
-        'email': 'jane@example.com'
+      player2: {
+        name: 'Jane',
+        department: 'Marketing',
+        email: 'jane@example.com'
       }
     });
 
@@ -336,15 +336,15 @@ describe('Collect.js Test Suite', function () {
     });
 
     expect(hashMap.all()).to.eql({
-      'player1': {
-        'name': 'John',
-        'department': 'Sales',
-        'email': 'john@example.com'
+      player1: {
+        name: 'John',
+        department: 'Sales',
+        email: 'john@example.com'
       },
-      'player2': {
-        'name': 'Jane',
-        'department': 'Marketing',
-        'email': 'jane@example.com'
+      player2: {
+        name: 'Jane',
+        department: 'Marketing',
+        email: 'jane@example.com'
       }
     });
   });
@@ -532,6 +532,9 @@ describe('Collect.js Test Suite', function () {
       firstname: 'Daniel',
       lastname: 'Eckermann'
     });
+
+    expect(collection.get('missingKey')).to.eql(null);
+    expect(collection.get('missingKey', 0)).to.eql(0);
   });
 
   it('should group the collections items by a given key', function () {
@@ -1092,6 +1095,31 @@ describe('Collect.js Test Suite', function () {
     expect(merged3.all()).to.eql(['Unicorn', 'Rainbow', 'Sunshine', 'Rainbow']);
 
     expect(collection3.all()).to.eql(['Unicorn', 'Rainbow']);
+
+    const collection4 = collect({
+      a: 'A',
+      b: 'B',
+      d: 'D',
+    });
+
+    const merged = collection4.merge({
+      a: 'AAA',
+      b: 'BBB',
+      c: 'CCC',
+    });
+
+    expect(merged.all()).to.eql({
+      a: 'AAA',
+      b: 'BBB',
+      d: 'D',
+      c: 'CCC',
+    });
+
+    expect(merged.all().b).to.eql('BBB');
+
+    merged.forget('b');
+
+    expect(merged.all().b).to.eql(undefined);
   });
 
   it('should return the maximum value of a given key', function () {
@@ -1718,6 +1746,24 @@ describe('Collect.js Test Suite', function () {
     expect(collection.all()).to.eql([2, 4, 6, 8, 10]);
   });
 
+  it('should iterate over the collection and transform it', function() {
+    const collection = collect({
+      foo: 1,
+      bar: 2,
+      baz: 3,
+    });
+
+    collection.transform(function (item) {
+      return item * 2;
+    });
+
+    expect(collection.all()).to.eql({
+      foo: 2,
+      bar: 4,
+      baz: 6,
+    });
+  });
+
   it('should add the given object to the collection. ' +
     'If the given object contains keys that are already in the collection, ' +
     'the collections values will be preferred', function () {
@@ -1742,6 +1788,12 @@ describe('Collect.js Test Suite', function () {
       a: 'A',
       b: 'B'
     });
+
+    expect(union.all().b).to.eql('B');
+
+    union.forget('b');
+
+    expect(union.all().b).to.eql(undefined);
   });
 
   it('should merge together the values of the given array with the values of the collection at the corresponding index',
@@ -1884,6 +1936,78 @@ describe('Collect.js Test Suite', function () {
 
     expect(collectionObject.toArray()).to.eql(['Elon Musk', ['Tesla', 'Space X', 'SolarCity']]);
     expect(collectionObject.toArray()).to.eql(collectionObject.values().all());
+  });
+
+  it('should append arrays to collection', function () {
+    const expected = [
+      4,
+      5,
+      6,
+      'a',
+      'b',
+      'c',
+      'Jonny',
+      'from',
+      'Laroe',
+      'Jonny',
+      'from',
+      'Laroe'
+    ];
+
+    const firstCollection = collect([4, 5, 6]);
+    const firstArray = ['a', 'b', 'c'];
+    const secondArray = [{
+      who: 'Jonny'
+    }, {
+      preposition: 'from'
+    }, {
+      where: 'Laroe'
+    }];
+    const firstObj = {
+      who: 'Jonny',
+      preposition: 'from',
+      where: 'Laroe'
+    };
+
+    firstCollection.concat(firstArray).concat(secondArray).concat(firstObj);
+
+    expect(firstCollection.count()).to.eql(12);
+    expect(firstCollection.all()).to.eql(expected);
+  });
+
+  it('should append collections to collection', function () {
+    const expected = [
+      4,
+      5,
+      6,
+      'a',
+      'b',
+      'c',
+      'Jonny',
+      'from',
+      'Laroe',
+      'Jonny',
+      'from',
+      'Laroe'
+    ];
+
+    const firstCollection = collect([4, 5, 6]);
+    const secondCollection = collect(['a', 'b', 'c']);
+    const thirdCollection = collect([{
+      who: 'Jonny'
+    }, {
+      preposition: 'from'
+    }, {
+      where: 'Laroe'
+    }]);
+
+    firstCollection
+      .concat(secondCollection)
+      .concat(thirdCollection)
+      .concat(thirdCollection);
+
+    expect(firstCollection.count()).to.eql(12);
+    expect(firstCollection.all()).to.eql(expected);
   });
 
   it('should be iterable', function () {

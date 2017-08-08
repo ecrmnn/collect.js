@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function union(object) {
-  const collection = Object.create(this.items);
+  const collection = JSON.parse(JSON.stringify(this.items));
 
   Object.keys(object).forEach((prop) => {
     if (this.items[prop] === undefined) {
