@@ -381,6 +381,19 @@ describe('Collect.js Test Suite', function () {
     expect(filtered.all()).to.eql([5, 6, 7]);
 
     expect(collection.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+    const collection2 = collect({
+      key: 'value',
+      foo: 'bar'
+    });
+
+    const filtered2 = collection2.filter(function(item, key) {
+      return key === 'foo';
+    });
+
+    expect(filtered2.all()).to.eql({foo:'bar'});
+    
+    expect(collection2.all()).to.eql({key:'value',foo:'bar'});
   });
 
   it('should filter the collection removing falsy values if no call back is passed', function () {
@@ -391,6 +404,28 @@ describe('Collect.js Test Suite', function () {
     expect(filtered.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
     expect(collection.all()).to.eql([0, 1, 2, null, 3, 4, undefined, 5, 6, 7, [], 8, 9, {}, 10]);
+
+    const collection2 = collect({
+      falseKey: false,
+      emptyArray: [],
+      baz: 10,
+      emptyObject: {},
+      foo: 'bar',
+      undefinedKey: undefined
+    });
+
+    const filtered2 = collection2.filter();
+
+    expect(filtered2.all()).to.eql({baz: 10, foo:'bar'});
+    
+    expect(collection2.all()).to.eql({
+      falseKey: false,
+      emptyArray: [],
+      baz: 10,
+      emptyObject: {},
+      foo: 'bar',
+      undefinedKey: undefined
+    });
   });
 
   it('should determine if a key exists in the collection', function () {
