@@ -14,17 +14,17 @@ function falsyValue(item) {
     return false;
   }
 
-  return true
+  return true;
 }
 
 function filterObject(func, items) {
-  const result = {}
+  const result = {};
   Object.keys(items).forEach((key) => {
-    if(func) {
-      if(func(items[key], key)) {
+    if (func) {
+      if (func(items[key], key)) {
         result[key] = items[key];
       }
-    } else if(!falsyValue(items[key])) {
+    } else if (!falsyValue(items[key])) {
       result[key] = items[key];
     }
   });
@@ -32,7 +32,7 @@ function filterObject(func, items) {
 }
 
 function filterArray(func, items) {
-  if(func) {
+  if (func) {
     return items.filter(func);
   }
   const result = [];
@@ -42,13 +42,13 @@ function filterArray(func, items) {
       result.push(item);
     }
   }
-  return result
+  return result;
 }
 
 module.exports = function filter(fn) {
   const func = fn || false;
   let filteredItems = null;
-  if(Array.isArray(this.items)) {
+  if (Array.isArray(this.items)) {
     filteredItems = filterArray(func, this.items);
   } else {
     filteredItems = filterObject(func, this.items);
