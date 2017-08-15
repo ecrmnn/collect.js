@@ -4,7 +4,11 @@ function Collection(collection) {
   this.items = collection || [];
 }
 
-Collection.prototype[Symbol.iterator] = require('./methods/symbol.iterator');
+const SymbolIterator = require('./methods/symbol.iterator');
+
+if (typeof Symbol !== 'undefined') {
+  Collection.prototype[Symbol.iterator] = SymbolIterator;
+}
 
 Collection.prototype.all = require('./methods/all');
 Collection.prototype.average = require('./methods/average');
