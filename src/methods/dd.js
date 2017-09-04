@@ -2,5 +2,8 @@
 
 module.exports = function dd() {
   console.log(this.all());
-  process.exit(1);
+
+  if (typeof process !== 'undefined') {
+    process.exit(1);
+  }
 };
