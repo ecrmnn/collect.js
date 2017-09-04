@@ -3,7 +3,7 @@
 module.exports = function union(object) {
   var _this = this;
 
-  var collection = Object.create(this.items);
+  var collection = JSON.parse(JSON.stringify(this.items));
 
   Object.keys(object).forEach(function (prop) {
     if (_this.items[prop] === undefined) {
