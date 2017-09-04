@@ -28,8 +28,11 @@ All available methods
 - [concat](#concat)
 - [contains](#contains)
 - [count](#count)
+- [crossJoin](#crossjoin)
+- [dd](#dd)
 - [diff](#diff)
 - [diffKeys](#diffkeys)
+- [dump](#dump)
 - [each](#each)
 - [every](#every)
 - [except](#except)
@@ -45,6 +48,7 @@ All available methods
 - [has](#has)
 - [implode](#implode)
 - [intersect](#intersect)
+- [intersectByKeys](#intersectbykeys)
 - [isEmpty](#isempty)
 - [isNotEmpty](#isnotempty)
 - [keyBy](#keyby)
@@ -52,6 +56,8 @@ All available methods
 - [last](#last)
 - [macro](#macro)
 - [map](#map)
+- [mapInto](#mapinto)
+- [mapToGroups](#maptogroups)
 - [mapWithKeys](#mapwithkeys)
 - [max](#max)
 - [median](#median)
@@ -90,6 +96,7 @@ All available methods
 - [transform](#transform)
 - [union](#union)
 - [unique](#unique)
+- [unless](#unless)
 - [values](#values)
 - [when](#when)
 - [where](#where)
@@ -259,6 +266,32 @@ collection.count();
 //=> 4
 ```
 
+#### ``crossJoin()``
+The crossJoin method cross joins the collection with the given array or collection, returning all possible permutations:
+```js
+const collection = collect([1, 2]);
+
+collection.crossJoin(['a', 'b']);
+
+collection.all();
+
+//=> [
+//=>   [1, 'a'],
+//=>   [1, 'b'],
+//=>   [2, 'a'],
+//=>   [2, 'b'],
+//=> ]
+```
+
+#### ``dd()``
+The dd method will console.log the collection and exit the current process:
+```js
+const collection = collect([1, 2, 3]).dd();
+
+//=> [1, 2, 3]
+//=> (Exits node.js process)
+```
+
 #### ``diff()``
 The diff method compares the collection against another collection or a plain array based on its values. This method will return the values in the original collection that are not present in the given collection:
 ```js
@@ -290,6 +323,19 @@ diff.all();
 
 //=> {a: 'a', c: 'c'}
 ```
+
+#### ``dump()``
+The dump method outputs the results at that moment and then continues processing:
+```js
+collect([1, 2, 3, 4])
+  .dump()
+  .map(item => item * 2)
+  .dump();
+
+//=> [1, 2, 3, 4]
+//=> [2, 4, 6, 8]
+```
+
 #### ``each()``
 The each method iterates over the items in the collection and passes each item to a callback:
 ```js
@@ -708,6 +754,26 @@ intersect.all();
 //=> [1, 2, 3]
 ```
 
+#### ``intersectByKeys()``
+The intersectByKeys method removes any keys from the original collection that are not present in the given ``array`` or collection:
+```js
+const collection = collect({
+    serial: 'UX301',
+    type: 'screen',
+    year: 2009,
+});
+
+const intersect = collection.intersectByKeys({
+  reference: 'UX404',
+  type: 'tab',
+  year: 2011,
+});
+
+intersect.all();
+
+// ['type' => 'screen', 'year' => 2009]
+```
+
 ```js
 const firstCollection = collect([1, 2, 3, 4, 5]);
 const secondCollection = collect([1, 2, 3, 9]);
@@ -854,6 +920,49 @@ multiplied.all();
 ```
 
 > Like most other collection methods, ``map`` returns a new collection instance; it does not modify the collection it is called on. If you want to transform the original collection, use the ``transform`` method.
+
+#### ``mapInto()``
+The mapInto method iterates through the collection and instantiates the given class with each element as a constructor:
+```js
+const Player = function (name) {
+  this.name = name;
+};
+
+const collection = collect([
+  'Roberto Firmino',
+  'Sadio Mané',
+]);
+
+const players = collection.mapInto(Player);
+
+players.all();
+
+//=> [
+//=>   Player { name: 'Roberto Firmino' },
+//=>   Player { name: 'Sadio Mané' },
+//=> ]
+```
+
+#### ``mapToGroups()``
+The mapToGroups method iterates through the collection and passes each value to the given callback:
+```js
+const collection = collect([
+  { id: 1, name: 'A' },
+  { id: 2, name: 'B' },
+  { id: 3, name: 'C' },
+  { id: 4, name: 'B' },
+]);
+
+const groups = collection.mapToGroups(function (item, key) {
+  return [item.name, item.id];
+});
+
+//=> {
+//=>   A: [1],
+//=>   B: [2, 4],
+//=>   C: [3],
+//=> }
+```
 
 #### ``mapWithKeys()``
 The mapWithKeys method iterates through the collection and passes each value to the given callback. The callback should return an array where the first element represents the key and the second element represents the value pair:
@@ -1643,6 +1752,20 @@ unique.all();
 //=>   {name: 'Galaxy S6', brand: 'Samsung', type: 'phone'},
 //=>   {name: 'Galaxy Gear', brand: 'Samsung', type: 'watch'},
 //=> ]
+```
+
+#### ``unless()``
+The unless method will execute the given callback when the first argument given to the method evaluates to false:
+```js
+const collection = collect([1, 2, 3]);
+
+collection.unless(false, function (collection) {
+  return collection.push(4);
+});
+
+collection.all();
+
+// [1, 2, 3, 4]
 ```
 
 #### ``values()``

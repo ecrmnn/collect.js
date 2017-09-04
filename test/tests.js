@@ -2183,10 +2183,9 @@ describe('Collect.js Test Suite', function () {
     collection2.dump();
 
     console.log = originalCosoleLog;
-    expect(consoleLogCalls[0]).to.eql(collection.first());
-    expect(consoleLogCalls[2]).to.eql(collection.last());
+    expect(consoleLogCalls[0]).to.eql(collection.all());
 
-    expect(consoleLogCalls[3]).to.eql(collection2.all());
+    expect(consoleLogCalls[1]).to.eql(collection2.all());
   });
 
   it('should be iterable', function () {
