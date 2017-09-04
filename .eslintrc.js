@@ -6,4 +6,7 @@ module.exports = {
   plugins: [
     'import',
   ],
+  rules: {
+    'no-console': 0
+  }
 };

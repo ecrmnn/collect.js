@@ -808,6 +808,30 @@ describe('Collect.js Test Suite', function () {
     expect(intersect2.all()).to.eql([1, 2, 3]);
   });
 
+  it('should return the matching keys from collection', function () {
+    const collection = collect({
+      name: 'Sadio Mané',
+      number: 19,
+    });
+
+    const collection2 = collect({
+      name: 'Luis Suarez',
+      number: 9,
+      club: 'FC Barcelona',
+    });
+
+    expect(collection.intersectByKeys({
+      name: 'Steven Gerrard',
+    }).all()).to.eql({
+      name: 'Sadio Mané',
+    });
+
+    expect(collection.intersectByKeys(collection2).all()).to.eql({
+      name: 'Sadio Mané',
+      number: 19,
+    });
+  });
+
   it('should retrieve all of the collection values for a given key', function () {
     const collection = collect(dataset.products);
     const pluck = collection.pluck('product');
@@ -1809,6 +1833,32 @@ describe('Collect.js Test Suite', function () {
     });
 
     expect(collection.all()).to.eql([1, 2, 3, 4]);
+
+    collection.when(false, function (c) {
+      c.push(5);
+    }, function (c) {
+      c.push(6);
+    });
+
+    expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
+  });
+
+  it('should execute the given callback when the first argument given to the method evaluates to false', function () {
+    const collection = collect([1, 2, 3]);
+
+    collection.unless(false, function (c) {
+      c.push(4);
+    });
+
+    expect(collection.all()).to.eql([1, 2, 3, 4]);
+
+    collection.unless(true, function (c) {
+      c.push(5);
+    }, function (c) {
+      c.push(6);
+    });
+
+    expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
   });
 
   it('should create a new collection by invoking the callback a given amount of times', function () {
@@ -1992,10 +2042,85 @@ describe('Collect.js Test Suite', function () {
   });
 
   it('should get the items in the collection whose keys and values are not present in the given items', function () {
-    const collection1 = collect({ id:1, first_word: 'Hello', not_affected: 'value' });
-    const collection2 = collect({ id:123, foo_bar: 'Hello', not_affected: 'value' });
+    const collection1 = collect({ id: 1, first_word: 'Hello', not_affected: 'value' });
+    const collection2 = collect({ id: 123, foo_bar: 'Hello', not_affected: 'value' });
 
     expect({ id: 1, first_word: 'Hello' }).to.eql(collection1.diffAssoc(collection2).all());
+
+    const collection3 = collect({
+      color: 'orange',
+      type: 'fruit',
+      remain: 6,
+    });
+
+    const collection4 = collection3.diffAssoc({
+      color: 'yellow',
+      type: 'fruit',
+      remain: 3,
+      used: 6,
+    });
+
+    expect(collection4.all()).to.eql({ color: 'orange', remain: 6 });
+  });
+
+  it('should map a collection to groups', function () {
+    const data = collect([
+      { id: 1, name: 'A' },
+      { id: 2, name: 'B' },
+      { id: 3, name: 'C' },
+      { id: 4, name: 'B' },
+    ]);
+
+    const groups = data.mapToGroups(function (item, key) {
+      return [item.name, item.id];
+    });
+
+    expect(groups.all()).to.eql({
+      A: [1],
+      B: [2, 4],
+      C: [3],
+    });
+  });
+
+  it('should map into a class', function () {
+    const Person = function (name) {
+      this.name = name;
+    };
+
+    const collection = collect(['Firmino', 'Mané']);
+
+    const data = collection.mapInto(Person);
+
+    expect(data.all()).to.be.array;
+    expect(data.first()).to.eql(new Person('Firmino'));
+    expect(data.last()).to.eql(new Person('Mané'));
+  });
+
+  it('should console log the collection', function () {
+    const originalCosoleLog = console.log;
+
+    const consoleLogCalls = [];
+
+    console.log = function (values) {
+      consoleLogCalls.push(values);
+      return values;
+    };
+
+    const collection = collect([1, 2, 3]);
+    collection.dump();
+
+    const collection2 = collect({
+      name: 'Sadio Mané',
+      number: 19,
+    });
+
+    collection2.dump();
+
+    console.log = originalCosoleLog;
+    expect(consoleLogCalls[0]).to.eql(collection.first());
+    expect(consoleLogCalls[2]).to.eql(collection.last());
+
+    expect(consoleLogCalls[3]).to.eql(collection2.all());
   });
 
   it('should be iterable', function () {

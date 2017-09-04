@@ -26,10 +26,5 @@ module.exports = function crossJoin(...values) {
     return result;
   }
 
-  return new this.constructor(
-    join([],
-      this.constructor,
-      [].concat([this.items], values),
-    ),
-  );
+  return new this.constructor(join([], this.constructor, [].concat([this.items], values)));
 };

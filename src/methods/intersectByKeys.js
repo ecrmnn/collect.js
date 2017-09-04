@@ -1,16 +1,16 @@
 'use strict';
 
-module.exports = function diffAssoc(values) {
-  let diffValues = values;
+module.exports = function intersectByKeys(values) {
+  let intersectKeys = Object.keys(values);
 
   if (values instanceof this.constructor) {
-    diffValues = values.all();
+    intersectKeys = Object.keys(values.all());
   }
 
   const collection = {};
 
   Object.keys(this.items).forEach((key) => {
-    if (diffValues[key] === undefined || diffValues[key] !== this.items[key]) {
+    if (intersectKeys.indexOf(key) !== -1) {
       collection[key] = this.items[key];
     }
   });

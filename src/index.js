@@ -4,7 +4,11 @@ function Collection(collection) {
   this.items = collection || [];
 }
 
-Collection.prototype[Symbol.iterator] = require('./methods/symbol.iterator');
+const SymbolIterator = require('./methods/symbol.iterator');
+
+if (typeof Symbol !== 'undefined') {
+  Collection.prototype[Symbol.iterator] = SymbolIterator;
+}
 
 Collection.prototype.all = require('./methods/all');
 Collection.prototype.average = require('./methods/average');
@@ -16,9 +20,11 @@ Collection.prototype.concat = require('./methods/concat');
 Collection.prototype.contains = require('./methods/contains');
 Collection.prototype.count = require('./methods/count');
 Collection.prototype.crossJoin = require('./methods/crossJoin');
+Collection.prototype.dd = require('./methods/dd');
 Collection.prototype.diff = require('./methods/diff');
 Collection.prototype.diffAssoc = require('./methods/diffAssoc');
 Collection.prototype.diffKeys = require('./methods/diffKeys');
+Collection.prototype.dump = require('./methods/dump');
 Collection.prototype.each = require('./methods/each');
 Collection.prototype.every = require('./methods/every');
 Collection.prototype.except = require('./methods/except');
@@ -34,6 +40,7 @@ Collection.prototype.groupBy = require('./methods/groupBy');
 Collection.prototype.has = require('./methods/has');
 Collection.prototype.implode = require('./methods/implode');
 Collection.prototype.intersect = require('./methods/intersect');
+Collection.prototype.intersectByKeys = require('./methods/intersectByKeys');
 Collection.prototype.isEmpty = require('./methods/isEmpty');
 Collection.prototype.isNotEmpty = require('./methods/isNotEmpty');
 Collection.prototype.keyBy = require('./methods/keyBy');
@@ -41,6 +48,8 @@ Collection.prototype.keys = require('./methods/keys');
 Collection.prototype.last = require('./methods/last');
 Collection.prototype.macro = require('./methods/macro');
 Collection.prototype.map = require('./methods/map');
+Collection.prototype.mapInto = require('./methods/mapInto');
+Collection.prototype.mapToGroups = require('./methods/mapToGroups');
 Collection.prototype.mapWithKeys = require('./methods/mapWithKeys');
 Collection.prototype.max = require('./methods/max');
 Collection.prototype.median = require('./methods/median');
@@ -77,6 +86,7 @@ Collection.prototype.times = require('./methods/times');
 Collection.prototype.toArray = require('./methods/toArray');
 Collection.prototype.toJson = require('./methods/toJson');
 Collection.prototype.transform = require('./methods/transform');
+Collection.prototype.unless = require('./methods/unless');
 Collection.prototype.union = require('./methods/union');
 Collection.prototype.unique = require('./methods/unique');
 Collection.prototype.unwrap = require('./methods/unwrap');
