@@ -16,7 +16,7 @@ npm install collect.js --save
 ```
 
 ### Tip
-Using Laravel as your backend? Collect.js offers an (almost) identical api to [Laravel Collections](https://laravel.com/docs/5.4/collections) 5.4. [See differences](#strictness-and-comparisons).
+Using Laravel as your backend? Collect.js offers an (almost) identical api to [Laravel Collections](https://laravel.com/docs/5.5/collections) 5.5. [See differences](#strictness-and-comparisons).
 
 ### Usage
 All available methods
@@ -97,11 +97,13 @@ All available methods
 - [union](#union)
 - [unique](#unique)
 - [unless](#unless)
+- [unwrap](#unwrap)
 - [values](#values)
 - [when](#when)
 - [where](#where)
 - [whereIn](#wherein)
-- [whereNotIn](#whereNotIn)
+- [whereNotIn](#wherenotin)
+- [wrap](#wrap)
 - [zip](#zip)
 
 ### Strictness and comparisons
@@ -1779,7 +1781,17 @@ collection.unless(false, function (collection) {
 
 collection.all();
 
-// [1, 2, 3, 4]
+//=> [1, 2, 3, 4]
+```
+
+#### ``unwrap()``
+The unwrap method will unwrap the given collection:
+```js
+const collection = collect([1, 2, 3]);
+
+collect().unwrap(collection);
+
+//=> [1, 2, 3]
 ```
 
 #### ``values()``
@@ -1805,7 +1817,7 @@ collection.when(true, function (collection) {
 
 collection.all();
 
-// [1, 2, 3, 4]
+//=> [1, 2, 3, 4]
 ```
 
 #### ``where()``
@@ -1922,6 +1934,16 @@ filtered.all();
 //=>   { product: 'Chair', price: 100 },
 //=>   { product: 'Door', price: 100 }
 //=> ]
+```
+
+#### ``wrap()``
+The wrap method will wrap the given value in a collection:
+```js
+const collection = collect().wrap([1, 2, 3]);
+
+collection.all();
+
+//=> [1, 2, 3]
 ```
 
 #### ``zip()``
