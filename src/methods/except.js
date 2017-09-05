@@ -1,6 +1,12 @@
 'use strict';
 
 module.exports = function except(properties) {
+  if (Array.isArray(this.items)) {
+    const collection = this.items.filter(item => properties.indexOf(item));
+
+    return new this.constructor(collection);
+  }
+
   const collection = {};
 
   Object.keys(this.items).forEach((property) => {

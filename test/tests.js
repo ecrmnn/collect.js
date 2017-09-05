@@ -672,6 +672,8 @@ describe('Collect.js Test Suite', function () {
     expect(only.all()).to.eql({ id: 100, product: 'Chair' });
 
     expect(collection.all()).to.eql(dataset.products[0]);
+
+    expect(collect([1, 2, 3, 4]).only([2, 12]).all()).to.eql([2]);
   });
 
   it('should return everything except specified properties', function () {
@@ -679,6 +681,8 @@ describe('Collect.js Test Suite', function () {
 
     expect(collection.except(['id', 'product']).all()).to.eql({ manufacturer: 'IKEA', price: '1490 NOK' });
     expect(collection.all()).to.eql(dataset.products[0]);
+
+    expect(collect([1, 2, 3, 4]).except([2, 12]).all()).to.eql([1, 3, 4]);
   });
 
   it('should return everything that matches', function () {
