@@ -672,6 +672,8 @@ describe('Collect.js Test Suite', function () {
     expect(only.all()).to.eql({ id: 100, product: 'Chair' });
 
     expect(collection.all()).to.eql(dataset.products[0]);
+
+    expect(collect([1, 2, 3, 4]).only([2, 12]).all()).to.eql([2]);
   });
 
   it('should return everything except specified properties', function () {
@@ -679,6 +681,8 @@ describe('Collect.js Test Suite', function () {
 
     expect(collection.except(['id', 'product']).all()).to.eql({ manufacturer: 'IKEA', price: '1490 NOK' });
     expect(collection.all()).to.eql(dataset.products[0]);
+
+    expect(collect([1, 2, 3, 4]).except([2, 12]).all()).to.eql([1, 3, 4]);
   });
 
   it('should return everything that matches', function () {
@@ -841,6 +845,30 @@ describe('Collect.js Test Suite', function () {
 
     const intersect2 = collection.intersect(collect([1, 2, 3, 9]));
     expect(intersect2.all()).to.eql([1, 2, 3]);
+  });
+
+  it('should return the matching keys from collection', function () {
+    const collection = collect({
+      name: 'Sadio Mané',
+      number: 19,
+    });
+
+    const collection2 = collect({
+      name: 'Luis Suarez',
+      number: 9,
+      club: 'FC Barcelona',
+    });
+
+    expect(collection.intersectByKeys({
+      name: 'Steven Gerrard',
+    }).all()).to.eql({
+      name: 'Sadio Mané',
+    });
+
+    expect(collection.intersectByKeys(collection2).all()).to.eql({
+      name: 'Sadio Mané',
+      number: 19,
+    });
   });
 
   it('should retrieve all of the collection values for a given key', function () {
@@ -1875,6 +1903,32 @@ describe('Collect.js Test Suite', function () {
     });
 
     expect(collection.all()).to.eql([1, 2, 3, 4]);
+
+    collection.when(false, function (c) {
+      c.push(5);
+    }, function (c) {
+      c.push(6);
+    });
+
+    expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
+  });
+
+  it('should execute the given callback when the first argument given to the method evaluates to false', function () {
+    const collection = collect([1, 2, 3]);
+
+    collection.unless(false, function (c) {
+      c.push(4);
+    });
+
+    expect(collection.all()).to.eql([1, 2, 3, 4]);
+
+    collection.unless(true, function (c) {
+      c.push(5);
+    }, function (c) {
+      c.push(6);
+    });
+
+    expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
   });
 
   it('should create a new collection by invoking the callback a given amount of times', function () {
@@ -2008,6 +2062,134 @@ describe('Collect.js Test Suite', function () {
 
     expect(firstCollection.count()).to.eql(12);
     expect(firstCollection.all()).to.eql(expected);
+  });
+
+  it('should wrap the given value in a collection if applicable', function () {
+    const collection1 = collect().wrap('foo');
+    expect(collection1.all()).to.eql(['foo']);
+
+    const collection2 = collect().wrap(['foo']);
+    expect(collection2.all()).to.eql(['foo']);
+
+    const collection3 = collect().wrap({});
+    expect(collection3.all()).to.eql([{}]);
+
+    const collection4 = collect().wrap(collect([1, 2, 3, 4]));
+    expect(collection4.all()).to.eql([1, 2, 3, 4]);
+  });
+
+  it('should get the underlying items from the given collection if applicable', function () {
+    const collection1 = collect(['foo']);
+    expect(collect().unwrap(collection1)).to.eql(['foo']);
+
+    expect(collect().unwrap(['foo'])).to.eql(['foo']);
+
+    expect(collect().unwrap('foo')).to.eql('foo');
+  });
+
+  it('should cross join with the given lists, returning all possible permutations', function () {
+    const crossJoin1 = collect([1, 2]).crossJoin(['a', 'b']);
+    expect(crossJoin1.all()).to.eql([[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]);
+
+    const crossJoin2 = collect([1, 2]).crossJoin(collect(['a', 'b']));
+    expect(crossJoin2.all()).to.eql([[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]);
+
+    const crossJoin3 = collect([1, 2]).crossJoin(collect(['a', 'b']), ['I', 'II']);
+    expect(crossJoin3.all()).to.eql([
+      [1, 'a', 'I'], [1, 'a', 'II'],
+      [1, 'b', 'I'], [1, 'b', 'II'],
+      [2, 'a', 'I'], [2, 'a', 'II'],
+      [2, 'b', 'I'], [2, 'b', 'II'],
+    ]);
+
+    const crossJoin4 = collect([1, 2]).crossJoin(['a', 'b'], ['I', 'II']);
+    expect(crossJoin4.all()).to.eql([
+      [1, 'a', 'I'], [1, 'a', 'II'],
+      [1, 'b', 'I'], [1, 'b', 'II'],
+      [2, 'a', 'I'], [2, 'a', 'II'],
+      [2, 'b', 'I'], [2, 'b', 'II'],
+    ]);
+  });
+
+  it('should get the items in the collection whose keys and values are not present in the given items', function () {
+    const collection1 = collect({ id: 1, first_word: 'Hello', not_affected: 'value' });
+    const collection2 = collect({ id: 123, foo_bar: 'Hello', not_affected: 'value' });
+
+    expect({ id: 1, first_word: 'Hello' }).to.eql(collection1.diffAssoc(collection2).all());
+
+    const collection3 = collect({
+      color: 'orange',
+      type: 'fruit',
+      remain: 6,
+    });
+
+    const collection4 = collection3.diffAssoc({
+      color: 'yellow',
+      type: 'fruit',
+      remain: 3,
+      used: 6,
+    });
+
+    expect(collection4.all()).to.eql({ color: 'orange', remain: 6 });
+  });
+
+  it('should map a collection to groups', function () {
+    const data = collect([
+      { id: 1, name: 'A' },
+      { id: 2, name: 'B' },
+      { id: 3, name: 'C' },
+      { id: 4, name: 'B' },
+    ]);
+
+    const groups = data.mapToGroups(function (item, key) {
+      return [item.name, item.id];
+    });
+
+    expect(groups.all()).to.eql({
+      A: [1],
+      B: [2, 4],
+      C: [3],
+    });
+  });
+
+  it('should map into a class', function () {
+    const Person = function (name) {
+      this.name = name;
+    };
+
+    const collection = collect(['Firmino', 'Mané']);
+
+    const data = collection.mapInto(Person);
+
+    expect(data.all()).to.be.array;
+    expect(data.first()).to.eql(new Person('Firmino'));
+    expect(data.last()).to.eql(new Person('Mané'));
+  });
+
+  it('should console log the collection', function () {
+    const originalCosoleLog = console.log;
+
+    const consoleLogCalls = [];
+
+    console.log = function (values) {
+      consoleLogCalls.push(values);
+      return values;
+    };
+
+    const collection = collect([1, 2, 3]);
+    collection.dump();
+
+    const collection2 = collect({
+      name: 'Sadio Mané',
+      number: 19,
+    });
+
+    collection2.dump();
+
+    console.log = originalCosoleLog;
+    expect(consoleLogCalls[0]).to.eql(collection.all());
+
+    expect(consoleLogCalls[1]).to.eql(collection2.all());
   });
 
   it('should be iterable', function () {
