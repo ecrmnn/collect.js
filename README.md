@@ -710,20 +710,6 @@ collection.has('ability');
 
 //=> true
 ```
-An array of objects also works:
-```js
-const collection = collect([{
-  animal: 'unicorn',
-  ability: 'magical'
-}, {
-  anmial: 'pig',
-  ability: 'filthy'
-}]);
-
-collection.has('ability');
-
-//=> true
-```
 
 #### ``implode()``
 The implode method joins the items in a collection. Its arguments depend on the type of items in the collection. If the collection contains arrays or objects, you should pass the key of the attributes you wish to join, and the "glue" string you wish to place between the values:

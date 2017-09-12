@@ -2,20 +2,16 @@
 
 module.exports = function pluck(value, key) {
   if (key !== undefined) {
-    var _collection = {};
+    var collection = {};
 
     this.items.forEach(function (item) {
-      _collection[item[key]] = item[value];
+      collection[item[key] || ''] = item[value] || null;
     });
 
-    return new this.constructor(_collection);
+    return new this.constructor(collection);
   }
 
-  var collection = this.items.filter(function (item) {
-    return item[value] !== undefined;
-  }).map(function (item) {
-    return item[value];
+  return this.map(function (item) {
+    return item[value] || null;
   });
-
-  return new this.constructor(collection);
 };
