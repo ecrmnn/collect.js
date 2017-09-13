@@ -12,4 +12,6 @@ module.exports = function transform(fn) {
 
     this.items = collection;
   }
+
+  return this;
 };
