@@ -1,13 +1,11 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 function falsyValue(item) {
   if (Array.isArray(item)) {
     if (item.length) {
       return false;
     }
-  } else if (item !== undefined && item !== null && (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
+  } else if (item !== undefined && item !== null && typeof item === 'object') {
     if (Object.keys(item).length) {
       return false;
     }

@@ -1,7 +1,5 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 module.exports = function flatten(depth) {
   var flattenDepth = depth || Infinity;
 
@@ -38,7 +36,7 @@ module.exports = function flatten(depth) {
     }
 
     fullyFlattened = collection.filter(function (item) {
-      return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object';
+      return typeof item === 'object';
     });
     fullyFlattened = fullyFlattened.length === 0;
 
