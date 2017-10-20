@@ -19,17 +19,22 @@ declare class Collection<Item> {
   /**
    * The chunk method breaks the collection into multiple, smaller collections of a given size.
    */
-  chunk(size: number): Collection<Array<Item>>;
+  chunk(size: number): Collection<Item[]>;
 
   /**
    * The collapse method collapses a collection of arrays into a single, flat collection.
    */
-  collapse<T>(): Collection<T>;
+  collapse(): Collection<Item>;
 
   /**
    * The combine method combines the keys of the collection with the values of another array or collection.
    */
   combine<T, U>(array: U[]): Collection<T>;
+
+  /**
+   * The concat method is used to merge two or more collections/arrays/objects.
+   */
+  concat<T>(collectionOrArrayOrObject: Collection<T> | T[] | object)
 
   /**
    * The contains method determines whether the collection contains a given item.
@@ -42,16 +47,37 @@ declare class Collection<Item> {
   count(): number;
 
   /**
+   * The crossJoin method cross joins the collection with the given array or collection, returning all possible permutations.
+   */
+  crossJoin<T>(values: T[]): Collection<[Item, T]>;
+
+  /**
+   * The dd method will console.log the collection and exit the current process.
+   */
+  dd(): void;
+
+  /**
    * The diff method compares the collection against another collection or a plain array based on its values.
    * This method will return the values in the original collection that are not present in the given collection.
    */
-  diff(values: Item[] | Collection<Item>): Collection<Item>;
+  diff<T>(values: T[] | Collection<Item>): Collection<Item>;
+
+  /**
+   * @todo
+   * --- Missing Documentation ---
+   */
+  diffAssoc<T>(values: T[] | Collection<T>): Collection<Item>;
 
   /**
    * The diffKeys method compares the collection against another collection or a plain object based on its keys.
    * This method will return the key / value pairs in the original collection that are not present in the given collection.
    */
-  diffKeys<T>(object: Object): Collection<T>;
+  diffKeys<K extends keyof Item>(object: object): Collection<K>;
+
+  /**
+   * The dump method outputs the results at that moment and then continues processing.
+   */
+  dump(): this;
 
   /**
    * The each method iterates over the items in the collection and passes each item to a callback.
@@ -84,17 +110,17 @@ declare class Collection<Item> {
    * The callback is free to modify the item and return it, thus forming a new collection of modified items.
    * Then, the array is flattened by a level.
    */
-  flatMap<T>(fn: Function): Collection<T>;
+  flatMap(fn: Function): Collection<Item>;
 
   /**
    * The flatten method flattens a multi-dimensional collection into a single dimension.
    */
-  flatten<T>(depth?: number): Collection<T>;
+  flatten(depth?: number): Collection<Item>;
 
   /**
    * The flip method swaps the collection's keys with their corresponding values.
    */
-  flip<T>(): Collection<T>;
+  flip(): Collection<Item>;
 
   /**
    * The forget method removes an item from the collection by its key.
@@ -107,6 +133,7 @@ declare class Collection<Item> {
    * and the number of items to show per page as its second argument.
    */
   forPage(page: number, chunk: number): Collection<Item>;
+
   /**
    * The get method returns the item at a given key. If the key does not exist, null is returned.
    */
@@ -139,6 +166,12 @@ declare class Collection<Item> {
    * The resulting collection will preserve the original collection's keys.
    */
   intersect(values: Item[] | Collection<Item>): Collection<Item>;
+
+  /**
+   * The intersectByKeys method removes any keys from the original collection
+   * that are not present in the given array or collection.
+   */
+  intersectByKeys<K extends keyof Item>(values: Item | Collection<Item>): Collection<K>
 
   /**
    * The isEmpty method returns true if the collection is empty; otherwise, false is returned.
@@ -178,6 +211,16 @@ declare class Collection<Item> {
   map<T>(fn: <T>(...any) => T): Collection<T>;
 
   /**
+   * The mapInto method iterates through the collection and instantiates the given class with each element as a constructor.
+   */
+  mapInto<T extends Function>(ClassName: T): Collection<T>;
+
+  /**
+   * The mapToGroups method iterates through the collection and passes each value to the given callback.
+   */
+  mapToGroups(fn: Function): Collection<any>;
+
+  /**
    * The mapWithKeys method iterates through the collection and passes each value to the given callback.
    * The callback should return an array where the first element represents the key
    * and the second element represents the value pair.
@@ -199,7 +242,7 @@ declare class Collection<Item> {
    * If a key in the given object matches a key in the original collection,
    * the given objects value will overwrite the value in the original collection.
    */
-  merge<T>(object: Object): Collection<T>;
+  merge<T>(objectOrArray: object | T[]): Collection<T>;
 
   /**
    * The min method returns the minimum value of a given key.
@@ -261,6 +304,7 @@ declare class Collection<Item> {
    * The put method sets the given key and value in the collection.
    */
   put<K, V>(key: K, value: V): this;
+
   /**
    * The random method returns a random item from the collection.
    */
@@ -287,13 +331,7 @@ declare class Collection<Item> {
    * The search method searches the collection for the given value and returns its key if found.
    * If the item is not found, false is returned.
    */
-  search(value: Item, strict);
-
-  /**
-   * The search method searches the collection for the given value and returns its key if found.
-   * If the item is not found, false is returned.
-   */
-  search(fn: (value: Item, key: number) => boolean, strict);
+  search(valueOrFunction: Item | ((value: Item, key: number) => boolean), strict: boolean);
 
   /**
    * The shift method removes and returns the first item from the collection.
@@ -355,6 +393,8 @@ declare class Collection<Item> {
    */
   sum<K>(key?: K | ((item: Item) => number | string)): number | string;
 
+  [Symbol.iterator];
+
   /**
    * The take method returns a new collection with the specified number of items:
    * You may also pass a negative integer to take the specified amount of items from the end of the collection.
@@ -403,6 +443,16 @@ declare class Collection<Item> {
   unique<K>(key?: K | Function): Collection<Item>;
 
   /**
+   * The unless method will execute the given callback when the first argument given to the method evaluates to false.
+   */
+  unless(value: boolean, fn: (this) => any, defaultFn: (this) => any): void;
+
+  /**
+   * The unwrap method will unwrap the given collection.
+   */
+  unwrap<T>(value: T[] | Collection<T>): T[];
+
+  /**
    * The values method returns a new collection with the keys reset to consecutive integers.
    */
   values<T>(): Collection<T>;
@@ -410,7 +460,7 @@ declare class Collection<Item> {
   /**
    * The when method will execute the given callback when the first argument given to the method evaluates to true.
    */
-  when(condition: boolean, fn: Function): void;
+  when(condition: boolean, fn: (this) => any, defaultFn: (this) => any): void;
 
   /**
    * The where method filters the collection by a given key / value pair.
@@ -431,6 +481,11 @@ declare class Collection<Item> {
    * The whereNotIn method filters the collection by a given key / value not contained within the given array.
    */
   whereNotIn<K, V>(key: K, values: V[]): Collection<Item>;
+
+  /**
+   * The wrap method will wrap the given value in a collection.
+   */
+  wrap<T>(value: T | T[] | Collection<T>): Collection<T>;
 
   /**
    * The zip method merges together the values of the given array with the values
