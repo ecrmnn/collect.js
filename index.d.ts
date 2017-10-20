@@ -1,11 +1,11 @@
 type Operator = "===" | "==" | "!==" | "!=" | "<>" | ">" | "<" | ">=" | "<="
 
-interface CollectionInstance<Item> {
+declare class Collection<Item> {
   /**
    * The all method returns the underlying array represented by the collection.
    * 
    * @returns {Item[]} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   all(): Item[];
 
@@ -16,7 +16,7 @@ interface CollectionInstance<Item> {
    * @param {K} [key] 
    * @returns {number}
    *
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   average<K>(key?: K): number;
 
@@ -27,7 +27,7 @@ interface CollectionInstance<Item> {
    * @param {K} [key] 
    * @returns {number}
    *
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   avg<K>(key?: K): number;
 
@@ -35,19 +35,19 @@ interface CollectionInstance<Item> {
    * The chunk method breaks the collection into multiple, smaller collections of a given size.
    * 
    * @param {number} size 
-   * @returns {CollectionInstance} 
-   * @memberof CollectionInstance
+   * @returns {Collection} 
+   * @memberof Collection
    */
-  chunk(size: number): CollectionInstance<Array<Item>>;
+  chunk(size: number): Collection<Array<Item>>;
 
   /**
    * The collapse method collapses a collection of arrays into a single, flat collection.
    *
    * @template T
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  collapse<T>(): CollectionInstance<T>;
+  collapse<T>(): Collection<T>;
 
   /**
    * The combine method combines the keys of the collection with the values of another array or collection.
@@ -55,10 +55,10 @@ interface CollectionInstance<Item> {
    * @template T
    * @template U
    * @param {U[]} array 
-   * @returns {CollectionInstance<T>}
-   * @memberof CollectionInstance
+   * @returns {Collection<T>}
+   * @memberof Collection
    */
-  combine<T, U>(array: U[]): CollectionInstance<T>;
+  combine<T, U>(array: U[]): Collection<T>;
 
   /**
    * The contains method determines whether the collection contains a given item.
@@ -68,7 +68,7 @@ interface CollectionInstance<Item> {
    * @param {(K | Function)} key 
    * @param {V} [value] 
    * @returns {boolean} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   contains<K, V>(key: K | Function, value?: V): boolean;
 
@@ -77,7 +77,7 @@ interface CollectionInstance<Item> {
    * 
    * @returns {number} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   count(): number;
 
@@ -85,12 +85,12 @@ interface CollectionInstance<Item> {
    * The diff method compares the collection against another collection or a plain array based on its values.
    * This method will return the values in the original collection that are not present in the given collection.
    * 
-   * @param {Item[] | CollectionInstance<Item>} values 
-   * @returns {CollectionInstance<Item>} 
+   * @param {Item[] | Collection<Item>} values 
+   * @returns {Collection<Item>} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  diff(values: Item[] | CollectionInstance<Item>): CollectionInstance<Item>;
+  diff(values: Item[] | Collection<Item>): Collection<Item>;
 
   /**
    * The diffKeys method compares the collection against another collection or a plain object based on its keys.
@@ -98,18 +98,18 @@ interface CollectionInstance<Item> {
    * 
    * @template T
    * @param {Object} object 
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  diffKeys<T>(object: Object): CollectionInstance<T>;
+  diffKeys<T>(object: Object): Collection<T>;
 
   /**
    * The each method iterates over the items in the collection and passes each item to a callback.
    * 
    * @param {Function} fn 
-   * @returns {CollectionInstance} 
+   * @returns {Collection} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   each(fn: Function): this;
 
@@ -118,7 +118,7 @@ interface CollectionInstance<Item> {
    * 
    * @param {(item: Item) => boolean} fn 
    * @returns {boolean} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   every(fn: (item: Item) => boolean): boolean;
 
@@ -129,7 +129,7 @@ interface CollectionInstance<Item> {
    * @param {K[]} properties 
    * @returns {Object} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   except<K>(properties: K[]): Object;
 
@@ -138,11 +138,11 @@ interface CollectionInstance<Item> {
    * keeping only those items that pass a given truth test.
    * 
    * @param {(item: Item) => boolean} fn 
-   * @returns {CollectionInstance<Item>} 
+   * @returns {Collection<Item>} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  filter(fn: (item: Item) => boolean): CollectionInstance<Item>;
+  filter(fn: (item: Item) => boolean): Collection<Item>;
   
   /**
    * The first method returns the first element in the collection that passes a given truth test.
@@ -150,7 +150,7 @@ interface CollectionInstance<Item> {
    * @param {(item: Item) => boolean} [fn] 
    * @returns {T} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   first(fn?: (item: Item) => boolean): Item;
 
@@ -161,29 +161,29 @@ interface CollectionInstance<Item> {
    * 
    * @template T
    * @param {Function} fn 
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  flatMap<T>(fn: Function): CollectionInstance<T>;
+  flatMap<T>(fn: Function): Collection<T>;
   
   /**
    * The flatten method flattens a multi-dimensional collection into a single dimension.
    * 
    * @template T
    * @param {number} [depth] 
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  flatten<T>(depth?: number): CollectionInstance<T>;
+  flatten<T>(depth?: number): Collection<T>;
 
   /**
    * The flip method swaps the collection's keys with their corresponding values.
    *
    * @template T
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  flip<T>(): CollectionInstance<T>;
+  flip<T>(): Collection<T>;
 
   /**
    * The forget method removes an item from the collection by its key.
@@ -191,7 +191,7 @@ interface CollectionInstance<Item> {
    * @template K 
    * @param {K} key 
    * @returns {this} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   forget<K>(key: K): this;
 
@@ -202,10 +202,10 @@ interface CollectionInstance<Item> {
    * 
    * @param {number} page 
    * @param {number} chunk 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  forPage(page: number, chunk: number): CollectionInstance<Item>;
+  forPage(page: number, chunk: number): Collection<Item>;
 
 
   /**
@@ -217,7 +217,7 @@ interface CollectionInstance<Item> {
    * @param {((...any) => V | Item)} [defaultValue] 
    * @returns {(Item | null)} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   get<K, V>(key: K, defaultValue?: (...any) => V | Item): Item | null;
 
@@ -227,11 +227,11 @@ interface CollectionInstance<Item> {
    * @template T
    * @template K 
    * @param {(((item: Item, index?: number) => K) | K)} key 
-   * @returns {CollectionInstance<T>} 
+   * @returns {Collection<T>} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  groupBy<T, K>(key: ((item: Item, index?: number) => K) | K): CollectionInstance<T>;
+  groupBy<T, K>(key: ((item: Item, index?: number) => K) | K): Collection<T>;
   
   /**
    * The has method determines if a given key exists in the collection.
@@ -240,7 +240,7 @@ interface CollectionInstance<Item> {
    * @param {K} key 
    * @returns {boolean} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   has<K>(key: K): boolean;
 
@@ -257,7 +257,7 @@ interface CollectionInstance<Item> {
    * @param {string} [glue] 
    * @returns {string} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   implode<K>(key: K, glue?: string): string;
 
@@ -266,19 +266,19 @@ interface CollectionInstance<Item> {
    * that are not present in the given array or collection.
    * The resulting collection will preserve the original collection's keys.
    * 
-   * @param {Item[] | CollectionInstance<Item>} values 
-   * @returns {CollectionInstance<Item>} 
+   * @param {Item[] | Collection<Item>} values 
+   * @returns {Collection<Item>} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  intersect(values: Item[] | CollectionInstance<Item>): CollectionInstance<Item>;
+  intersect(values: Item[] | Collection<Item>): Collection<Item>;
   
   /**
    * The isEmpty method returns true if the collection is empty; otherwise, false is returned.
    * 
    * @returns {boolean} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   isEmpty(): boolean;
 
@@ -286,7 +286,7 @@ interface CollectionInstance<Item> {
    * The isNotEmpty method returns true if the collection is not empty; otherwise, false is returned.
    * 
    * @returns {boolean} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   isNotEmpty(): boolean;
 
@@ -297,18 +297,18 @@ interface CollectionInstance<Item> {
    * @template T
    * @template K 
    * @param {(K | Function)} key 
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  keyBy<T, K>(key: K | Function): CollectionInstance<T>;
+  keyBy<T, K>(key: K | Function): Collection<T>;
 
   /**
    * The keys method returns all of the collection's keys.
    * 
-   * @returns {CollectionInstance<string>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<string>} 
+   * @memberof Collection
    */
-  keys(): CollectionInstance<string>;
+  keys(): Collection<string>;
   
   /**
    * The last method returns the last element in the collection that passes a given truth test.
@@ -316,7 +316,7 @@ interface CollectionInstance<Item> {
    * @param {(item: Item) => boolean} [fn] 
    * @returns {T} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   last(fn?: (item: Item) => boolean): Item;
   
@@ -325,7 +325,7 @@ interface CollectionInstance<Item> {
    * 
    * @param {string} name 
    * @param {Function} fn 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   macro(name: string, fn: Function): void;
 
@@ -335,11 +335,11 @@ interface CollectionInstance<Item> {
    *
    * @template T
    * @param {<T>(...any) => T} fn 
-   * @returns {CollectionInstance<T>} 
+   * @returns {Collection<T>} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  map<T>(fn: <T>(...any) => T): CollectionInstance<T>;
+  map<T>(fn: <T>(...any) => T): Collection<T>;
 
   /**
    * The mapWithKeys method iterates through the collection and passes each value to the given callback.
@@ -348,18 +348,18 @@ interface CollectionInstance<Item> {
    *
    * @template T
    * @param {Function} fn 
-   * @returns {CollectionInstance} 
+   * @returns {Collection} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  mapWithKeys<T>(fn: Function): CollectionInstance<T>;
+  mapWithKeys<T>(fn: Function): Collection<T>;
 
   /**
    * The max method returns the maximum value of a given key.
    * 
    * @param {string} [key] 
    * @returns {number} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   max(key?: string): number;
 
@@ -370,7 +370,7 @@ interface CollectionInstance<Item> {
    * @param {K} [key] 
    * @returns {Item}
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   median<K>(key?: K): Item;
 
@@ -381,10 +381,10 @@ interface CollectionInstance<Item> {
    * 
    * @template T
    * @param {Object} object 
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  merge<T>(object: Object): CollectionInstance<T>;
+  merge<T>(object: Object): Collection<T>;
 
   /**
    * The min method returns the minimum value of a given key.
@@ -392,7 +392,7 @@ interface CollectionInstance<Item> {
    * @template K 
    * @param {K} [key] 
    * @returns {number} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   min<K>(key?: K): number;
 
@@ -401,21 +401,21 @@ interface CollectionInstance<Item> {
    * 
    * @template K 
    * @param {K} [key] 
-   * @returns {(CollectionInstance<Item> | null)} 
+   * @returns {(Collection<Item> | null)} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  mode<K>(key?: K): CollectionInstance<Item> | null;
+  mode<K>(key?: K): Collection<Item> | null;
 
   /**
    * The nth method creates a new collection consisting of every n-th element.
    * 
    * @param {number} n 
    * @param {number} offset 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  nth(n: number, offset?: number): CollectionInstance<Item>;
+  nth(n: number, offset?: number): Collection<Item>;
 
   /**
    * The only method returns the items in the collection with the specified keys.
@@ -424,7 +424,7 @@ interface CollectionInstance<Item> {
    * @param {K[]} properties 
    * @returns {Object} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   only<K>(properties: K[]): Object;
 
@@ -434,7 +434,7 @@ interface CollectionInstance<Item> {
    * 
    * @param {(item: Item) => boolean} fn 
    * @returns {[Item[], Item[]]} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   partition(fn: (item: Item) => boolean): [Item[], Item[]];
 
@@ -444,7 +444,7 @@ interface CollectionInstance<Item> {
    * @template U 
    * @param {(...any) => U} fn 
    * @returns {U} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   pipe<U>(fn: (...any) => U): U;
 
@@ -456,18 +456,18 @@ interface CollectionInstance<Item> {
    * @template V 
    * @param {V} value 
    * @param {K} [key] 
-   * @returns {CollectionInstance<T>} 
+   * @returns {Collection<T>} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  pluck<T, K, V>(value: V, key?: K): CollectionInstance<T>;
+  pluck<T, K, V>(value: V, key?: K): Collection<T>;
 
   /**
    * The pop method removes and returns the last item from the collection.
    * 
    * @template Item 
    * @returns {Item} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   pop(): Item;
   
@@ -479,7 +479,7 @@ interface CollectionInstance<Item> {
    * @param {V} value 
    * @param {K} [key] 
    * @returns {this} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   prepend<K, V>(value: V, key?: K): this;
 
@@ -490,7 +490,7 @@ interface CollectionInstance<Item> {
    * @param {K} key 
    * @returns {(T | null)} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   pull<K>(key: K): Item | null;
   
@@ -500,7 +500,7 @@ interface CollectionInstance<Item> {
    * @param {Item} item 
    * @returns {this} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   push(item: Item): this;
 
@@ -513,7 +513,7 @@ interface CollectionInstance<Item> {
    * @param {V} value 
    * @returns {this} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   put<K, V>(key: K, value: V): this;
   /**
@@ -521,7 +521,7 @@ interface CollectionInstance<Item> {
    * 
    * @param {number} [length] 
    * @returns {(this | Item)} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   random(length?: number): this | Item;
   
@@ -532,7 +532,7 @@ interface CollectionInstance<Item> {
    * @template T 
    * @param {((_carry: T | null, item: Item) => T)} fn 
    * @param {T} [carry] 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   reduce<T>(fn: (_carry: T | null, item: Item) => T, carry?: T);
 
@@ -541,18 +541,18 @@ interface CollectionInstance<Item> {
    * The callback should return true if the item should be removed from the resulting collection.
    * 
    * @param {(item: Item) => boolean} fn 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  reject(fn: (item: Item) => boolean): CollectionInstance<Item>;
+  reject(fn: (item: Item) => boolean): Collection<Item>;
 
   /**
    * The reverse method reverses the order of the collection's items.
    * 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  reverse(): CollectionInstance<Item>;
+  reverse(): Collection<Item>;
 
   /**
    * The search method searches the collection for the given value and returns its key if found.
@@ -560,7 +560,7 @@ interface CollectionInstance<Item> {
    * 
    * @param {Item} value
    * @param {any} strict 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   search(value: Item, strict);
 
@@ -570,7 +570,7 @@ interface CollectionInstance<Item> {
    * 
    * @param {(value: Item, key: number) => boolean} fn 
    * @param {any} strict 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   search(fn: (value: Item, key: number) => boolean, strict);
 
@@ -579,7 +579,7 @@ interface CollectionInstance<Item> {
    * 
    * @returns {Item} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   shift(): Item;
 
@@ -587,7 +587,7 @@ interface CollectionInstance<Item> {
    * The shuffle method randomly shuffles the items in the collection.
    * 
    * @returns {this} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   shuffle(): this;
 
@@ -596,19 +596,19 @@ interface CollectionInstance<Item> {
    * 
    * @param {number} remove 
    * @param {number} [limit] 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  slice(remove: number, limit?: number): CollectionInstance<Item>;
+  slice(remove: number, limit?: number): Collection<Item>;
   
   /**
    * The sort method sorts the collection.
    * 
    * @param {(a: Item, b: Item) => number} [fn] 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  sort(fn?: (a: Item, b: Item) => number): CollectionInstance<Item>;
+  sort(fn?: (a: Item, b: Item) => number): Collection<Item>;
 
   /**
    * The sortBy method sorts the collection by the given key.
@@ -616,20 +616,20 @@ interface CollectionInstance<Item> {
    * 
    * @template V 
    * @param {V} value 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  sortBy<V>(value: V): CollectionInstance<Item>;
+  sortBy<V>(value: V): Collection<Item>;
 
   /**
    * The sortBy method sorts the collection by the given callback.
    * The sorted collection keeps the original array keys.
    * 
    * @param {(item: Item) => number} fn 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  sortBy(fn: (item: Item) => number): CollectionInstance<Item>;
+  sortBy(fn: (item: Item) => number): Collection<Item>;
 
   /**
    * This method has the same signature as the sortBy method,
@@ -637,20 +637,20 @@ interface CollectionInstance<Item> {
    * 
    * @template V 
    * @param {V} value 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  sortByDesc<V>(value: V): CollectionInstance<Item>;
+  sortByDesc<V>(value: V): Collection<Item>;
 
   /**
    * This method has the same signature as the sortBy method,
    * but will sort the collection in the opposite order.
    * 
    * @param {(item: Item) => number} fn 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  sortByDesc(fn: (item: Item) => number): CollectionInstance<Item>; 
+  sortByDesc(fn: (item: Item) => number): Collection<Item>; 
 
   /**
    * The splice method removes and returns a slice of items starting at the specified index.
@@ -659,17 +659,17 @@ interface CollectionInstance<Item> {
    * @param {number} index 
    * @param {number} limit 
    * @param {Item[]} [replace] 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  splice(index: number, limit: number, replace?: Item[]): CollectionInstance<Item>;
+  splice(index: number, limit: number, replace?: Item[]): Collection<Item>;
 
   /**
    * The split method breaks a collection into the given number of groups.
    * 
    * @param {number} numberOfGroups 
    * @returns {Item[]} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   split(numberOfGroups: number): Item[];
   
@@ -680,7 +680,7 @@ interface CollectionInstance<Item> {
    * @param {(K | Function)} [key] 
    * @returns {number | string}
    *
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   sum<K>(key?: K | ((item: Item) => number | string)): number | string;
   
@@ -689,10 +689,10 @@ interface CollectionInstance<Item> {
    * You may also pass a negative integer to take the specified amount of items from the end of the collection.
    * 
    * @param {number} length 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  take(length: number): CollectionInstance<Item>;
+  take(length: number): Collection<Item>;
   
   /**
    * The tap method passes the collection to the given callback,
@@ -701,7 +701,7 @@ interface CollectionInstance<Item> {
    * 
    * @param {Function} fn 
    * @returns {this} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   tap(fn: Function): this;
     
@@ -712,7 +712,7 @@ interface CollectionInstance<Item> {
    * @param {number} times 
    * @param {(time: number) => T} fn 
    * @returns {T[]} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   times<T>(times: number, fn: (time: number) => T): T[];
 
@@ -722,7 +722,7 @@ interface CollectionInstance<Item> {
    * 
    * @template T
    * @returns {T[]} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   toArray<T>(): T[];
 
@@ -730,7 +730,7 @@ interface CollectionInstance<Item> {
    * The toJson method converts the collection into JSON string.
    * 
    * @returns {string} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   toJson(): string;
   
@@ -741,7 +741,7 @@ interface CollectionInstance<Item> {
    * @template T 
    * @param {(item: Item) => T} fn 
    * @returns {this} 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   transform<T>(fn: (item: Item) => T): this;
   
@@ -752,10 +752,10 @@ interface CollectionInstance<Item> {
    * 
    * @template T
    * @param {Object} object 
-   * @returns {CollectionInstance<T>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<T>} 
+   * @memberof Collection
    */
-  union<T>(object: Object): CollectionInstance<T>;
+  union<T>(object: Object): Collection<T>;
 
   /**
    * The unique method returns all of the unique items in the collection.
@@ -764,25 +764,25 @@ interface CollectionInstance<Item> {
    * @param {K} [key] 
    * @returns {K[]}
    *
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  unique<K>(key?: K | Function): CollectionInstance<Item>;
+  unique<K>(key?: K | Function): Collection<Item>;
 
   /**
    * The values method returns a new collection with the keys reset to consecutive integers.
    * 
    * @template T
-   * @returns {CollectionInstance<T>}
-   * @memberof CollectionInstance
+   * @returns {Collection<T>}
+   * @memberof Collection
    */
-  values<T>(): CollectionInstance<T>;
+  values<T>(): Collection<T>;
 
   /**
    * The when method will execute the given callback when the first argument given to the method evaluates to true.
    * 
    * @param {boolean} condition 
    * @param {Function} fn 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
   when(condition: boolean, fn: Function): void;
 
@@ -793,11 +793,11 @@ interface CollectionInstance<Item> {
    * @template V 
    * @param {K} key 
    * @param {V} value 
-   * @returns {CollectionInstance} 
+   * @returns {Collection} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  where<K, V>(key: K, value: V): CollectionInstance<Item>;
+  where<K, V>(key: K, value: V): Collection<Item>;
   
   /**
    * The where method filters the collection by a given key / value pair.
@@ -807,11 +807,11 @@ interface CollectionInstance<Item> {
    * @param {K} key 
    * @param {Operator} operator 
    * @param {V} value 
-   * @returns {CollectionInstance} 
+   * @returns {Collection} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  where<K, V>(key: K, operator: Operator, value: V): CollectionInstance<Item>;
+  where<K, V>(key: K, operator: Operator, value: V): Collection<Item>;
 
   /**
    * The whereIn method filters the collection by a given key / value contained within the given array.
@@ -820,11 +820,11 @@ interface CollectionInstance<Item> {
    * @template V 
    * @param {K} key 
    * @param {V[]} values 
-   * @returns {CollectionInstance} 
+   * @returns {Collection} 
    * 
-   * @memberof CollectionInstance
+   * @memberof Collection
    */
-  whereIn<K, V>(key: K, values: V[]): CollectionInstance<Item>;
+  whereIn<K, V>(key: K, values: V[]): Collection<Item>;
 
   /**
    * The whereNotIn method filters the collection by a given key / value not contained within the given array.
@@ -833,10 +833,10 @@ interface CollectionInstance<Item> {
    * @template V 
    * @param {K} key 
    * @param {V[]} values 
-   * @returns {CollectionInstance<Item>} 
-   * @memberof CollectionInstance
+   * @returns {Collection<Item>} 
+   * @memberof Collection
    */
-  whereNotIn<K, V>(key: K, values: V[]): CollectionInstance<Item>;
+  whereNotIn<K, V>(key: K, values: V[]): Collection<Item>;
 
   /**
    * The zip method merges together the values of the given array with the values
@@ -844,14 +844,14 @@ interface CollectionInstance<Item> {
    * 
    * @template T 
    * @param {T[]} array 
-   * @returns {CollectionInstance<[Item, T]>}
-   * @memberof CollectionInstance
+   * @returns {Collection<[Item, T]>}
+   * @memberof Collection
    */
-  zip<T>(array: T[]): CollectionInstance<[Item, T]>;
+  zip<T>(array: T[]): Collection<[Item, T]>;
 
   [macroFn: string]: Function;
 }
 
 declare module 'collect.js' {
-  export default function <T>(collection?: T[] | Object): CollectionInstance<T>;
+  export default function <T>(collection?: T[] | Object): Collection<T>;
 }
