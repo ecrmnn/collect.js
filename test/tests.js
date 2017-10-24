@@ -78,85 +78,9 @@ describe('Collect.js Test Suite', function () {
 
 
 
-  it('should return the maximum value of a given key', function () {
-    const collection = collect([{
-      value: 10
-    }, {
-      value: -13
-    }, {
-      value: 12
-    }, {
-      unicorn: false
-    }]);
-    const max = collection.max('value');
-    expect(max).to.eql(12);
-    expect(collection.all()).to.eql([{
-      value: 10
-    }, {
-      value: -13
-    }, {
-      value: 12
-    }, {
-      unicorn: false
-    }]);
 
-    const collection2 = collect([-1, -2345, 12, 11, 3]);
-    const max2 = collection2.max();
-    expect(max2).to.eql(12);
-    expect(collection2.all()).to.eql([-1, -2345, 12, 11, 3]);
-  });
 
-  it('should return whether the collection contains a given item', function () {
-    const collection = collect({
-      name: 'Steven Gerrard',
-      number: 8
-    });
-    const contains = collection.contains('name');
-    expect(contains).to.eql(true);
-    expect(collection.all()).to.eql({
-      name: 'Steven Gerrard',
-      number: 8
-    });
 
-    const collection2 = collect({
-      name: 'Steven Gerrard',
-      number: 8
-    });
-
-    const contains2 = collection2.contains('spouse');
-    expect(contains2).to.eql(false);
-    expect(collection2.all()).to.eql({
-      name: 'Steven Gerrard',
-      number: 8
-    });
-
-    const contains3 = collection.contains('name', 'Steven Gerrard');
-    expect(contains3).to.eql(true);
-
-    const contains9 = collection.contains('number', '8');
-    expect(contains9).to.eql(false);
-
-    const contains8 = collection.contains('number', 28);
-    expect(contains8).to.eql(false);
-
-    const contains4 = collection.contains('name', 'Steve Jobs');
-    expect(contains4).to.eql(false);
-
-    const collection3 = collect([1, 2, 3, 4, 5]);
-
-    const contains5 = collection3.contains(function (value, key) {
-      return value > 5;
-    });
-    expect(contains5).to.eql(false);
-
-    const contains6 = collection3.contains(function (value, key) {
-      return value < 5;
-    });
-    expect(contains6).to.eql(true);
-
-    const collection7 = collect([1, 2, 3, 4]);
-    expect(collection7.contains(4)).to.eql(true);
-  });
 
   it('should compare the collection against another collection or a plain JavaScript object based on its keys',
     function () {
