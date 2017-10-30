@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function search(valueOrFunction, strict) {
+  var _this = this;
+
   var valueFn = valueOrFunction;
 
   if (typeof valueOrFunction === 'function') {
@@ -9,15 +11,27 @@ module.exports = function search(valueOrFunction, strict) {
     })[0];
   }
 
-  var itemKey = this.items.filter(function (item) {
-    if (strict === true) {
-      return item === valueFn;
-    }
+  var index = false;
 
-    return item === Number(valueFn) || item === valueFn.toString();
-  })[0];
+  if (Array.isArray(this.items)) {
+    var itemKey = this.items.filter(function (item) {
+      if (strict === true) {
+        return item === valueFn;
+      }
 
-  var index = this.items.indexOf(itemKey);
+      return item === Number(valueFn) || item === valueFn.toString();
+    })[0];
+
+    index = this.items.indexOf(itemKey);
+  } else {
+    return Object.keys(this.items).filter(function (prop) {
+      if (strict === true) {
+        return _this.items[prop] === valueFn;
+      }
+
+      return _this.items[prop] === Number(valueFn) || _this.items[prop] === valueFn.toString();
+    })[0] || false;
+  }
 
   if (index === -1) {
     return false;

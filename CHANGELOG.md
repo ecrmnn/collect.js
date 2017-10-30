@@ -3,6 +3,7 @@
 ## Breaking changes
 - ``chunk()``
 - ``dump()``
+- ``flatMap()``
 - ``has()``
 - ``keys()``
 - ``groupBy()``
@@ -64,6 +65,11 @@ collection.first();
 //=> Sadio Mané
 ```
 
+#### ``flatMap()``
+- Version prior to 4.0.0 did not work as expected
+- Rewritten with new functionality
+- See readme for further details
+
 #### ``flip()``
 - Also works when the collection is based on an object
 
@@ -102,6 +108,9 @@ collection.has('ability');
 //=> true (Prior to 4.0.0)
 //=> false (After 4.0.0)
 ```
+
+#### ``keyBy()``
+- Uses an empty string as the key instead of ``undefined`` when passed an invalid key
 
 #### ``keys()``
 - Returns indexes as keys when based on an array. Indexes are mapped to ``Number``.
@@ -184,7 +193,22 @@ pluck.all();
 //=> }
 ```
 
+#### ``pop()``
+- Also works when collection is based on an object
+
+#### ``push()``
+- Accepts spread/rest operator ``collection.push(...values)``
+
+#### ``random()``
+- Also works when collection is based on an object
+
 #### ``shift()``
+- Also works when collection is based on an object
+
+#### ``shuffle()``
+- Also works when collection is based on an object
+
+#### ``take()``
 - Also works when collection is based on an object
 
 ## Misc

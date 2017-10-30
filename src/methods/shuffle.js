@@ -1,16 +1,22 @@
 'use strict';
 
+const values = require('../helpers/values');
+
 module.exports = function shuffle() {
+  const items = values(this.items);
+
   let j;
   let x;
   let i;
 
-  for (i = this.items.length; i; i -= 1) {
+  for (i = items.length; i; i -= 1) {
     j = Math.floor(Math.random() * i);
-    x = this.items[i - 1];
-    this.items[i - 1] = this.items[j];
-    this.items[j] = x;
+    x = items[i - 1];
+    items[i - 1] = items[j];
+    items[j] = x;
   }
+
+  this.items = items;
 
   return this;
 };

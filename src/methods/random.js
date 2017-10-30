@@ -1,13 +1,15 @@
 'use strict';
 
-module.exports = function random(length) {
-  const randomLength = length || 1;
+const values = require('../helpers/values');
 
-  const randomCollection = this.slice().shuffle().take(randomLength);
+module.exports = function random(length = 1) {
+  const items = values(this.items);
 
-  if (randomLength === 1) {
-    return randomCollection.first();
+  const collection = new this.constructor(items).shuffle();
+
+  if (length === 1) {
+    return collection.first();
   }
 
-  return randomCollection;
+  return collection.take(length);
 };

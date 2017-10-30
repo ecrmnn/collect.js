@@ -9,7 +9,7 @@ module.exports = function keyBy(key) {
     });
   } else {
     this.items.forEach((item) => {
-      collection[item[key]] = item;
+      collection[item[key] || ''] = item;
     });
   }
 

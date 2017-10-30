@@ -1,10 +1,12 @@
 'use strict';
 
-module.exports = function nth(n, offset) {
-  const ntnOffset = offset || 0;
+const values = require('../helpers/values');
 
-  const collection = this.items
-    .slice(ntnOffset)
+module.exports = function nth(n, offset = 0) {
+  const items = values(this.items);
+
+  const collection = items
+    .slice(offset)
     .filter((item, index) => index % n === 0);
 
   return new this.constructor(collection);

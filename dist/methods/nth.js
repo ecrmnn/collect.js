@@ -1,9 +1,13 @@
 'use strict';
 
-module.exports = function nth(n, offset) {
-  var ntnOffset = offset || 0;
+var values = require('../helpers/values');
 
-  var collection = this.items.slice(ntnOffset).filter(function (item, index) {
+module.exports = function nth(n) {
+  var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+  var items = values(this.items);
+
+  var collection = items.slice(offset).filter(function (item, index) {
     return index % n === 0;
   });
 

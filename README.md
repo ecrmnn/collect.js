@@ -452,17 +452,13 @@ collect([1, 2, 3, 4]).first();
 #### ``flatMap()``
 The flatMap method iterates through the collection and passes each value to the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items. Then, the array is flattened by a level:
 ```js
-const collection = collect({
-  name: 'Robbie Fowler',
-  nickname: 'The God',
-  position: 'Striker'
-});
+const collection = collect([
+ { name: 'Robbie Fowler' },
+ { nickname: 'The God' },
+ { position: 'Striker' },
+]);
 
-const flatMapped = collection.flatMap(function (values) {
-  return values.map(function (value) {
-    return value.toUpperCase();
-  });
-});
+const flatMapped = collection.flatMap(values => values.map(value => value.toUpperCase()));
 
 flatMapped.all();
 
