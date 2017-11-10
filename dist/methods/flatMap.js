@@ -1,21 +1,26 @@
 'use strict';
 
 module.exports = function flatMap(fn) {
-  var _this = this;
+  var items = [];
 
-  var values = [];
+  this.items.forEach(function (childObject, index) {
+    var keys = Object.keys(childObject);
+    var values = [];
 
-  Object.keys(this.items).forEach(function (property) {
-    values.push(_this.items[property]);
+    keys.forEach(function (prop) {
+      values.push(childObject[prop]);
+    });
+
+    var mapped = fn(values, index);
+
+    var collection = {};
+
+    keys.forEach(function (key, i) {
+      collection[key] = mapped[i];
+    });
+
+    items.push(collection);
   });
 
-  var newValues = fn(values);
-
-  var collection = {};
-
-  Object.keys(this.items).forEach(function (value, index) {
-    collection[value] = newValues[index];
-  });
-
-  return new this.constructor(collection);
+  return new this.constructor(Object.assign.apply(Object, items));
 };

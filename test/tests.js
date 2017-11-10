@@ -1292,11 +1292,11 @@ describe('Collect.js Test Suite', function () {
   });
 
   it('should iterate through the collection and passes each value to the given callback', function () {
-    const collection = collect({
-      name: 'Robbie Fowler',
-      nickname: 'The God',
-      position: 'Striker'
-    });
+    const collection = collect([
+      { name: 'Robbie Fowler' },
+      { nickname: 'The God' },
+      { position: 'Striker' },
+    ]);
 
     const flatMapped = collection.flatMap(function (values) {
       return values.map(function (value) {
@@ -1310,11 +1310,11 @@ describe('Collect.js Test Suite', function () {
       position: 'STRIKER'
     });
 
-    expect(collection.all()).to.eql({
-      name: 'Robbie Fowler',
-      nickname: 'The God',
-      position: 'Striker'
-    });
+    expect(collection.all()).to.eql([
+      { name: 'Robbie Fowler' },
+      { nickname: 'The God' },
+      { position: 'Striker' },
+    ]);
   });
 
   it('should flatten a multi-dimensional object', function () {
