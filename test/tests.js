@@ -129,26 +129,9 @@ describe('Collect.js Test Suite', function () {
 
 
 
-  it('should merge together the values of the given array with the values of the collection at the corresponding index',
-    function () {
-      const collection = collect(['Chair', 'Desk']);
 
-      const zipped = collection.zip([100, 200]);
 
-      expect(zipped.all()).to.eql([['Chair', 100], ['Desk', 200]]);
 
-      expect(collection.all()).to.eql(['Chair', 'Desk']);
-    });
-
-  it('should return the object values from the collection', function () {
-    const collection = collect({ a: 'xoxo', b: 'abab', 'c': '1337', 1337: 12 });
-
-    const values = collection.values();
-
-    expect(values.all()).to.eql([12, 'xoxo', 'abab', '1337']);
-
-    expect(collection.all()).to.eql({ a: 'xoxo', b: 'abab', 'c': '1337', 1337: 12 });
-  });
 
   it('should return true if the collection is not empty; otherwise, false is returned', function () {
     expect(collect().isNotEmpty()).to.eql(false);
