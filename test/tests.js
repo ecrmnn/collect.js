@@ -1230,6 +1230,20 @@ describe('Collect.js Test Suite', function () {
     expect(collection7.contains(4)).to.eql(true);
   });
 
+  it('should work with an collection with an array of objects', () => {
+    const collection = collect([{
+      name: 'Steven Gerrard',
+      number: 8,
+    }, {
+      name: 'Steve Jobs',
+      number: 2,
+    }]);
+
+    expect(collection.contains('name')).to.eql(false);
+    expect(collection.contains('name', 'Steven Gerrard')).to.eql(true);
+    expect(collection.contains('name', 'Gerrard')).to.eql(false);
+  });
+
   it('should compare the collection against another collection or a plain JavaScript object based on its keys',
     function () {
       const data = {
