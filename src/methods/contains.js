@@ -2,6 +2,10 @@
 
 module.exports = function contains(key, value) {
   if (value !== undefined) {
+    if (Array.isArray(this.items)) {
+      return this.items.filter(items => items[key] !== undefined && items[key] === value).length > 0;
+    }
+
     return this.items[key] !== undefined && this.items[key] === value;
   }
 
