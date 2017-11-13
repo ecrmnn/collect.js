@@ -133,55 +133,12 @@ describe('Collect.js Test Suite', function () {
 
 
 
-  it('should return true if the collection is not empty; otherwise, false is returned', function () {
-    expect(collect().isNotEmpty()).to.eql(false);
-    expect(collect([]).isNotEmpty()).to.eql(false);
-    expect(collect([1]).isNotEmpty()).to.eql(true);
-  });
 
-  it('should filter the collection by a given key / value not contained within the given array', function () {
-    const data = [
-      { product: 'Desk', price: 200 },
-      { product: 'Chair', price: 100 },
-      { product: 'Bookcase', price: 150 },
-      { product: 'Door', price: 100 }
-    ];
 
-    const collection = collect(data);
 
-    const filtered = collection.whereNotIn('price', ['150', 200]);
 
-    expect(filtered.all()).to.eql([
-      { product: 'Chair', price: 100 },
-      { product: 'Bookcase', price: 150 },
-      { product: 'Door', price: 100 }
-    ]);
 
-    expect(collection.all()).to.eql(data);
-  });
 
-  it('should separate elements that pass a given truth test from those that do not', function () {
-    const collection = collect([1, 2, 3, 4, 5, 6]);
-
-    const arr = collection.partition(function (i) {
-      return i < 3;
-    });
-
-    expect(arr[0]).to.eql([1, 2]);
-    expect(arr[1]).to.eql([3, 4, 5, 6]);
-    expect(collection.all()).to.eql([1, 2, 3, 4, 5, 6]);
-  });
-
-  it('should split a collection into the given number of groups', function () {
-    const collection = collect([1, 2, 3, 4, 5]);
-
-    expect(collection.split(1)).to.eql([[1, 2, 3, 4, 5]]);
-    expect(collection.split(2)).to.eql([[1, 2, 3], [4, 5]]);
-    expect(collection.split(3)).to.eql([[1, 2], [3, 4], [5]]);
-    expect(collection.split(6)).to.eql([[1], [2], [3], [4], [5], []]);
-
-    expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
-  });
 
   it('should execute the given callback when the first argument given to the method evaluates to true', function () {
     const collection = collect([1, 2, 3]);
