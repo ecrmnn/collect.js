@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function partition(fn) {
-  const arrays = [[], []];
+  const arrays = [new this.constructor([]), new this.constructor([])];
 
-  this.items.forEach((item) => {
+  items.forEach((item) => {
     if (fn(item) === true) {
       arrays[0].push(item);
     } else {
@@ -11,5 +11,5 @@ module.exports = function partition(fn) {
     }
   });
 
-  return arrays;
+  return new this.constructor(arrays);
 };

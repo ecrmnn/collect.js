@@ -140,102 +140,16 @@ describe('Collect.js Test Suite', function () {
 
 
 
-  it('should execute the given callback when the first argument given to the method evaluates to true', function () {
-    const collection = collect([1, 2, 3]);
 
-    collection.when(true, function (c) {
-      c.push(4);
-    });
 
-    expect(collection.all()).to.eql([1, 2, 3, 4]);
 
-    collection.when(false, function (c) {
-      c.push(5);
-    }, function (c) {
-      c.push(6);
-    });
 
-    expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
-  });
 
-  it('should execute the given callback when the first argument given to the method evaluates to false', function () {
-    const collection = collect([1, 2, 3]);
 
-    collection.unless(false, function (c) {
-      c.push(4);
-    });
 
-    expect(collection.all()).to.eql([1, 2, 3, 4]);
 
-    collection.unless(true, function (c) {
-      c.push(5);
-    }, function (c) {
-      c.push(6);
-    });
 
-    expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
-  });
 
-  it('should create a new collection by invoking the callback a given amount of times', function () {
-    const collection = collect().times(10, function (number) {
-      return number * 9;
-    });
-
-    expect(collection.all()).to.eql([9, 18, 27, 36, 45, 54, 63, 72, 81, 90]);
-  });
-
-  it('should passes the collection to the given callback', function () {
-    let tapped = null;
-
-    const number = collect([2, 4, 3, 1, 5])
-      .sort()
-      .tap(function (collection) {
-        tapped = collection.all();
-      })
-      .shift();
-
-    expect(tapped).to.eql([2, 3, 4, 5]);
-    expect(number).to.eql(1);
-  });
-
-  it('should be able to register a custom macro/method', function () {
-    collect().macro('uppercase', function () {
-      return this.map(function (item) {
-        return item.toUpperCase();
-      });
-    });
-
-    const collection = collect(['a', 'b', 'c']);
-    expect(collection.uppercase().all()).to.eql(['A', 'B', 'C']);
-    expect(collection.all()).to.eql(['a', 'b', 'c']);
-
-    collect().macro('prefix', function (prefix) {
-      return this.map(function (item) {
-        return prefix + item;
-      });
-    });
-
-    expect(collect(['a', 'b', 'c']).prefix('xoxo').all()).to.eql(['xoxoa', 'xoxob', 'xoxoc']);
-  });
-
-  it('should convert the collection into a plain array', function () {
-    const collectionArray = collect([1, 2, 3, 'b', 'c', 'ø']);
-
-    expect(collectionArray.toArray()).to.eql([1, 2, 3, 'b', 'c', 'ø']);
-    expect(collectionArray.toArray()).to.eql(collectionArray.all());
-
-    const collectionObject = collect({
-      name: 'Elon Musk',
-      companies: [
-        'Tesla',
-        'Space X',
-        'SolarCity'
-      ]
-    });
-
-    expect(collectionObject.toArray()).to.eql(['Elon Musk', ['Tesla', 'Space X', 'SolarCity']]);
-    expect(collectionObject.toArray()).to.eql(collectionObject.values().all());
-  });
 
   it('should append arrays to collection', function () {
     const expected = [

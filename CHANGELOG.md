@@ -8,6 +8,7 @@
 - ``keys()``
 - ``groupBy()``
 - ``pluck()``
+- ``split()``
 
 ## Methods
 #### ``chunk()``
@@ -149,6 +150,9 @@ collection.last();
 #### ``only()``
 - Accepts an array or infinite number of arguments.
 
+#### ``partition()``
+- Returns a collection of collections with the results instead of an array
+
 #### ``pluck()``
 - Returns ``null`` as the value instead of ``undefined``
 - Returns ``null`` when an item does not contain the specified key.
@@ -207,6 +211,32 @@ pluck.all();
 
 #### ``shuffle()``
 - Also works when collection is based on an object
+
+#### ``split()``
+- Splits the collection into the given number of collections
+```js
+const collection = collect([1, 2, 3, 4, 5]);
+
+collection.split(2).dump();
+
+// Prior to 4.0.0
+//=> [
+//=>   [1, 2, 3],
+//=>   [4, 5],
+//=> ]
+
+// After 4.0.0
+//=> Collection {
+//=>   items: {
+//=>     Collection {
+//=>       items: [1, 2, 3]
+//=>     },
+//=>     Collection {
+//=>       items: [4, 5]
+//=>     },
+//=>   }
+//=> }
+```
 
 #### ``take()``
 - Also works when collection is based on an object
