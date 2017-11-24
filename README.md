@@ -912,6 +912,7 @@ collection.all();
 
 //=> ['A', 'B', 'C']
 ```
+> Note that the `macro` method returns `undefined`, and therefore it is not possible to use it within a chain of methods.
 
 #### ``map()``
 The map method iterates through the collection and passes each value to the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items:
