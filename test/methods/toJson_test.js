@@ -2,24 +2,19 @@
 
 module.exports = (it, expect, collect) => {
   it('should return a JSON representation of the collection', () => {
-    const collection = collect({
-      id: 384,
-      name: 'Rayquaza',
-      gender: 'NA',
-    });
+    const firstChildCollection = collect(['foo']);
+    const secondChildCollection = collect(['bar']);
+    const collection = collect([firstChildCollection, secondChildCollection]);
 
-    const json = collection.toJson();
-
-    expect(json).to.eql('{"id":384,"name":"Rayquaza","gender":"NA"}');
-
-    expect(collection.all()).to.eql({
-      id: 384,
-      name: 'Rayquaza',
-      gender: 'NA',
-    });
+    expect(collection.toJson()).to.eql('[["foo"],["bar"]]');
   });
 
-  it('should work when collection is based on an array', () => {
-    expect(collect([1, 2, 3]).toJson()).to.eql('[1,2,3]');
+  it('should recursively cast collections to JSON', () => {
+    const collectionOfCollections = collect([
+      collect([1, 2, 3]),
+      collect([4, 5, 6, collect([7, 8, 9]), [10, 11, 12]]),
+    ]);
+
+    expect(collectionOfCollections.toJson()).to.eql('[[1,2,3],[4,5,6,[7,8,9],[10,11,12]]]');
   });
 };

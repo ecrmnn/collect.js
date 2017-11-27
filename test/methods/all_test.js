@@ -5,13 +5,15 @@ module.exports = (it, expect, collect) => {
     expect(collect([1, 2, 3, 4, 5]).all()).to.eql([1, 2, 3, 4, 5]);
   });
 
-  it('should return all items, array of objects', () => {
-    const collection = [{
-      foo: 'bar',
-    }, {
-      baz: 'qux',
-    }];
+  it('should recursively return all items', () => {
+    const collectionOfCollections = collect([
+      collect([1, 2, 3]),
+      collect([4, 5, 6, collect([7, 8, 9]), [10, 11, 12]]),
+    ]);
 
-    expect(collect(collection).all()).to.eql(collection);
+    expect(collectionOfCollections.all()).to.eql([
+      collect([1, 2, 3]),
+      collect([4, 5, 6, collect([7, 8, 9]), [10, 11, 12]]),
+    ]);
   });
 };

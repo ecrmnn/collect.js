@@ -7,8 +7,11 @@
 - ``has()``
 - ``keys()``
 - ``groupBy()``
+- ``partition()``
 - ``pluck()``
 - ``split()``
+- ``toArray()``
+- ``toJson()``
 
 ## Methods
 #### ``chunk()``
@@ -240,6 +243,14 @@ collection.split(2).dump();
 
 #### ``take()``
 - Also works when collection is based on an object
+
+#### ``toArray()``
+- Now works recursively like Laravel collections ``toArray()`` method
+- More information: https://github.com/ecrmnn/collect.js/issues/138
+
+#### ``toJson()``
+- Now works recursively like Laravel collections ``toArray()`` method
+- More information: https://github.com/ecrmnn/collect.js/issues/138
 
 ## Misc
 - Added ``CHANGELOG.md``

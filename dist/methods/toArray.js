@@ -4,26 +4,29 @@ module.exports = function toArray() {
   var collectionInstance = this.constructor;
 
   var iterate = function iterate(list, collection) {
-    list.forEach(function (element) {
-      if (element instanceof collectionInstance) {
-        collection.push(element.items);
-      } else if (Array.isArray(element)) {
-        if (element.filter(function (el) {
-          return el instanceof collectionInstance;
-        }).length) {
-          iterate(element, collection);
-        } else {
-          collection.push(element);
-        }
-      }
-    });
+    var childCollection = [];
+
+    if (list instanceof collectionInstance) {
+      list.items.forEach(function (i) {
+        return iterate(i, childCollection);
+      });
+      collection.push(childCollection);
+    } else if (Array.isArray(list)) {
+      list.forEach(function (i) {
+        return iterate(i, childCollection);
+      });
+      collection.push(childCollection);
+    } else {
+      collection.push(list);
+    }
   };
 
   if (Array.isArray(this.items)) {
     var collection = [];
-    iterate(this.items, collection);
 
-    console.log(collection);
+    this.items.forEach(function (items) {
+      iterate(items, collection);
+    });
 
     return collection;
   }
