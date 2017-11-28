@@ -8,7 +8,7 @@
     "pretest": "npm run transpile",
     "test": "node_modules/.bin/mocha test/tests.js",
     "transpile": "node_modules/babel-cli/bin/babel.js src --quiet --out-dir dist",
-    "eslint": "node_modules/.bin/eslint src/",
+    "eslint": "node_modules/.bin/eslint src/ test/",
     "coverage": "node_modules/.bin/nyc mocha test/tests.js",
     "reporter": "node_modules/.bin/nyc report --reporter=html",
     "prepublishOnly": "npm run transpile"

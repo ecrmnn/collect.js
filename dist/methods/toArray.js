@@ -3,7 +3,7 @@
 module.exports = function toArray() {
   var collectionInstance = this.constructor;
 
-  var iterate = function iterate(list, collection) {
+  function iterate(list, collection) {
     var childCollection = [];
 
     if (list instanceof collectionInstance) {
@@ -19,7 +19,7 @@ module.exports = function toArray() {
     } else {
       collection.push(list);
     }
-  };
+  }
 
   if (Array.isArray(this.items)) {
     var collection = [];

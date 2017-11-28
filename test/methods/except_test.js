@@ -7,7 +7,6 @@ const post = {
 };
 
 module.exports = (it, expect, collect) => {
-
   it('should return everything except the specified ' +
     'properties of an object', () => {
     const collection = collect(post);

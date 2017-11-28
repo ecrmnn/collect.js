@@ -12,6 +12,7 @@
 - ``split()``
 - ``toArray()``
 - ``toJson()``
+- ``wrap()``
 
 ## Methods
 #### ``chunk()``
@@ -251,6 +252,10 @@ collection.split(2).dump();
 #### ``toJson()``
 - Now works recursively like Laravel collections ``toArray()`` method
 - More information: https://github.com/ecrmnn/collect.js/issues/138
+
+#### ``wrap()``
+- Now wraps objects correctly. The key/values are places directly on the collection. Previously objects were wrapped in
+ an array.
 
 ## Misc
 - Added ``CHANGELOG.md``

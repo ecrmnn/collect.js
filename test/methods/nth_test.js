@@ -22,13 +22,13 @@ module.exports = (it, expect, collect) => {
   });
 
   it('should work when the collection is based on an object', () => {
-    const collection = collect({
+    const collection2 = collect({
       a: 'b',
       c: 'd',
       e: 'f',
     });
 
-    const nth = collection.nth(1);
+    const nth = collection2.nth(1);
     expect(nth.all()).to.eql(['b', 'd', 'f']);
   });
 };

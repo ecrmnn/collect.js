@@ -13,9 +13,7 @@ module.exports = (it, expect, collect) => {
   it('should not modify the original collection', () => {
     const collection = collect(['name', 'number', 'club']);
 
-    const piped = collection.pipe((player) => {
-      return player.combine(['Roberto Firmino', 9, 'Liverpool FC']);
-    });
+    const piped = collection.pipe(player => player.combine(['Roberto Firmino', 9, 'Liverpool FC']));
 
     expect(piped.all()).to.eql({
       name: 'Roberto Firmino',
