@@ -10,7 +10,9 @@ module.exports = (it, expect, collect) => {
     expect(collection.uppercase().all()).to.eql(['A', 'B', 'C']);
     expect(collection.all()).to.eql(['a', 'b', 'c']);
 
-    collect().macro('prefix', prefix => this.map(item => prefix + item));
+    collect().macro('prefix', function pfx(prefix) {
+      return this.map(item => prefix + item);
+    });
 
     expect(collect(['a', 'b', 'c']).prefix('xoxo').all()).to.eql(['xoxoa', 'xoxob', 'xoxoc']);
   });

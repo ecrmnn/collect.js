@@ -2,6 +2,7 @@
 
 ## Breaking changes
 - ``chunk()``
+- ``count()``
 - ``dump()``
 - ``flatMap()``
 - ``has()``
@@ -24,6 +25,10 @@ This is done because ``collect.js`` should give the same result as Laravel Colle
 - Also works when the collection is based on a string
 - Also works when combining with a string or an object
 - Also works when combining with another collection
+
+#### ``count()``
+- Also works when the collection is based on an object
+- Return the number of keys in the object
 
 #### ``dump()``
 - Console logs the entire collection object (``this``) instead of only the items (``this.items``).

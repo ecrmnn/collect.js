@@ -1,29 +1,19 @@
 'use strict';
 
+const hoax = require('hoax.js');
+
 module.exports = (it, expect, collect) => {
   it('should console log the collection', () => {
-    const originalConsoleLog = console.log;
+    const mockConsole = hoax(console, 'log');
 
-    const consoleLogCalls = [];
+    collect([1, 2, 3]).dump();
+    collect({ name: 'Sadio Mané', number: 19 }).dump();
 
-    console.log = (values) => {
-      consoleLogCalls.push(values);
-      return values;
-    };
+    mockConsole.reset();
 
-    const collection = collect([1, 2, 3]);
-    collection.dump();
-
-    const collection2 = collect({
-      name: 'Sadio Mané',
-      number: 19,
-    });
-
-    collection2.dump();
-
-    console.log = originalConsoleLog;
-
-    expect(consoleLogCalls[0].all()).to.eql(collection.all());
-    expect(consoleLogCalls[1].all()).to.eql(collection2.all());
+    expect(mockConsole.calls).to.eql([
+      [collect([1, 2, 3])],
+      [collect({ name: 'Sadio Mané', number: 19 })],
+    ]);
   });
 };

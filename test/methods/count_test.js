@@ -7,4 +7,10 @@ module.exports = (it, expect, collect) => {
     expect(collect([1, 2, 3, 4, 5, 6]).count()).to.eql(6);
     expect(collect([1, 2, 3, 4, 5, 6, 7]).count()).to.eql(7);
   });
+
+  it('should return the number of items on an object', () => {
+    expect(collect({ name: 'Sadio Mané' }).count()).to.eql(1);
+    expect(collect({ name: 'Sadio Mané', number: 19 }).count()).to.eql(2);
+    expect(collect({ name: 'Sadio Mané', number: 19, club: 'Liverpool FC' }).count()).to.eql(3);
+  });
 };
