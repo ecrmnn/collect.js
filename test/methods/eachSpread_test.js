@@ -46,6 +46,8 @@ module.exports = (it, expect, collect) => {
       }
 
       results.push([number, character, key]);
+
+      return true;
     });
 
     expect(results).to.eql([[1, 'a', 0]]);

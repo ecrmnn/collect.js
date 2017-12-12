@@ -24,6 +24,12 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
     expect(filtered.all()).to.eql([1, 5]);
+
+    const collection2 = collect([1, 2, 3, 4, 5]);
+    const filtered2 = collection2.only([2, 3, 12]);
+
+    expect(collection2.all()).to.eql([1, 2, 3, 4, 5]);
+    expect(filtered2.all()).to.eql([2, 3]);
   });
 
   it('should take an infinite number of arguments', () => {

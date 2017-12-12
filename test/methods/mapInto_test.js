@@ -2,7 +2,7 @@
 
 module.exports = (it, expect, collect) => {
   it('should map into a class', () => {
-    const Person = function (name) {
+    const Person = function p(name) {
       this.name = name;
     };
 
