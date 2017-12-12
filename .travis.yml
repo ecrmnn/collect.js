@@ -1,8 +1,9 @@
 language: node_js
 node_js:
   - 'stable'
+  - '7'
+  - '6'
   - '5'
-  - '4'
 script:
   - npm run eslint
   - npm run coverage

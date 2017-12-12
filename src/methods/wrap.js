@@ -5,7 +5,7 @@ module.exports = function wrap(value) {
     return value;
   }
 
-  if (Array.isArray(value)) {
+  if (typeof value === 'object') {
     return new this.constructor(value);
   }
 

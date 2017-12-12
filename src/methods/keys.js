@@ -1,17 +1,11 @@
 'use strict';
 
 module.exports = function keys() {
+  let collection = Object.keys(this.items);
+
   if (Array.isArray(this.items)) {
-    const collection = [];
-
-    this.items.forEach((object) => {
-      Object.keys(object).forEach((key) => {
-        collection.push(key);
-      });
-    });
-
-    return new this.constructor(collection).unique();
+    collection = collection.map(Number);
   }
 
-  return new this.constructor(Object.keys(this.items));
+  return new this.constructor(collection);
 };

@@ -10,5 +10,9 @@ module.exports = function first(fn) {
     }
   }
 
-  return this.items[0];
+  if (Array.isArray(this.items)) {
+    return this.items[0];
+  }
+
+  return this.items[Object.keys(this.items)[0]];
 };

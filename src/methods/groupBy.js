@@ -9,11 +9,11 @@ module.exports = function groupBy(key) {
     if (typeof key === 'function') {
       resolvedKey = key(item, index);
     } else {
-      resolvedKey = item[key];
+      resolvedKey = item[key] || '';
     }
 
     if (collection[resolvedKey] === undefined) {
-      collection[resolvedKey] = [];
+      collection[resolvedKey] = new this.constructor([]);
     }
 
     collection[resolvedKey].push(item);

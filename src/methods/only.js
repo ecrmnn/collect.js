@@ -1,8 +1,13 @@
 'use strict';
 
-module.exports = function only(properties) {
+const variadic = require('../helpers/variadic');
+
+module.exports = function only(...args) {
+  const properties = variadic(args);
+
   if (Array.isArray(this.items)) {
-    const collection = this.items.filter(item => !properties.indexOf(item));
+    const collection = this.items
+      .filter(item => properties.indexOf(item) !== -1);
 
     return new this.constructor(collection);
   }

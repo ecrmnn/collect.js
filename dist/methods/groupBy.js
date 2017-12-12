@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function groupBy(key) {
+  var _this = this;
+
   var collection = {};
 
   this.items.forEach(function (item, index) {
@@ -9,11 +11,11 @@ module.exports = function groupBy(key) {
     if (typeof key === 'function') {
       resolvedKey = key(item, index);
     } else {
-      resolvedKey = item[key];
+      resolvedKey = item[key] || '';
     }
 
     if (collection[resolvedKey] === undefined) {
-      collection[resolvedKey] = [];
+      collection[resolvedKey] = new _this.constructor([]);
     }
 
     collection[resolvedKey].push(item);

@@ -5,8 +5,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 module.exports = function mapToGroups(fn) {
   var collection = {};
 
-  this.items.forEach(function (item) {
-    var _fn = fn(item),
+  this.items.forEach(function (item, key) {
+    var _fn = fn(item, key),
         _fn2 = _slicedToArray(_fn, 2),
         keyed = _fn2[0],
         value = _fn2[1];

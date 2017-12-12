@@ -1,14 +1,17 @@
 'use strict';
 
-module.exports = function has(key) {
-  if (Array.isArray(this.items)) {
-    for (var i = 0, length = this.items.length; i < length; i += 1) {
-      if (this.items[i][key] !== undefined) {
-        return true;
-      }
-    }
-    return false;
+var variadic = require('../helpers/variadic');
+
+module.exports = function has() {
+  var _this = this;
+
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
   }
 
-  return this.items[key] !== undefined;
+  var properties = variadic(args);
+
+  return properties.filter(function (key) {
+    return _this.items[key];
+  }).length === properties.length;
 };

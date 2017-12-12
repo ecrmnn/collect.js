@@ -1,14 +1,9 @@
 'use strict';
 
-module.exports = function has(key) {
-  if (Array.isArray(this.items)) {
-    for (let i = 0, length = this.items.length; i < length; i += 1) {
-      if (this.items[i][key] !== undefined) {
-        return true;
-      }
-    }
-    return false;
-  }
+const variadic = require('../helpers/variadic');
 
-  return this.items[key] !== undefined;
+module.exports = function has(...args) {
+  const properties = variadic(args);
+
+  return properties.filter(key => this.items[key]).length === properties.length;
 };
