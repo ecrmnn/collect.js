@@ -12,7 +12,10 @@ const runSingleTest = test.indexOf('--') !== -1;
 test = test.replace('--', '');
 test += '_test.js';
 
-fs.readdirSync(path.join(__dirname, 'methods')).forEach((file) => {
+const methods = fs.readdirSync(path.join(__dirname, '../src/methods'));
+const tests = fs.readdirSync(path.join(__dirname, 'methods'));
+
+tests.forEach((file) => {
   describe(file.replace('_test.js', '()'), () => {
     if (!runSingleTest) {
       // eslint-disable-next-line
@@ -23,3 +26,29 @@ fs.readdirSync(path.join(__dirname, 'methods')).forEach((file) => {
     }
   });
 });
+
+if (!runSingleTest) {
+  describe('general tests', () => {
+    it('should test every method', () => {
+      const missingTests = collect(methods).diff(collect(tests).transform(t => t.replace(/_test/, ''))).all();
+      expect(missingTests).to.eql([]);
+    });
+
+    it('should document all methods', () => {
+      const content = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf-8');
+
+      const re = /#### ``(.*)\(\)``/g;
+      let matches = re.exec(content);
+
+      const documentedMethods = [];
+
+      while (matches !== null) {
+        documentedMethods.push(matches[1]);
+        matches = re.exec(content);
+      }
+
+      const missingDocumentation = collect(methods).transform(t => t.replace(/.js/, '')).diff(documentedMethods).all();
+      expect(missingDocumentation).to.eql(['symbol.iterator']);
+    });
+  });
+}

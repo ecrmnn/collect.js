@@ -31,13 +31,16 @@ All available methods
 - [crossJoin](#crossjoin)
 - [dd](#dd)
 - [diff](#diff)
+- [diffAssoc](#diffassoc)
 - [diffKeys](#diffkeys)
 - [dump](#dump)
 - [each](#each)
+- [eachSpread](#eachspread)
 - [every](#every)
 - [except](#except)
 - [filter](#filter)
 - [first](#first)
+- [firstWhere](#firstwhere)
 - [flatMap](#flatmap)
 - [flatten](#flatten)
 - [flip](#flip)
@@ -57,6 +60,8 @@ All available methods
 - [macro](#macro)
 - [map](#map)
 - [mapInto](#mapinto)
+- [mapSpread](#mapspread)
+- [mapToDictionary](#maptodictionary)
 - [mapToGroups](#maptogroups)
 - [mapWithKeys](#mapwithkeys)
 - [max](#max)
@@ -66,6 +71,7 @@ All available methods
 - [mode](#mode)
 - [nth](#nth)
 - [only](#only)
+- [pad](#pad)
 - [partition](#partition)
 - [pipe](#pipe)
 - [pluck](#pluck)
@@ -306,6 +312,28 @@ diff.all();
 //=> [4, 5]
 ```
 
+#### ``diffAssoc()``
+The diffAssoc method compares the collection against another collection or a plain object based on its keys and values. 
+This method will return the key / value pairs in the original collection that are not present in the given collection:
+```js
+const collection = collect({
+  color: 'orange',
+  type: 'fruit',
+  remain: 6,
+});
+
+const diff = collection.diffAssoc({
+  color: 'yellow',
+  type: 'fruit',
+  remain: 3,
+  used: 6,
+});
+
+diff.all();
+
+//=> { color: 'orange', remain: 6 };
+```
+
 #### ``diffKeys()``
 The diffKeys method compares the collection against another collection or a plain object based on its keys. This method will return the key / value pairs in the original collection that are not present in the given collection:
 ```js
@@ -369,6 +397,23 @@ collection.each(function (item) {
 
 //=> console.log(sum);
 //=> 7
+```
+
+#### ``eachSpread()``
+The eachSpread method iterates over the collection's items, passing each nested item value into the given callback:
+```js
+const collection = collect([['John Doe', 35], ['Jane Doe', 33]]);
+
+collection.eachSpread((name, age) => {
+    //
+});
+```
+
+You may stop iterating through the items by returning false from the callback:
+```js
+collection.eachSpread((name, age) => {
+    return false;
+});
 ```
 
 #### ``every()``
@@ -447,6 +492,21 @@ You may also call the first method with no arguments to get the first element in
 collect([1, 2, 3, 4]).first();
 
 //=> 1
+```
+
+#### ``firstWhere()``
+The firstWhere method returns the first element in the collection with the given key / value pair:
+```js
+const collection = collect([
+    {name: 'Regena', age: 12},
+    {name: 'Linda', age: 14},
+    {name: 'Diego', age: 23},
+    {name: 'Linda', age: 84},
+]);
+
+collection.firstWhere('name', 'Linda');
+
+//=> { name: 'Linda', age: 14 }
 ```
 
 #### ``flatMap()``
@@ -933,6 +993,45 @@ players.all();
 //=> ]
 ```
 
+#### ``mapSpread()``
+The mapSpread method iterates over the collection's items, passing each nested item value into the given callback.
+The callback is free to modify the item and return it, thus forming a new collection of modified items:
+```js
+const collection = collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+const chunks = collection.chunk(2);
+
+const sequence = chunks.mapSpread((odd, even) => {
+    return odd + even;
+});
+
+sequence.all();
+
+//=> [1, 5, 9, 13, 17]
+```
+
+#### ``mapToDictionary()``
+Run a dictionary map over the items.
+The callback should return an associative array with a single key/value pair.
+```js
+const collection = collect([
+  { id: 1, name: 'a' },
+  { id: 2, name: 'b' },
+  { id: 3, name: 'c' },
+  { id: 4, name: 'b' },
+]);
+
+const groups = collection.mapToDictionary(item => [item.name, item.id]);
+
+groups.all();
+
+//=> {
+//=>   a: [1],
+//=>   b: [2, 4],
+//=>   c: [3],
+//=> }
+```
+
 #### ``mapToGroups()``
 The mapToGroups method iterates through the collection and passes each value to the given callback:
 ```js
@@ -1130,6 +1229,27 @@ collect([1, 2, 3, 4]).only([2, 12]).all();
 //=> [2]
 ```
 > For the inverse of ``only``, see the ``except`` method.
+
+#### ``pad()``
+The pad method will fill the array with the given value until the array reaches the specified size. This method 
+behaves like the [array_pad](https://secure.php.net/manual/en/function.array-pad.php) PHP function.
+
+To pad to the left, you should specify a negative size. No padding will take place if the absolute value of the given size is less than or equal to the length of the array:
+```js
+const collection = collect(['A', 'B', 'C']);
+
+let filtered = collection.pad(5, 0);
+
+filtered.all();
+
+//=> ['A', 'B', 'C', 0, 0]
+
+filtered = collection.pad(-5, 0);
+
+filtered.all();
+
+//=> [0, 0, 'A', 'B', 'C']
+```
 
 #### ``partition()``
 The partition method may be combined with destructuring to separate elements that pass a given truth test from those that do not:

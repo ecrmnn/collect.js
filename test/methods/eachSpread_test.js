@@ -35,4 +35,21 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql([[1, 'a'], [2, 'b']]);
     expect(mapped.all()).to.eql(collection.all());
   });
+
+  it('should stop looping when returning false', () => {
+    const collection = collect([[1, 'a'], [2, 'b']]);
+
+    const results = [];
+    const mapped = collection.eachSpread((number, character, key) => {
+      if (number === 2) {
+        return false;
+      }
+
+      results.push([number, character, key]);
+    });
+
+    expect(results).to.eql([[1, 'a', 0]]);
+    expect(collection.all()).to.eql([[1, 'a'], [2, 'b']]);
+    expect(mapped.all()).to.eql(collection.all());
+  });
 };
