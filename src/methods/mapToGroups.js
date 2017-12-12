@@ -3,8 +3,8 @@
 module.exports = function mapToGroups(fn) {
   const collection = {};
 
-  this.items.forEach((item) => {
-    const [keyed, value] = fn(item);
+  this.items.forEach((item, key) => {
+    const [keyed, value] = fn(item, key);
 
     if (collection[keyed] === undefined) {
       collection[keyed] = [value];

@@ -7,15 +7,27 @@ module.exports = function search(valueOrFunction, strict) {
     valueFn = this.items.filter((value, key) => valueOrFunction(value, key))[0];
   }
 
-  const itemKey = this.items.filter((item) => {
-    if (strict === true) {
-      return item === valueFn;
-    }
+  let index = false;
 
-    return item === Number(valueFn) || item === valueFn.toString();
-  })[0];
+  if (Array.isArray(this.items)) {
+    const itemKey = this.items.filter((item) => {
+      if (strict === true) {
+        return item === valueFn;
+      }
 
-  const index = this.items.indexOf(itemKey);
+      return item === Number(valueFn) || item === valueFn.toString();
+    })[0];
+
+    index = this.items.indexOf(itemKey);
+  } else {
+    return Object.keys(this.items).filter((prop) => {
+      if (strict === true) {
+        return this.items[prop] === valueFn;
+      }
+
+      return this.items[prop] === Number(valueFn) || this.items[prop] === valueFn.toString();
+    })[0] || false;
+  }
 
   if (index === -1) {
     return false;

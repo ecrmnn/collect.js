@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = function push(item) {
-  this.items.push(item);
+module.exports = function push(...items) {
+  this.items.push(...items);
 
   return this;
 };
