@@ -15,15 +15,13 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
   });
 
-  if (Number(process.version.match(/^v(\d+\.\d+)/)[1]) >= 5) {
-    it('should work with spread operator', () => {
-      const collection = collect([1, 2, 3, 4]);
-      expect(collection.all()).to.eql([1, 2, 3, 4]);
+  it('should work with spread operator', () => {
+    const collection = collect([1, 2, 3, 4]);
+    expect(collection.all()).to.eql([1, 2, 3, 4]);
 
-      const values = [1, 2, 3, 4, 5];
+    const values = [1, 2, 3, 4, 5];
 
-      collection.push(...values);
-      expect(collection.all()).to.eql([1, 2, 3, 4, 1, 2, 3, 4, 5]);
-    });
-  }
+    collection.push(...values);
+    expect(collection.all()).to.eql([1, 2, 3, 4, 1, 2, 3, 4, 5]);
+  });
 };

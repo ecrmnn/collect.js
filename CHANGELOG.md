@@ -15,6 +15,9 @@
 - ``toJson()``
 - ``wrap()``
 
+## Node.js
+Skipped Node 4 support
+
 ## Methods
 #### ``chunk()``
 - Returns a new collection of smaller collections of the given size.
