@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
@@ -8,10 +8,13 @@
     "pretest": "npm run transpile",
     "test": "node_modules/.bin/mocha test/tests.js",
     "transpile": "node_modules/babel-cli/bin/babel.js src --quiet --out-dir dist",
+    "bundle": "node_modules/.bin/webpack dist/index.js build/collect.js --output-library collect",
+    "uglify": "node_modules/.bin/uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",
+    "build": "npm run transpile && npm run bundle && npm run uglify",
     "eslint": "node_modules/.bin/eslint src/ test/",
     "coverage": "node_modules/.bin/nyc mocha test/tests.js",
     "reporter": "node_modules/.bin/nyc report --reporter=html",
-    "prepublishOnly": "npm run transpile"
+    "prepublishOnly": "npm run build"
   },
   "babel": {
     "presets": [
@@ -60,6 +63,8 @@
     "eslint-plugin-import": "^2.5.0",
     "hoax.js": "^1.0.0",
     "mocha": "^3.5.2",
-    "nyc": "^11.0.2"
+    "nyc": "^11.0.2",
+    "uglify-js": "^3.2.2",
+    "webpack": "^3.10.0"
   }
 }
