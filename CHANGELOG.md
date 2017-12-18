@@ -1,3 +1,6 @@
+# 4.0.1
+- Added build files so it's no longer required to use npm for installation
+
 # 4.0.0
 
 ## Breaking changes
