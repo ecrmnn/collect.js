@@ -30,9 +30,18 @@ module.exports = (it, expect, collect) => {
   });
 
   it('should accept a custom operator: less than', () => {
-    const under200 = collection.where('price', '<', 200);
+    const under200 = collection.where('price', '<', 150);
 
     expect(under200.all()).to.eql([
+      { product: 'Chair', price: 100, manufacturer: 'Herman Miller' },
+      { product: 'Door', price: '100' },
+    ]);
+  });
+
+  it('should accept a custom operator: less than or equal to', () => {
+    const overOrExactly150 = collection.where('price', '<=', 150);
+
+    expect(overOrExactly150.all()).to.eql([
       { product: 'Chair', price: 100, manufacturer: 'Herman Miller' },
       { product: 'Bookcase', price: 150, manufacturer: 'IKEA' },
       { product: 'Door', price: '100' },
