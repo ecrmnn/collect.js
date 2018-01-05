@@ -103,6 +103,7 @@ Collection.prototype.whereNotIn = require('./methods/whereNotIn');
 Collection.prototype.wrap = require('./methods/wrap');
 Collection.prototype.zip = require('./methods/zip');
 
-const ctor = collection => new Collection(collection);
-module.exports = ctor;
-module.exports.default = ctor;
+const collect = collection => new Collection(collection);
+
+module.exports = collect;
+module.exports.default = collect;
