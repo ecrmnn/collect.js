@@ -45,11 +45,11 @@ module.exports = (it, expect, collect) => {
       8,
       9,
       {},
-      10,
+      [10],
     ]);
     const filtered = collection.filter();
 
-    expect(filtered.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    expect(filtered.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, [10]]);
     expect(collection.all())
       .to
       .eql([
@@ -67,7 +67,7 @@ module.exports = (it, expect, collect) => {
         8,
         9,
         {},
-        10,
+        [10],
       ]);
 
     const collection2 = collect({
@@ -77,10 +77,12 @@ module.exports = (it, expect, collect) => {
       emptyObject: {},
       foo: 'bar',
       undefinedKey: undefined,
+      notEmptyObject: { a: 1 },
+      notEmptyArray: [''],
     });
     const filtered2 = collection2.filter();
 
-    expect(filtered2.all()).to.eql({ baz: 10, foo: 'bar' });
+    expect(filtered2.all()).to.eql({ baz: 10, foo: 'bar', notEmptyObject: { a: 1 }, notEmptyArray: [''] });
     expect(collection2.all()).to.eql({
       falseKey: false,
       emptyArray: [],
@@ -88,6 +90,8 @@ module.exports = (it, expect, collect) => {
       emptyObject: {},
       foo: 'bar',
       undefinedKey: undefined,
+      notEmptyObject: { a: 1 },
+      notEmptyArray: [''],
     });
   });
 };
