@@ -431,7 +431,7 @@ declare module 'collect.js' {
      * The transform method iterates over the collection and calls the given callback with each item in the collection.
      * The items in the collection will be replaced by the values returned by the callback.
      */
-    transform<T>(fn: (item: Item) => T): this;
+    transform<T>(fn: (item: Item) => T): Collection<T>;
 
     /**
      * The union method adds the given array to the collection.
