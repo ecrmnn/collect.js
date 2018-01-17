@@ -150,9 +150,9 @@ declare module 'collect.js' {
     groupBy<T, K>(key: ((item: Item, index?: number) => K) | K): Collection<T>;
 
     /**
-     * The has method determines if a given key exists in the collection.
+     * The has method determines if one or more keys exists in the collection.
      */
-    has<K>(key: K): boolean;
+    has<K>(key: K | Item[]): boolean;
 
     /**
      * The implode method joins the items in a collection.
