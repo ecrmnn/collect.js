@@ -755,7 +755,7 @@ grouped.all();
 ```
 
 #### ``has()``
-The has method determines if a given key exists in the collection:
+The has method determines if one or more keys exists in the collection:
 ```js
 const collection = collect({
   animal: 'unicorn',
@@ -765,6 +765,14 @@ const collection = collect({
 collection.has('ability');
 
 //=> true
+
+collection.has(['animal', 'ability']);
+
+//=> true
+
+collection.has(['animal', 'ability', 'name']);
+
+//=> false
 ```
 
 #### ``implode()``
