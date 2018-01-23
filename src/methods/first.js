@@ -1,6 +1,8 @@
 'use strict';
 
-module.exports = function first(fn) {
+const value = require('../helpers/value');
+
+module.exports = function first(fn, defaultValue) {
   if (typeof fn === 'function') {
     for (let i = 0, length = this.items.length; i < length; i += 1) {
       const item = this.items[i];
@@ -8,6 +10,10 @@ module.exports = function first(fn) {
         return item;
       }
     }
+  }
+
+  if (defaultValue !== undefined) {
+    return value(defaultValue)
   }
 
   if (Array.isArray(this.items)) {
