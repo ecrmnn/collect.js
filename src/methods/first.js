@@ -13,7 +13,7 @@ module.exports = function first(fn, defaultValue) {
   }
 
   if (defaultValue !== undefined) {
-    return value(defaultValue)
+    return value(defaultValue);
   }
 
   if (Array.isArray(this.items)) {
