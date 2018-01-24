@@ -28,6 +28,7 @@ function filterObject(func, items) {
       result[key] = items[key];
     }
   });
+
   return result;
 }
 
@@ -42,6 +43,7 @@ function filterArray(func, items) {
       result.push(item);
     }
   }
+
   return result;
 }
 

@@ -12,5 +12,6 @@ module.exports = function last(fn) {
   }
 
   var keys = Object.keys(this.items);
+
   return this.items[keys[keys.length - 1]];
 };
