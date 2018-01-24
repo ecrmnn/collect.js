@@ -49,4 +49,21 @@ module.exports = (it, expect, collect) => {
     expect(first).to.eql(6);
     expect(collection.all()).to.eql([4, 3, 2, 1]);
   });
+
+  it('should return the default value if there are no items', () => {
+    const collectionArray = collect([]);
+    let firstWithEmpty = collectionArray.first(null, 'Empty');
+    let firstWithCallback = collectionArray.first(item => item >= 5, 'EmptyCallback');
+    expect(firstWithEmpty).to.eql('Empty');
+    expect(firstWithCallback).to.eql('EmptyCallback');
+    expect(collectionArray.all()).to.eql([]);
+
+
+    const collectionObject = collect({});
+    firstWithEmpty = collectionObject.first(null, 'EmptyObject');
+    firstWithCallback = collectionObject.first(item => item >= 5, 'EmptyObjectCallback');
+    expect(firstWithEmpty).to.eql('EmptyObject');
+    expect(firstWithCallback).to.eql('EmptyObjectCallback');
+    expect(collectionObject.all()).to.eql({});
+  });
 };

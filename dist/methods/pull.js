@@ -1,7 +1,10 @@
 'use strict';
 
-module.exports = function pull(key) {
-  var value = this.items[key] || null;
+var value = require('../helpers/value');
+
+module.exports = function pull(key, defaultValue) {
+  var returnValue = this.items[key] || value(defaultValue || null);
+
   delete this.items[key];
-  return value;
+  return returnValue;
 };

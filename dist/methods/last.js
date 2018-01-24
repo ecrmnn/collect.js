@@ -1,16 +1,19 @@
 'use strict';
 
-module.exports = function last(fn) {
+var values = require('../helpers/values');
+var value = require('../helpers/value');
+var empty = require('../helpers/empty');
+
+module.exports = function last(fn, defaultValue) {
+  var items = this.items;
+
   if (typeof fn === 'function') {
-    var collection = this.items.filter(fn);
-
-    return collection[collection.length - 1];
+    items = this.filter(fn).all();
   }
 
-  if (Array.isArray(this.items)) {
-    return this.items[this.items.length - 1];
+  if (empty(items)) {
+    return value(defaultValue);
   }
 
-  var keys = Object.keys(this.items);
-  return this.items[keys[keys.length - 1]];
+  return values(items).reverse()[0];
 };
