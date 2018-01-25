@@ -19,4 +19,20 @@ module.exports = (it, expect, collect) => {
     const collection = collect(player);
     expect(collection.pull('non-existing-key')).to.eql(null);
   });
+
+  it('should accept a default value', () => {
+    const collection = collect(player);
+    const pulled = collection.pull('key-does-not-exist', 'Joe');
+
+    expect(pulled).to.eql('Joe');
+    expect(collection.all()).to.eql(player);
+  });
+
+  it('should accept a callback as the default value', () => {
+    const collection = collect(player);
+    const pulled = collection.pull('key-does-not-exist', () => 'Doe');
+
+    expect(pulled).to.eql('Doe');
+    expect(collection.all()).to.eql(player);
+  });
 };
