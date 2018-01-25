@@ -1,9 +1,11 @@
 'use strict';
 
-const value = require('../helpers/value');
-
 module.exports = function pull(key, defaultValue) {
-  const returnValue = this.items[key] || value(defaultValue || null);
+  let returnValue = this.items[key] || null;
+
+  if (! returnValue && defaultValue !== undefined) {
+    returnValue = (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
+  }
 
   delete this.items[key];
 
