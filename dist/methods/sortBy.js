@@ -7,12 +7,14 @@ module.exports = function sortBy(valueOrFunction) {
     collection.sort(function (a, b) {
       if (valueOrFunction(a) < valueOrFunction(b)) return -1;
       if (valueOrFunction(a) > valueOrFunction(b)) return 1;
+
       return 0;
     });
   } else {
     collection.sort(function (a, b) {
       if (a[valueOrFunction] < b[valueOrFunction]) return -1;
       if (a[valueOrFunction] > b[valueOrFunction]) return 1;
+
       return 0;
     });
   }

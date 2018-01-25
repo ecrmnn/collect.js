@@ -8,5 +8,6 @@ module.exports = function shift() {
   var key = Object.keys(this.items)[0];
   var value = this.items[key] || null;
   delete this.items[key];
+
   return value;
 };
