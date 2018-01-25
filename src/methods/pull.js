@@ -4,7 +4,11 @@ module.exports = function pull(key, defaultValue) {
   let returnValue = this.items[key] || null;
 
   if (!returnValue && defaultValue !== undefined) {
-    returnValue = (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
+    if (typeof defaultValue === 'function') {
+      returnValue = defaultValue();
+    } else {
+      returnValue = defaultValue;
+    }
   }
 
   delete this.items[key];

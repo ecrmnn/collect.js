@@ -9,10 +9,14 @@ module.exports = function first(fn, defaultValue) {
       }
     }
 
-    return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+    if (typeof defaultValue === 'function') {
+      return defaultValue();
+    }
+
+    return defaultValue;
   }
 
-  if (Array.isArray(this.items) && this.items.length !== 0 || Object.keys(this.items).length !== 0) {
+  if (Array.isArray(this.items) && this.items.length || Object.keys(this.items).length) {
     if (Array.isArray(this.items)) {
       return this.items[0];
     }

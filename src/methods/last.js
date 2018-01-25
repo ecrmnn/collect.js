@@ -7,11 +7,12 @@ module.exports = function last(fn, defaultValue) {
     items = this.filter(fn).all();
   }
 
-  if (
-    (Array.isArray(items) && items.length === 0) ||
-    (Object.keys(items).length === 0)
-  ) {
-    return (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
+  if ((Array.isArray(items) && !items.length) || (!Object.keys(items).length)) {
+    if (typeof defaultValue === 'function') {
+      return defaultValue();
+    }
+
+    return defaultValue;
   }
 
   if (Array.isArray(items)) {
