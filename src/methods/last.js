@@ -1,9 +1,5 @@
 'use strict';
 
-const values = require('../helpers/values');
-const value = require('../helpers/value');
-const empty = require('../helpers/empty');
-
 module.exports = function last(fn, defaultValue) {
   let items = this.items;
 
@@ -14,7 +10,7 @@ module.exports = function last(fn, defaultValue) {
   if (
     Array.isArray(items) && items.length === 0 ||
     Object.keys(items).length === 0) {
-    return value(defaultValue);
+    return (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
   }
 
   if (Array.isArray(items)) {
