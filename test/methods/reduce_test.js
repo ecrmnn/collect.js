@@ -15,4 +15,12 @@ module.exports = (it, expect, collect) => {
     expect(total).to.eql(32);
     expect(collection.all()).to.eql([1, 2, 3, 4, 5, 6, 7]);
   });
+
+  it('should support hashmaps', () => {
+    const collection = collect({ Joe: 'Doe', Foo: 'Bar' });
+    const reduced = collection.reduce((carry, item, key) => carry + item + key, '');
+
+    expect(reduced).to.eql('DoeJoeBarFoo');
+    expect(collection.all()).to.eql({ Joe: 'Doe', Foo: 'Bar' });
+  });
 };

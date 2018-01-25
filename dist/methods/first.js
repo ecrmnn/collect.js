@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function first(fn) {
+module.exports = function first(fn, defaultValue) {
   if (typeof fn === 'function') {
     for (var i = 0, length = this.items.length; i < length; i += 1) {
       var item = this.items[i];
@@ -8,11 +8,23 @@ module.exports = function first(fn) {
         return item;
       }
     }
+
+    if (typeof defaultValue === 'function') {
+      return defaultValue();
+    }
+
+    return defaultValue;
   }
 
-  if (Array.isArray(this.items)) {
-    return this.items[0];
+  if (Array.isArray(this.items) && this.items.length || Object.keys(this.items).length) {
+    if (Array.isArray(this.items)) {
+      return this.items[0];
+    }
+
+    var firstKey = Object.keys(this.items)[0];
+
+    return this.items[firstKey];
   }
 
-  return this.items[Object.keys(this.items)[0]];
+  return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
 };
