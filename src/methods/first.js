@@ -1,7 +1,5 @@
 'use strict';
 
-const value = require('../helpers/value');
-
 module.exports = function first(fn, defaultValue) {
   if (typeof fn === 'function') {
     for (let i = 0, length = this.items.length; i < length; i += 1) {
@@ -11,7 +9,7 @@ module.exports = function first(fn, defaultValue) {
       }
     }
 
-    return value(defaultValue);
+    return (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
   }
 
   if (
@@ -27,6 +25,5 @@ module.exports = function first(fn, defaultValue) {
     return this.items[firstKey];
   }
 
-
-  return value(defaultValue);
+  return (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
 };
