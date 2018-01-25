@@ -17,11 +17,10 @@ module.exports = (it, expect, collect) => {
   });
 
   it('should support hashmaps', () => {
-    const collection = collect({Joe: 'Doe', Foo: 'Bar'});
+    const collection = collect({ Joe: 'Doe', Foo: 'Bar' });
     const reduced = collection.reduce((carry, item, key) => carry + item + key, '');
-    console.log(reduced);
-    console.log(collection);
+
     expect(reduced).to.eql('DoeJoeBarFoo');
-    expect(collection.all()).to.eql({Joe: 'Doe', Foo: 'Bar'});
+    expect(collection.all()).to.eql({ Joe: 'Doe', Foo: 'Bar' });
   });
 };

@@ -9,14 +9,13 @@ module.exports = function reduce(fn, carry) {
   }
 
   if (Array.isArray(this.items)) {
-    this.items.forEach(function (item) {
+    this.items.forEach((item) => {
       result = fn(reduceCarry, item);
       reduceCarry = result;
     });
   } else {
-    const items = this.items;
-    Object.keys(items).forEach(function(key) {
-      result = fn(reduceCarry, items[key], key);
+    Object.keys(this.items).forEach((key) => {
+      result = fn(reduceCarry, this.items[key], key);
       reduceCarry = result;
     });
   }
