@@ -243,12 +243,12 @@ Collection.prototype.whereNotIn = __webpack_require__(94);
 Collection.prototype.wrap = __webpack_require__(95);
 Collection.prototype.zip = __webpack_require__(96);
 
-module.exports = function (collection) {
+var collect = function collect(collection) {
   return new Collection(collection);
 };
-module.exports.default = function (collection) {
-  return new Collection(collection);
-};
+
+module.exports = collect;
+module.exports.default = collect;
 
 /***/ }),
 /* 4 */
@@ -799,6 +799,7 @@ module.exports = function diffKeys(object) {
 
 module.exports = function dump() {
   console.log(this);
+
   return this;
 };
 
@@ -930,6 +931,7 @@ function filterObject(func, items) {
       result[key] = items[key];
     }
   });
+
   return result;
 }
 
@@ -944,6 +946,7 @@ function filterArray(func, items) {
       result.push(item);
     }
   }
+
   return result;
 }
 
@@ -966,7 +969,7 @@ module.exports = function filter(fn) {
 "use strict";
 
 
-module.exports = function first(fn) {
+module.exports = function first(fn, defaultValue) {
   if (typeof fn === 'function') {
     for (var i = 0, length = this.items.length; i < length; i += 1) {
       var item = this.items[i];
@@ -974,13 +977,25 @@ module.exports = function first(fn) {
         return item;
       }
     }
+
+    if (typeof defaultValue === 'function') {
+      return defaultValue();
+    }
+
+    return defaultValue;
   }
 
-  if (Array.isArray(this.items)) {
-    return this.items[0];
+  if (Array.isArray(this.items) && this.items.length || Object.keys(this.items).length) {
+    if (Array.isArray(this.items)) {
+      return this.items[0];
+    }
+
+    var firstKey = Object.keys(this.items)[0];
+
+    return this.items[firstKey];
   }
 
-  return this.items[Object.keys(this.items)[0]];
+  return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
 };
 
 /***/ }),
@@ -1363,19 +1378,27 @@ module.exports = function keys() {
 "use strict";
 
 
-module.exports = function last(fn) {
+module.exports = function last(fn, defaultValue) {
+  var items = this.items;
+
   if (typeof fn === 'function') {
-    var collection = this.items.filter(fn);
-
-    return collection[collection.length - 1];
+    items = this.filter(fn).all();
   }
 
-  if (Array.isArray(this.items)) {
-    return this.items[this.items.length - 1];
+  if (Array.isArray(items) && !items.length || !Object.keys(items).length) {
+    if (typeof defaultValue === 'function') {
+      return defaultValue();
+    }
+
+    return defaultValue;
   }
 
-  var keys = Object.keys(this.items);
-  return this.items[keys[keys.length - 1]];
+  if (Array.isArray(items)) {
+    return items[items.length - 1];
+  }
+  var keys = Object.keys(items);
+
+  return items[keys[keys.length - 1]];
 };
 
 /***/ }),
@@ -1921,10 +1944,20 @@ module.exports = function prepend(value, key) {
 "use strict";
 
 
-module.exports = function pull(key) {
-  var value = this.items[key] || null;
+module.exports = function pull(key, defaultValue) {
+  var returnValue = this.items[key] || null;
+
+  if (!returnValue && defaultValue !== undefined) {
+    if (typeof defaultValue === 'function') {
+      returnValue = defaultValue();
+    } else {
+      returnValue = defaultValue;
+    }
+  }
+
   delete this.items[key];
-  return value;
+
+  return returnValue;
 };
 
 /***/ }),
@@ -1986,6 +2019,8 @@ module.exports = function random() {
 
 
 module.exports = function reduce(fn, carry) {
+  var _this = this;
+
   var result = null;
   var reduceCarry = null;
 
@@ -1993,10 +2028,17 @@ module.exports = function reduce(fn, carry) {
     reduceCarry = carry;
   }
 
-  this.items.forEach(function (item) {
-    result = fn(reduceCarry, item);
-    reduceCarry = result;
-  });
+  if (Array.isArray(this.items)) {
+    this.items.forEach(function (item) {
+      result = fn(reduceCarry, item);
+      reduceCarry = result;
+    });
+  } else {
+    Object.keys(this.items).forEach(function (key) {
+      result = fn(reduceCarry, _this.items[key], key);
+      reduceCarry = result;
+    });
+  }
 
   return result;
 };
@@ -2089,6 +2131,7 @@ module.exports = function shift() {
   var key = Object.keys(this.items)[0];
   var value = this.items[key] || null;
   delete this.items[key];
+
   return value;
 };
 
@@ -2178,12 +2221,14 @@ module.exports = function sortBy(valueOrFunction) {
     collection.sort(function (a, b) {
       if (valueOrFunction(a) < valueOrFunction(b)) return -1;
       if (valueOrFunction(a) > valueOrFunction(b)) return 1;
+
       return 0;
     });
   } else {
     collection.sort(function (a, b) {
       if (a[valueOrFunction] < b[valueOrFunction]) return -1;
       if (a[valueOrFunction] > b[valueOrFunction]) return 1;
+
       return 0;
     });
   }
@@ -2319,6 +2364,7 @@ module.exports = function take(length) {
 
 module.exports = function tap(fn) {
   fn(this);
+
   return this;
 };
 
