@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = function reduce(fn, carry) {
+  var _this = this;
+
   var result = null;
   var reduceCarry = null;
 
@@ -14,9 +16,8 @@ module.exports = function reduce(fn, carry) {
       reduceCarry = result;
     });
   } else {
-    var items = this.items;
-    Object.keys(items).forEach(function (key) {
-      result = fn(reduceCarry, items[key], key);
+    Object.keys(this.items).forEach(function (key) {
+      result = fn(reduceCarry, _this.items[key], key);
       reduceCarry = result;
     });
   }
