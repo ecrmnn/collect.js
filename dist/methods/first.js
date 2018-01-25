@@ -1,8 +1,6 @@
 'use strict';
 
-var values = require('../helpers/values');
 var value = require('../helpers/value');
-var empty = require('../helpers/empty');
 
 module.exports = function first(fn, defaultValue) {
   if (typeof fn === 'function') {
@@ -16,8 +14,14 @@ module.exports = function first(fn, defaultValue) {
     return value(defaultValue);
   }
 
-  if (!empty(this.items)) {
-    return values(this.items)[0];
+  if (Array.isArray(this.items) && this.items.length !== 0 || Object.keys(this.items).length !== 0) {
+    if (Array.isArray(this.items)) {
+      return this.items[0];
+    }
+
+    var firstKey = Object.keys(this.items)[0];
+
+    return this.items[firstKey];
   }
 
   return value(defaultValue);
