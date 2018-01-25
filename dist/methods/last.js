@@ -11,9 +11,14 @@ module.exports = function last(fn, defaultValue) {
     items = this.filter(fn).all();
   }
 
-  if (empty(items)) {
+  if (Array.isArray(items) && items.length === 0 || Object.keys(items).length === 0) {
     return value(defaultValue);
   }
 
-  return values(items).reverse()[0];
+  if (Array.isArray(items)) {
+    return items[items.length - 1];
+  }
+  var keys = Object.keys(items);
+
+  return items[keys[keys.length - 1]];
 };
