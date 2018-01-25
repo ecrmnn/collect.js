@@ -8,8 +8,9 @@ module.exports = function last(fn, defaultValue) {
   }
 
   if (
-    Array.isArray(items) && items.length === 0 ||
-    Object.keys(items).length === 0) {
+    (Array.isArray(items) && items.length === 0) ||
+    (Object.keys(items).length === 0)
+  ) {
     return (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
   }
 

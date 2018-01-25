@@ -3,7 +3,7 @@
 module.exports = function pull(key, defaultValue) {
   let returnValue = this.items[key] || null;
 
-  if (! returnValue && defaultValue !== undefined) {
+  if (!returnValue && defaultValue !== undefined) {
     returnValue = (typeof defaultValue === 'function' ? defaultValue() : defaultValue);
   }
 

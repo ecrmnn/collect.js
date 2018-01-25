@@ -13,8 +13,8 @@ module.exports = function first(fn, defaultValue) {
   }
 
   if (
-    Array.isArray(this.items) && this.items.length !== 0 ||
-    Object.keys(this.items).length !== 0
+    (Array.isArray(this.items) && this.items.length !== 0) ||
+    (Object.keys(this.items).length !== 0)
   ) {
     if (Array.isArray(this.items)) {
       return this.items[0];
