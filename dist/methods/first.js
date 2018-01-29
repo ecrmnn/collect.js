@@ -26,5 +26,9 @@ module.exports = function first(fn, defaultValue) {
     return this.items[firstKey];
   }
 
-  return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+  if (typeof defaultValue === 'function') {
+    return defaultValue();
+  }
+
+  return defaultValue;
 };
