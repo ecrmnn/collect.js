@@ -7,7 +7,8 @@ module.exports = {
     'import',
   ],
   rules: {
-    'no-console': 0,
-    'newline-before-return': 2,
+    'no-console': 'error',
+    'newline-before-return': 'error',
+    'no-ternary': 'error',
   },
 };

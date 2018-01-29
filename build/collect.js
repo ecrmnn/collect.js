@@ -517,6 +517,7 @@ module.exports = function crossJoin() {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 module.exports = function dd() {
+  // eslint-disable-next-line
   console.log(this.all());
 
   if (typeof process !== 'undefined') {
@@ -798,6 +799,7 @@ module.exports = function diffKeys(object) {
 
 
 module.exports = function dump() {
+  // eslint-disable-next-line
   console.log(this);
 
   return this;
@@ -995,7 +997,11 @@ module.exports = function first(fn, defaultValue) {
     return this.items[firstKey];
   }
 
-  return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+  if (typeof defaultValue === 'function') {
+    return defaultValue();
+  }
+
+  return defaultValue;
 };
 
 /***/ }),
