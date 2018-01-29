@@ -21,7 +21,7 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql(data);
   });
-  
+
   it('should filter the collection by a given key / value not contained within the given collection', () => {
     const data = [
       { product: 'Desk', price: 200 },
