@@ -7,8 +7,9 @@ module.exports = {
     'import',
   ],
   rules: {
+    'curly': 'error',
     'no-console': 'error',
-    'newline-before-return': 'error',
     'no-ternary': 'error',
+    'newline-before-return': 'error',
   },
 };
