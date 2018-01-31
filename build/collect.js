@@ -74,7 +74,7 @@ var collect =
 /**
  * Values helper
  *
- * Retrieve values from [this.items] when it is an array or object
+ * Retrieve values from [this.items] when it is an array, object or Collection
  *
  * @returns {*}
  * @param items
@@ -87,6 +87,8 @@ module.exports = function values(items) {
 
   if (Array.isArray(items)) {
     valuesArray.push.apply(valuesArray, _toConsumableArray(items));
+  } else if (items.constructor.name === 'Collection') {
+    valuesArray.push.apply(valuesArray, _toConsumableArray(items.all()));
   } else {
     Object.keys(items).forEach(function (prop) {
       return valuesArray.push(items[prop]);
@@ -2649,9 +2651,13 @@ module.exports = function where(key, operator, value) {
 "use strict";
 
 
+var extractValues = __webpack_require__(0);
+
 module.exports = function whereIn(key, values) {
+  var items = extractValues(values);
+
   var collection = this.items.filter(function (item) {
-    return values.indexOf(item[key]) !== -1;
+    return items.indexOf(item[key]) !== -1;
   });
 
   return new this.constructor(collection);
@@ -2664,10 +2670,13 @@ module.exports = function whereIn(key, values) {
 "use strict";
 
 
+var extractValues = __webpack_require__(0);
+
 module.exports = function whereNotIn(key, values) {
+  var items = extractValues(values);
   var collection = this.items;
 
-  values.forEach(function (value) {
+  items.forEach(function (value) {
     collection = collection.filter(function (item) {
       return item[key] !== value;
     });
