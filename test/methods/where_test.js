@@ -100,4 +100,15 @@ module.exports = (it, expect, collect) => {
       { product: 'Bookcase', price: 150, manufacturer: 'IKEA' },
     ]);
   });
+
+  it('should work when collection is an object', () => {
+    const filtered = collect([
+      { test: 1 },
+      { test: 2 },
+    ]).keyBy('test')
+      .where('test', 2)
+      .all();
+
+    expect(filtered).to.eql([{ test: 2 }]);
+  });
 };

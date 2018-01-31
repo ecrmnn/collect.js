@@ -1,5 +1,7 @@
 'use strict';
 
+const values = require('../helpers/values');
+
 module.exports = function where(key, operator, value) {
   let comparisonOperator = operator;
   let comparisonValue = value;
@@ -9,7 +11,9 @@ module.exports = function where(key, operator, value) {
     comparisonOperator = '===';
   }
 
-  const collection = this.items.filter((item) => {
+  const items = values(this.items);
+
+  const collection = items.filter((item) => {
     switch (comparisonOperator) {
       case '==':
         return item[key] === Number(comparisonValue) ||
