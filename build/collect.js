@@ -76,8 +76,8 @@ var collect =
  *
  * Retrieve values from [this.items] when it is an array or object
  *
- * @param args
  * @returns {*}
+ * @param items
  */
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -2595,6 +2595,8 @@ module.exports = function when(value, fn, defaultFn) {
 "use strict";
 
 
+var values = __webpack_require__(0);
+
 module.exports = function where(key, operator, value) {
   var comparisonOperator = operator;
   var comparisonValue = value;
@@ -2604,7 +2606,9 @@ module.exports = function where(key, operator, value) {
     comparisonOperator = '===';
   }
 
-  var collection = this.items.filter(function (item) {
+  var items = values(this.items);
+
+  var collection = items.filter(function (item) {
     switch (comparisonOperator) {
       case '==':
         return item[key] === Number(comparisonValue) || item[key] === comparisonValue.toString();
