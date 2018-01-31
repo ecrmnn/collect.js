@@ -28,4 +28,25 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql(products);
   });
+
+  it('should return everything that matches within given a collection', () => {
+    const collection = collect(products);
+    const filtered = collection.whereIn('price', collect([100, 200]));
+
+    expect(filtered.all()).to.eql([
+      { product: 'Desk', price: 200, manufacturer: 'IKEA' },
+      { product: 'Chair', price: 100, manufacturer: 'Herman Miller' },
+    ]);
+
+    expect(collection.all()).to.eql(products);
+
+    const filtered2 = collection.whereIn('manufacturer', collect(['IKEA']));
+
+    expect(filtered2.all()).to.eql([
+      { product: 'Desk', price: 200, manufacturer: 'IKEA' },
+      { product: 'Bookcase', price: 150, manufacturer: 'IKEA' },
+    ]);
+
+    expect(collection.all()).to.eql(products);
+  });
 };

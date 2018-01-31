@@ -1,9 +1,12 @@
 'use strict';
 
+const extractValues = require('../helpers/values');
+
 module.exports = function whereNotIn(key, values) {
+  const items = extractValues(values);
   let collection = this.items;
 
-  values.forEach((value) => {
+  items.forEach((value) => {
     collection = collection.filter(item => item[key] !== value);
   });
 
