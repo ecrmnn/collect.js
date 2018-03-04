@@ -3,6 +3,7 @@
 > Convenient and dependency free wrapper for working with arrays and objects
 
 [![Travis](https://img.shields.io/travis/ecrmnn/collect.js/master.svg?style=flat-square)](https://travis-ci.org/ecrmnn/collect.js/builds)
+[![CDNJS version](https://img.shields.io/cdnjs/v/collect.js.svg?style=flat-square)](https://cdnjs.com/libraries/collect.js)
 [![npm version](https://img.shields.io/npm/v/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
 [![npm downloads](https://img.shields.io/npm/dm/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
 [![npm license](https://img.shields.io/npm/l/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
