@@ -9,6 +9,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/ecrmnn/collect.js/blob/master/package.json)
 [![eslint](https://img.shields.io/badge/code_style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
+[![cdnjs version](https://img.shields.io/cdnjs/v/collect.js.svg?style=flat-square)](https://cdnjs.com/libraries/collect.js)
 
 ### Installation
 ```bash
@@ -617,7 +618,7 @@ forPage.all();
 ```
 
 #### ``get()``
-The get method returns the item at a given key. If the key does not exist, ``null`` is returned:
+The get method returns the item at a given key or index. If the key or index does not exist, ``null`` is returned:
 ```js
 const collection = collect({
   firstname: 'Chuck',
@@ -629,7 +630,16 @@ collection.get('lastname');
 //=> Norris
 
 collection.get('middlename');
+
 //=> null
+```
+
+```js
+const collection = collect(['a', 'b', 'c']);
+
+collection.get(1);
+
+//=> b
 ```
 
 You may optionally pass a default value as the second argument:
