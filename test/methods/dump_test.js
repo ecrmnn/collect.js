@@ -12,8 +12,8 @@ module.exports = (it, expect, collect) => {
     mockConsole.reset();
 
     expect(mockConsole.calls).to.eql([
-      [collect([1, 2, 3])],
-      [collect({ name: 'Sadio Mané', number: 19 })],
+      [[1, 2, 3]],
+      [{ name: 'Sadio Mané', number: 19 }],
     ]);
   });
 };

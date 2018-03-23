@@ -2,7 +2,7 @@
 
 module.exports = function dump() {
   // eslint-disable-next-line
-  console.log(this);
+  console.log(this.all());
 
   return this;
 };
