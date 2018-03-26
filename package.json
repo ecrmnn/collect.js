@@ -12,7 +12,7 @@
     "uglify": "node_modules/.bin/uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",
     "build": "npm run transpile && npm run bundle && npm run uglify",
     "eslint": "node_modules/.bin/eslint src/ test/",
-    "coverage": "node_modules/.bin/nyc mocha test/tests.js",
+    "coverage": "npm run pretest && node_modules/.bin/nyc mocha test/tests.js",
     "reporter": "node_modules/.bin/nyc report --reporter=html",
     "prepublishOnly": "npm run build"
   },

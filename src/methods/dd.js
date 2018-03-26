@@ -1,8 +1,7 @@
 'use strict';
 
 module.exports = function dd() {
-  // eslint-disable-next-line
-  console.log(this.all());
+  this.dump();
 
   if (typeof process !== 'undefined') {
     process.exit(1);
