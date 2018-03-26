@@ -297,7 +297,7 @@ The dd method will console.log the collection and exit the current process:
 ```js
 const collection = collect([1, 2, 3]).dd();
 
-//=> [1, 2, 3]
+//=> Collection { items: [ 1, 2, 3 ] }
 //=> (Exits node.js process)
 ```
 
@@ -363,8 +363,8 @@ collect([1, 2, 3, 4])
   .map(item => item * 2)
   .dump();
 
-//=> [1, 2, 3, 4]
-//=> [2, 4, 6, 8]
+//=> Collection { items: [ 1, 2, 3, 4 ] }
+//=> Collection { items: [ 2, 4, 6, 8 ] }
 ```
 
 #### ``each()``
