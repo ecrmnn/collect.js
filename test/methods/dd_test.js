@@ -12,7 +12,7 @@ module.exports = (it, expect, collect) => {
     mockConsole.reset();
     mockProcess.reset();
 
-    expect(mockConsole.calls).to.eql([[[1, 2, 3]]]);
+    expect(mockConsole.calls).to.eql([[collect([1, 2, 3])]]);
     expect(mockProcess.calls).to.eql([[1]]);
   });
 };
