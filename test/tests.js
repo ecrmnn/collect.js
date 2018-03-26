@@ -50,5 +50,12 @@ if (!runSingleTest) {
       const missingDocumentation = collect(methods).transform(t => t.replace(/.js/, '')).diff(documentedMethods).all();
       expect(missingDocumentation).to.eql(['symbol.iterator']);
     });
+
+    it('should not have any dependencies', () => {
+      const content = fs.readFileSync('package.json');
+      const pckg = JSON.parse(content);
+
+      expect(pckg.dependencies).to.eql(undefined);
+    });
   });
 }
