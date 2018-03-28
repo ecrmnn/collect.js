@@ -42,4 +42,32 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql(data);
   });
+
+  it('should work with nested objects', () => {
+    const collection2 = collect([
+      { product: 'Desk', price: 200, foo: { bar: 1 } },
+      { product: 'Chair', price: 100, foo: { bar: 2 } },
+      { product: 'Bookcase', price: 150, foo: { bar: 2 } },
+      { product: 'Door', price: 100, foo: { bar: 1 } },
+    ]);
+
+    const filtered = collection2.whereNotIn('foo.bar', [2]);
+
+    expect(filtered.all()).to.eql([{
+      product: 'Desk',
+      price: 200,
+      foo: {
+        bar: 1,
+      },
+    }, {
+      product: 'Door',
+      price: 100,
+      foo: {
+        bar: 1,
+      },
+    }]);
+
+    const filtered2 = collection2.whereNotIn('foo.bar', [89]);
+    expect(filtered2.all()).to.eql(collection2.all());
+  });
 };

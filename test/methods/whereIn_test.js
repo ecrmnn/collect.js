@@ -49,4 +49,35 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql(products);
   });
+
+  it('should work with nested objects', () => {
+    const collection2 = collect([
+      { product: 'Desk', price: 200, foo: { bar: 1 } },
+      { product: 'Chair', price: 100, foo: { bar: 2 } },
+      { product: 'Bookcase', price: 150, foo: { bar: 2 } },
+      { product: 'Door', price: 100, foo: { bar: 1 } },
+    ]);
+
+    const filtered = collection2.whereIn('foo.bar', [1]);
+
+    expect(filtered.all()).to.eql([{
+      product: 'Desk',
+      price: 200,
+      foo: {
+        bar: 1,
+      },
+    }, {
+      product: 'Door',
+      price: 100,
+      foo: {
+        bar: 1,
+      },
+    }]);
+
+    const filtered2 = collection2.whereIn('foo.bar', [1, 2]);
+    expect(filtered2.all()).to.eql(collection2.all());
+
+    const filtered3 = collection2.whereIn('foo.bar', [89]);
+    expect(filtered3.all()).to.eql([]);
+  });
 };
