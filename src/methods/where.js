@@ -2,6 +2,18 @@
 
 const values = require('../helpers/values');
 
+function getNested(mainObject, path) {
+  const separator = '.';
+
+  try {
+    return path
+      .split(separator)
+      .reduce((obj, property) => obj[property], mainObject);
+  } catch (err) {
+    return null;
+  }
+}
+
 module.exports = function where(key, operator, value) {
   let comparisonOperator = operator;
   let comparisonValue = value;
@@ -16,32 +28,32 @@ module.exports = function where(key, operator, value) {
   const collection = items.filter((item) => {
     switch (comparisonOperator) {
       case '==':
-        return item[key] === Number(comparisonValue) ||
-          item[key] === comparisonValue.toString();
+        return getNested(item, key) === Number(comparisonValue) ||
+          getNested(item, key) === comparisonValue.toString();
 
       default:
       case '===':
-        return item[key] === comparisonValue;
+        return getNested(item, key) === comparisonValue;
 
       case '!=':
       case '<>':
-        return item[key] !== Number(comparisonValue) &&
-          item[key] !== comparisonValue.toString();
+        return getNested(item, key) !== Number(comparisonValue) &&
+          getNested(item, key) !== comparisonValue.toString();
 
       case '!==':
-        return item[key] !== comparisonValue;
+        return getNested(item, key) !== comparisonValue;
 
       case '<':
-        return item[key] < comparisonValue;
+        return getNested(item, key) < comparisonValue;
 
       case '<=':
-        return item[key] <= comparisonValue;
+        return getNested(item, key) <= comparisonValue;
 
       case '>':
-        return item[key] > comparisonValue;
+        return getNested(item, key) > comparisonValue;
 
       case '>=':
-        return item[key] >= comparisonValue;
+        return getNested(item, key) >= comparisonValue;
 
     }
   });
