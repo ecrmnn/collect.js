@@ -61,7 +61,7 @@ var collect =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -127,12 +127,22 @@ module.exports = function variadic(args) {
 "use strict";
 
 
-module.exports = function average(key) {
-  if (key === undefined) {
-    return this.sum() / this.items.length;
-  }
+/**
+ * Get value of a nested property
+ *
+ * @param mainObject
+ * @param key
+ * @returns {*}
+ */
 
-  return new this.constructor(this.items).pluck(key).sum() / this.items.length;
+module.exports = function nestedValue(mainObject, key) {
+  try {
+    return key.split('.').reduce(function (obj, property) {
+      return obj[property];
+    }, mainObject);
+  } catch (err) {
+    return null;
+  }
 };
 
 /***/ }),
@@ -142,108 +152,123 @@ module.exports = function average(key) {
 "use strict";
 
 
+module.exports = function average(key) {
+  if (key === undefined) {
+    return this.sum() / this.items.length;
+  }
+
+  return new this.constructor(this.items).pluck(key).sum() / this.items.length;
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 function Collection(collection) {
   this.items = collection || [];
 }
 
-var SymbolIterator = __webpack_require__(4);
+var SymbolIterator = __webpack_require__(5);
 
 if (typeof Symbol !== 'undefined') {
   Collection.prototype[Symbol.iterator] = SymbolIterator;
 }
 
-Collection.prototype.all = __webpack_require__(5);
-Collection.prototype.average = __webpack_require__(2);
-Collection.prototype.avg = __webpack_require__(2);
-Collection.prototype.chunk = __webpack_require__(6);
-Collection.prototype.collapse = __webpack_require__(7);
-Collection.prototype.combine = __webpack_require__(8);
-Collection.prototype.concat = __webpack_require__(9);
-Collection.prototype.contains = __webpack_require__(10);
-Collection.prototype.count = __webpack_require__(11);
-Collection.prototype.crossJoin = __webpack_require__(12);
-Collection.prototype.dd = __webpack_require__(13);
-Collection.prototype.diff = __webpack_require__(15);
-Collection.prototype.diffAssoc = __webpack_require__(16);
-Collection.prototype.diffKeys = __webpack_require__(17);
-Collection.prototype.dump = __webpack_require__(18);
-Collection.prototype.each = __webpack_require__(19);
-Collection.prototype.eachSpread = __webpack_require__(20);
-Collection.prototype.every = __webpack_require__(21);
-Collection.prototype.except = __webpack_require__(22);
-Collection.prototype.filter = __webpack_require__(23);
-Collection.prototype.first = __webpack_require__(24);
-Collection.prototype.firstWhere = __webpack_require__(25);
-Collection.prototype.flatMap = __webpack_require__(26);
-Collection.prototype.flatten = __webpack_require__(27);
-Collection.prototype.flip = __webpack_require__(28);
-Collection.prototype.forPage = __webpack_require__(29);
-Collection.prototype.forget = __webpack_require__(30);
-Collection.prototype.get = __webpack_require__(31);
-Collection.prototype.groupBy = __webpack_require__(32);
-Collection.prototype.has = __webpack_require__(33);
-Collection.prototype.implode = __webpack_require__(34);
-Collection.prototype.intersect = __webpack_require__(35);
-Collection.prototype.intersectByKeys = __webpack_require__(36);
-Collection.prototype.isEmpty = __webpack_require__(37);
-Collection.prototype.isNotEmpty = __webpack_require__(38);
-Collection.prototype.keyBy = __webpack_require__(39);
-Collection.prototype.keys = __webpack_require__(40);
-Collection.prototype.last = __webpack_require__(41);
-Collection.prototype.macro = __webpack_require__(42);
-Collection.prototype.map = __webpack_require__(43);
-Collection.prototype.mapSpread = __webpack_require__(44);
-Collection.prototype.mapToDictionary = __webpack_require__(45);
-Collection.prototype.mapInto = __webpack_require__(46);
-Collection.prototype.mapToGroups = __webpack_require__(47);
-Collection.prototype.mapWithKeys = __webpack_require__(48);
-Collection.prototype.max = __webpack_require__(49);
-Collection.prototype.median = __webpack_require__(50);
-Collection.prototype.merge = __webpack_require__(51);
-Collection.prototype.min = __webpack_require__(52);
-Collection.prototype.mode = __webpack_require__(53);
-Collection.prototype.nth = __webpack_require__(54);
-Collection.prototype.only = __webpack_require__(55);
-Collection.prototype.pad = __webpack_require__(56);
-Collection.prototype.partition = __webpack_require__(58);
-Collection.prototype.pipe = __webpack_require__(59);
-Collection.prototype.pluck = __webpack_require__(60);
-Collection.prototype.pop = __webpack_require__(61);
-Collection.prototype.prepend = __webpack_require__(62);
-Collection.prototype.pull = __webpack_require__(63);
-Collection.prototype.push = __webpack_require__(64);
-Collection.prototype.put = __webpack_require__(65);
-Collection.prototype.random = __webpack_require__(66);
-Collection.prototype.reduce = __webpack_require__(67);
-Collection.prototype.reject = __webpack_require__(68);
-Collection.prototype.reverse = __webpack_require__(69);
-Collection.prototype.search = __webpack_require__(70);
-Collection.prototype.shift = __webpack_require__(71);
-Collection.prototype.shuffle = __webpack_require__(72);
-Collection.prototype.slice = __webpack_require__(73);
-Collection.prototype.sort = __webpack_require__(74);
-Collection.prototype.sortBy = __webpack_require__(75);
-Collection.prototype.sortByDesc = __webpack_require__(76);
-Collection.prototype.splice = __webpack_require__(77);
-Collection.prototype.split = __webpack_require__(78);
-Collection.prototype.sum = __webpack_require__(79);
-Collection.prototype.take = __webpack_require__(80);
-Collection.prototype.tap = __webpack_require__(81);
-Collection.prototype.times = __webpack_require__(82);
-Collection.prototype.toArray = __webpack_require__(83);
-Collection.prototype.toJson = __webpack_require__(84);
-Collection.prototype.transform = __webpack_require__(85);
-Collection.prototype.unless = __webpack_require__(86);
-Collection.prototype.union = __webpack_require__(87);
-Collection.prototype.unique = __webpack_require__(88);
-Collection.prototype.unwrap = __webpack_require__(89);
-Collection.prototype.values = __webpack_require__(90);
-Collection.prototype.when = __webpack_require__(91);
-Collection.prototype.where = __webpack_require__(92);
-Collection.prototype.whereIn = __webpack_require__(93);
-Collection.prototype.whereNotIn = __webpack_require__(94);
-Collection.prototype.wrap = __webpack_require__(95);
-Collection.prototype.zip = __webpack_require__(96);
+Collection.prototype.all = __webpack_require__(6);
+Collection.prototype.average = __webpack_require__(3);
+Collection.prototype.avg = __webpack_require__(3);
+Collection.prototype.chunk = __webpack_require__(7);
+Collection.prototype.collapse = __webpack_require__(8);
+Collection.prototype.combine = __webpack_require__(9);
+Collection.prototype.concat = __webpack_require__(10);
+Collection.prototype.contains = __webpack_require__(11);
+Collection.prototype.count = __webpack_require__(12);
+Collection.prototype.crossJoin = __webpack_require__(13);
+Collection.prototype.dd = __webpack_require__(14);
+Collection.prototype.diff = __webpack_require__(16);
+Collection.prototype.diffAssoc = __webpack_require__(17);
+Collection.prototype.diffKeys = __webpack_require__(18);
+Collection.prototype.dump = __webpack_require__(19);
+Collection.prototype.each = __webpack_require__(20);
+Collection.prototype.eachSpread = __webpack_require__(21);
+Collection.prototype.every = __webpack_require__(22);
+Collection.prototype.except = __webpack_require__(23);
+Collection.prototype.filter = __webpack_require__(24);
+Collection.prototype.first = __webpack_require__(25);
+Collection.prototype.firstWhere = __webpack_require__(26);
+Collection.prototype.flatMap = __webpack_require__(27);
+Collection.prototype.flatten = __webpack_require__(28);
+Collection.prototype.flip = __webpack_require__(29);
+Collection.prototype.forPage = __webpack_require__(30);
+Collection.prototype.forget = __webpack_require__(31);
+Collection.prototype.get = __webpack_require__(32);
+Collection.prototype.groupBy = __webpack_require__(33);
+Collection.prototype.has = __webpack_require__(34);
+Collection.prototype.implode = __webpack_require__(35);
+Collection.prototype.intersect = __webpack_require__(36);
+Collection.prototype.intersectByKeys = __webpack_require__(37);
+Collection.prototype.isEmpty = __webpack_require__(38);
+Collection.prototype.isNotEmpty = __webpack_require__(39);
+Collection.prototype.keyBy = __webpack_require__(40);
+Collection.prototype.keys = __webpack_require__(41);
+Collection.prototype.last = __webpack_require__(42);
+Collection.prototype.macro = __webpack_require__(43);
+Collection.prototype.map = __webpack_require__(44);
+Collection.prototype.mapSpread = __webpack_require__(45);
+Collection.prototype.mapToDictionary = __webpack_require__(46);
+Collection.prototype.mapInto = __webpack_require__(47);
+Collection.prototype.mapToGroups = __webpack_require__(48);
+Collection.prototype.mapWithKeys = __webpack_require__(49);
+Collection.prototype.max = __webpack_require__(50);
+Collection.prototype.median = __webpack_require__(51);
+Collection.prototype.merge = __webpack_require__(52);
+Collection.prototype.min = __webpack_require__(53);
+Collection.prototype.mode = __webpack_require__(54);
+Collection.prototype.nth = __webpack_require__(55);
+Collection.prototype.only = __webpack_require__(56);
+Collection.prototype.pad = __webpack_require__(57);
+Collection.prototype.partition = __webpack_require__(59);
+Collection.prototype.pipe = __webpack_require__(60);
+Collection.prototype.pluck = __webpack_require__(61);
+Collection.prototype.pop = __webpack_require__(62);
+Collection.prototype.prepend = __webpack_require__(63);
+Collection.prototype.pull = __webpack_require__(64);
+Collection.prototype.push = __webpack_require__(65);
+Collection.prototype.put = __webpack_require__(66);
+Collection.prototype.random = __webpack_require__(67);
+Collection.prototype.reduce = __webpack_require__(68);
+Collection.prototype.reject = __webpack_require__(69);
+Collection.prototype.reverse = __webpack_require__(70);
+Collection.prototype.search = __webpack_require__(71);
+Collection.prototype.shift = __webpack_require__(72);
+Collection.prototype.shuffle = __webpack_require__(73);
+Collection.prototype.slice = __webpack_require__(74);
+Collection.prototype.sort = __webpack_require__(75);
+Collection.prototype.sortBy = __webpack_require__(76);
+Collection.prototype.sortByDesc = __webpack_require__(77);
+Collection.prototype.splice = __webpack_require__(78);
+Collection.prototype.split = __webpack_require__(79);
+Collection.prototype.sum = __webpack_require__(80);
+Collection.prototype.take = __webpack_require__(81);
+Collection.prototype.tap = __webpack_require__(82);
+Collection.prototype.times = __webpack_require__(83);
+Collection.prototype.toArray = __webpack_require__(84);
+Collection.prototype.toJson = __webpack_require__(85);
+Collection.prototype.transform = __webpack_require__(86);
+Collection.prototype.unless = __webpack_require__(87);
+Collection.prototype.union = __webpack_require__(88);
+Collection.prototype.unique = __webpack_require__(89);
+Collection.prototype.unwrap = __webpack_require__(90);
+Collection.prototype.values = __webpack_require__(91);
+Collection.prototype.when = __webpack_require__(92);
+Collection.prototype.where = __webpack_require__(93);
+Collection.prototype.whereIn = __webpack_require__(94);
+Collection.prototype.whereNotIn = __webpack_require__(95);
+Collection.prototype.wrap = __webpack_require__(96);
+Collection.prototype.zip = __webpack_require__(97);
 
 var collect = function collect(collection) {
   return new Collection(collection);
@@ -253,7 +278,7 @@ module.exports = collect;
 module.exports.default = collect;
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -277,7 +302,7 @@ module.exports = function SymbolIterator() {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -288,7 +313,7 @@ module.exports = function all() {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -336,7 +361,7 @@ module.exports = function chunk(size) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -351,7 +376,7 @@ module.exports = function collapse() {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -390,7 +415,7 @@ module.exports = function combine(array) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -426,7 +451,7 @@ module.exports = function concat(collectionOrArrayOrObject) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -457,7 +482,7 @@ module.exports = function contains(key, value) {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -472,7 +497,7 @@ module.exports = function count() {
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -512,24 +537,23 @@ module.exports = function crossJoin() {
 };
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 module.exports = function dd() {
-  // eslint-disable-next-line
-  console.log(this.all());
+  this.dump();
 
   if (typeof process !== 'undefined') {
     process.exit(1);
   }
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -719,7 +743,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -742,7 +766,7 @@ module.exports = function diff(values) {
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -769,7 +793,7 @@ module.exports = function diffAssoc(values) {
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -794,7 +818,7 @@ module.exports = function diffKeys(object) {
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -808,7 +832,7 @@ module.exports = function dump() {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -829,7 +853,7 @@ module.exports = function each(fn) {
 };
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -846,7 +870,7 @@ module.exports = function eachSpread(fn) {
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -863,7 +887,7 @@ module.exports = function every(fn) {
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -900,7 +924,7 @@ module.exports = function except() {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -967,7 +991,7 @@ module.exports = function filter(fn) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1007,7 +1031,7 @@ module.exports = function first(fn, defaultValue) {
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1018,7 +1042,7 @@ module.exports = function firstWhere(key, value) {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1050,7 +1074,7 @@ module.exports = function flatMap(fn) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1111,7 +1135,7 @@ module.exports = function flatten(depth) {
 };
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1136,7 +1160,7 @@ module.exports = function flip() {
 };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1159,7 +1183,7 @@ module.exports = function forPage(page, chunk) {
 };
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1176,7 +1200,7 @@ module.exports = function forget(key) {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1201,7 +1225,7 @@ module.exports = function get(key) {
 };
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1232,7 +1256,7 @@ module.exports = function groupBy(key) {
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1255,7 +1279,7 @@ module.exports = function has() {
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1270,7 +1294,7 @@ module.exports = function implode(key, glue) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1291,7 +1315,7 @@ module.exports = function intersect(values) {
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1318,7 +1342,7 @@ module.exports = function intersectByKeys(values) {
 };
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1329,7 +1353,7 @@ module.exports = function isEmpty() {
 };
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1340,7 +1364,7 @@ module.exports = function isNotEmpty() {
 };
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1363,7 +1387,7 @@ module.exports = function keyBy(key) {
 };
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1380,7 +1404,7 @@ module.exports = function keys() {
 };
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1410,7 +1434,7 @@ module.exports = function last(fn, defaultValue) {
 };
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1421,7 +1445,7 @@ module.exports = function macro(name, fn) {
 };
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1444,7 +1468,7 @@ module.exports = function map(fn) {
 };
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1459,7 +1483,7 @@ module.exports = function mapSpread(fn) {
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1487,7 +1511,7 @@ module.exports = function mapToDictionary(fn) {
 };
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1500,7 +1524,7 @@ module.exports = function mapInto(ClassName) {
 };
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1528,7 +1552,7 @@ module.exports = function mapToGroups(fn) {
 };
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1565,7 +1589,7 @@ module.exports = function mapWithKeys(fn) {
 };
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1582,7 +1606,7 @@ module.exports = function max(key) {
 };
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1607,7 +1631,7 @@ module.exports = function median(key) {
 };
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1634,7 +1658,7 @@ module.exports = function merge(value) {
 };
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1651,7 +1675,7 @@ module.exports = function min(key) {
 };
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1698,7 +1722,7 @@ module.exports = function mode(key) {
 };
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1719,7 +1743,7 @@ module.exports = function nth(n) {
 };
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1756,13 +1780,13 @@ module.exports = function only() {
 };
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var clone = __webpack_require__(57);
+var clone = __webpack_require__(58);
 
 module.exports = function pad(size, value) {
   var abs = Math.abs(size);
@@ -1797,7 +1821,7 @@ module.exports = function pad(size, value) {
 };
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1835,7 +1859,7 @@ module.exports = function clone(items) {
 };
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1874,7 +1898,7 @@ module.exports = function partition(fn) {
 };
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1885,7 +1909,7 @@ module.exports = function pipe(fn) {
 };
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1908,7 +1932,7 @@ module.exports = function pluck(value, key) {
 };
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1929,7 +1953,7 @@ module.exports = function pop() {
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1946,7 +1970,7 @@ module.exports = function prepend(value, key) {
 };
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1969,7 +1993,7 @@ module.exports = function pull(key, defaultValue) {
 };
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1984,7 +2008,7 @@ module.exports = function push() {
 };
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1997,7 +2021,7 @@ module.exports = function put(key, value) {
 };
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2020,7 +2044,7 @@ module.exports = function random() {
 };
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2029,7 +2053,7 @@ module.exports = function random() {
 module.exports = function reduce(fn, carry) {
   var _this = this;
 
-  var result = null;
+  var result = 0;
   var reduceCarry = null;
 
   if (carry !== undefined) {
@@ -2052,7 +2076,7 @@ module.exports = function reduce(fn, carry) {
 };
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2065,7 +2089,7 @@ module.exports = function reject(fn) {
 };
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2078,7 +2102,7 @@ module.exports = function reverse() {
 };
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2125,7 +2149,7 @@ module.exports = function search(valueOrFunction, strict) {
 };
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2144,7 +2168,7 @@ module.exports = function shift() {
 };
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2172,7 +2196,7 @@ module.exports = function shuffle() {
 };
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2189,7 +2213,7 @@ module.exports = function slice(remove, limit) {
 };
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2216,7 +2240,7 @@ module.exports = function sort(fn) {
 };
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2245,7 +2269,7 @@ module.exports = function sortBy(valueOrFunction) {
 };
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2256,7 +2280,7 @@ module.exports = function sortByDesc(valueOrFunction) {
 };
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2277,7 +2301,7 @@ module.exports = function splice(index, limit, replace) {
 };
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2297,7 +2321,7 @@ module.exports = function split(numberOfGroups) {
 };
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2324,7 +2348,7 @@ module.exports = function sum(key) {
 };
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2364,7 +2388,7 @@ module.exports = function take(length) {
 };
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2377,7 +2401,7 @@ module.exports = function tap(fn) {
 };
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2392,7 +2416,7 @@ module.exports = function times(n, fn) {
 };
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2433,7 +2457,7 @@ module.exports = function toArray() {
 };
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2444,7 +2468,7 @@ module.exports = function toJson() {
 };
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2469,7 +2493,7 @@ module.exports = function transform(fn) {
 };
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2484,7 +2508,7 @@ module.exports = function when(value, fn, defaultFn) {
 };
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2505,7 +2529,7 @@ module.exports = function union(object) {
 };
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2542,7 +2566,7 @@ module.exports = function unique(key) {
 };
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2557,7 +2581,7 @@ module.exports = function unwrap(value) {
 };
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2576,7 +2600,7 @@ module.exports = function values() {
 };
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2591,13 +2615,14 @@ module.exports = function when(value, fn, defaultFn) {
 };
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var values = __webpack_require__(0);
+var nestedValue = __webpack_require__(2);
 
 module.exports = function where(key, operator, value) {
   var comparisonOperator = operator;
@@ -2613,51 +2638,32 @@ module.exports = function where(key, operator, value) {
   var collection = items.filter(function (item) {
     switch (comparisonOperator) {
       case '==':
-        return item[key] === Number(comparisonValue) || item[key] === comparisonValue.toString();
+        return nestedValue(item, key) === Number(comparisonValue) || nestedValue(item, key) === comparisonValue.toString();
 
       default:
       case '===':
-        return item[key] === comparisonValue;
+        return nestedValue(item, key) === comparisonValue;
 
       case '!=':
       case '<>':
-        return item[key] !== Number(comparisonValue) && item[key] !== comparisonValue.toString();
+        return nestedValue(item, key) !== Number(comparisonValue) && nestedValue(item, key) !== comparisonValue.toString();
 
       case '!==':
-        return item[key] !== comparisonValue;
+        return nestedValue(item, key) !== comparisonValue;
 
       case '<':
-        return item[key] < comparisonValue;
+        return nestedValue(item, key) < comparisonValue;
 
       case '<=':
-        return item[key] <= comparisonValue;
+        return nestedValue(item, key) <= comparisonValue;
 
       case '>':
-        return item[key] > comparisonValue;
+        return nestedValue(item, key) > comparisonValue;
 
       case '>=':
-        return item[key] >= comparisonValue;
+        return nestedValue(item, key) >= comparisonValue;
 
     }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var extractValues = __webpack_require__(0);
-
-module.exports = function whereIn(key, values) {
-  var items = extractValues(values);
-
-  var collection = this.items.filter(function (item) {
-    return items.indexOf(item[key]) !== -1;
   });
 
   return new this.constructor(collection);
@@ -2671,15 +2677,13 @@ module.exports = function whereIn(key, values) {
 
 
 var extractValues = __webpack_require__(0);
+var nestedValue = __webpack_require__(2);
 
-module.exports = function whereNotIn(key, values) {
+module.exports = function whereIn(key, values) {
   var items = extractValues(values);
-  var collection = this.items;
 
-  items.forEach(function (value) {
-    collection = collection.filter(function (item) {
-      return item[key] !== value;
-    });
+  var collection = this.items.filter(function (item) {
+    return items.indexOf(nestedValue(item, key)) !== -1;
   });
 
   return new this.constructor(collection);
@@ -2687,6 +2691,26 @@ module.exports = function whereNotIn(key, values) {
 
 /***/ }),
 /* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var extractValues = __webpack_require__(0);
+var nestedValue = __webpack_require__(2);
+
+module.exports = function whereNotIn(key, values) {
+  var items = extractValues(values);
+
+  var collection = this.items.filter(function (item) {
+    return items.indexOf(nestedValue(item, key)) === -1;
+  });
+
+  return new this.constructor(collection);
+};
+
+/***/ }),
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2707,7 +2731,7 @@ module.exports = function wrap(value) {
 };
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
