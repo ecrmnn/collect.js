@@ -3,7 +3,7 @@
 module.exports = function reduce(fn, carry) {
   var _this = this;
 
-  var result = null;
+  var result = 0;
   var reduceCarry = null;
 
   if (carry !== undefined) {

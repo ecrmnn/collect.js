@@ -23,4 +23,11 @@ module.exports = (it, expect, collect) => {
     expect(reduced).to.eql('DoeJoeBarFoo');
     expect(collection.all()).to.eql({ Joe: 'Doe', Foo: 'Bar' });
   });
+
+  it('should return 0 when reducing an empty collection', () => {
+    const collection = collect([]);
+    const result = collection.reduce((carry, number) => carry + number, 0);
+
+    expect(result).to.eql(0);
+  });
 };
