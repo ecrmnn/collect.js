@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = function reduce(fn, carry) {
-  let result = 0;
   let reduceCarry = null;
 
   if (carry !== undefined) {
@@ -10,15 +9,13 @@ module.exports = function reduce(fn, carry) {
 
   if (Array.isArray(this.items)) {
     this.items.forEach((item) => {
-      result = fn(reduceCarry, item);
-      reduceCarry = result;
+      reduceCarry = fn(reduceCarry, item);
     });
   } else {
     Object.keys(this.items).forEach((key) => {
-      result = fn(reduceCarry, this.items[key], key);
-      reduceCarry = result;
+      reduceCarry = fn(reduceCarry, this.items[key], key);
     });
   }
 
-  return result;
+  return reduceCarry;
 };
