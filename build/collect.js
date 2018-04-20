@@ -2053,7 +2053,6 @@ module.exports = function random() {
 module.exports = function reduce(fn, carry) {
   var _this = this;
 
-  var result = 0;
   var reduceCarry = null;
 
   if (carry !== undefined) {
@@ -2062,17 +2061,15 @@ module.exports = function reduce(fn, carry) {
 
   if (Array.isArray(this.items)) {
     this.items.forEach(function (item) {
-      result = fn(reduceCarry, item);
-      reduceCarry = result;
+      reduceCarry = fn(reduceCarry, item);
     });
   } else {
     Object.keys(this.items).forEach(function (key) {
-      result = fn(reduceCarry, _this.items[key], key);
-      reduceCarry = result;
+      reduceCarry = fn(reduceCarry, _this.items[key], key);
     });
   }
 
-  return result;
+  return reduceCarry;
 };
 
 /***/ }),
