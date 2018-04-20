@@ -30,4 +30,11 @@ module.exports = (it, expect, collect) => {
 
     expect(result).to.eql(0);
   });
+
+  it('should return 1 when reducing an empty collection with carry of 1', () => {
+    const collection = collect([]);
+    const result = collection.reduce((carry, number) => carry + number, 1);
+
+    expect(result).to.eql(1);
+  });
 };
