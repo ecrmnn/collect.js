@@ -82,4 +82,25 @@ module.exports = (it, expect, collect) => {
       Door: null,
     });
   });
+
+  it('should not return null instead of 0', () => {
+    const data = [
+      { name: 'January', count: 0 },
+      { name: 'February', count: 0 },
+      { name: 'March', count: 1 },
+      { name: 'April', count: 0 },
+      { name: 'May', count: 2 },
+      { name: 'June', count: 0 },
+      { name: 'July', count: 0 },
+      { name: 'August', count: 0 },
+      { name: 'September', count: 0 },
+      { name: 'October', count: 0 },
+      { name: 'November', count: 0 },
+      { name: 'December', count: 0 },
+    ];
+
+    expect(collect(data).pluck('count').all()).to.eql([0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0]);
+
+    expect(collect(data).pluck('count', 'name').first()).to.equal(0);
+  });
 };
