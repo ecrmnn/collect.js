@@ -5,11 +5,21 @@ module.exports = function pluck(value, key) {
     const collection = {};
 
     this.items.forEach((item) => {
-      collection[item[key] || ''] = item[value] || null;
+      if (item[value] !== undefined) {
+        collection[item[key] || ''] = item[value];
+      } else {
+        collection[item[key] || ''] = null;
+      }
     });
 
     return new this.constructor(collection);
   }
 
-  return this.map(item => item[value] || null);
+  return this.map((item) => {
+    if (item[value] !== undefined) {
+      return item[value];
+    }
+
+    return null;
+  });
 };
