@@ -397,7 +397,7 @@ declare module 'collect.js' {
      */
     sum<K>(key?: K | ((item: Item) => number | string)): number | string;
 
-    [Symbol.iterator];
+    [Symbol.iterator]: () => Iterator<Item>;
 
     /**
      * The take method returns a new collection with the specified number of items:
