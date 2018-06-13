@@ -1,5 +1,7 @@
 'use strict';
 
+const values = require('../helpers/values');
+
 module.exports = function contains(key, value) {
   if (value !== undefined) {
     if (Array.isArray(this.items)) {
@@ -19,5 +21,8 @@ module.exports = function contains(key, value) {
     return this.items.indexOf(key) !== -1;
   }
 
-  return this.items[key] !== undefined;
+  const keysAndValues = values(this.items);
+  keysAndValues.push(...Object.keys(this.items));
+
+  return keysAndValues.indexOf(key) !== -1;
 };
