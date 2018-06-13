@@ -1,5 +1,9 @@
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var values = require('../helpers/values');
+
 module.exports = function contains(key, value) {
   if (value !== undefined) {
     if (Array.isArray(this.items)) {
@@ -21,5 +25,8 @@ module.exports = function contains(key, value) {
     return this.items.indexOf(key) !== -1;
   }
 
-  return this.items[key] !== undefined;
+  var keysAndValues = values(this.items);
+  keysAndValues.push.apply(keysAndValues, _toConsumableArray(Object.keys(this.items)));
+
+  return keysAndValues.indexOf(key) !== -1;
 };

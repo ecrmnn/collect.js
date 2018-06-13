@@ -249,6 +249,9 @@ collection.contains('name');
 
 collection.contains('age');
 //=> false
+
+collection.contains('Steven Gerrard');
+//=> true
 ```
 You may also work with arrays
 ```js

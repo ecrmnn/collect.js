@@ -74,4 +74,16 @@ module.exports = (it, expect, collect) => {
     const collection3 = collect([1, 2, 3, 4]);
     expect(collection3.contains(4)).to.eql(true);
   });
+
+  it('should return whether the collection contains a given key', () => {
+    const collection = collect({
+      name: 'Mohamed Salah',
+      number: 11,
+    });
+
+    expect(collection.contains('name')).to.eql(true);
+    expect(collection.contains('Mohamed Salah')).to.eql(true);
+    expect(collection.contains('number')).to.eql(true);
+    expect(collection.contains(11)).to.eql(true);
+  });
 };
