@@ -7,5 +7,5 @@ module.exports = function when(value, fn, defaultFn) {
     return defaultFn(this, value);
   }
 
-  return this
+  return this;
 };
