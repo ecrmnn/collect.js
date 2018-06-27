@@ -1,9 +1,7 @@
 'use strict';
 
-module.exports = function when(value, fn, defaultFn) {
-  if (!value) {
-    fn(this);
-  } else {
-    defaultFn(this);
-  }
+var when = require('./when')
+
+module.exports = function unless(value, fn, defaultFn) {
+  return when.call(this, !value, fn, defaultFn)
 };
