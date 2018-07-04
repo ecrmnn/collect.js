@@ -106,28 +106,6 @@ module.exports = function values(items) {
 
 
 /**
- * Variadic helper function
- *
- * @param args
- * @returns {*}
- */
-
-module.exports = function variadic(args) {
-  if (Array.isArray(args[0])) {
-    return args[0];
-  }
-
-  return args;
-};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
  * Get value of a nested property
  *
  * @param mainObject
@@ -143,6 +121,28 @@ module.exports = function nestedValue(mainObject, key) {
   } catch (err) {
     return null;
   }
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Variadic helper function
+ *
+ * @param args
+ * @returns {*}
+ */
+
+module.exports = function variadic(args) {
+  if (Array.isArray(args[0])) {
+    return args[0];
+  }
+
+  return args;
 };
 
 /***/ }),
@@ -900,7 +900,7 @@ module.exports = function every(fn) {
 "use strict";
 
 
-var variadic = __webpack_require__(1);
+var variadic = __webpack_require__(2);
 
 module.exports = function except() {
   var _this = this;
@@ -1269,7 +1269,7 @@ module.exports = function groupBy(key) {
 "use strict";
 
 
-var variadic = __webpack_require__(1);
+var variadic = __webpack_require__(2);
 
 module.exports = function has() {
   var _this = this;
@@ -1756,7 +1756,7 @@ module.exports = function nth(n) {
 "use strict";
 
 
-var variadic = __webpack_require__(1);
+var variadic = __webpack_require__(2);
 
 module.exports = function only() {
   var _this = this;
@@ -1922,24 +1922,99 @@ module.exports = function pipe(fn) {
 "use strict";
 
 
-module.exports = function pluck(value, key) {
-  if (key !== undefined) {
-    var collection = {};
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-    this.items.forEach(function (item) {
-      if (item[value] !== undefined) {
-        collection[item[key] || ''] = item[value];
-      } else {
-        collection[item[key] || ''] = null;
+var nestedValue = __webpack_require__(1);
+
+var buildKeyPathMap = function buildKeyPathMap(items) {
+  var keyPaths = {};
+
+  items.forEach(function (item, index) {
+    function buildKeyPath(val, keyPath) {
+      if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
+        Object.keys(val).forEach(function (prop) {
+          buildKeyPath(val[prop], keyPath + '.' + prop);
+        });
+      }
+
+      keyPaths[keyPath] = val;
+    }
+
+    buildKeyPath(item, index);
+  });
+
+  return keyPaths;
+};
+
+module.exports = function pluck(value, key) {
+  if (value.indexOf('*') !== -1) {
+    var keyPathMap = buildKeyPathMap(this.items);
+
+    var keyMatches = [];
+
+    if (key !== undefined) {
+      var keyRegex = new RegExp('0.' + key, 'g');
+      var keyNumberOfLevels = ('0.' + key).split('.').length;
+
+      Object.keys(keyPathMap).forEach(function (k) {
+        var matchingKey = k.match(keyRegex);
+
+        if (matchingKey) {
+          var match = matchingKey[0];
+
+          if (match.split('.').length === keyNumberOfLevels) {
+            keyMatches.push(keyPathMap[match]);
+          }
+        }
+      });
+    }
+
+    var valueMatches = [];
+    var valueRegex = new RegExp('0.' + value, 'g');
+    var valueNumberOfLevels = ('0.' + value).split('.').length;
+
+    Object.keys(keyPathMap).forEach(function (k) {
+      var matchingValue = k.match(valueRegex);
+
+      if (matchingValue) {
+        var match = matchingValue[0];
+
+        if (match.split('.').length === valueNumberOfLevels) {
+          valueMatches.push(keyPathMap[match]);
+        }
       }
     });
 
-    return new this.constructor(collection);
+    if (key !== undefined) {
+      var collection = {};
+
+      this.items.forEach(function (item, index) {
+        collection[keyMatches[index] || ''] = valueMatches;
+      });
+
+      return new this.constructor(collection);
+    }
+
+    return new this.constructor([valueMatches]);
+  }
+
+  if (key !== undefined) {
+    var _collection = {};
+
+    this.items.forEach(function (item) {
+      if (nestedValue(item, value) !== undefined) {
+        _collection[item[key] || ''] = nestedValue(item, value);
+      } else {
+        _collection[item[key] || ''] = null;
+      }
+    });
+
+    return new this.constructor(_collection);
   }
 
   return this.map(function (item) {
-    if (item[value] !== undefined) {
-      return item[value];
+    if (nestedValue(item, value) !== undefined) {
+      return nestedValue(item, value);
     }
 
     return null;
@@ -2634,7 +2709,7 @@ module.exports = function when(value, fn, defaultFn) {
 
 
 var values = __webpack_require__(0);
-var nestedValue = __webpack_require__(2);
+var nestedValue = __webpack_require__(1);
 
 module.exports = function where(key, operator, value) {
   var comparisonOperator = operator;
@@ -2689,7 +2764,7 @@ module.exports = function where(key, operator, value) {
 
 
 var extractValues = __webpack_require__(0);
-var nestedValue = __webpack_require__(2);
+var nestedValue = __webpack_require__(1);
 
 module.exports = function whereIn(key, values) {
   var items = extractValues(values);
@@ -2709,7 +2784,7 @@ module.exports = function whereIn(key, values) {
 
 
 var extractValues = __webpack_require__(0);
-var nestedValue = __webpack_require__(2);
+var nestedValue = __webpack_require__(1);
 
 module.exports = function whereNotIn(key, values) {
   var items = extractValues(values);
