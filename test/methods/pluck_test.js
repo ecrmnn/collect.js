@@ -103,4 +103,72 @@ module.exports = (it, expect, collect) => {
 
     expect(collect(data).pluck('count', 'name').first()).to.equal(0);
   });
+
+  it('should allow dot notation', () => {
+    const users = collect([{
+      name: 'John',
+      roles: [{
+        name: 'Editor',
+      }, {
+        name: 'Admin',
+      }],
+    }]);
+
+    expect(users.pluck('roles.0.name')).to.eql(collect(['Editor']));
+    expect(users.pluck('roles.1.name')).to.eql(collect(['Admin']));
+  });
+
+  it('should allow wildcard dot notation', () => {
+    const users = collect([{
+      name: 'John',
+      roles: [{
+        name: 'Editor',
+      }, {
+        name: 'Admin',
+      }],
+    }]);
+
+    expect(users.pluck('*').all()).to.eql([
+      [
+        'John',
+        [{
+          name: 'Editor',
+        }, {
+          name: 'Admin',
+        }],
+      ],
+    ]);
+
+    expect(users.pluck('roles.*.name').all()).to.eql([
+      [
+        'Editor',
+        'Admin',
+      ],
+    ]);
+  });
+
+  it('should allow multiple wildcards', () => {
+    const users = collect([{
+      name: 'John',
+      roles: [{
+        name: 'Editor',
+      }, {
+        name: 'Admin',
+      }],
+    }]);
+
+    expect(users.pluck('*.*').all()).to.eql([
+      [
+        { name: 'Editor' },
+        { name: 'Admin' },
+      ],
+    ]);
+
+    expect(users.pluck('*.*.*').all()).to.eql([
+      [
+        'Editor',
+        'Admin',
+      ],
+    ]);
+  });
 };
