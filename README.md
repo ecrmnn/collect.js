@@ -27,7 +27,7 @@ yarn add collect.js
 2. Add CDN link to your site with ``<script>``
 
 #### Using build / minified version
-1. Download [``collect.js.min``](https://github.com/ecrmnn/collect.js/blob/master/build/collect.min.js)
+1. Download [``collect.min.js``](https://github.com/ecrmnn/collect.js/blob/master/build/collect.min.js)
 2. Add to your site with ``<script>``
 
 ### Tip
