@@ -1332,6 +1332,47 @@ plucked.all();
 //=> }
 ```
 
+You can use "dot notation" to access nested values
+```js
+const collection = collect([{
+  name: 'John',
+  roles: [{
+    name: 'Editor',
+  }, {
+    name: 'Admin',
+  }],
+}]);
+
+const plucked = collection.pluck('roles.0.name');
+
+plucked.all();
+
+//=> ['Editor']
+``` 
+
+"Dot notation" supports "wildcard" 
+```js
+const collection = collect([{
+  name: 'John',
+  roles: [{
+    name: 'Editor',
+  }, {
+    name: 'Admin',
+  }],
+}]);
+
+const plucked = collection.pluck('roles.*.name');
+
+plucked.all();
+
+//=> [
+//=>   [
+//=>     'Editor',
+//=>     'Admin',
+//=>   ],
+//=> ]
+``` 
+
 #### ``pop()``
 The pop method removes and returns the last item from the collection:
 ```js
