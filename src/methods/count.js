@@ -1,9 +1,11 @@
 'use strict';
 
 module.exports = function count() {
+  let arrayLength = 0;
+
   if (Array.isArray(this.items)) {
-    return this.items.length;
+    arrayLength = this.items.length;
   }
 
-  return Object.keys(this.items).length;
+  return Math.max(Object.keys(this.items).length, arrayLength);
 };
