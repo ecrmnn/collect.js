@@ -37,7 +37,7 @@ declare module 'collect.js' {
     /**
      * The concat method is used to merge two or more collections/arrays/objects.
      */
-    concat<T>(collectionOrArrayOrObject: Collection<T> | T[] | object)
+    concat<T>(collectionOrArrayOrObject: Collection<T> | T[] | object): any;
 
     /**
      * The contains method determines whether the collection contains a given item.
@@ -141,7 +141,7 @@ declare module 'collect.js' {
     /**
      * The get method returns the item at a given key. If the key does not exist, null is returned.
      */
-    get<K, V>(key: K, defaultValue?: (...any) => V | Item): Item | null;
+    get<K, V>(key: K, defaultValue?: (...any: any[]) => V | Item): Item | null;
 
     /**
      * The groupBy method groups the collection's items by a given key.
@@ -212,7 +212,7 @@ declare module 'collect.js' {
      * The map method iterates through the collection and passes each value to the given callback.
      * The callback is free to modify the item and return it, thus forming a new collection of modified items.
      */
-    map<T>(fn: <T>(...any) => T): Collection<T>;
+    map<T>(fn: <T>(...any: any[]) => T): Collection<T>;
 
     /**
      * The mapInto method iterates through the collection and instantiates the given class with each element as a constructor.
@@ -277,7 +277,7 @@ declare module 'collect.js' {
     /**
      * The pipe method passes the collection to the given callback and returns the result.
      */
-    pipe<U>(fn: (...any) => U): U;
+    pipe<U>(fn: (...any: any[]) => U): U;
 
     /**
      * The pluck method retrieves all of the values for a given key.
@@ -318,7 +318,7 @@ declare module 'collect.js' {
      * The reduce method reduces the collection to a single value,
      * passing the result of each iteration into the subsequent iteration.
      */
-    reduce<T>(fn: (_carry: T | null, item: Item) => T, carry?: T);
+    reduce<T>(fn: (_carry: T | null, item: Item) => T, carry?: T): any;
 
     /**
      * The reject method filters the collection using the given callback.
@@ -335,7 +335,7 @@ declare module 'collect.js' {
      * The search method searches the collection for the given value and returns its key if found.
      * If the item is not found, false is returned.
      */
-    search(valueOrFunction: Item | ((value: Item, key: number) => boolean), strict: boolean);
+    search(valueOrFunction: Item | ((value: Item, key: number) => boolean), strict: boolean): any;
 
     /**
      * The shift method removes and returns the first item from the collection.
@@ -449,7 +449,7 @@ declare module 'collect.js' {
     /**
      * The unless method will execute the given callback when the first argument given to the method evaluates to false.
      */
-    unless(value: boolean, fn: (this) => any, defaultFn: (this) => any): void;
+    unless(value: boolean, fn: (this: any) => any, defaultFn: (this: any) => any): void;
 
     /**
      * The unwrap method will unwrap the given collection.
@@ -464,7 +464,7 @@ declare module 'collect.js' {
     /**
      * The when method will execute the given callback when the first argument given to the method evaluates to true.
      */
-    when(condition: boolean, fn: (this) => any, defaultFn: (this) => any): void;
+    when(condition: boolean, fn: (this: any) => any, defaultFn: (this: any) => any): void;
 
     /**
      * The where method filters the collection by a given key / value pair.
