@@ -496,11 +496,13 @@ module.exports = function contains(key, value) {
 
 
 module.exports = function count() {
+  var arrayLength = 0;
+
   if (Array.isArray(this.items)) {
-    return this.items.length;
+    arrayLength = this.items.length;
   }
 
-  return Object.keys(this.items).length;
+  return Math.max(Object.keys(this.items).length, arrayLength);
 };
 
 /***/ }),
