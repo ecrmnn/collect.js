@@ -17,4 +17,12 @@ module.exports = (it, expect, collect) => {
 
     expect(collectionOfCollections.toJson()).to.eql('[[1,2,3],[4,5,6,[7,8,9],[10,11,12]]]');
   });
+
+  it('should cast objects to JSON', () => {
+    const collection = collect({
+      string: 'abc',
+    });
+
+    expect(collection.toJson()).to.eql('{"string":"abc"}');
+  });
 };
