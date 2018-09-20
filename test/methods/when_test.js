@@ -50,7 +50,7 @@ module.exports = (it, expect, collect) => {
 
     const newCollection = collection.when('adam', innerCollection => innerCollection.push('adam'));
 
-    expect(newCollection).to.not.be.undefined;
+    expect(newCollection).to.eql(collection);
     expect(collection.all()).to.eql(['michael', 'tom', 'adam']);
   });
 };
