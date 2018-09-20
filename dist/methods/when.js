@@ -6,5 +6,6 @@ module.exports = function when(value, fn, defaultFn) {
   } else if (defaultFn) {
     return defaultFn(this, value);
   }
+
   return this;
 };

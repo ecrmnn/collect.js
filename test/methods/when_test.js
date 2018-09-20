@@ -20,19 +20,15 @@ module.exports = (it, expect, collect) => {
   });
 
   it('should pass the value over to the callback', () => {
-    var collection = collect(['michael', 'tom']);
+    let collection = collect(['michael', 'tom']);
 
-    collection.when('adam', function (collection, newName) {
-      return collection.push(newName);
-    });
+    collection.when('adam', (innerCollection, newName) => innerCollection.push(newName));
 
     expect(collection.all()).to.eql(['michael', 'tom', 'adam']);
 
     collection = collect(['michael', 'tom']);
 
-    collection.when(false, function (collection, newName) {
-      return collection.push(newName);
-    });
+    collection.when(false, (innerCollection, newName) => innerCollection.push(newName));
 
     expect(collection.all()).to.eql(['michael', 'tom']);
   });
@@ -40,11 +36,11 @@ module.exports = (it, expect, collect) => {
   it('should call the default callback if the value is false', () => {
     const collection = collect(['michael', 'tom']);
 
-    collection.when(false, function (collection, newName) {
-      return collection.push('adam');
-    }, function (collection) {
-      return collection.push('taylor');
-    });
+    collection.when(
+      false,
+      innerCollection => innerCollection.push('adam'),
+      innerCollection => innerCollection.push('taylor'),
+    );
 
     expect(collection.all()).to.eql(['michael', 'tom', 'taylor']);
   });
@@ -52,11 +48,9 @@ module.exports = (it, expect, collect) => {
   it('should return the collection object', () => {
     const collection = collect(['michael', 'tom']);
 
-    const newCollection = collection.when('adam', function (collection) {
-      return collection.push('adam');
-    });
+    const newCollection = collection.when('adam', innerCollection => innerCollection.push('adam'));
 
-    expect(newCollection).to.exist;
+    expect(newCollection).to.not.be.undefined;
     expect(collection.all()).to.eql(['michael', 'tom', 'adam']);
   });
 };
