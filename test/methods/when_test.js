@@ -36,11 +36,11 @@ module.exports = (it, expect, collect) => {
   it('should call the default callback if the value is false', () => {
     const collection = collect(['michael', 'tom']);
 
-    collection.when(
-      false,
-      innerCollection => innerCollection.push('adam'),
-      innerCollection => innerCollection.push('taylor'),
-    );
+    collection.when(false, (innerCollection) => { 
+      return innerCollection.push('adam');
+    }, (innerCollection) => { 
+      return innerCollection.push('taylor');
+    });
 
     expect(collection.all()).to.eql(['michael', 'tom', 'taylor']);
   });
