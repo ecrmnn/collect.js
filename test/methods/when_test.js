@@ -18,4 +18,45 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
   });
+
+  it('should pass the value over to the callback', () => {
+    var collection = collect(['michael', 'tom']);
+
+    collection.when('adam', function (collection, newName) {
+      return collection.push(newName);
+    });
+
+    expect(collection.all()).to.eql(['michael', 'tom', 'adam']);
+
+    collection = collect(['michael', 'tom']);
+
+    collection.when(false, function (collection, newName) {
+      return collection.push(newName);
+    });
+
+    expect(collection.all()).to.eql(['michael', 'tom']);
+  });
+
+  it('should call the default callback if the value is false', () => {
+    const collection = collect(['michael', 'tom']);
+
+    collection.when(false, function (collection, newName) {
+      return collection.push('adam');
+    }, function (collection) {
+      return collection.push('taylor');
+    });
+
+    expect(collection.all()).to.eql(['michael', 'tom', 'taylor']);
+  });
+
+  it('should return the collection object', () => {
+    const collection = collect(['michael', 'tom']);
+
+    const newCollection = collection.when('adam', function (collection) {
+      return collection.push('adam');
+    });
+
+    expect(newCollection).to.exist;
+    expect(collection.all()).to.eql(['michael', 'tom', 'adam']);
+  });
 };
