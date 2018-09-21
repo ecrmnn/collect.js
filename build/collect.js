@@ -2703,10 +2703,12 @@ module.exports = function values() {
 
 module.exports = function when(value, fn, defaultFn) {
   if (value) {
-    fn(this);
-  } else {
-    defaultFn(this);
+    return fn(this, value);
+  } else if (defaultFn) {
+    return defaultFn(this, value);
   }
+
+  return this;
 };
 
 /***/ }),
