@@ -50,6 +50,7 @@ All available methods
 - [diffKeys](#diffkeys)
 - [dump](#dump)
 - [each](#each)
+- [eachElementCount](#eachelementcount)
 - [eachSpread](#eachspread)
 - [every](#every)
 - [except](#except)
@@ -413,6 +414,14 @@ collection.each((item) => {
 
 //=> console.log(sum);
 //=> 7
+```
+
+#### ``eachElementCount()``
+The eachElementCount method may be used for finding number of occurrence of all elements in an array:
+```js
+collect([1, 2, 3,2,1,3,3,3 4]).eachElementCount();
+
+//=> {'1': 2, '2': 2, '3': 4, '4': 1}
 ```
 
 #### ``eachSpread()``
