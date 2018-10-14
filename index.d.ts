@@ -89,6 +89,11 @@ declare module 'collect.js' {
     each(fn: Function): this;
 
     /**
+     * The eachElementCount method iterates over elements and find every elements occurrence.
+     */
+    eachElementCount(array): object;
+
+    /**
      * The every method may be used to verify that all elements of a collection pass a given truth test.
      */
     every(fn: (item: Item) => boolean): boolean;
