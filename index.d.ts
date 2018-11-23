@@ -86,7 +86,7 @@ declare module 'collect.js' {
     /**
      * The each method iterates over the items in the collection and passes each item to a callback.
      */
-    each(fn: Function): this;
+    each(fn: (item: Item) => void): this;
 
     /**
      * The every method may be used to verify that all elements of a collection pass a given truth test.
@@ -102,8 +102,8 @@ declare module 'collect.js' {
      * The filter method filters the collection using the given callback,
      * keeping only those items that pass a given truth test.
      */
-	filter(fn: (item: Item) => boolean): Collection<Item>;
-	filter(fn: (item: Item, key?: any) => boolean): Collection<Item>;
+    filter(fn: (item: Item) => boolean): Collection<Item>;
+    filter(fn: (item: Item, key?: any) => boolean): Collection<Item>;
 
     /**
      * The first method returns the first element in the collection that passes a given truth test.
@@ -115,7 +115,7 @@ declare module 'collect.js' {
      * The callback is free to modify the item and return it, thus forming a new collection of modified items.
      * Then, the array is flattened by a level.
      */
-    flatMap(fn: Function): Collection<Item>;
+    flatMap<T>(fn: (item: Item, key: any) => T): Collection<T>;
 
     /**
      * The flatten method flattens a multi-dimensional collection into a single dimension.
@@ -380,7 +380,7 @@ declare module 'collect.js' {
      * This method has the same signature as the sortBy method,
      * but will sort the collection in the opposite order.
      */
-    sortByDesc(fn: (item: Item) => number): Collection<Item>; 
+    sortByDesc(fn: (item: Item) => number): Collection<Item>;
 
     /**
      * The splice method removes and returns a slice of items starting at the specified index.
@@ -411,7 +411,7 @@ declare module 'collect.js' {
      * allowing you to "tap" into the collection at a specific point
      * and do something with the items while not affecting the collection itself.
      */
-    tap(fn: Function): this;
+    tap(fn: (collection: Collection<Item>) => void): this;
 
     /**
      * The times method creates a new collection by invoking the callback a given amount of times.
