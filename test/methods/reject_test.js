@@ -25,4 +25,17 @@ module.exports = (it, expect, collect) => {
     expect(filter.all()).to.eql([3, 4]);
     expect(reject.all()).to.eql([1, 2]);
   });
+
+  it('should work on objects', () => {
+    const collection = collect({
+      player1: 'Sadio Mané',
+      player2: 'Philippe Coutinho',
+    });
+
+    const reject = collection.reject(value => value === 'Philippe Coutinho');
+
+    expect(reject.all()).to.eql({
+      player1: 'Sadio Mané',
+    });
+  });
 };
