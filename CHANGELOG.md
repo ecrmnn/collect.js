@@ -1,3 +1,17 @@
+# 4.2.0
+- Added ``whenEmpty()`` method
+- Added ``whenNotEmpty()`` method
+- Added ``unlessEmpty()`` method
+- Added ``unlessNotEmpty()`` method
+
+# 4.1.0
+
+## Breaking changes
+
+## Methods
+#### ``flatMap()``
+- Changed ``flatMap()`` according to https://github.com/ecrmnn/collect.js/issues/195
+
 # 4.0.1
 - Added build files so it's no longer required to use npm for installation
 
