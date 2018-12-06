@@ -1,52 +1,68 @@
 'use strict';
 
 module.exports = (it, expect, collect) => {
-  it('should iterate through the collection and passes each value to the given callback', () => {
+  it('should flat map', () => {
     const collection = collect([
-      { name: 'Robbie Fowler' },
-      { nickname: 'The God' },
-      { position: 'Striker' },
+      { tags: ['tag1', 'tag2'] },
+      { tags: ['tag3', 'tag4'] },
     ]);
 
-    const flatMapped = collection.flatMap(values => values.map(value => value.toUpperCase()));
+    const flatMapped = collection.flatMap(item => item.tags);
 
-    expect(flatMapped.all()).to.eql({
-      name: 'ROBBIE FOWLER',
-      nickname: 'THE GOD',
-      position: 'STRIKER',
-    });
+    expect(flatMapped.all()).to.eql(['tag1', 'tag2', 'tag3', 'tag4']);
+  });
 
-    expect(collection.all()).to.eql([
-      { name: 'Robbie Fowler' },
-      { nickname: 'The God' },
-      { position: 'Striker' },
+  it('should iterate through the collection and passes each value to the given callback', () => {
+    const collection = collect([
+      {
+        name: 'Xherdan Shaqiri',
+        number: 23,
+      },
+      {
+        name: 'Mohamed Salah',
+        number: 11,
+      },
+    ]);
+
+    const flatMapped = collection.flatMap(value => value.name.toUpperCase());
+
+    expect(flatMapped.all()).to.eql(['XHERDAN SHAQIRI', 'MOHAMED SALAH']);
+
+    expect(collection.all())
+    .to
+    .eql([
+      {
+        name: 'Xherdan Shaqiri',
+        number: 23,
+      },
+      {
+        name: 'Mohamed Salah',
+        number: 11,
+      },
     ]);
   });
 
   it('should override the value of the key already exists', () => {
     const collection = collect([
-      { name: 'Sadio Mané' },
-      { name: 'Roberto Firmino' },
+      ['Sadio Mané'],
+      ['Roberto Firmino'],
+      ['Mohamed Salah'],
     ]);
 
-    const flatMapped = collection.flatMap(values => values.map(value => value.toUpperCase()));
+    const flatMapped = collection.flatMap(values => values[0].toUpperCase());
 
-    expect(flatMapped.all()).to.eql({
-      name: 'ROBERTO FIRMINO',
-    });
+    expect(flatMapped.all()).to.eql([
+      'SADIO MANÉ',
+      'ROBERTO FIRMINO',
+      'MOHAMED SALAH',
+    ]);
   });
 
   it('should receive index as second parameter', () => {
-    const collection = collect([
-      { p1: 'Sadio Mané' },
-      { p2: 'Roberto Firmino' },
-    ]);
+    const collection = collect(['Fabinho', 'Keíta']);
 
-    const flatMapped = collection.flatMap((values, index) => [index]);
+    const flatMapped = collection.flatMap(values => values.toUpperCase());
 
-    expect(flatMapped.all()).to.eql({
-      p1: 0,
-      p2: 1,
-    });
+    expect(flatMapped.all()).to.eql(['FABINHO', 'KEÍTA']);
   });
 };
