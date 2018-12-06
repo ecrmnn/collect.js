@@ -118,9 +118,13 @@ All available methods
 - [union](#union)
 - [unique](#unique)
 - [unless](#unless)
+- [unlessEmpty](#unlessEmpty)
+- [unlessNotEmpty](#unlessNotEmpty)
 - [unwrap](#unwrap)
 - [values](#values)
 - [when](#when)
+- [whenEmpty](#whenEmpty)
+- [whenNotEmpty](#whenNotEmpty)
 - [where](#where)
 - [whereIn](#wherein)
 - [whereNotIn](#wherenotin)
@@ -1946,6 +1950,12 @@ collection.all();
 //=> [1, 2, 3, 4]
 ```
 
+#### ``unlessEmpty()``
+Alias for the [``whenNotEmpty()``](#whenNotEmpty) method
+
+#### ``unlessNotEmpty()``
+Alias for the [``whenEmpty()``](#whenEmpty) method
+
 #### ``unwrap()``
 The unwrap method will unwrap the given collection:
 ```js
@@ -1983,6 +1993,65 @@ collection.when(true, collection => collection.push(4));
 collection.all();
 
 //=> [1, 2, 3, 4]
+```
+
+#### ``whenEmpty()``
+The ``whenEmpty`` method will execute the given callback when the collection is empty:
+```js
+const collection = collect([]);
+
+collection.whenEmpty(c => c.push('Mohamed Salah'));
+
+collection.all();
+
+//=> ['Mohamed Salah']
+```
+
+```js
+const collection = collect([
+  'Sadio Mané',
+]);
+
+collection.whenEmpty(c => c.push('Mohamed Salah'), c => c.push('Xherdan Shaqiri'));
+
+collection.all();
+
+//=> [
+//=>   'Sadio Mané',
+//=>   'Xherdan Shaqiri',
+//=> ];
+```
+
+#### ``whenNotEmpty()``
+The ``whenNotEmpty`` method will execute the given callback when the collection is not empty:
+```js
+const collection = collect([
+  'Sadio Mané',
+]);
+
+collection.whenNotEmpty(c => c.push('Mohamed Salah'));
+
+collection.all();
+
+//=> [
+//=>   'Sadio Mané',
+//=>   'Mohamed Salah',
+//=> ]
+```
+
+```js
+const collection = collect([
+  'Sadio Mané',
+]);
+
+collection.whenNotEmpty(c => c.push('Mohamed Salah'), c => c.push('Xherdan Shaqiri'));
+
+collection.all();
+
+//=> [
+//=>   'Sadio Mané',
+//=>   'Mohamed Salah',
+//=> ];
 ```
 
 #### ``where()``

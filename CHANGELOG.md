@@ -1,3 +1,9 @@
+# 4.2.0
+- Added ``whenEmpty()`` method
+- Added ``whenNotEmpty()`` method
+- Added ``unlessEmpty()`` method
+- Added ``unlessNotEmpty()`` method
+
 # 4.1.0
 
 ## Breaking changes
