@@ -1,6 +1,7 @@
 'use strict';
 
 const products = [
+  { product: 'Catalog', manufacturer: 'IKEA', price: 0 },
   { product: 'Desk', manufacturer: 'IKEA', price: 60 },
   { product: 'Chair', manufacturer: 'IKEA', price: 60 },
   { product: 'Lamp', manufacturer: 'IKEA', price: 15 },
@@ -23,6 +24,7 @@ module.exports = (it, expect, collect) => {
 
     expect(grouped.all()).to.eql({
       IKE: collect([
+        { product: 'Catalog', manufacturer: 'IKEA', price: 0 },
         { product: 'Desk', manufacturer: 'IKEA', price: 60 },
         { product: 'Chair', manufacturer: 'IKEA', price: 60 },
         { product: 'Lamp', manufacturer: 'IKEA', price: 15 },
@@ -40,6 +42,7 @@ module.exports = (it, expect, collect) => {
     const grouped = collection.groupBy('manufacturer');
 
     expect(grouped.first().all()).to.eql([
+      { product: 'Catalog', manufacturer: 'IKEA', price: 0 },
       { product: 'Desk', manufacturer: 'IKEA', price: 60 },
       { product: 'Chair', manufacturer: 'IKEA', price: 60 },
       { product: 'Lamp', manufacturer: 'IKEA', price: 15 },
@@ -59,6 +62,9 @@ module.exports = (it, expect, collect) => {
       const grouped = collection.groupBy('price');
 
       expect(grouped.all()).to.eql({
+        0: collect([
+          { product: 'Catalog', manufacturer: 'IKEA', price: 0 },
+        ]),
         15: collect([
           { product: 'Lamp', manufacturer: 'IKEA', price: 15 },
         ]),
