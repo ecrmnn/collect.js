@@ -31,7 +31,7 @@ yarn add collect.js
 2. Add to your site with ``<script>``
 
 ### Tip
-Using Laravel as your backend? Collect.js offers an (almost) identical api to [Laravel Collections](https://laravel.com/docs/5.5/collections) 5.5. [See differences](#strictness-and-comparisons).
+Using Laravel as your backend? Collect.js offers an (almost) identical api to [Laravel Collections](https://laravel.com/docs/master/collections). [See differences](#strictness-and-comparisons).
 
 ### Usage
 All available methods
