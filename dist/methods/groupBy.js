@@ -10,8 +10,10 @@ module.exports = function groupBy(key) {
 
     if (typeof key === 'function') {
       resolvedKey = key(item, index);
+    } else if (item[key] || item[key] === 0) {
+      resolvedKey = item[key];
     } else {
-      resolvedKey = item[key] || '';
+      resolvedKey = '';
     }
 
     if (collection[resolvedKey] === undefined) {
