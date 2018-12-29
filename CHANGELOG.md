@@ -1,3 +1,11 @@
+# 4.3.0
+
+## Methods
+#### ``random()``
+- Previously ``random()`` and ``random(1)`` would return an array, while passing an integer >1 would return a collection object.
+- ``random(1)`` now returns a collection object
+- Changed ``random()`` according to https://github.com/ecrmnn/collect.js/issues/202
+
 # 4.2.0
 - Added ``whenEmpty()`` method
 - Added ``whenNotEmpty()`` method
