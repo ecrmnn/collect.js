@@ -19,6 +19,13 @@ module.exports = (it, expect, collect) => {
     expect(arrayOfRandomValues.all()[3]).to.eql(undefined);
   });
 
+  it('should return n random items from the collection, also when 1 is passed', () => {
+    const arrayOfRandomValues = collect([1, 2, 3, 4, 5]).random(1);
+
+    expect(arrayOfRandomValues.all().length).to.eql(1);
+    expect(arrayOfRandomValues.all()[0]).to.be.within(1, 5);
+  });
+
   it('should not modify the collection', () => {
     const collection = collect([1, 2, 3, 4, 5, 8, 6]);
     collection.random();
