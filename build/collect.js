@@ -61,7 +61,7 @@ var collect =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -168,6 +168,44 @@ module.exports = function average(key) {
 "use strict";
 
 
+/**
+ * Clone helper
+ *
+ * Clone an array or object
+ *
+ * @param items
+ * @returns {*}
+ */
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+module.exports = function clone(items) {
+  var cloned = void 0;
+
+  if (Array.isArray(items)) {
+    var _cloned;
+
+    cloned = [];
+
+    (_cloned = cloned).push.apply(_cloned, _toConsumableArray(items));
+  } else {
+    cloned = {};
+
+    Object.keys(items).forEach(function (prop) {
+      cloned[prop] = items[prop];
+    });
+  }
+
+  return cloned;
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 module.exports = function whenNotEmpty(fn, defaultFn) {
   if (Array.isArray(this.items) && this.items.length) {
     return fn(this);
@@ -187,7 +225,7 @@ module.exports = function whenNotEmpty(fn, defaultFn) {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -212,7 +250,7 @@ module.exports = function whenEmpty(fn, defaultFn) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -222,65 +260,65 @@ function Collection(collection) {
   this.items = collection || [];
 }
 
-var SymbolIterator = __webpack_require__(7);
+var SymbolIterator = __webpack_require__(8);
 
 if (typeof Symbol !== 'undefined') {
   Collection.prototype[Symbol.iterator] = SymbolIterator;
 }
 
-Collection.prototype.all = __webpack_require__(8);
+Collection.prototype.all = __webpack_require__(9);
 Collection.prototype.average = __webpack_require__(3);
 Collection.prototype.avg = __webpack_require__(3);
-Collection.prototype.chunk = __webpack_require__(9);
-Collection.prototype.collapse = __webpack_require__(10);
-Collection.prototype.combine = __webpack_require__(11);
-Collection.prototype.concat = __webpack_require__(12);
-Collection.prototype.contains = __webpack_require__(13);
-Collection.prototype.count = __webpack_require__(14);
-Collection.prototype.crossJoin = __webpack_require__(15);
-Collection.prototype.dd = __webpack_require__(16);
-Collection.prototype.diff = __webpack_require__(18);
-Collection.prototype.diffAssoc = __webpack_require__(19);
-Collection.prototype.diffKeys = __webpack_require__(20);
-Collection.prototype.dump = __webpack_require__(21);
-Collection.prototype.each = __webpack_require__(22);
-Collection.prototype.eachSpread = __webpack_require__(23);
-Collection.prototype.every = __webpack_require__(24);
-Collection.prototype.except = __webpack_require__(25);
-Collection.prototype.filter = __webpack_require__(26);
-Collection.prototype.first = __webpack_require__(27);
-Collection.prototype.firstWhere = __webpack_require__(28);
-Collection.prototype.flatMap = __webpack_require__(29);
-Collection.prototype.flatten = __webpack_require__(30);
-Collection.prototype.flip = __webpack_require__(31);
-Collection.prototype.forPage = __webpack_require__(32);
-Collection.prototype.forget = __webpack_require__(33);
-Collection.prototype.get = __webpack_require__(34);
-Collection.prototype.groupBy = __webpack_require__(35);
-Collection.prototype.has = __webpack_require__(36);
-Collection.prototype.implode = __webpack_require__(37);
-Collection.prototype.intersect = __webpack_require__(38);
-Collection.prototype.intersectByKeys = __webpack_require__(39);
-Collection.prototype.isEmpty = __webpack_require__(40);
-Collection.prototype.isNotEmpty = __webpack_require__(41);
-Collection.prototype.keyBy = __webpack_require__(42);
-Collection.prototype.keys = __webpack_require__(43);
-Collection.prototype.last = __webpack_require__(44);
-Collection.prototype.macro = __webpack_require__(45);
-Collection.prototype.map = __webpack_require__(46);
-Collection.prototype.mapSpread = __webpack_require__(47);
-Collection.prototype.mapToDictionary = __webpack_require__(48);
-Collection.prototype.mapInto = __webpack_require__(49);
-Collection.prototype.mapToGroups = __webpack_require__(50);
-Collection.prototype.mapWithKeys = __webpack_require__(51);
-Collection.prototype.max = __webpack_require__(52);
-Collection.prototype.median = __webpack_require__(53);
-Collection.prototype.merge = __webpack_require__(54);
-Collection.prototype.min = __webpack_require__(55);
-Collection.prototype.mode = __webpack_require__(56);
-Collection.prototype.nth = __webpack_require__(57);
-Collection.prototype.only = __webpack_require__(58);
-Collection.prototype.pad = __webpack_require__(59);
+Collection.prototype.chunk = __webpack_require__(10);
+Collection.prototype.collapse = __webpack_require__(11);
+Collection.prototype.combine = __webpack_require__(12);
+Collection.prototype.concat = __webpack_require__(13);
+Collection.prototype.contains = __webpack_require__(14);
+Collection.prototype.count = __webpack_require__(15);
+Collection.prototype.crossJoin = __webpack_require__(16);
+Collection.prototype.dd = __webpack_require__(17);
+Collection.prototype.diff = __webpack_require__(19);
+Collection.prototype.diffAssoc = __webpack_require__(20);
+Collection.prototype.diffKeys = __webpack_require__(21);
+Collection.prototype.dump = __webpack_require__(22);
+Collection.prototype.each = __webpack_require__(23);
+Collection.prototype.eachSpread = __webpack_require__(24);
+Collection.prototype.every = __webpack_require__(25);
+Collection.prototype.except = __webpack_require__(26);
+Collection.prototype.filter = __webpack_require__(27);
+Collection.prototype.first = __webpack_require__(28);
+Collection.prototype.firstWhere = __webpack_require__(29);
+Collection.prototype.flatMap = __webpack_require__(30);
+Collection.prototype.flatten = __webpack_require__(31);
+Collection.prototype.flip = __webpack_require__(32);
+Collection.prototype.forPage = __webpack_require__(33);
+Collection.prototype.forget = __webpack_require__(34);
+Collection.prototype.get = __webpack_require__(35);
+Collection.prototype.groupBy = __webpack_require__(36);
+Collection.prototype.has = __webpack_require__(37);
+Collection.prototype.implode = __webpack_require__(38);
+Collection.prototype.intersect = __webpack_require__(39);
+Collection.prototype.intersectByKeys = __webpack_require__(40);
+Collection.prototype.isEmpty = __webpack_require__(41);
+Collection.prototype.isNotEmpty = __webpack_require__(42);
+Collection.prototype.keyBy = __webpack_require__(43);
+Collection.prototype.keys = __webpack_require__(44);
+Collection.prototype.last = __webpack_require__(45);
+Collection.prototype.macro = __webpack_require__(46);
+Collection.prototype.map = __webpack_require__(47);
+Collection.prototype.mapSpread = __webpack_require__(48);
+Collection.prototype.mapToDictionary = __webpack_require__(49);
+Collection.prototype.mapInto = __webpack_require__(50);
+Collection.prototype.mapToGroups = __webpack_require__(51);
+Collection.prototype.mapWithKeys = __webpack_require__(52);
+Collection.prototype.max = __webpack_require__(53);
+Collection.prototype.median = __webpack_require__(54);
+Collection.prototype.merge = __webpack_require__(55);
+Collection.prototype.min = __webpack_require__(56);
+Collection.prototype.mode = __webpack_require__(57);
+Collection.prototype.nth = __webpack_require__(58);
+Collection.prototype.only = __webpack_require__(59);
+Collection.prototype.pad = __webpack_require__(60);
 Collection.prototype.partition = __webpack_require__(61);
 Collection.prototype.pipe = __webpack_require__(62);
 Collection.prototype.pluck = __webpack_require__(63);
@@ -310,15 +348,15 @@ Collection.prototype.toArray = __webpack_require__(86);
 Collection.prototype.toJson = __webpack_require__(87);
 Collection.prototype.transform = __webpack_require__(88);
 Collection.prototype.unless = __webpack_require__(89);
-Collection.prototype.unlessEmpty = __webpack_require__(4);
-Collection.prototype.unlessNotEmpty = __webpack_require__(5);
+Collection.prototype.unlessEmpty = __webpack_require__(5);
+Collection.prototype.unlessNotEmpty = __webpack_require__(6);
 Collection.prototype.union = __webpack_require__(90);
 Collection.prototype.unique = __webpack_require__(91);
 Collection.prototype.unwrap = __webpack_require__(92);
 Collection.prototype.values = __webpack_require__(93);
 Collection.prototype.when = __webpack_require__(94);
-Collection.prototype.whenEmpty = __webpack_require__(5);
-Collection.prototype.whenNotEmpty = __webpack_require__(4);
+Collection.prototype.whenEmpty = __webpack_require__(6);
+Collection.prototype.whenNotEmpty = __webpack_require__(5);
 Collection.prototype.where = __webpack_require__(95);
 Collection.prototype.whereIn = __webpack_require__(96);
 Collection.prototype.whereNotIn = __webpack_require__(97);
@@ -333,7 +371,7 @@ module.exports = collect;
 module.exports.default = collect;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -357,7 +395,7 @@ module.exports = function SymbolIterator() {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -368,7 +406,7 @@ module.exports = function all() {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -416,7 +454,7 @@ module.exports = function chunk(size) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -431,7 +469,7 @@ module.exports = function collapse() {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -470,7 +508,7 @@ module.exports = function combine(array) {
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -478,9 +516,9 @@ module.exports = function combine(array) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-module.exports = function concat(collectionOrArrayOrObject) {
-  var _this = this;
+var clone = __webpack_require__(4);
 
+module.exports = function concat(collectionOrArrayOrObject) {
   var list = collectionOrArrayOrObject;
 
   if (collectionOrArrayOrObject instanceof this.constructor) {
@@ -492,21 +530,23 @@ module.exports = function concat(collectionOrArrayOrObject) {
     });
   }
 
+  var collection = clone(this.items);
+
   list.forEach(function (item) {
     if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
       Object.keys(item).forEach(function (key) {
-        return _this.items.push(item[key]);
+        return collection.push(item[key]);
       });
     } else {
-      _this.items.push(item);
+      collection.push(item);
     }
   });
 
-  return this;
+  return new this.constructor(collection);
 };
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -544,7 +584,7 @@ module.exports = function contains(key, value) {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -561,7 +601,7 @@ module.exports = function count() {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -601,7 +641,7 @@ module.exports = function crossJoin() {
 };
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -614,10 +654,10 @@ module.exports = function dd() {
     process.exit(1);
   }
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -807,7 +847,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -830,7 +870,7 @@ module.exports = function diff(values) {
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -857,7 +897,7 @@ module.exports = function diffAssoc(values) {
 };
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -882,7 +922,7 @@ module.exports = function diffKeys(object) {
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -896,7 +936,7 @@ module.exports = function dump() {
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -917,7 +957,7 @@ module.exports = function each(fn) {
 };
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -934,7 +974,7 @@ module.exports = function eachSpread(fn) {
 };
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -951,7 +991,7 @@ module.exports = function every(fn) {
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -988,7 +1028,7 @@ module.exports = function except() {
 };
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1055,7 +1095,7 @@ module.exports = function filter(fn) {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1095,7 +1135,7 @@ module.exports = function first(fn, defaultValue) {
 };
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1106,7 +1146,7 @@ module.exports = function firstWhere(key, value) {
 };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1117,7 +1157,7 @@ module.exports = function flatMap(fn) {
 };
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1178,7 +1218,7 @@ module.exports = function flatten(depth) {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1203,7 +1243,7 @@ module.exports = function flip() {
 };
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1226,7 +1266,7 @@ module.exports = function forPage(page, chunk) {
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1243,7 +1283,7 @@ module.exports = function forget(key) {
 };
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1268,7 +1308,7 @@ module.exports = function get(key) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1301,7 +1341,7 @@ module.exports = function groupBy(key) {
 };
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1324,7 +1364,7 @@ module.exports = function has() {
 };
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1339,7 +1379,7 @@ module.exports = function implode(key, glue) {
 };
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1360,7 +1400,7 @@ module.exports = function intersect(values) {
 };
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1387,7 +1427,7 @@ module.exports = function intersectByKeys(values) {
 };
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1398,7 +1438,7 @@ module.exports = function isEmpty() {
 };
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1409,7 +1449,7 @@ module.exports = function isNotEmpty() {
 };
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1432,7 +1472,7 @@ module.exports = function keyBy(key) {
 };
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1449,7 +1489,7 @@ module.exports = function keys() {
 };
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1479,7 +1519,7 @@ module.exports = function last(fn, defaultValue) {
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1490,7 +1530,7 @@ module.exports = function macro(name, fn) {
 };
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1513,7 +1553,7 @@ module.exports = function map(fn) {
 };
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1528,7 +1568,7 @@ module.exports = function mapSpread(fn) {
 };
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1556,7 +1596,7 @@ module.exports = function mapToDictionary(fn) {
 };
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1569,7 +1609,7 @@ module.exports = function mapInto(ClassName) {
 };
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1597,7 +1637,7 @@ module.exports = function mapToGroups(fn) {
 };
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1634,7 +1674,7 @@ module.exports = function mapWithKeys(fn) {
 };
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1651,7 +1691,7 @@ module.exports = function max(key) {
 };
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1676,7 +1716,7 @@ module.exports = function median(key) {
 };
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1703,7 +1743,7 @@ module.exports = function merge(value) {
 };
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1720,7 +1760,7 @@ module.exports = function min(key) {
 };
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1767,7 +1807,7 @@ module.exports = function mode(key) {
 };
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1788,7 +1828,7 @@ module.exports = function nth(n) {
 };
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1825,13 +1865,13 @@ module.exports = function only() {
 };
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var clone = __webpack_require__(60);
+var clone = __webpack_require__(4);
 
 module.exports = function pad(size, value) {
   var abs = Math.abs(size);
@@ -1863,44 +1903,6 @@ module.exports = function pad(size, value) {
   }
 
   return new this.constructor(items);
-};
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Clone helper
- *
- * Clone an array or object
- *
- * @param items
- * @returns {*}
- */
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function clone(items) {
-  var cloned = void 0;
-
-  if (Array.isArray(items)) {
-    var _cloned;
-
-    cloned = [];
-
-    (_cloned = cloned).push.apply(_cloned, _toConsumableArray(items));
-  } else {
-    cloned = {};
-
-    Object.keys(items).forEach(function (prop) {
-      cloned[prop] = items[prop];
-    });
-  }
-
-  return cloned;
 };
 
 /***/ }),

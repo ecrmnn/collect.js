@@ -2,9 +2,9 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-module.exports = function concat(collectionOrArrayOrObject) {
-  var _this = this;
+var clone = require('../helpers/clone');
 
+module.exports = function concat(collectionOrArrayOrObject) {
   var list = collectionOrArrayOrObject;
 
   if (collectionOrArrayOrObject instanceof this.constructor) {
@@ -16,15 +16,17 @@ module.exports = function concat(collectionOrArrayOrObject) {
     });
   }
 
+  var collection = clone(this.items);
+
   list.forEach(function (item) {
     if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
       Object.keys(item).forEach(function (key) {
-        return _this.items.push(item[key]);
+        return collection.push(item[key]);
       });
     } else {
-      _this.items.push(item);
+      collection.push(item);
     }
   });
 
-  return this;
+  return new this.constructor(collection);
 };
