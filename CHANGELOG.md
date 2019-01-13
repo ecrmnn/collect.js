@@ -1,4 +1,14 @@
+# 4.4.0
+
+## Breaking changes
+
+## Methods
+#### ``concat()``
+- Concat now returns a new collection instead of modifying the existing one
+
 # 4.3.0
+
+## Breaking changes
 
 ## Methods
 #### ``random()``

@@ -32,10 +32,10 @@ module.exports = (it, expect, collect) => {
       where: 'Laroe',
     };
 
-    firstCollection.concat(firstArray).concat(secondArray).concat(firstObj);
+    const collection = firstCollection.concat(firstArray).concat(secondArray).concat(firstObj);
 
-    expect(firstCollection.count()).to.eql(12);
-    expect(firstCollection.all()).to.eql(expected);
+    expect(collection.count()).to.eql(12);
+    expect(collection.all()).to.eql(expected);
   });
 
   it('should append collections to collection', () => {
@@ -54,9 +54,17 @@ module.exports = (it, expect, collect) => {
       'Laroe',
     ];
 
-    const firstCollection = collect([4, 5, 6]);
-    const secondCollection = collect(['a', 'b', 'c']);
-    const thirdCollection = collect([{
+    let collection = collect([4, 5, 6]);
+    collection = collection.concat(collect(['a', 'b', 'c']));
+    collection = collection.concat(collect([{
+      who: 'Jonny',
+    }, {
+      preposition: 'from',
+    }, {
+      where: 'Laroe',
+    }]));
+
+    collection = collection.concat([{
       who: 'Jonny',
     }, {
       preposition: 'from',
@@ -64,12 +72,15 @@ module.exports = (it, expect, collect) => {
       where: 'Laroe',
     }]);
 
-    firstCollection
-      .concat(secondCollection)
-      .concat(thirdCollection)
-      .concat(thirdCollection);
+    expect(collection.count()).to.eql(12);
+    expect(collection.all()).to.eql(expected);
+  });
 
-    expect(firstCollection.count()).to.eql(12);
-    expect(firstCollection.all()).to.eql(expected);
+  it('should not modify the collection', () => {
+    const arr1 = collect([1, 2, 3]);
+    const arr2 = arr1.concat([4, 5]);
+
+    expect(arr1.all()).to.eql([1, 2, 3]);
+    expect(arr2.all()).to.eql([1, 2, 3, 4, 5]);
   });
 };
