@@ -228,14 +228,14 @@ The concat method is used to merge two or more collections/arrays/objects:
 ```js
 const collection = collect([1, 2, 3]);
 
-collection
-  .concat(['a', 'b', 'c'])
-  .concat({
-    name: 'Steven Gerrard',
-    number: 8
-  });
+let concatenated = collection.concat(['a', 'b', 'c']);
 
-collection.all();
+concatenated = concatenated.concat({
+  name: 'Steven Gerrard',
+  number: 8
+});
+
+concatenated.all();
 
 //=> [1, 2, 3, 'a', 'b', 'c', 'Steven Gerrard', 8]
 ```

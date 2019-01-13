@@ -1,5 +1,7 @@
 'use strict';
 
+const clone = require('../helpers/clone');
+
 module.exports = function concat(collectionOrArrayOrObject) {
   let list = collectionOrArrayOrObject;
 
@@ -12,13 +14,15 @@ module.exports = function concat(collectionOrArrayOrObject) {
     });
   }
 
+  const collection = clone(this.items);
+
   list.forEach((item) => {
     if (typeof item === 'object') {
-      Object.keys(item).forEach(key => this.items.push(item[key]));
+      Object.keys(item).forEach(key => collection.push(item[key]));
     } else {
-      this.items.push(item);
+      collection.push(item);
     }
   });
 
-  return this;
+  return new this.constructor(collection);
 };
