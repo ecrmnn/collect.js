@@ -360,10 +360,11 @@ Collection.prototype.whenNotEmpty = __webpack_require__(5);
 Collection.prototype.where = __webpack_require__(95);
 Collection.prototype.whereBetween = __webpack_require__(96);
 Collection.prototype.whereIn = __webpack_require__(97);
-Collection.prototype.whereNotBetween = __webpack_require__(98);
-Collection.prototype.whereNotIn = __webpack_require__(99);
-Collection.prototype.wrap = __webpack_require__(100);
-Collection.prototype.zip = __webpack_require__(101);
+Collection.prototype.whereInstanceOf = __webpack_require__(98);
+Collection.prototype.whereNotBetween = __webpack_require__(99);
+Collection.prototype.whereNotIn = __webpack_require__(100);
+Collection.prototype.wrap = __webpack_require__(101);
+Collection.prototype.zip = __webpack_require__(102);
 
 var collect = function collect(collection) {
   return new Collection(collection);
@@ -2845,6 +2846,19 @@ module.exports = function whereIn(key, values) {
 "use strict";
 
 
+module.exports = function whereInstanceOf(type) {
+  return this.filter(function (item) {
+    return item instanceof type;
+  });
+};
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var nestedValue = __webpack_require__(1);
 
 module.exports = function whereNotBetween(key, values) {
@@ -2854,7 +2868,7 @@ module.exports = function whereNotBetween(key, values) {
 };
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2874,7 +2888,7 @@ module.exports = function whereNotIn(key, values) {
 };
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2895,7 +2909,7 @@ module.exports = function wrap(value) {
 };
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
