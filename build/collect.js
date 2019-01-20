@@ -358,10 +358,12 @@ Collection.prototype.when = __webpack_require__(94);
 Collection.prototype.whenEmpty = __webpack_require__(6);
 Collection.prototype.whenNotEmpty = __webpack_require__(5);
 Collection.prototype.where = __webpack_require__(95);
-Collection.prototype.whereIn = __webpack_require__(96);
-Collection.prototype.whereNotIn = __webpack_require__(97);
-Collection.prototype.wrap = __webpack_require__(98);
-Collection.prototype.zip = __webpack_require__(99);
+Collection.prototype.whereBetween = __webpack_require__(96);
+Collection.prototype.whereIn = __webpack_require__(97);
+Collection.prototype.whereNotBetween = __webpack_require__(98);
+Collection.prototype.whereNotIn = __webpack_require__(99);
+Collection.prototype.wrap = __webpack_require__(100);
+Collection.prototype.zip = __webpack_require__(101);
 
 var collect = function collect(collection) {
   return new Collection(collection);
@@ -2812,6 +2814,17 @@ module.exports = function where(key, operator, value) {
 "use strict";
 
 
+module.exports = function whereBetween(key, values) {
+  return this.where(key, '>=', values[0]).where(key, '<=', values[values.length - 1]);
+};
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var extractValues = __webpack_require__(0);
 var nestedValue = __webpack_require__(1);
 
@@ -2826,7 +2839,22 @@ module.exports = function whereIn(key, values) {
 };
 
 /***/ }),
-/* 97 */
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var nestedValue = __webpack_require__(1);
+
+module.exports = function whereNotBetween(key, values) {
+  return this.filter(function (item) {
+    return nestedValue(item, key) < values[0] || nestedValue(item, key) > values[values.length - 1];
+  });
+};
+
+/***/ }),
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2846,7 +2874,7 @@ module.exports = function whereNotIn(key, values) {
 };
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2867,7 +2895,7 @@ module.exports = function wrap(value) {
 };
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
