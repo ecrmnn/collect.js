@@ -126,7 +126,9 @@ All available methods
 - [whenEmpty](#whenEmpty)
 - [whenNotEmpty](#whenNotEmpty)
 - [where](#where)
+- [whereBetween](#wherebetween)
 - [whereIn](#wherein)
+- [whereNotBetween](#wherenotbetween)
 - [whereNotIn](#wherenotin)
 - [wrap](#wrap)
 - [zip](#zip)
@@ -2139,6 +2141,28 @@ filtered.all();
 //=> ]
 ```
 
+#### ``whereBetween()``
+The whereBetween method filters the collection within a given range:
+```js
+const collection = collect([
+  { product: 'Desk', price: 200 },
+  { product: 'Chair', price: 80 },
+  { product: 'Bookcase', price: 150 },
+  { product: 'Pencil', price: 30 },
+  { product: 'Door', price: 100 },
+]);
+
+const filtered = collection.whereBetween('price', [100, 200]);
+
+filtered.all();
+
+//=> [
+//=>   { product: 'Desk', price: 200 },
+//=>   { product: 'Bookcase', price: 150 },
+//=>   { product: 'Door', price: 100 },
+//=> ]
+```
+
 #### ``whereIn()``
 The whereIn method filters the collection by a given key / value contained within the given array.
 ```js
@@ -2162,6 +2186,27 @@ filtered.all();
 
 > When working with nested objects ``whereIn()`` method allows dot notated keys. E.g. ``whereIn('product.categories', 
 ['office-supplies', 'furniture'])``
+
+#### ``whereNotBetween()``
+The whereNotBetween method filters the collection within a given range:
+```js
+const collection = collect([
+  { product: 'Desk', price: 200 },
+  { product: 'Chair', price: 80 },
+  { product: 'Bookcase', price: 150 },
+  { product: 'Pencil', price: 30 },
+  { product: 'Door', price: 100 },
+]);
+
+const filtered = collection.whereNotBetween('price', [100, 200]);
+
+filtered.all();
+
+//=> [
+//=>   { product: 'Chair', price: 80 },
+//=>   { product: 'Pencil', price: 30 },
+//=> ]
+```
 
 #### ``whereNotIn()``
 The whereNotIn method filters the collection by a given key / value not contained within the given array:
