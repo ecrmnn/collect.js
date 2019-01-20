@@ -128,6 +128,7 @@ All available methods
 - [where](#where)
 - [whereBetween](#wherebetween)
 - [whereIn](#wherein)
+- [whereInstanceOf](#whereinstanceof)
 - [whereNotBetween](#wherenotbetween)
 - [whereNotIn](#wherenotin)
 - [wrap](#wrap)
@@ -2186,6 +2187,25 @@ filtered.all();
 
 > When working with nested objects ``whereIn()`` method allows dot notated keys. E.g. ``whereIn('product.categories', 
 ['office-supplies', 'furniture'])``
+
+#### ``whereInstanceOf()``
+The whereInstanceOf method filters the collection by a given class type:
+```js
+const collection = collect([
+  new Player('Firmino'),
+  new Player('Salah'),
+  new Manager('Klopp'),
+]);
+
+const filtered = collection.whereInstanceOf(Player);
+
+filtered.all();
+
+//=> [
+//=>   new Player('Firmino'),
+//=>   new Player('Salah'),
+//=> ]
+```
 
 #### ``whereNotBetween()``
 The whereNotBetween method filters the collection within a given range:

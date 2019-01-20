@@ -104,6 +104,7 @@ Collection.prototype.whenNotEmpty = require('./methods/whenNotEmpty');
 Collection.prototype.where = require('./methods/where');
 Collection.prototype.whereBetween = require('./methods/whereBetween');
 Collection.prototype.whereIn = require('./methods/whereIn');
+Collection.prototype.whereInstanceOf = require('./methods/whereInstanceOf');
 Collection.prototype.whereNotBetween = require('./methods/whereNotBetween');
 Collection.prototype.whereNotIn = require('./methods/whereNotIn');
 Collection.prototype.wrap = require('./methods/wrap');
