@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable consistent-return */
+
 module.exports = (it, expect, collect) => {
   it('should iterate over the collection', () => {
     let sum = 0;
@@ -26,6 +28,45 @@ module.exports = (it, expect, collect) => {
 
     expect(summed.all()).to.eql([1, 3, 3, 7]);
     expect(sum2).to.eql(7);
+  });
+
+  it('should stop iterating, when returning false', () => {
+    const collection = collect([1, 2, { foo: 'bar' }, { bam: 'baz' }]);
+
+    const result = [];
+
+    collection.each((item, key) => {
+      result[key] = item;
+
+      if (typeof item === 'object') {
+        return false;
+      }
+    });
+
+    expect(result).to.eql([1, 2, { foo: 'bar' }]);
+  });
+
+  it('should stop iterating, when returning false with objects', () => {
+    const collection = collect({
+      player1: 'Sadio Mané',
+      player2: 'Roberto Firmino',
+      player3: 'Mohamed Salah',
+    });
+
+    const result = {};
+
+    collection.each((item, key) => {
+      result[key] = item;
+
+      if (item === 'Roberto Firmino') {
+        return false;
+      }
+    });
+
+    expect(result).to.eql({
+      player1: 'Sadio Mané',
+      player2: 'Roberto Firmino',
+    });
   });
 
   it('should iterate even when the collection is an object', () => {
