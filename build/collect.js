@@ -2274,7 +2274,7 @@ module.exports = function search(valueOrFunction, strict) {
         return item === valueFn;
       }
 
-      return item === Number(valueFn) || item === valueFn.toString();
+      return item === Number(valueFn) || item === String(valueFn);
     })[0];
 
     index = this.items.indexOf(itemKey);
