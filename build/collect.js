@@ -372,6 +372,7 @@ var collect = function collect(collection) {
 
 module.exports = collect;
 module.exports.default = collect;
+module.exports.Collection = Collection;
 
 /***/ }),
 /* 8 */
