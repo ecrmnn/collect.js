@@ -319,6 +319,7 @@ declare module 'collect.js' {
      * The reduce method reduces the collection to a single value,
      * passing the result of each iteration into the subsequent iteration.
      */
+    reduce<T>(fn: (_carry: T, item: Item) => T, carry: T): any;
     reduce<T>(fn: (_carry: T | null, item: Item) => T, carry?: T): any;
 
     /**
