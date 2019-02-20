@@ -29,7 +29,7 @@ declare module 'collect.js' {
     /**
      * The collapse method collapses a collection of arrays into a single, flat collection.
      */
-    collapse(): Collection<Item>;
+    collapse(): this;
 
     /**
      * The combine method combines the keys of the collection with the values of another array or collection.
@@ -65,14 +65,14 @@ declare module 'collect.js' {
      * The diff method compares the collection against another collection or a plain array based on its values.
      * This method will return the values in the original collection that are not present in the given collection.
      */
-    diff<T>(values: T[] | Collection<Item>): Collection<Item>;
+    diff<T>(values: T[] | Collection<Item>): this;
 
     /**
      * The diffAssoc method compares the collection against another collection or a plain object based on its keys
      * and values. This method will return the key / value pairs in the original collection that are not present in
      * the given collection:
      */
-    diffAssoc<T>(values: T[] | Collection<T>): Collection<Item>;
+    diffAssoc<T>(values: T[] | Collection<T>): this;
 
     /**
      * The diffKeys method compares the collection against another collection or a plain object based on its keys.
@@ -104,8 +104,8 @@ declare module 'collect.js' {
      * The filter method filters the collection using the given callback,
      * keeping only those items that pass a given truth test.
      */
-	filter(fn: (item: Item) => boolean): Collection<Item>;
-	filter(fn: (item: Item, key?: any) => boolean): Collection<Item>;
+	filter(fn: (item: Item) => boolean): this;
+	filter(fn: (item: Item, key?: any) => boolean): this;
 
     /**
      * The first method returns the first element in the collection that passes a given truth test.
@@ -117,17 +117,17 @@ declare module 'collect.js' {
      * The callback is free to modify the item and return it, thus forming a new collection of modified items.
      * Then, the array is flattened by a level.
      */
-    flatMap(fn: Function): Collection<Item>;
+    flatMap(fn: Function): this;
 
     /**
      * The flatten method flattens a multi-dimensional collection into a single dimension.
      */
-    flatten(depth?: number): Collection<Item>;
+    flatten(depth?: number): this;
 
     /**
      * The flip method swaps the collection's keys with their corresponding values.
      */
-    flip(): Collection<Item>;
+    flip(): this;
 
     /**
      * The forget method removes an item from the collection by its key.
@@ -139,7 +139,7 @@ declare module 'collect.js' {
      * The method accepts the page number as its first argument
      * and the number of items to show per page as its second argument.
      */
-    forPage(page: number, chunk: number): Collection<Item>;
+    forPage(page: number, chunk: number): this;
 
     /**
      * The get method returns the item at a given key. If the key does not exist, null is returned.
@@ -172,7 +172,7 @@ declare module 'collect.js' {
      * that are not present in the given array or collection.
      * The resulting collection will preserve the original collection's keys.
      */
-    intersect(values: Item[] | Collection<Item>): Collection<Item>;
+    intersect(values: Item[] | Collection<Item>): this;
 
     /**
      * The intersectByKeys method removes any keys from the original collection
@@ -259,12 +259,12 @@ declare module 'collect.js' {
     /**
      * The mode method returns the mode value of a given key.
      */
-    mode<K>(key?: K): Collection<Item> | null;
+    mode<K>(key?: K): this | null;
 
     /**
      * The nth method creates a new collection consisting of every n-th element.
      */
-    nth(n: number, offset?: number): Collection<Item>;
+    nth(n: number, offset?: number): this;
 
     /**
      * The only method returns the items in the collection with the specified keys.
@@ -328,12 +328,12 @@ declare module 'collect.js' {
      * The reject method filters the collection using the given callback.
      * The callback should return true if the item should be removed from the resulting collection.
      */
-    reject(fn: (item: Item) => boolean): Collection<Item>;
+    reject(fn: (item: Item) => boolean): this;
 
     /**
      * The reverse method reverses the order of the collection's items.
      */
-    reverse(): Collection<Item>;
+    reverse(): this;
 
     /**
      * The search method searches the collection for the given value and returns its key if found.
@@ -354,42 +354,42 @@ declare module 'collect.js' {
     /**
      * The slice method returns a slice of the collection starting at the given index.
      */
-    slice(remove: number, limit?: number): Collection<Item>;
+    slice(remove: number, limit?: number): this;
 
     /**
      * The sort method sorts the collection.
      */
-    sort(fn?: (a: Item, b: Item) => number): Collection<Item>;
+    sort(fn?: (a: Item, b: Item) => number): this;
 
     /**
      * The sortBy method sorts the collection by the given key.
      * The sorted collection keeps the original array keys.
      */
-    sortBy<V>(value: V): Collection<Item>;
+    sortBy<V>(value: V): this;
 
     /**
      * The sortBy method sorts the collection by the given callback.
      * The sorted collection keeps the original array keys.
      */
-    sortBy(fn: (item: Item) => number): Collection<Item>;
+    sortBy(fn: (item: Item) => number): this;
 
     /**
      * This method has the same signature as the sortBy method,
      * but will sort the collection in the opposite order.
      */
-    sortByDesc<V>(value: V): Collection<Item>;
+    sortByDesc<V>(value: V): this;
 
     /**
      * This method has the same signature as the sortBy method,
      * but will sort the collection in the opposite order.
      */
-    sortByDesc(fn: (item: Item) => number): Collection<Item>; 
+    sortByDesc(fn: (item: Item) => number): this; 
 
     /**
      * The splice method removes and returns a slice of items starting at the specified index.
      * You may pass a second argument to limit the size of the resulting chunk.
      */
-    splice(index: number, limit: number, replace?: Item[]): Collection<Item>;
+    splice(index: number, limit: number, replace?: Item[]): this;
 
     /**
      * The split method breaks a collection into the given number of groups.
@@ -407,7 +407,7 @@ declare module 'collect.js' {
      * The take method returns a new collection with the specified number of items:
      * You may also pass a negative integer to take the specified amount of items from the end of the collection.
      */
-    take(length: number): Collection<Item>;
+    take(length: number): this;
 
     /**
      * The tap method passes the collection to the given callback,
@@ -448,7 +448,7 @@ declare module 'collect.js' {
     /**
      * The unique method returns all of the unique items in the collection.
      */
-    unique<K>(key?: K | Function): Collection<Item>;
+    unique<K>(key?: K | Function): this;
 
     /**
      * The unless method will execute the given callback when the first argument given to the method evaluates to false.
@@ -473,22 +473,22 @@ declare module 'collect.js' {
     /**
      * The where method filters the collection by a given key / value pair.
      */
-    where<K, V>(key: K, value: V): Collection<Item>;
+    where<K, V>(key: K, value: V): this;
 
     /**
      * The where method filters the collection by a given key / value pair.
      */
-    where<K, V>(key: K, operator: Operator, value: V): Collection<Item>;
+    where<K, V>(key: K, operator: Operator, value: V): this;
 
     /**
      * The whereIn method filters the collection by a given key / value contained within the given array.
      */
-    whereIn<K, V>(key: K, values: V[]): Collection<Item>;
+    whereIn<K, V>(key: K, values: V[]): this;
 
     /**
      * The whereNotIn method filters the collection by a given key / value not contained within the given array.
      */
-    whereNotIn<K, V>(key: K, values: V[]): Collection<Item>;
+    whereNotIn<K, V>(key: K, values: V[]): this;
 
     /**
      * The wrap method will wrap the given value in a collection.
