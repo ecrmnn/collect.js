@@ -938,16 +938,13 @@ upperCased.all();
 The keys method returns all of the collection's keys:
 ```js
 const collection = collect([{
-  name: 'Steven Gerrard',
-  number: 8,
-}, {
   club: 'Liverpool',
   nickname: 'The Reds',
 }]);
 
 keys = collection.keys();
 
-//=> ['name', 'number', 'club', 'nickname']
+//=> ['club', 'nickname']
 ```
 
 #### ``last()``
