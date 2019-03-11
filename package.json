@@ -1,19 +1,19 @@
 {
   "name": "collect.js",
-  "version": "4.6.2",
+  "version": "4.6.3",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
   "scripts": {
     "pretest": "npm run transpile",
-    "test": "node_modules/.bin/mocha test/tests.js",
-    "transpile": "node_modules/babel-cli/bin/babel.js src --quiet --out-dir dist",
-    "bundle": "node_modules/.bin/webpack dist/index.js build/collect.js --output-library collect",
-    "uglify": "node_modules/.bin/uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",
+    "test": "mocha test/tests.js",
+    "transpile": "babel src --quiet --out-dir dist",
+    "bundle": "webpack dist/index.js build/collect.js --output-library collect",
+    "uglify": "uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",
     "build": "npm run transpile && npm run bundle && npm run uglify",
-    "eslint": "node_modules/.bin/eslint src/ test/",
-    "coverage": "npm run transpile && node_modules/.bin/nyc mocha test/tests.js",
-    "reporter": "node_modules/.bin/nyc report --reporter=html",
+    "eslint": "eslint src/ test/",
+    "coverage": "npm run transpile && nyc mocha test/tests.js",
+    "reporter": "nyc report --reporter=html",
     "prepublishOnly": "npm run build"
   },
   "babel": {
