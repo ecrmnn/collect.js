@@ -103,4 +103,30 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql(data);
   });
+
+  it('should be able to use nested value as key', () => {
+    const collection = collect([
+      {
+        name: 'Virgil van Dijk',
+        club: {
+          name: 'Liverpool FC',
+        },
+      },
+      {
+        name: 'Sadio Mané',
+        club: {
+          name: 'Liverpool FC',
+        },
+      },
+    ]);
+
+    const keyed = collection.keyBy('club.name');
+
+    expect(keyed.first()).to.eql({
+      name: 'Sadio Mané',
+      club: {
+        name: 'Liverpool FC',
+      },
+    });
+  });
 };
