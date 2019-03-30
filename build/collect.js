@@ -1333,6 +1333,8 @@ module.exports = function get(key) {
 "use strict";
 
 
+var nestedValue = __webpack_require__(1);
+
 module.exports = function groupBy(key) {
   var _this = this;
 
@@ -1343,8 +1345,8 @@ module.exports = function groupBy(key) {
 
     if (typeof key === 'function') {
       resolvedKey = key(item, index);
-    } else if (item[key] || item[key] === 0) {
-      resolvedKey = item[key];
+    } else if (nestedValue(item, key) || nestedValue(item, key) === 0) {
+      resolvedKey = nestedValue(item, key);
     } else {
       resolvedKey = '';
     }
@@ -1474,6 +1476,8 @@ module.exports = function isNotEmpty() {
 "use strict";
 
 
+var nestedValue = __webpack_require__(1);
+
 module.exports = function keyBy(key) {
   var collection = {};
 
@@ -1483,7 +1487,9 @@ module.exports = function keyBy(key) {
     });
   } else {
     this.items.forEach(function (item) {
-      collection[item[key] || ''] = item;
+      var keyValue = nestedValue(item, key);
+
+      collection[keyValue || ''] = item;
     });
   }
 

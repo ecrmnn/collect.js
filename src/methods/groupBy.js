@@ -1,5 +1,7 @@
 'use strict';
 
+const nestedValue = require('../helpers/nestedValue');
+
 module.exports = function groupBy(key) {
   const collection = {};
 
@@ -8,8 +10,8 @@ module.exports = function groupBy(key) {
 
     if (typeof key === 'function') {
       resolvedKey = key(item, index);
-    } else if (item[key] || item[key] === 0) {
-      resolvedKey = item[key];
+    } else if (nestedValue(item, key) || nestedValue(item, key) === 0) {
+      resolvedKey = nestedValue(item, key);
     } else {
       resolvedKey = '';
     }
