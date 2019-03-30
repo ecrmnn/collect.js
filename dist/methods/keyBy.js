@@ -1,5 +1,7 @@
 'use strict';
 
+var nestedValue = require('../helpers/nestedValue');
+
 module.exports = function keyBy(key) {
   var collection = {};
 
@@ -9,7 +11,9 @@ module.exports = function keyBy(key) {
     });
   } else {
     this.items.forEach(function (item) {
-      collection[item[key] || ''] = item;
+      var keyValue = nestedValue(item, key);
+
+      collection[keyValue || ''] = item;
     });
   }
 
