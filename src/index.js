@@ -79,6 +79,7 @@ Collection.prototype.search = require('./methods/search');
 Collection.prototype.shift = require('./methods/shift');
 Collection.prototype.shuffle = require('./methods/shuffle');
 Collection.prototype.slice = require('./methods/slice');
+Collection.prototype.some = require('./methods/contains');
 Collection.prototype.sort = require('./methods/sort');
 Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');

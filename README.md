@@ -103,6 +103,7 @@ All available methods
 - [shift](#shift)
 - [shuffle](#shuffle)
 - [slice](#slice)
+- [some](#some)
 - [sort](#sort)
 - [sortBy](#sortby)
 - [sortByDesc](#sortbydesc)
@@ -1608,6 +1609,9 @@ slice.all();
 
 //=> [5, 6]
 ```
+
+#### ``some()``
+Alias for the [contains](#contains) method.
 
 #### ``sort()``
 The sort method sorts the collection:
