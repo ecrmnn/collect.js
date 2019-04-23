@@ -16,7 +16,7 @@ module.exports = function duplicates() {
     this.items.forEach((value, index) => {
       const valueAsString = stringifiedValue(value);
 
-      if (!occuredValues.includes(valueAsString)) {
+      if (occuredValues.indexOf(valueAsString) === -1) {
         occuredValues.push(valueAsString);
       } else {
         duplicateValues[index] = value;
@@ -26,7 +26,7 @@ module.exports = function duplicates() {
     Object.keys(this.items).forEach((key) => {
       const valueAsString = stringifiedValue(this.items[key]);
 
-      if (!occuredValues.includes(valueAsString)) {
+      if (occuredValues.indexOf(valueAsString) === -1) {
         occuredValues.push(valueAsString);
       } else {
         duplicateValues[key] = this.items[key];
