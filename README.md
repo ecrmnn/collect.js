@@ -49,6 +49,7 @@ All available methods
 - [diffAssoc](#diffassoc)
 - [diffKeys](#diffkeys)
 - [dump](#dump)
+- [duplicates](#duplicates)
 - [each](#each)
 - [eachSpread](#eachspread)
 - [every](#every)
@@ -388,6 +389,18 @@ collect([1, 2, 3, 4])
 
 //=> Collection { items: [ 1, 2, 3, 4 ] }
 //=> Collection { items: [ 2, 4, 6, 8 ] }
+```
+
+#### ``duplicates()``
+The duplicates method retrieves and returns duplicate values from the collection:
+```js
+const collection = collect(['a', 'b', 'a', 'c', 'b']);
+
+const duplicates = collection.duplicates();
+
+duplicates.all();
+
+//=> { 2: 'a', 4: 'b' }
 ```
 
 #### ``each()``
