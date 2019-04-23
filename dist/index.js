@@ -25,6 +25,7 @@ Collection.prototype.diff = require('./methods/diff');
 Collection.prototype.diffAssoc = require('./methods/diffAssoc');
 Collection.prototype.diffKeys = require('./methods/diffKeys');
 Collection.prototype.dump = require('./methods/dump');
+Collection.prototype.duplicates = require('./methods/duplicates');
 Collection.prototype.each = require('./methods/each');
 Collection.prototype.eachSpread = require('./methods/eachSpread');
 Collection.prototype.every = require('./methods/every');
