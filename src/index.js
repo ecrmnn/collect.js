@@ -1,7 +1,13 @@
 'use strict';
 
 function Collection(collection) {
-  this.items = collection || [];
+  if (collection !== undefined && !Array.isArray(collection) && typeof collection !== 'object') {
+    this.items = [collection];
+  } else if (collection instanceof this.constructor) {
+    this.items = collection.all();
+  } else {
+    this.items = collection || [];
+  }
 }
 
 const SymbolIterator = require('./methods/symbol.iterator');
@@ -87,6 +93,7 @@ Collection.prototype.some = require('./methods/contains');
 Collection.prototype.sort = require('./methods/sort');
 Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');
+Collection.prototype.sortKeys = require('./methods/sortKeys');
 Collection.prototype.splice = require('./methods/splice');
 Collection.prototype.split = require('./methods/split');
 Collection.prototype.sum = require('./methods/sum');

@@ -111,6 +111,7 @@ All available methods
 - [sort](#sort)
 - [sortBy](#sortby)
 - [sortByDesc](#sortbydesc)
+- [sortKeys](#sortkeys)
 - [splice](#splice)
 - [split](#split)
 - [sum](#sum)
@@ -1760,6 +1761,26 @@ sorted.all();
 
 #### ``sortByDesc()``
 This method has the same signature as the ``sortBy`` method, but will sort the collection in the opposite order.
+
+#### ``sortKeys()``
+The sortKeys method sorts the collection by the keys of the underlying associative array:
+```js
+const collection = collect({
+  id: 10,
+  first: 'Sadio',
+  last: 'Mané',
+});
+
+const sorted = collection.sortKeys();
+
+sorted.all();
+
+//=> {
+//=>   first: 'Sadio',
+//=>   id: 10,
+//=>   last: 'Mané',
+//=> }
+```
 
 #### ``splice()``
 The splice method removes and returns a slice of items starting at the specified index:

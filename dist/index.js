@@ -1,7 +1,15 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 function Collection(collection) {
-  this.items = collection || [];
+  if (collection !== undefined && !Array.isArray(collection) && (typeof collection === 'undefined' ? 'undefined' : _typeof(collection)) !== 'object') {
+    this.items = [collection];
+  } else if (collection instanceof this.constructor) {
+    this.items = collection.all();
+  } else {
+    this.items = collection || [];
+  }
 }
 
 var SymbolIterator = require('./methods/symbol.iterator');
@@ -87,6 +95,7 @@ Collection.prototype.some = require('./methods/contains');
 Collection.prototype.sort = require('./methods/sort');
 Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');
+Collection.prototype.sortKeys = require('./methods/sortKeys');
 Collection.prototype.splice = require('./methods/splice');
 Collection.prototype.split = require('./methods/split');
 Collection.prototype.sum = require('./methods/sum');

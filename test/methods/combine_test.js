@@ -19,7 +19,7 @@ module.exports = (it, expect, collect) => {
 
     expect(combine.all()).to.eql({ name: 'Steven Gerrard' });
     expect(combine2.all()).to.eql({ name: 'Sadio Mané' });
-    expect(collection.all()).to.eql('name');
+    expect(collection.all()).to.eql(['name']);
   });
 
   it('should be able to combine with a string', () => {
@@ -47,6 +47,6 @@ module.exports = (it, expect, collect) => {
     const combine = collection.combine(collect('Roberto Firmino'));
 
     expect(combine.all()).to.eql({ name: 'Roberto Firmino' });
-    expect(collection.all()).to.eql('name');
+    expect(collection.all()).to.eql(['name']);
   });
 };

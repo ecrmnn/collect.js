@@ -1,3 +1,20 @@
+# 4.12.0
+
+## Breaking changes
+
+## Collection
+#### ``collect()``
+- A collection instance made from an empty string is no longer recognized as an empty collection ``collect('')`` 
+```js
+// Before 4.12.0
+collect('').isEmpty();
+//=> true
+
+// After 4.12.0
+collect('').isEmpty();
+//=> false
+```
+
 # 4.4.0
 
 ## Breaking changes
