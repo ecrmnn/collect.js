@@ -33,123 +33,7 @@ yarn add collect.js
 ### Tip
 Using Laravel as your backend? Collect.js offers an (almost) identical api to [Laravel Collections](https://laravel.com/docs/master/collections). [See differences](#strictness-and-comparisons).
 
-### Usage
-All available methods
-- [all](#all)
-- [average](#average)
-- [chunk](#chunk)
-- [collapse](#collapse)
-- [combine](#combine)
-- [concat](#concat)
-- [contains](#contains)
-- [count](#count)
-- [countBy](#countby)
-- [crossJoin](#crossjoin)
-- [dd](#dd)
-- [diff](#diff)
-- [diffAssoc](#diffassoc)
-- [diffKeys](#diffkeys)
-- [dump](#dump)
-- [duplicates](#duplicates)
-- [each](#each)
-- [eachSpread](#eachspread)
-- [every](#every)
-- [except](#except)
-- [filter](#filter)
-- [first](#first)
-- [firstWhere](#firstwhere)
-- [flatMap](#flatmap)
-- [flatten](#flatten)
-- [flip](#flip)
-- [forget](#forget)
-- [forPage](#forpage)
-- [get](#get)
-- [groupBy](#groupby)
-- [has](#has)
-- [implode](#implode)
-- [intersect](#intersect)
-- [intersectByKeys](#intersectbykeys)
-- [isEmpty](#isempty)
-- [isNotEmpty](#isnotempty)
-- [join](#join)
-- [keyBy](#keyby)
-- [keys](#keys)
-- [last](#last)
-- [macro](#macro)
-- [make](#make)
-- [map](#map)
-- [mapInto](#mapinto)
-- [mapSpread](#mapspread)
-- [mapToDictionary](#maptodictionary)
-- [mapToGroups](#maptogroups)
-- [mapWithKeys](#mapwithkeys)
-- [max](#max)
-- [median](#median)
-- [merge](#merge)
-- [min](#min)
-- [mode](#mode)
-- [nth](#nth)
-- [only](#only)
-- [pad](#pad)
-- [partition](#partition)
-- [pipe](#pipe)
-- [pluck](#pluck)
-- [pop](#pop)
-- [prepend](#prepend)
-- [pull](#pull)
-- [push](#push)
-- [put](#put)
-- [random](#random)
-- [reduce](#reduce)
-- [reject](#reject)
-- [reverse](#reverse)
-- [search](#search)
-- [shift](#shift)
-- [shuffle](#shuffle)
-- [slice](#slice)
-- [some](#some)
-- [sort](#sort)
-- [sortBy](#sortby)
-- [sortByDesc](#sortbydesc)
-- [sortKeys](#sortkeys)
-- [splice](#splice)
-- [split](#split)
-- [sum](#sum)
-- [take](#take)
-- [tap](#tap)
-- [times](#times)
-- [toArray](#toarray)
-- [toJson](#tojson)
-- [transform](#transform)
-- [union](#union)
-- [unique](#unique)
-- [unless](#unless)
-- [unlessEmpty](#unlessEmpty)
-- [unlessNotEmpty](#unlessNotEmpty)
-- [unwrap](#unwrap)
-- [values](#values)
-- [when](#when)
-- [whenEmpty](#whenEmpty)
-- [whenNotEmpty](#whenNotEmpty)
-- [where](#where)
-- [whereBetween](#wherebetween)
-- [whereIn](#wherein)
-- [whereInstanceOf](#whereinstanceof)
-- [whereNotBetween](#wherenotbetween)
-- [whereNotIn](#wherenotin)
-- [wrap](#wrap)
-- [zip](#zip)
-
-### Strictness and comparisons
-All comparisons in ``collect.js`` are done using strict equality. Using loose equality comparisons are generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offer several "strict" comparison methods. These methods have not been implemented in ``collect.js`` because all methods are strict by default. 
-
-#####  Methods that have not been implemented:
-- ~~``containsStrict``~~ use ``contains()``
-- ~~``uniqueStrict``~~ use ``unique()``
-- ~~``whereStrict``~~ use ``where()``
-- ~~``whereInStrict``~~ use ``whereIn()``
-- ~~``whereNotInStrict``~~ use ``whereNotIn()``
-
+### All available methods (API)
 #### ``all()``
 The all method returns the underlying array represented by the collection:
 ```js
@@ -2370,6 +2254,16 @@ zipped.all();
 
 //=> [['Chair', 100], ['Desk', 200]]
 ```
+
+### Strictness and comparisons
+All comparisons in ``collect.js`` are done using strict equality. Using loose equality comparisons are generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offer several "strict" comparison methods. These methods have not been implemented in ``collect.js`` because all methods are strict by default. 
+
+#####  Methods that have not been implemented:
+- ~~``containsStrict``~~ use ``contains()``
+- ~~``uniqueStrict``~~ use ``unique()``
+- ~~``whereStrict``~~ use ``where()``
+- ~~``whereInStrict``~~ use ``whereIn()``
+- ~~``whereNotInStrict``~~ use ``whereNotIn()``
 
 ### Contribute
 PRs are welcomed to this project, and help is needed in order to keep up with the changes of Laravel Collections. If you want to improve the collection library, add functionality or improve the docs please feel free to submit a PR.
