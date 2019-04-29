@@ -10,8 +10,13 @@ module.exports = (it, expect, collect) => {
   });
 
   it('should return null when getting the mode of an empty collection', () => {
+    expect(collect().mode()).to.eql(null);
+    expect(collect(null).mode()).to.eql(null);
     expect(collect([]).mode()).to.eql(null);
-    expect(collect('').mode()).to.eql(null);
+  });
+
+  it('should not recognize an empty string as an empty collection', () => {
+    expect(collect('').mode()).to.eql(['']);
   });
 
   it('should return the mode value of collection values by key', () => {
