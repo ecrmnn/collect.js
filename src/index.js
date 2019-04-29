@@ -52,6 +52,7 @@ Collection.prototype.keyBy = require('./methods/keyBy');
 Collection.prototype.keys = require('./methods/keys');
 Collection.prototype.last = require('./methods/last');
 Collection.prototype.macro = require('./methods/macro');
+Collection.prototype.make = require('./methods/make');
 Collection.prototype.map = require('./methods/map');
 Collection.prototype.mapSpread = require('./methods/mapSpread');
 Collection.prototype.mapToDictionary = require('./methods/mapToDictionary');

@@ -76,6 +76,7 @@ All available methods
 - [keys](#keys)
 - [last](#last)
 - [macro](#macro)
+- [make](#make)
 - [map](#map)
 - [mapInto](#mapinto)
 - [mapSpread](#mapspread)
@@ -1052,6 +1053,11 @@ collection.all();
 //=> ['A', 'B', 'C']
 ```
 > Note that the `macro` method returns `undefined`, and therefore it is not possible to use it within a chain of methods.
+
+#### ``make()``
+The make method creates a new collection instance.
+
+> This is only added to adhere to the Laravel collection API, when using Collect.js it's recommended to use ``collect()`` directly when creating a new collection.
 
 #### ``map()``
 The map method iterates through the collection and passes each value to the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items:
