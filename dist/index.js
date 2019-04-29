@@ -47,6 +47,7 @@ Collection.prototype.intersect = require('./methods/intersect');
 Collection.prototype.intersectByKeys = require('./methods/intersectByKeys');
 Collection.prototype.isEmpty = require('./methods/isEmpty');
 Collection.prototype.isNotEmpty = require('./methods/isNotEmpty');
+Collection.prototype.join = require('./methods/join');
 Collection.prototype.keyBy = require('./methods/keyBy');
 Collection.prototype.keys = require('./methods/keys');
 Collection.prototype.last = require('./methods/last');

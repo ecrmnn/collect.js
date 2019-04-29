@@ -71,6 +71,7 @@ All available methods
 - [intersectByKeys](#intersectbykeys)
 - [isEmpty](#isempty)
 - [isNotEmpty](#isnotempty)
+- [join](#join)
 - [keyBy](#keyby)
 - [keys](#keys)
 - [last](#last)
@@ -932,6 +933,26 @@ The isNotEmpty method returns true if the collection is not empty; otherwise, fa
 collect([1, 2, 3]).isNotEmpty();
 
 //=>  true
+```
+
+#### ``join()``
+The join method joins the collection's values with a string:
+```js
+
+collect(['a', 'b', 'c']).join(', ');
+//=> 'a, b, c'
+
+collect(['a', 'b', 'c']).join(', ', ', and ');
+//=> 'a, b, and c'
+
+collect(['a', 'b']).join(', ', ' and ');
+//=> 'a and b'
+
+collect(['a']).join(', ', ' and ');
+//=> 'a'
+
+collect([]).join(', ', ' and ');
+//=> ''
 ```
 
 #### ``keyBy()``
