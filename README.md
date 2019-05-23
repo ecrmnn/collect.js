@@ -1104,8 +1104,8 @@ const collection = collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
 const chunks = collection.chunk(2);
 
-const sequence = chunks.mapSpread((odd, even) => {
-    return odd + even;
+const sequence = chunks.mapSpread((even, odd) => {
+    return even + odd;
 });
 
 sequence.all();
