@@ -343,9 +343,9 @@ The crossJoin method cross joins the collection with the given array or collecti
 ```js
 const collection = collect([1, 2]);
 
-const crossJoinResult = collection.crossJoin(['a', 'b']);
+const joined = collection.crossJoin(['a', 'b']);
 
-crossJoinResult.all();
+joined.all();
 
 //=> [
 //=>   [1, 'a'],
