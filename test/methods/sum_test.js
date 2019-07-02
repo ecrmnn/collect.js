@@ -32,4 +32,22 @@ module.exports = (it, expect, collect) => {
       { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
     ]);
   });
+
+  it('should return sum of closure when collection is object with objects', () => {
+    const collection = collect({
+      S: { ordered: 10, deliverd: 5 },
+      M: { ordered: 20, deliverd: 5 },
+      L: { ordered: 15, deliverd: 10 },
+    });
+
+    const summed = collection.sum(item => item.ordered);
+
+    expect(summed).to.eql(45);
+
+    expect(collection.all()).to.eql({
+      S: { ordered: 10, deliverd: 5 },
+      M: { ordered: 20, deliverd: 5 },
+      L: { ordered: 15, deliverd: 10 },
+    });
+  });
 };
