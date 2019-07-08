@@ -55,30 +55,30 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql(products);
   });
 
-  it('should use an empty string as the key ' +
-    'if objects are missing the key to group by',
-    () => {
-      const collection = collect(products);
-      const grouped = collection.groupBy('price');
+  it('should use an empty string as the key '
+    + 'if objects are missing the key to group by',
+  () => {
+    const collection = collect(products);
+    const grouped = collection.groupBy('price');
 
-      expect(grouped.all()).to.eql({
-        0: collect([
-          { product: 'Catalog', manufacturer: 'IKEA', price: 0 },
-        ]),
-        15: collect([
-          { product: 'Lamp', manufacturer: 'IKEA', price: 15 },
-        ]),
-        60: collect([
-          { product: 'Desk', manufacturer: 'IKEA', price: 60 },
-          { product: 'Chair', manufacturer: 'IKEA', price: 60 },
-        ]),
-        '': collect([
-          { product: 'Chair', manufacturer: 'Herman Miller' },
-        ]),
-      });
-
-      expect(collection.all()).to.eql(products);
+    expect(grouped.all()).to.eql({
+      0: collect([
+        { product: 'Catalog', manufacturer: 'IKEA', price: 0 },
+      ]),
+      15: collect([
+        { product: 'Lamp', manufacturer: 'IKEA', price: 15 },
+      ]),
+      60: collect([
+        { product: 'Desk', manufacturer: 'IKEA', price: 60 },
+        { product: 'Chair', manufacturer: 'IKEA', price: 60 },
+      ]),
+      '': collect([
+        { product: 'Chair', manufacturer: 'Herman Miller' },
+      ]),
     });
+
+    expect(collection.all()).to.eql(products);
+  });
 
   it('should be able to use nested value as key', () => {
     const collection = collect([

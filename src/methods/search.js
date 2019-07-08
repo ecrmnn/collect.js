@@ -4,7 +4,7 @@ module.exports = function search(valueOrFunction, strict) {
   let valueFn = valueOrFunction;
 
   if (typeof valueOrFunction === 'function') {
-    valueFn = this.items.filter((value, key) => valueOrFunction(value, key))[0];
+    valueFn = this.items.find((value, key) => valueOrFunction(value, key));
   }
 
   let index = false;

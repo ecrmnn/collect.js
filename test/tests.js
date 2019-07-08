@@ -1,10 +1,10 @@
 'use strict';
 
 const fs = require('fs');
-const it = require('mocha').it;
-const describe = require('mocha').describe;
+const { it } = require('mocha');
+const { describe } = require('mocha');
 const path = require('path');
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const collect = require('../dist');
 
 let test = process.argv[process.argv.length - 1];

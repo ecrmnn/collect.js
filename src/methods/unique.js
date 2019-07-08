@@ -11,8 +11,8 @@ module.exports = function unique(key) {
 
     const usedKeys = [];
 
-    for (let iterator = 0, length = this.items.length;
-         iterator < length; iterator += 1) {
+    for (let iterator = 0, { length } = this.items;
+      iterator < length; iterator += 1) {
       let uniqueKey;
       if (typeof key === 'function') {
         uniqueKey = key(this.items[iterator]);

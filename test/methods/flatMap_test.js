@@ -29,17 +29,17 @@ module.exports = (it, expect, collect) => {
     expect(flatMapped.all()).to.eql(['XHERDAN SHAQIRI', 'MOHAMED SALAH']);
 
     expect(collection.all())
-    .to
-    .eql([
-      {
-        name: 'Xherdan Shaqiri',
-        number: 23,
-      },
-      {
-        name: 'Mohamed Salah',
-        number: 11,
-      },
-    ]);
+      .to
+      .eql([
+        {
+          name: 'Xherdan Shaqiri',
+          number: 23,
+        },
+        {
+          name: 'Mohamed Salah',
+          number: 11,
+        },
+      ]);
   });
 
   it('should override the value of the key already exists', () => {
