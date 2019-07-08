@@ -12,6 +12,8 @@ module.exports = (it, expect, collect) => {
     const values = collection.values();
 
     expect(values.all()).to.eql([12, 'xoxo', 'abab', '1337']);
-    expect(collection.all()).to.eql({ a: 'xoxo', b: 'abab', c: '1337', 1337: 12 });
+    expect(collection.all()).to.eql({
+      a: 'xoxo', b: 'abab', c: '1337', 1337: 12,
+    });
   });
 };

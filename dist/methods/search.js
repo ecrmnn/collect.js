@@ -6,9 +6,9 @@ module.exports = function search(valueOrFunction, strict) {
   var valueFn = valueOrFunction;
 
   if (typeof valueOrFunction === 'function') {
-    valueFn = this.items.filter(function (value, key) {
+    valueFn = this.items.find(function (value, key) {
       return valueOrFunction(value, key);
-    })[0];
+    });
   }
 
   var index = false;

@@ -17,8 +17,8 @@ module.exports = function where(key, operator, value) {
   const collection = items.filter((item) => {
     switch (comparisonOperator) {
       case '==':
-        return nestedValue(item, key) === Number(comparisonValue) ||
-          nestedValue(item, key) === comparisonValue.toString();
+        return nestedValue(item, key) === Number(comparisonValue)
+          || nestedValue(item, key) === comparisonValue.toString();
 
       default:
       case '===':
@@ -26,8 +26,8 @@ module.exports = function where(key, operator, value) {
 
       case '!=':
       case '<>':
-        return nestedValue(item, key) !== Number(comparisonValue) &&
-          nestedValue(item, key) !== comparisonValue.toString();
+        return nestedValue(item, key) !== Number(comparisonValue)
+          && nestedValue(item, key) !== comparisonValue.toString();
 
       case '!==':
         return nestedValue(item, key) !== comparisonValue;
@@ -43,7 +43,6 @@ module.exports = function where(key, operator, value) {
 
       case '>=':
         return nestedValue(item, key) >= comparisonValue;
-
     }
   });
 

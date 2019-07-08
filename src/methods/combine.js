@@ -20,7 +20,7 @@ module.exports = function combine(array) {
   } else if (Array.isArray(this.items)) {
     collection[this.items[0]] = values;
   } else if (typeof this.items === 'string' && Array.isArray(values)) {
-    collection[this.items] = values[0];
+    [collection[this.items]] = values;
   } else if (typeof this.items === 'string') {
     collection[this.items] = values;
   }

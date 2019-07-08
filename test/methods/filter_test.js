@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = (it, expect, collect) => {
-  it('should filter the collection by a given callback, ' +
-    'filtering based on value', () => {
+  it('should filter the collection by a given callback, '
+    + 'filtering based on value', () => {
     const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const filtered = collection.filter(item => item > 1);
 
@@ -10,8 +10,8 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   });
 
-  it('should filter the collection by a given callback, ' +
-    'filtering based on value', () => {
+  it('should filter the collection by a given callback, '
+    + 'filtering based on value', () => {
     const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const filtered = collection.filter((item, key) => key > 3 && key < 7);
 
@@ -28,8 +28,8 @@ module.exports = (it, expect, collect) => {
     expect(collection2.all()).to.eql({ key: 'value', foo: 'bar' });
   });
 
-  it('should filter the collection removing "falsely" values ' +
-    'if no call back is passed', () => {
+  it('should filter the collection removing "falsely" values '
+    + 'if no call back is passed', () => {
     const collection = collect([
       0,
       1,
@@ -82,7 +82,9 @@ module.exports = (it, expect, collect) => {
     });
     const filtered2 = collection2.filter();
 
-    expect(filtered2.all()).to.eql({ baz: 10, foo: 'bar', notEmptyObject: { a: 1 }, notEmptyArray: [''] });
+    expect(filtered2.all()).to.eql({
+      baz: 10, foo: 'bar', notEmptyObject: { a: 1 }, notEmptyArray: [''],
+    });
     expect(collection2.all()).to.eql({
       falseKey: false,
       emptyArray: [],

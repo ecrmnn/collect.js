@@ -15,5 +15,6 @@ module.exports = function diffKeys(object) {
     .filter(item => objectKeys.indexOf(item) === -1);
 
   return new this.constructor(this.items).only(
-    remainingKeys);
+    remainingKeys,
+  );
 };

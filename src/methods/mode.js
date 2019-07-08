@@ -25,7 +25,7 @@ module.exports = function mode(key) {
       }
     } else {
       tempValues[0].count += 1;
-      const count = tempValues[0].count;
+      const { count } = tempValues[0];
 
       if (count > highestCount) {
         highestCount = count;

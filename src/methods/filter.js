@@ -5,8 +5,8 @@ function falsyValue(item) {
     if (item.length) {
       return false;
     }
-  } else if (item !== undefined && item !== null &&
-    typeof item === 'object') {
+  } else if (item !== undefined && item !== null
+    && typeof item === 'object') {
     if (Object.keys(item).length) {
       return false;
     }
