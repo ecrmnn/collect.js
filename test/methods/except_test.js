@@ -7,8 +7,8 @@ const post = {
 };
 
 module.exports = (it, expect, collect) => {
-  it('should return everything except the specified ' +
-    'properties of an object', () => {
+  it('should return everything except the specified '
+    + 'properties of an object', () => {
     const collection = collect(post);
     const filtered = collection.except(['title', 'author']);
 
@@ -18,8 +18,8 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql(post);
   });
 
-  it('should return everything except the specified ' +
-    'items in an array', () => {
+  it('should return everything except the specified '
+    + 'items in an array', () => {
     const collection = collect([1, 2, 3, 4, 5]);
     const filtered = collection.except([5, 1]);
 

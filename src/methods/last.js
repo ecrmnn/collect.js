@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function last(fn, defaultValue) {
-  let items = this.items;
+  let { items } = this;
 
   if (typeof fn === 'function') {
     items = this.filter(fn).all();

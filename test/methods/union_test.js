@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = (it, expect, collect) => {
-  it('should add the given object to the collection. ' +
-    'If the given object contains keys that are already in the collection, ' +
-    'the collections values will be preferred', () => {
+  it('should add the given object to the collection. '
+    + 'If the given object contains keys that are already in the collection, '
+    + 'the collections values will be preferred', () => {
     const collection = collect({
       a: 'A',
       b: 'B',

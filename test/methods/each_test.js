@@ -72,13 +72,17 @@ module.exports = (it, expect, collect) => {
   it('should iterate even when the collection is an object', () => {
     let sum3 = 0;
 
-    const collection2 = collect({ a: 1, b: 3, c: 3, d: 7 });
+    const collection2 = collect({
+      a: 1, b: 3, c: 3, d: 7,
+    });
 
     const summed2 = collection2.each((item) => {
       sum3 += item;
     });
 
-    expect(summed2.all()).to.eql({ a: 1, b: 3, c: 3, d: 7 });
+    expect(summed2.all()).to.eql({
+      a: 1, b: 3, c: 3, d: 7,
+    });
     expect(sum3).to.eql(14);
   });
 

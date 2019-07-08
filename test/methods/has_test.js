@@ -34,8 +34,8 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql(unicorn);
   });
 
-  it('should determine if all objects have the specified key ' +
-    'when given an array of objects', () => {
+  it('should determine if all objects have the specified key '
+    + 'when given an array of objects', () => {
     const pig = [
       {
         animal: 'unicorn',

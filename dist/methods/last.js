@@ -3,6 +3,7 @@
 module.exports = function last(fn, defaultValue) {
   var items = this.items;
 
+
   if (typeof fn === 'function') {
     items = this.filter(fn).all();
   }

@@ -41,7 +41,6 @@ module.exports = function where(key, operator, value) {
 
       case '>=':
         return nestedValue(item, key) >= comparisonValue;
-
     }
   });
 
