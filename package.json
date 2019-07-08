@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "4.12.7",
+  "version": "4.12.8",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
@@ -58,7 +58,7 @@
     "babel-preset-env": "^1.6.1",
     "benchmark": "^2.1.0",
     "chai": "^4.1.2",
-    "eslint": "^6.0.1",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
     "hoax.js": "^1.0.0",
