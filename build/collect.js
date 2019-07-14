@@ -247,14 +247,14 @@ module.exports = function contains(key, value) {
 module.exports = function whenNotEmpty(fn, defaultFn) {
   if (Array.isArray(this.items) && this.items.length) {
     return fn(this);
-  } else if (Object.keys(this.items).length) {
+  }if (Object.keys(this.items).length) {
     return fn(this);
   }
 
   if (defaultFn !== undefined) {
     if (Array.isArray(this.items) && !this.items.length) {
       return defaultFn(this);
-    } else if (!Object.keys(this.items).length) {
+    }if (!Object.keys(this.items).length) {
       return defaultFn(this);
     }
   }
@@ -272,14 +272,14 @@ module.exports = function whenNotEmpty(fn, defaultFn) {
 module.exports = function whenEmpty(fn, defaultFn) {
   if (Array.isArray(this.items) && !this.items.length) {
     return fn(this);
-  } else if (!Object.keys(this.items).length) {
+  }if (!Object.keys(this.items).length) {
     return fn(this);
   }
 
   if (defaultFn !== undefined) {
     if (Array.isArray(this.items) && this.items.length) {
       return defaultFn(this);
-    } else if (Object.keys(this.items).length) {
+    }if (Object.keys(this.items).length) {
       return defaultFn(this);
     }
   }
@@ -530,6 +530,8 @@ module.exports = function collapse() {
 "use strict";
 
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 module.exports = function combine(array) {
@@ -554,7 +556,11 @@ module.exports = function combine(array) {
   } else if (Array.isArray(this.items)) {
     collection[this.items[0]] = values;
   } else if (typeof this.items === 'string' && Array.isArray(values)) {
-    collection[this.items] = values[0];
+    var _values = values;
+
+    var _values2 = _slicedToArray(_values, 1);
+
+    collection[this.items] = _values2[0];
   } else if (typeof this.items === 'string') {
     collection[this.items] = values;
   }
@@ -1631,6 +1637,7 @@ module.exports = function keys() {
 module.exports = function last(fn, defaultValue) {
   var items = this.items;
 
+
   if (typeof fn === 'function') {
     items = this.filter(fn).all();
   }
@@ -1846,6 +1853,7 @@ module.exports = function max(key) {
 module.exports = function median(key) {
   var length = this.items.length;
 
+
   if (key === undefined) {
     if (length % 2 === 0) {
       return (this.items[length / 2 - 1] + this.items[length / 2]) / 2;
@@ -1938,6 +1946,7 @@ module.exports = function mode(key) {
     } else {
       tempValues[0].count += 1;
       var count = tempValues[0].count;
+
 
       if (count > highestCount) {
         highestCount = count;
@@ -2388,9 +2397,9 @@ module.exports = function search(valueOrFunction, strict) {
   var valueFn = valueOrFunction;
 
   if (typeof valueOrFunction === 'function') {
-    valueFn = this.items.filter(function (value, key) {
+    valueFn = this.items.find(function (value, key) {
       return valueOrFunction(value, key);
-    })[0];
+    });
   }
 
   var index = false;
@@ -2912,7 +2921,9 @@ module.exports = function values() {
 module.exports = function when(value, fn, defaultFn) {
   if (value) {
     return fn(this, value);
-  } else if (defaultFn) {
+  }
+
+  if (defaultFn) {
     return defaultFn(this, value);
   }
 
@@ -2967,7 +2978,6 @@ module.exports = function where(key, operator, value) {
 
       case '>=':
         return nestedValue(item, key) >= comparisonValue;
-
     }
   });
 
