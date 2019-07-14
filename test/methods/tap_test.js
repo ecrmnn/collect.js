@@ -14,4 +14,21 @@ module.exports = (it, expect, collect) => {
     expect(tapped).to.eql([2, 3, 4, 5]);
     expect(number).to.eql(1);
   });
+
+  it('should work when collection is based on an object', () => {
+    const data = {
+      name: 'Mohamed Salah',
+      number: 11,
+      club: 'Liverpool FC',
+    };
+
+    let tapped = null;
+
+    collect(data)
+      .tap((collection) => {
+        tapped = collection.all();
+      });
+
+    expect(tapped).to.eql(data);
+  });
 };

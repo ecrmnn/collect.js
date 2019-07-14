@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "4.12.8",
+  "version": "4.12.9",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
@@ -11,7 +11,7 @@
     "bundle": "webpack dist/index.js build/collect.js --output-library collect",
     "uglify": "uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",
     "build": "npm run transpile && npm run bundle && npm run uglify",
-    "eslint": "eslint src/ test/",
+    "eslint": "eslint src/ test/ --fix",
     "coverage": "npm run transpile && nyc mocha test/tests.js",
     "reporter": "nyc report --reporter=html",
     "prepublishOnly": "npm run build"
