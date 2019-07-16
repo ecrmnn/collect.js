@@ -583,20 +583,21 @@ collection.firstWhere('name', 'Linda');
 The flatMap method iterates through the collection and passes each value to the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items. Then, the array is flattened by a level:
 ```js
 const collection = collect([
- { name: 'Robbie Fowler' },
- { nickname: 'The God' },
- { position: 'Striker' },
+  {
+    name: 'Sadio Mané',
+    number: 10,
+  },
+  {
+    name: 'Mohamed Salah',
+    number: 11,
+  },
 ]);
 
-const flatMapped = collection.flatMap(values => values.map(value => value.toUpperCase()));
+const flatMapped = collection.flatMap(value => value.name.toUpperCase());
 
 flatMapped.all();
 
-//=> {
-//=>   name: 'ROBBIE FOWLER',
-//=>   nickname: 'THE GOD',
-//=>   position: 'STRIKER',
-//=> }
+//=> ['SADIO MANÉ', 'MOHAMED SALAH']
 ```
 
 #### ``flatten()``
