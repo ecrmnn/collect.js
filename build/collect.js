@@ -1245,8 +1245,8 @@ module.exports = function first(fn, defaultValue) {
 "use strict";
 
 
-module.exports = function firstWhere(key, value) {
-  return this.where(key, value).first() || null;
+module.exports = function firstWhere(key, operator, value) {
+  return this.where(key, operator, value).first() || null;
 };
 
 /***/ }),
