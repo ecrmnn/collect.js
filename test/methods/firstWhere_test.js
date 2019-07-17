@@ -19,4 +19,10 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.firstWhere('manufacturer', 'xoxo')).to.eql(null);
   });
+
+  it('should be possible to pass an operator', () => {
+    const collection = collect(products);
+
+    expect(collection.firstWhere('manufacturer', '!==', 'IKEA').product).to.eql('Chair');
+  });
 };

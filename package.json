@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "4.12.10",
+  "version": "4.12.11",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
