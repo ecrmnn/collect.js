@@ -21,7 +21,7 @@ module.exports = (it, expect, collect) => {
   it('should filter out values within given scope', () => {
     const collection = collect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: '3' }, { v: 4 }]);
 
-    expect(collection.whereNotBetween('v', [2, 4]).values().all()).to.eql([
+    expect(collection.whereNotBetween('v', [2, 4]).all()).to.eql([
       { v: 1 },
     ]);
 
@@ -37,7 +37,7 @@ module.exports = (it, expect, collect) => {
   it('should not modify the existing collection', () => {
     const collection = collect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: '3' }, { v: 4 }]);
 
-    expect(collection.whereNotBetween('v', [2, 4]).values().all()).to.eql([
+    expect(collection.whereNotBetween('v', [2, 4]).all()).to.eql([
       { v: 1 },
     ]);
 

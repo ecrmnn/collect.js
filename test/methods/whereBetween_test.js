@@ -48,7 +48,7 @@ module.exports = (it, expect, collect) => {
   it('should work on different values', () => {
     const collection = collect([{ v: 1 }, { v: 2 }, { v: 3 }, { v: '3' }, { v: 4 }]);
 
-    expect(collection.whereBetween('v', [2, 4]).values().all()).to.eql([
+    expect(collection.whereBetween('v', [2, 4]).all()).to.eql([
       { v: 2 }, { v: 3 }, { v: '3' }, { v: 4 },
     ]);
 

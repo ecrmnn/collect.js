@@ -1,13 +1,21 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var getValues = require('../helpers/values');
+
 module.exports = function values() {
-  var _this = this;
+  var valuesRecursive = function valuesRecursive(items) {
+    var extractedValues = getValues(items);
 
-  var collection = [];
+    if (items !== null && (typeof items === 'undefined' ? 'undefined' : _typeof(items)) === 'object') {
+      return extractedValues.map(function (item) {
+        return valuesRecursive(item);
+      });
+    }
 
-  Object.keys(this.items).forEach(function (property) {
-    collection.push(_this.items[property]);
-  });
+    return items;
+  };
 
-  return new this.constructor(collection);
+  return new this.constructor(valuesRecursive(this.items));
 };
