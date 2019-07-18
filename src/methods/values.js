@@ -1,11 +1,17 @@
 'use strict';
 
+const getValues = require('../helpers/values');
+
 module.exports = function values() {
-  const collection = [];
+  const valuesRecursive = (items) => {
+    const extractedValues = getValues(items);
 
-  Object.keys(this.items).forEach((property) => {
-    collection.push(this.items[property]);
-  });
+    if (items !== null && typeof items === 'object') {
+      return extractedValues.map(item => valuesRecursive(item));
+    }
 
-  return new this.constructor(collection);
+    return items;
+  };
+
+  return new this.constructor(valuesRecursive(this.items));
 };

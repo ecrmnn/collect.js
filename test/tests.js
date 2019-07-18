@@ -37,7 +37,7 @@ if (!runSingleTest) {
     it('should document all methods', () => {
       const content = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf-8');
 
-      const re = /#### ``(.*)\(\)``/g;
+      const re = /#### `(.*)\(\)`/g;
       let matches = re.exec(content);
 
       const documentedMethods = [];
