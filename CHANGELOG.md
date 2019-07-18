@@ -1,3 +1,11 @@
+# 4.13.0
+
+## Breaking changes
+
+## Methods
+#### ``values()``
+- Values now iterates the collection recursively and collects values. Results that previously would return an object may now return an array.
+
 # 4.12.0
 
 ## Breaking changes
