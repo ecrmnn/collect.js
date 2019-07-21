@@ -136,4 +136,39 @@ module.exports = (it, expect, collect) => {
       },
     }]);
   });
+
+  it('should work when only passing one argument', () => {
+    const hasManufacturer = collection.where('manufacturer');
+
+    expect(hasManufacturer.all()).to.eql([
+      { product: 'Desk', price: 200, manufacturer: 'IKEA' },
+      { product: 'Chair', price: 100, manufacturer: 'Herman Miller' },
+      { product: 'Bookcase', price: 150, manufacturer: 'IKEA' },
+    ]);
+
+    const hasProduct = collection.where('product');
+
+    expect(hasProduct.all()).to.eql([
+      { product: 'Desk', price: 200, manufacturer: 'IKEA' },
+      { product: 'Chair', price: 100, manufacturer: 'Herman Miller' },
+      { product: 'Bookcase', price: 150, manufacturer: 'IKEA' },
+      { product: 'Door', price: '100' },
+    ]);
+  });
+
+  it('should work when passing two argument', () => {
+    const hasManufacturer = collection.where('manufacturer', true);
+
+    expect(hasManufacturer.all()).to.eql([
+      { product: 'Desk', price: 200, manufacturer: 'IKEA' },
+      { product: 'Chair', price: 100, manufacturer: 'Herman Miller' },
+      { product: 'Bookcase', price: 150, manufacturer: 'IKEA' },
+    ]);
+
+    const dontHaveManufacturer = collection.where('manufacturer', false);
+
+    expect(dontHaveManufacturer.all()).to.eql([
+      { product: 'Door', price: '100' },
+    ]);
+  });
 };
