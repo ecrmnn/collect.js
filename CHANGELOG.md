@@ -1,3 +1,11 @@
+# 4.14.0
+
+## Breaking changes
+
+## Methods
+#### ``where()``
+- This method now supports one, two or three arguments. This may cause unexpected output if you're using this function with one or two arguments earlier.
+
 # 4.13.0
 
 ## Breaking changes

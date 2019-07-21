@@ -2572,19 +2572,37 @@ The where method filters the collection by a given key / value pair:
 
 ```js
 const collection = collect([
-  { product: "Desk", price: 200 },
-  { product: "Chair", price: 100 },
-  { product: "Bookcase", price: 150 },
-  { product: "Door", price: 100 }
+  { product: 'Desk', price: 200, discounted: true },
+  { product: 'Chair', price: 100, discounted: true },
+  { product: 'Bookcase', price: 150, discounted: true },
+  { product: 'Door', price: 100 }
 ]);
 
-const filtered = collection.where("price", 100);
+const filtered = collection.where('price', 100);
 
 filtered.all();
 
 //=> [
 //=>   { product: 'Chair', price: 100 },
 //=>   { product: 'Door', price: 100 },
+//=> ]
+
+const discounted = collection.where('discounted');
+
+discounted.all();
+
+//=> [
+//=>  { product: 'Desk', price: 200, discounted: true },
+//=>  { product: 'Chair', price: 100, discounted: true },
+//=>  { product: 'Bookcase', price: 150, discounted: true },
+//=> ]
+
+const notDiscounted = collection.where('discounted', false);
+
+discounted.all();
+
+//=> [
+//=>  { product: 'Door', price: 100 },
 //=> ]
 ```
 
