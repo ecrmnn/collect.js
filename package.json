@@ -14,6 +14,8 @@
     "eslint": "eslint src/ test/ --fix",
     "coverage": "npm run transpile && nyc mocha test/tests.js",
     "reporter": "nyc report --reporter=html",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "prepublishOnly": "npm run build"
   },
   "babel": {
