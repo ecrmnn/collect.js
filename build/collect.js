@@ -37,12 +37,32 @@ var collect =
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -60,3220 +80,1354 @@ var collect =
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./dist/index.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./dist/helpers/clone.js":
+/*!*******************************!*\
+  !*** ./dist/helpers/clone.js ***!
+  \*******************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-
-/**
- * Values helper
- *
- * Retrieve values from [this.items] when it is an array, object or Collection
- *
- * @returns {*}
- * @param items
- */
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function values(items) {
-  var valuesArray = [];
-
-  if (Array.isArray(items)) {
-    valuesArray.push.apply(valuesArray, _toConsumableArray(items));
-  } else if (items.constructor.name === 'Collection') {
-    valuesArray.push.apply(valuesArray, _toConsumableArray(items.all()));
-  } else {
-    Object.keys(items).forEach(function (prop) {
-      return valuesArray.push(items[prop]);
-    });
-  }
-
-  return valuesArray;
-};
+eval("\n\n/**\n * Clone helper\n *\n * Clone an array or object\n *\n * @param items\n * @returns {*}\n */\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function clone(items) {\n  var cloned = void 0;\n\n  if (Array.isArray(items)) {\n    var _cloned;\n\n    cloned = [];\n\n    (_cloned = cloned).push.apply(_cloned, _toConsumableArray(items));\n  } else {\n    cloned = {};\n\n    Object.keys(items).forEach(function (prop) {\n      cloned[prop] = items[prop];\n    });\n  }\n\n  return cloned;\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/clone.js?");
 
 /***/ }),
-/* 1 */
+
+/***/ "./dist/helpers/nestedValue.js":
+/*!*************************************!*\
+  !*** ./dist/helpers/nestedValue.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/**
- * Get value of a nested property
- *
- * @param mainObject
- * @param key
- * @returns {*}
- */
-
-module.exports = function nestedValue(mainObject, key) {
-  try {
-    return key.split('.').reduce(function (obj, property) {
-      return obj[property];
-    }, mainObject);
-  } catch (err) {
-    return null;
-  }
-};
+eval("\n\n/**\n * Get value of a nested property\n *\n * @param mainObject\n * @param key\n * @returns {*}\n */\n\nmodule.exports = function nestedValue(mainObject, key) {\n  try {\n    return key.split('.').reduce(function (obj, property) {\n      return obj[property];\n    }, mainObject);\n  } catch (err) {\n    return null;\n  }\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/nestedValue.js?");
 
 /***/ }),
-/* 2 */
+
+/***/ "./dist/helpers/values.js":
+/*!********************************!*\
+  !*** ./dist/helpers/values.js ***!
+  \********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/**
- * Variadic helper function
- *
- * @param args
- * @returns {*}
- */
-
-module.exports = function variadic(args) {
-  if (Array.isArray(args[0])) {
-    return args[0];
-  }
-
-  return args;
-};
+eval("\n\n\n/**\n * Values helper\n *\n * Retrieve values from [this.items] when it is an array, object or Collection\n *\n * @returns {*}\n * @param items\n */\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function values(items) {\n  var valuesArray = [];\n\n  if (Array.isArray(items)) {\n    valuesArray.push.apply(valuesArray, _toConsumableArray(items));\n  } else if (items.constructor.name === 'Collection') {\n    valuesArray.push.apply(valuesArray, _toConsumableArray(items.all()));\n  } else {\n    Object.keys(items).forEach(function (prop) {\n      return valuesArray.push(items[prop]);\n    });\n  }\n\n  return valuesArray;\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/values.js?");
 
 /***/ }),
-/* 3 */
+
+/***/ "./dist/helpers/variadic.js":
+/*!**********************************!*\
+  !*** ./dist/helpers/variadic.js ***!
+  \**********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function average(key) {
-  if (key === undefined) {
-    return this.sum() / this.items.length;
-  }
-
-  return new this.constructor(this.items).pluck(key).sum() / this.items.length;
-};
+eval("\n\n/**\n * Variadic helper function\n *\n * @param args\n * @returns {*}\n */\n\nmodule.exports = function variadic(args) {\n  if (Array.isArray(args[0])) {\n    return args[0];\n  }\n\n  return args;\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/variadic.js?");
 
 /***/ }),
-/* 4 */
+
+/***/ "./dist/index.js":
+/*!***********************!*\
+  !*** ./dist/index.js ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-/**
- * Clone helper
- *
- * Clone an array or object
- *
- * @param items
- * @returns {*}
- */
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function clone(items) {
-  var cloned = void 0;
-
-  if (Array.isArray(items)) {
-    var _cloned;
-
-    cloned = [];
-
-    (_cloned = cloned).push.apply(_cloned, _toConsumableArray(items));
-  } else {
-    cloned = {};
-
-    Object.keys(items).forEach(function (prop) {
-      cloned[prop] = items[prop];
-    });
-  }
-
-  return cloned;
-};
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nfunction Collection(collection) {\n  if (collection !== undefined && !Array.isArray(collection) && (typeof collection === 'undefined' ? 'undefined' : _typeof(collection)) !== 'object') {\n    this.items = [collection];\n  } else if (collection instanceof this.constructor) {\n    this.items = collection.all();\n  } else {\n    this.items = collection || [];\n  }\n}\n\nvar SymbolIterator = __webpack_require__(/*! ./methods/symbol.iterator */ \"./dist/methods/symbol.iterator.js\");\n\nif (typeof Symbol !== 'undefined') {\n  Collection.prototype[Symbol.iterator] = SymbolIterator;\n}\n\nCollection.prototype.all = __webpack_require__(/*! ./methods/all */ \"./dist/methods/all.js\");\nCollection.prototype.average = __webpack_require__(/*! ./methods/average */ \"./dist/methods/average.js\");\nCollection.prototype.avg = __webpack_require__(/*! ./methods/average */ \"./dist/methods/average.js\");\nCollection.prototype.chunk = __webpack_require__(/*! ./methods/chunk */ \"./dist/methods/chunk.js\");\nCollection.prototype.collapse = __webpack_require__(/*! ./methods/collapse */ \"./dist/methods/collapse.js\");\nCollection.prototype.combine = __webpack_require__(/*! ./methods/combine */ \"./dist/methods/combine.js\");\nCollection.prototype.concat = __webpack_require__(/*! ./methods/concat */ \"./dist/methods/concat.js\");\nCollection.prototype.contains = __webpack_require__(/*! ./methods/contains */ \"./dist/methods/contains.js\");\nCollection.prototype.count = __webpack_require__(/*! ./methods/count */ \"./dist/methods/count.js\");\nCollection.prototype.countBy = __webpack_require__(/*! ./methods/countBy */ \"./dist/methods/countBy.js\");\nCollection.prototype.crossJoin = __webpack_require__(/*! ./methods/crossJoin */ \"./dist/methods/crossJoin.js\");\nCollection.prototype.dd = __webpack_require__(/*! ./methods/dd */ \"./dist/methods/dd.js\");\nCollection.prototype.diff = __webpack_require__(/*! ./methods/diff */ \"./dist/methods/diff.js\");\nCollection.prototype.diffAssoc = __webpack_require__(/*! ./methods/diffAssoc */ \"./dist/methods/diffAssoc.js\");\nCollection.prototype.diffKeys = __webpack_require__(/*! ./methods/diffKeys */ \"./dist/methods/diffKeys.js\");\nCollection.prototype.dump = __webpack_require__(/*! ./methods/dump */ \"./dist/methods/dump.js\");\nCollection.prototype.duplicates = __webpack_require__(/*! ./methods/duplicates */ \"./dist/methods/duplicates.js\");\nCollection.prototype.each = __webpack_require__(/*! ./methods/each */ \"./dist/methods/each.js\");\nCollection.prototype.eachSpread = __webpack_require__(/*! ./methods/eachSpread */ \"./dist/methods/eachSpread.js\");\nCollection.prototype.every = __webpack_require__(/*! ./methods/every */ \"./dist/methods/every.js\");\nCollection.prototype.except = __webpack_require__(/*! ./methods/except */ \"./dist/methods/except.js\");\nCollection.prototype.filter = __webpack_require__(/*! ./methods/filter */ \"./dist/methods/filter.js\");\nCollection.prototype.first = __webpack_require__(/*! ./methods/first */ \"./dist/methods/first.js\");\nCollection.prototype.firstWhere = __webpack_require__(/*! ./methods/firstWhere */ \"./dist/methods/firstWhere.js\");\nCollection.prototype.flatMap = __webpack_require__(/*! ./methods/flatMap */ \"./dist/methods/flatMap.js\");\nCollection.prototype.flatten = __webpack_require__(/*! ./methods/flatten */ \"./dist/methods/flatten.js\");\nCollection.prototype.flip = __webpack_require__(/*! ./methods/flip */ \"./dist/methods/flip.js\");\nCollection.prototype.forPage = __webpack_require__(/*! ./methods/forPage */ \"./dist/methods/forPage.js\");\nCollection.prototype.forget = __webpack_require__(/*! ./methods/forget */ \"./dist/methods/forget.js\");\nCollection.prototype.get = __webpack_require__(/*! ./methods/get */ \"./dist/methods/get.js\");\nCollection.prototype.groupBy = __webpack_require__(/*! ./methods/groupBy */ \"./dist/methods/groupBy.js\");\nCollection.prototype.has = __webpack_require__(/*! ./methods/has */ \"./dist/methods/has.js\");\nCollection.prototype.implode = __webpack_require__(/*! ./methods/implode */ \"./dist/methods/implode.js\");\nCollection.prototype.intersect = __webpack_require__(/*! ./methods/intersect */ \"./dist/methods/intersect.js\");\nCollection.prototype.intersectByKeys = __webpack_require__(/*! ./methods/intersectByKeys */ \"./dist/methods/intersectByKeys.js\");\nCollection.prototype.isEmpty = __webpack_require__(/*! ./methods/isEmpty */ \"./dist/methods/isEmpty.js\");\nCollection.prototype.isNotEmpty = __webpack_require__(/*! ./methods/isNotEmpty */ \"./dist/methods/isNotEmpty.js\");\nCollection.prototype.join = __webpack_require__(/*! ./methods/join */ \"./dist/methods/join.js\");\nCollection.prototype.keyBy = __webpack_require__(/*! ./methods/keyBy */ \"./dist/methods/keyBy.js\");\nCollection.prototype.keys = __webpack_require__(/*! ./methods/keys */ \"./dist/methods/keys.js\");\nCollection.prototype.last = __webpack_require__(/*! ./methods/last */ \"./dist/methods/last.js\");\nCollection.prototype.macro = __webpack_require__(/*! ./methods/macro */ \"./dist/methods/macro.js\");\nCollection.prototype.make = __webpack_require__(/*! ./methods/make */ \"./dist/methods/make.js\");\nCollection.prototype.map = __webpack_require__(/*! ./methods/map */ \"./dist/methods/map.js\");\nCollection.prototype.mapSpread = __webpack_require__(/*! ./methods/mapSpread */ \"./dist/methods/mapSpread.js\");\nCollection.prototype.mapToDictionary = __webpack_require__(/*! ./methods/mapToDictionary */ \"./dist/methods/mapToDictionary.js\");\nCollection.prototype.mapInto = __webpack_require__(/*! ./methods/mapInto */ \"./dist/methods/mapInto.js\");\nCollection.prototype.mapToGroups = __webpack_require__(/*! ./methods/mapToGroups */ \"./dist/methods/mapToGroups.js\");\nCollection.prototype.mapWithKeys = __webpack_require__(/*! ./methods/mapWithKeys */ \"./dist/methods/mapWithKeys.js\");\nCollection.prototype.max = __webpack_require__(/*! ./methods/max */ \"./dist/methods/max.js\");\nCollection.prototype.median = __webpack_require__(/*! ./methods/median */ \"./dist/methods/median.js\");\nCollection.prototype.merge = __webpack_require__(/*! ./methods/merge */ \"./dist/methods/merge.js\");\nCollection.prototype.mergeRecursive = __webpack_require__(/*! ./methods/mergeRecursive */ \"./dist/methods/mergeRecursive.js\");\nCollection.prototype.min = __webpack_require__(/*! ./methods/min */ \"./dist/methods/min.js\");\nCollection.prototype.mode = __webpack_require__(/*! ./methods/mode */ \"./dist/methods/mode.js\");\nCollection.prototype.nth = __webpack_require__(/*! ./methods/nth */ \"./dist/methods/nth.js\");\nCollection.prototype.only = __webpack_require__(/*! ./methods/only */ \"./dist/methods/only.js\");\nCollection.prototype.pad = __webpack_require__(/*! ./methods/pad */ \"./dist/methods/pad.js\");\nCollection.prototype.partition = __webpack_require__(/*! ./methods/partition */ \"./dist/methods/partition.js\");\nCollection.prototype.pipe = __webpack_require__(/*! ./methods/pipe */ \"./dist/methods/pipe.js\");\nCollection.prototype.pluck = __webpack_require__(/*! ./methods/pluck */ \"./dist/methods/pluck.js\");\nCollection.prototype.pop = __webpack_require__(/*! ./methods/pop */ \"./dist/methods/pop.js\");\nCollection.prototype.prepend = __webpack_require__(/*! ./methods/prepend */ \"./dist/methods/prepend.js\");\nCollection.prototype.pull = __webpack_require__(/*! ./methods/pull */ \"./dist/methods/pull.js\");\nCollection.prototype.push = __webpack_require__(/*! ./methods/push */ \"./dist/methods/push.js\");\nCollection.prototype.put = __webpack_require__(/*! ./methods/put */ \"./dist/methods/put.js\");\nCollection.prototype.random = __webpack_require__(/*! ./methods/random */ \"./dist/methods/random.js\");\nCollection.prototype.reduce = __webpack_require__(/*! ./methods/reduce */ \"./dist/methods/reduce.js\");\nCollection.prototype.reject = __webpack_require__(/*! ./methods/reject */ \"./dist/methods/reject.js\");\nCollection.prototype.replace = __webpack_require__(/*! ./methods/replace */ \"./dist/methods/replace.js\");\nCollection.prototype.replaceRecursive = __webpack_require__(/*! ./methods/replaceRecursive */ \"./dist/methods/replaceRecursive.js\");\nCollection.prototype.reverse = __webpack_require__(/*! ./methods/reverse */ \"./dist/methods/reverse.js\");\nCollection.prototype.search = __webpack_require__(/*! ./methods/search */ \"./dist/methods/search.js\");\nCollection.prototype.shift = __webpack_require__(/*! ./methods/shift */ \"./dist/methods/shift.js\");\nCollection.prototype.shuffle = __webpack_require__(/*! ./methods/shuffle */ \"./dist/methods/shuffle.js\");\nCollection.prototype.slice = __webpack_require__(/*! ./methods/slice */ \"./dist/methods/slice.js\");\nCollection.prototype.some = __webpack_require__(/*! ./methods/contains */ \"./dist/methods/contains.js\");\nCollection.prototype.sort = __webpack_require__(/*! ./methods/sort */ \"./dist/methods/sort.js\");\nCollection.prototype.sortBy = __webpack_require__(/*! ./methods/sortBy */ \"./dist/methods/sortBy.js\");\nCollection.prototype.sortByDesc = __webpack_require__(/*! ./methods/sortByDesc */ \"./dist/methods/sortByDesc.js\");\nCollection.prototype.sortKeys = __webpack_require__(/*! ./methods/sortKeys */ \"./dist/methods/sortKeys.js\");\nCollection.prototype.sortKeysDesc = __webpack_require__(/*! ./methods/sortKeysDesc */ \"./dist/methods/sortKeysDesc.js\");\nCollection.prototype.splice = __webpack_require__(/*! ./methods/splice */ \"./dist/methods/splice.js\");\nCollection.prototype.split = __webpack_require__(/*! ./methods/split */ \"./dist/methods/split.js\");\nCollection.prototype.sum = __webpack_require__(/*! ./methods/sum */ \"./dist/methods/sum.js\");\nCollection.prototype.take = __webpack_require__(/*! ./methods/take */ \"./dist/methods/take.js\");\nCollection.prototype.tap = __webpack_require__(/*! ./methods/tap */ \"./dist/methods/tap.js\");\nCollection.prototype.times = __webpack_require__(/*! ./methods/times */ \"./dist/methods/times.js\");\nCollection.prototype.toArray = __webpack_require__(/*! ./methods/toArray */ \"./dist/methods/toArray.js\");\nCollection.prototype.toJson = __webpack_require__(/*! ./methods/toJson */ \"./dist/methods/toJson.js\");\nCollection.prototype.transform = __webpack_require__(/*! ./methods/transform */ \"./dist/methods/transform.js\");\nCollection.prototype.unless = __webpack_require__(/*! ./methods/unless */ \"./dist/methods/unless.js\");\nCollection.prototype.unlessEmpty = __webpack_require__(/*! ./methods/whenNotEmpty */ \"./dist/methods/whenNotEmpty.js\");\nCollection.prototype.unlessNotEmpty = __webpack_require__(/*! ./methods/whenEmpty */ \"./dist/methods/whenEmpty.js\");\nCollection.prototype.union = __webpack_require__(/*! ./methods/union */ \"./dist/methods/union.js\");\nCollection.prototype.unique = __webpack_require__(/*! ./methods/unique */ \"./dist/methods/unique.js\");\nCollection.prototype.unwrap = __webpack_require__(/*! ./methods/unwrap */ \"./dist/methods/unwrap.js\");\nCollection.prototype.values = __webpack_require__(/*! ./methods/values */ \"./dist/methods/values.js\");\nCollection.prototype.when = __webpack_require__(/*! ./methods/when */ \"./dist/methods/when.js\");\nCollection.prototype.whenEmpty = __webpack_require__(/*! ./methods/whenEmpty */ \"./dist/methods/whenEmpty.js\");\nCollection.prototype.whenNotEmpty = __webpack_require__(/*! ./methods/whenNotEmpty */ \"./dist/methods/whenNotEmpty.js\");\nCollection.prototype.where = __webpack_require__(/*! ./methods/where */ \"./dist/methods/where.js\");\nCollection.prototype.whereBetween = __webpack_require__(/*! ./methods/whereBetween */ \"./dist/methods/whereBetween.js\");\nCollection.prototype.whereIn = __webpack_require__(/*! ./methods/whereIn */ \"./dist/methods/whereIn.js\");\nCollection.prototype.whereInstanceOf = __webpack_require__(/*! ./methods/whereInstanceOf */ \"./dist/methods/whereInstanceOf.js\");\nCollection.prototype.whereNotBetween = __webpack_require__(/*! ./methods/whereNotBetween */ \"./dist/methods/whereNotBetween.js\");\nCollection.prototype.whereNotIn = __webpack_require__(/*! ./methods/whereNotIn */ \"./dist/methods/whereNotIn.js\");\nCollection.prototype.wrap = __webpack_require__(/*! ./methods/wrap */ \"./dist/methods/wrap.js\");\nCollection.prototype.zip = __webpack_require__(/*! ./methods/zip */ \"./dist/methods/zip.js\");\n\nvar collect = function collect(collection) {\n  return new Collection(collection);\n};\n\nmodule.exports = collect;\nmodule.exports.default = collect;\n\n//# sourceURL=webpack://collect/./dist/index.js?");
 
 /***/ }),
-/* 5 */
+
+/***/ "./dist/methods/all.js":
+/*!*****************************!*\
+  !*** ./dist/methods/all.js ***!
+  \*****************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var values = __webpack_require__(0);
-
-module.exports = function contains(key, value) {
-  if (value !== undefined) {
-    if (Array.isArray(this.items)) {
-      return this.items.filter(function (items) {
-        return items[key] !== undefined && items[key] === value;
-      }).length > 0;
-    }
-
-    return this.items[key] !== undefined && this.items[key] === value;
-  }
-
-  if (typeof key === 'function') {
-    return this.items.filter(function (item, index) {
-      return key(item, index);
-    }).length > 0;
-  }
-
-  if (Array.isArray(this.items)) {
-    return this.items.indexOf(key) !== -1;
-  }
-
-  var keysAndValues = values(this.items);
-  keysAndValues.push.apply(keysAndValues, _toConsumableArray(Object.keys(this.items)));
-
-  return keysAndValues.indexOf(key) !== -1;
-};
+eval("\n\nmodule.exports = function all() {\n  return this.items;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/all.js?");
 
 /***/ }),
-/* 6 */
+
+/***/ "./dist/methods/average.js":
+/*!*********************************!*\
+  !*** ./dist/methods/average.js ***!
+  \*********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function whenNotEmpty(fn, defaultFn) {
-  if (Array.isArray(this.items) && this.items.length) {
-    return fn(this);
-  }if (Object.keys(this.items).length) {
-    return fn(this);
-  }
-
-  if (defaultFn !== undefined) {
-    if (Array.isArray(this.items) && !this.items.length) {
-      return defaultFn(this);
-    }if (!Object.keys(this.items).length) {
-      return defaultFn(this);
-    }
-  }
-
-  return this;
-};
+eval("\n\nmodule.exports = function average(key) {\n  if (key === undefined) {\n    return this.sum() / this.items.length;\n  }\n\n  return new this.constructor(this.items).pluck(key).sum() / this.items.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/average.js?");
 
 /***/ }),
-/* 7 */
+
+/***/ "./dist/methods/chunk.js":
+/*!*******************************!*\
+  !*** ./dist/methods/chunk.js ***!
+  \*******************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function whenEmpty(fn, defaultFn) {
-  if (Array.isArray(this.items) && !this.items.length) {
-    return fn(this);
-  }if (!Object.keys(this.items).length) {
-    return fn(this);
-  }
-
-  if (defaultFn !== undefined) {
-    if (Array.isArray(this.items) && this.items.length) {
-      return defaultFn(this);
-    }if (Object.keys(this.items).length) {
-      return defaultFn(this);
-    }
-  }
-
-  return this;
-};
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function chunk(size) {\n  var _this = this;\n\n  var chunks = [];\n  var index = 0;\n\n  if (Array.isArray(this.items)) {\n    do {\n      var items = this.items.slice(index, index + size);\n      var collection = new this.constructor(items);\n\n      chunks.push(collection);\n      index += size;\n    } while (index < this.items.length);\n  } else if (_typeof(this.items) === 'object') {\n    var keys = Object.keys(this.items);\n\n    var _loop = function _loop() {\n      var keysOfChunk = keys.slice(index, index + size);\n      var collection = new _this.constructor({});\n\n      keysOfChunk.forEach(function (key) {\n        return collection.put(key, _this.items[key]);\n      });\n\n      chunks.push(collection);\n      index += size;\n    };\n\n    do {\n      _loop();\n    } while (index < keys.length);\n  } else {\n    chunks.push(new this.constructor([this.items]));\n  }\n\n  return new this.constructor(chunks);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/chunk.js?");
 
 /***/ }),
-/* 8 */
+
+/***/ "./dist/methods/collapse.js":
+/*!**********************************!*\
+  !*** ./dist/methods/collapse.js ***!
+  \**********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function Collection(collection) {
-  if (collection !== undefined && !Array.isArray(collection) && (typeof collection === 'undefined' ? 'undefined' : _typeof(collection)) !== 'object') {
-    this.items = [collection];
-  } else if (collection instanceof this.constructor) {
-    this.items = collection.all();
-  } else {
-    this.items = collection || [];
-  }
-}
-
-var SymbolIterator = __webpack_require__(9);
-
-if (typeof Symbol !== 'undefined') {
-  Collection.prototype[Symbol.iterator] = SymbolIterator;
-}
-
-Collection.prototype.all = __webpack_require__(10);
-Collection.prototype.average = __webpack_require__(3);
-Collection.prototype.avg = __webpack_require__(3);
-Collection.prototype.chunk = __webpack_require__(11);
-Collection.prototype.collapse = __webpack_require__(12);
-Collection.prototype.combine = __webpack_require__(13);
-Collection.prototype.concat = __webpack_require__(14);
-Collection.prototype.contains = __webpack_require__(5);
-Collection.prototype.count = __webpack_require__(15);
-Collection.prototype.countBy = __webpack_require__(16);
-Collection.prototype.crossJoin = __webpack_require__(17);
-Collection.prototype.dd = __webpack_require__(18);
-Collection.prototype.diff = __webpack_require__(20);
-Collection.prototype.diffAssoc = __webpack_require__(21);
-Collection.prototype.diffKeys = __webpack_require__(22);
-Collection.prototype.dump = __webpack_require__(23);
-Collection.prototype.duplicates = __webpack_require__(24);
-Collection.prototype.each = __webpack_require__(25);
-Collection.prototype.eachSpread = __webpack_require__(26);
-Collection.prototype.every = __webpack_require__(27);
-Collection.prototype.except = __webpack_require__(28);
-Collection.prototype.filter = __webpack_require__(29);
-Collection.prototype.first = __webpack_require__(30);
-Collection.prototype.firstWhere = __webpack_require__(31);
-Collection.prototype.flatMap = __webpack_require__(32);
-Collection.prototype.flatten = __webpack_require__(33);
-Collection.prototype.flip = __webpack_require__(34);
-Collection.prototype.forPage = __webpack_require__(35);
-Collection.prototype.forget = __webpack_require__(36);
-Collection.prototype.get = __webpack_require__(37);
-Collection.prototype.groupBy = __webpack_require__(38);
-Collection.prototype.has = __webpack_require__(39);
-Collection.prototype.implode = __webpack_require__(40);
-Collection.prototype.intersect = __webpack_require__(41);
-Collection.prototype.intersectByKeys = __webpack_require__(42);
-Collection.prototype.isEmpty = __webpack_require__(43);
-Collection.prototype.isNotEmpty = __webpack_require__(44);
-Collection.prototype.join = __webpack_require__(45);
-Collection.prototype.keyBy = __webpack_require__(46);
-Collection.prototype.keys = __webpack_require__(47);
-Collection.prototype.last = __webpack_require__(48);
-Collection.prototype.macro = __webpack_require__(49);
-Collection.prototype.make = __webpack_require__(50);
-Collection.prototype.map = __webpack_require__(51);
-Collection.prototype.mapSpread = __webpack_require__(52);
-Collection.prototype.mapToDictionary = __webpack_require__(53);
-Collection.prototype.mapInto = __webpack_require__(54);
-Collection.prototype.mapToGroups = __webpack_require__(55);
-Collection.prototype.mapWithKeys = __webpack_require__(56);
-Collection.prototype.max = __webpack_require__(57);
-Collection.prototype.median = __webpack_require__(58);
-Collection.prototype.merge = __webpack_require__(59);
-Collection.prototype.mergeRecursive = __webpack_require__(60);
-Collection.prototype.min = __webpack_require__(61);
-Collection.prototype.mode = __webpack_require__(62);
-Collection.prototype.nth = __webpack_require__(63);
-Collection.prototype.only = __webpack_require__(64);
-Collection.prototype.pad = __webpack_require__(65);
-Collection.prototype.partition = __webpack_require__(66);
-Collection.prototype.pipe = __webpack_require__(67);
-Collection.prototype.pluck = __webpack_require__(68);
-Collection.prototype.pop = __webpack_require__(69);
-Collection.prototype.prepend = __webpack_require__(70);
-Collection.prototype.pull = __webpack_require__(71);
-Collection.prototype.push = __webpack_require__(72);
-Collection.prototype.put = __webpack_require__(73);
-Collection.prototype.random = __webpack_require__(74);
-Collection.prototype.reduce = __webpack_require__(75);
-Collection.prototype.reject = __webpack_require__(76);
-Collection.prototype.replace = __webpack_require__(77);
-Collection.prototype.replaceRecursive = __webpack_require__(78);
-Collection.prototype.reverse = __webpack_require__(79);
-Collection.prototype.search = __webpack_require__(80);
-Collection.prototype.shift = __webpack_require__(81);
-Collection.prototype.shuffle = __webpack_require__(82);
-Collection.prototype.slice = __webpack_require__(83);
-Collection.prototype.some = __webpack_require__(5);
-Collection.prototype.sort = __webpack_require__(84);
-Collection.prototype.sortBy = __webpack_require__(85);
-Collection.prototype.sortByDesc = __webpack_require__(86);
-Collection.prototype.sortKeys = __webpack_require__(87);
-Collection.prototype.sortKeysDesc = __webpack_require__(88);
-Collection.prototype.splice = __webpack_require__(89);
-Collection.prototype.split = __webpack_require__(90);
-Collection.prototype.sum = __webpack_require__(91);
-Collection.prototype.take = __webpack_require__(92);
-Collection.prototype.tap = __webpack_require__(93);
-Collection.prototype.times = __webpack_require__(94);
-Collection.prototype.toArray = __webpack_require__(95);
-Collection.prototype.toJson = __webpack_require__(96);
-Collection.prototype.transform = __webpack_require__(97);
-Collection.prototype.unless = __webpack_require__(98);
-Collection.prototype.unlessEmpty = __webpack_require__(6);
-Collection.prototype.unlessNotEmpty = __webpack_require__(7);
-Collection.prototype.union = __webpack_require__(99);
-Collection.prototype.unique = __webpack_require__(100);
-Collection.prototype.unwrap = __webpack_require__(101);
-Collection.prototype.values = __webpack_require__(102);
-Collection.prototype.when = __webpack_require__(103);
-Collection.prototype.whenEmpty = __webpack_require__(7);
-Collection.prototype.whenNotEmpty = __webpack_require__(6);
-Collection.prototype.where = __webpack_require__(104);
-Collection.prototype.whereBetween = __webpack_require__(105);
-Collection.prototype.whereIn = __webpack_require__(106);
-Collection.prototype.whereInstanceOf = __webpack_require__(107);
-Collection.prototype.whereNotBetween = __webpack_require__(108);
-Collection.prototype.whereNotIn = __webpack_require__(109);
-Collection.prototype.wrap = __webpack_require__(110);
-Collection.prototype.zip = __webpack_require__(111);
-
-var collect = function collect(collection) {
-  return new Collection(collection);
-};
-
-module.exports = collect;
-module.exports.default = collect;
+eval("\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function collapse() {\n  var _ref;\n\n  return new this.constructor((_ref = []).concat.apply(_ref, _toConsumableArray(this.items)));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/collapse.js?");
 
 /***/ }),
-/* 9 */
+
+/***/ "./dist/methods/combine.js":
+/*!*********************************!*\
+  !*** ./dist/methods/combine.js ***!
+  \*********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function SymbolIterator() {
-  var _this = this;
-
-  var index = -1;
-
-  return {
-    next: function next() {
-      index += 1;
-
-      return {
-        value: _this.items[index],
-        done: index >= _this.items.length
-      };
-    }
-  };
-};
+eval("\n\nvar _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"]) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError(\"Invalid attempt to destructure non-iterable instance\"); } }; }();\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function combine(array) {\n  var _this = this;\n\n  var values = array;\n\n  if (values instanceof this.constructor) {\n    values = array.all();\n  }\n\n  var collection = {};\n\n  if (Array.isArray(this.items) && Array.isArray(values)) {\n    this.items.forEach(function (key, iterator) {\n      collection[key] = values[iterator];\n    });\n  } else if (_typeof(this.items) === 'object' && (typeof values === 'undefined' ? 'undefined' : _typeof(values)) === 'object') {\n    Object.keys(this.items).forEach(function (key, index) {\n      collection[_this.items[key]] = values[Object.keys(values)[index]];\n    });\n  } else if (Array.isArray(this.items)) {\n    collection[this.items[0]] = values;\n  } else if (typeof this.items === 'string' && Array.isArray(values)) {\n    var _values = values;\n\n    var _values2 = _slicedToArray(_values, 1);\n\n    collection[this.items] = _values2[0];\n  } else if (typeof this.items === 'string') {\n    collection[this.items] = values;\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/combine.js?");
 
 /***/ }),
-/* 10 */
+
+/***/ "./dist/methods/concat.js":
+/*!********************************!*\
+  !*** ./dist/methods/concat.js ***!
+  \********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function all() {
-  return this.items;
-};
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nvar clone = __webpack_require__(/*! ../helpers/clone */ \"./dist/helpers/clone.js\");\n\nmodule.exports = function concat(collectionOrArrayOrObject) {\n  var list = collectionOrArrayOrObject;\n\n  if (collectionOrArrayOrObject instanceof this.constructor) {\n    list = collectionOrArrayOrObject.all();\n  } else if ((typeof collectionOrArrayOrObject === 'undefined' ? 'undefined' : _typeof(collectionOrArrayOrObject)) === 'object') {\n    list = [];\n    Object.keys(collectionOrArrayOrObject).forEach(function (property) {\n      list.push(collectionOrArrayOrObject[property]);\n    });\n  }\n\n  var collection = clone(this.items);\n\n  list.forEach(function (item) {\n    if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {\n      Object.keys(item).forEach(function (key) {\n        return collection.push(item[key]);\n      });\n    } else {\n      collection.push(item);\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/concat.js?");
 
 /***/ }),
-/* 11 */
+
+/***/ "./dist/methods/contains.js":
+/*!**********************************!*\
+  !*** ./dist/methods/contains.js ***!
+  \**********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function chunk(size) {
-  var _this = this;
-
-  var chunks = [];
-  var index = 0;
-
-  if (Array.isArray(this.items)) {
-    do {
-      var items = this.items.slice(index, index + size);
-      var collection = new this.constructor(items);
-
-      chunks.push(collection);
-      index += size;
-    } while (index < this.items.length);
-  } else if (_typeof(this.items) === 'object') {
-    var keys = Object.keys(this.items);
-
-    var _loop = function _loop() {
-      var keysOfChunk = keys.slice(index, index + size);
-      var collection = new _this.constructor({});
-
-      keysOfChunk.forEach(function (key) {
-        return collection.put(key, _this.items[key]);
-      });
-
-      chunks.push(collection);
-      index += size;
-    };
-
-    do {
-      _loop();
-    } while (index < keys.length);
-  } else {
-    chunks.push(new this.constructor([this.items]));
-  }
-
-  return new this.constructor(chunks);
-};
+eval("\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function contains(key, value) {\n  if (value !== undefined) {\n    if (Array.isArray(this.items)) {\n      return this.items.filter(function (items) {\n        return items[key] !== undefined && items[key] === value;\n      }).length > 0;\n    }\n\n    return this.items[key] !== undefined && this.items[key] === value;\n  }\n\n  if (typeof key === 'function') {\n    return this.items.filter(function (item, index) {\n      return key(item, index);\n    }).length > 0;\n  }\n\n  if (Array.isArray(this.items)) {\n    return this.items.indexOf(key) !== -1;\n  }\n\n  var keysAndValues = values(this.items);\n  keysAndValues.push.apply(keysAndValues, _toConsumableArray(Object.keys(this.items)));\n\n  return keysAndValues.indexOf(key) !== -1;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/contains.js?");
 
 /***/ }),
-/* 12 */
+
+/***/ "./dist/methods/count.js":
+/*!*******************************!*\
+  !*** ./dist/methods/count.js ***!
+  \*******************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function collapse() {
-  var _ref;
-
-  return new this.constructor((_ref = []).concat.apply(_ref, _toConsumableArray(this.items)));
-};
+eval("\n\nmodule.exports = function count() {\n  var arrayLength = 0;\n\n  if (Array.isArray(this.items)) {\n    arrayLength = this.items.length;\n  }\n\n  return Math.max(Object.keys(this.items).length, arrayLength);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/count.js?");
 
 /***/ }),
-/* 13 */
+
+/***/ "./dist/methods/countBy.js":
+/*!*********************************!*\
+  !*** ./dist/methods/countBy.js ***!
+  \*********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function combine(array) {
-  var _this = this;
-
-  var values = array;
-
-  if (values instanceof this.constructor) {
-    values = array.all();
-  }
-
-  var collection = {};
-
-  if (Array.isArray(this.items) && Array.isArray(values)) {
-    this.items.forEach(function (key, iterator) {
-      collection[key] = values[iterator];
-    });
-  } else if (_typeof(this.items) === 'object' && (typeof values === 'undefined' ? 'undefined' : _typeof(values)) === 'object') {
-    Object.keys(this.items).forEach(function (key, index) {
-      collection[_this.items[key]] = values[Object.keys(values)[index]];
-    });
-  } else if (Array.isArray(this.items)) {
-    collection[this.items[0]] = values;
-  } else if (typeof this.items === 'string' && Array.isArray(values)) {
-    var _values = values;
-
-    var _values2 = _slicedToArray(_values, 1);
-
-    collection[this.items] = _values2[0];
-  } else if (typeof this.items === 'string') {
-    collection[this.items] = values;
-  }
-
-  return new this.constructor(collection);
-};
+eval("\n\nmodule.exports = function countBy() {\n  var fn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (value) {\n    return value;\n  };\n\n  return new this.constructor(this.items).groupBy(fn).map(function (value) {\n    return value.count();\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/countBy.js?");
 
 /***/ }),
-/* 14 */
+
+/***/ "./dist/methods/crossJoin.js":
+/*!***********************************!*\
+  !*** ./dist/methods/crossJoin.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var clone = __webpack_require__(4);
-
-module.exports = function concat(collectionOrArrayOrObject) {
-  var list = collectionOrArrayOrObject;
-
-  if (collectionOrArrayOrObject instanceof this.constructor) {
-    list = collectionOrArrayOrObject.all();
-  } else if ((typeof collectionOrArrayOrObject === 'undefined' ? 'undefined' : _typeof(collectionOrArrayOrObject)) === 'object') {
-    list = [];
-    Object.keys(collectionOrArrayOrObject).forEach(function (property) {
-      list.push(collectionOrArrayOrObject[property]);
-    });
-  }
-
-  var collection = clone(this.items);
-
-  list.forEach(function (item) {
-    if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
-      Object.keys(item).forEach(function (key) {
-        return collection.push(item[key]);
-      });
-    } else {
-      collection.push(item);
-    }
-  });
-
-  return new this.constructor(collection);
-};
+eval("\n\nmodule.exports = function crossJoin() {\n  function join(collection, constructor, args) {\n    var current = args[0];\n\n    if (current instanceof constructor) {\n      current = current.all();\n    }\n\n    var rest = args.slice(1);\n    var last = !rest.length;\n    var result = [];\n\n    for (var i = 0; i < current.length; i += 1) {\n      var collectionCopy = collection.slice();\n      collectionCopy.push(current[i]);\n\n      if (last) {\n        result.push(collectionCopy);\n      } else {\n        result = result.concat(join(collectionCopy, constructor, rest));\n      }\n    }\n\n    return result;\n  }\n\n  for (var _len = arguments.length, values = Array(_len), _key = 0; _key < _len; _key++) {\n    values[_key] = arguments[_key];\n  }\n\n  return new this.constructor(join([], this.constructor, [].concat([this.items], values)));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/crossJoin.js?");
 
 /***/ }),
-/* 15 */
+
+/***/ "./dist/methods/dd.js":
+/*!****************************!*\
+  !*** ./dist/methods/dd.js ***!
+  \****************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function count() {
-  var arrayLength = 0;
-
-  if (Array.isArray(this.items)) {
-    arrayLength = this.items.length;
-  }
-
-  return Math.max(Object.keys(this.items).length, arrayLength);
-};
+eval("/* WEBPACK VAR INJECTION */(function(process) {\n\nmodule.exports = function dd() {\n  this.dump();\n\n  if (typeof process !== 'undefined') {\n    process.exit(1);\n  }\n};\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ \"./node_modules/process/browser.js\")))\n\n//# sourceURL=webpack://collect/./dist/methods/dd.js?");
 
 /***/ }),
-/* 16 */
+
+/***/ "./dist/methods/diff.js":
+/*!******************************!*\
+  !*** ./dist/methods/diff.js ***!
+  \******************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function countBy() {
-  var fn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (value) {
-    return value;
-  };
-
-  return new this.constructor(this.items).groupBy(fn).map(function (value) {
-    return value.count();
-  });
-};
+eval("\n\nmodule.exports = function diff(values) {\n  var valuesToDiff = void 0;\n\n  if (values instanceof this.constructor) {\n    valuesToDiff = values.all();\n  } else {\n    valuesToDiff = values;\n  }\n\n  var collection = this.items.filter(function (item) {\n    return valuesToDiff.indexOf(item) === -1;\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/diff.js?");
 
 /***/ }),
-/* 17 */
+
+/***/ "./dist/methods/diffAssoc.js":
+/*!***********************************!*\
+  !*** ./dist/methods/diffAssoc.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-module.exports = function crossJoin() {
-  function join(collection, constructor, args) {
-    var current = args[0];
-
-    if (current instanceof constructor) {
-      current = current.all();
-    }
-
-    var rest = args.slice(1);
-    var last = !rest.length;
-    var result = [];
-
-    for (var i = 0; i < current.length; i += 1) {
-      var collectionCopy = collection.slice();
-      collectionCopy.push(current[i]);
-
-      if (last) {
-        result.push(collectionCopy);
-      } else {
-        result = result.concat(join(collectionCopy, constructor, rest));
-      }
-    }
-
-    return result;
-  }
-
-  for (var _len = arguments.length, values = Array(_len), _key = 0; _key < _len; _key++) {
-    values[_key] = arguments[_key];
-  }
-
-  return new this.constructor(join([], this.constructor, [].concat([this.items], values)));
-};
+eval("\n\nmodule.exports = function diffAssoc(values) {\n  var _this = this;\n\n  var diffValues = values;\n\n  if (values instanceof this.constructor) {\n    diffValues = values.all();\n  }\n\n  var collection = {};\n\n  Object.keys(this.items).forEach(function (key) {\n    if (diffValues[key] === undefined || diffValues[key] !== _this.items[key]) {\n      collection[key] = _this.items[key];\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/diffAssoc.js?");
 
 /***/ }),
-/* 18 */
+
+/***/ "./dist/methods/diffKeys.js":
+/*!**********************************!*\
+  !*** ./dist/methods/diffKeys.js ***!
+  \**********************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-module.exports = function dd() {
-  this.dump();
-
-  if (typeof process !== 'undefined') {
-    process.exit(1);
-  }
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
+eval("\n\nmodule.exports = function diffKeys(object) {\n  var objectToDiff = void 0;\n\n  if (object instanceof this.constructor) {\n    objectToDiff = object.all();\n  } else {\n    objectToDiff = object;\n  }\n\n  var objectKeys = Object.keys(objectToDiff);\n\n  var remainingKeys = Object.keys(this.items).filter(function (item) {\n    return objectKeys.indexOf(item) === -1;\n  });\n\n  return new this.constructor(this.items).only(remainingKeys);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/diffKeys.js?");
 
 /***/ }),
-/* 19 */
+
+/***/ "./dist/methods/dump.js":
+/*!******************************!*\
+  !*** ./dist/methods/dump.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function dump() {\n  // eslint-disable-next-line\n  console.log(this);\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/dump.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/duplicates.js":
+/*!************************************!*\
+  !*** ./dist/methods/duplicates.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function duplicates() {\n  var _this = this;\n\n  var occuredValues = [];\n  var duplicateValues = {};\n\n  var stringifiedValue = function stringifiedValue(value) {\n    if (Array.isArray(value) || (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {\n      return JSON.stringify(value);\n    }\n\n    return value;\n  };\n\n  if (Array.isArray(this.items)) {\n    this.items.forEach(function (value, index) {\n      var valueAsString = stringifiedValue(value);\n\n      if (occuredValues.indexOf(valueAsString) === -1) {\n        occuredValues.push(valueAsString);\n      } else {\n        duplicateValues[index] = value;\n      }\n    });\n  } else if (_typeof(this.items) === 'object') {\n    Object.keys(this.items).forEach(function (key) {\n      var valueAsString = stringifiedValue(_this.items[key]);\n\n      if (occuredValues.indexOf(valueAsString) === -1) {\n        occuredValues.push(valueAsString);\n      } else {\n        duplicateValues[key] = _this.items[key];\n      }\n    });\n  }\n\n  return new this.constructor(duplicateValues);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/duplicates.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/each.js":
+/*!******************************!*\
+  !*** ./dist/methods/each.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function each(fn) {\n  var _this = this;\n\n  var stop = false;\n\n  if (Array.isArray(this.items)) {\n    this.items.forEach(function (item, key, array) {\n      if (!stop) {\n        var output = fn(item, key, array);\n\n        if (output === false) {\n          stop = true;\n        }\n      }\n    });\n  } else {\n    Object.keys(this.items).forEach(function (key) {\n      if (!stop) {\n        var output = fn(_this.items[key], key, _this.items);\n\n        if (output === false) {\n          stop = true;\n        }\n      }\n    });\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/each.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/eachSpread.js":
+/*!************************************!*\
+  !*** ./dist/methods/eachSpread.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function eachSpread(fn) {\n  this.each(function (values, key) {\n    fn.apply(undefined, _toConsumableArray(values).concat([key]));\n  });\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/eachSpread.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/every.js":
+/*!*******************************!*\
+  !*** ./dist/methods/every.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function every(fn) {\n  var items = values(this.items);\n\n  return items.map(function (item, index) {\n    return fn(item, index);\n  }).indexOf(false) === -1;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/every.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/except.js":
+/*!********************************!*\
+  !*** ./dist/methods/except.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function except() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  if (Array.isArray(this.items)) {\n    var _collection = this.items.filter(function (item) {\n      return properties.indexOf(item) === -1;\n    });\n\n    return new this.constructor(_collection);\n  }\n\n  var collection = {};\n\n  Object.keys(this.items).forEach(function (property) {\n    if (properties.indexOf(property) === -1) {\n      collection[property] = _this.items[property];\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/except.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/filter.js":
+/*!********************************!*\
+  !*** ./dist/methods/filter.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nfunction falsyValue(item) {\n  if (Array.isArray(item)) {\n    if (item.length) {\n      return false;\n    }\n  } else if (item !== undefined && item !== null && (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {\n    if (Object.keys(item).length) {\n      return false;\n    }\n  } else if (item) {\n    return false;\n  }\n\n  return true;\n}\n\nfunction filterObject(func, items) {\n  var result = {};\n  Object.keys(items).forEach(function (key) {\n    if (func) {\n      if (func(items[key], key)) {\n        result[key] = items[key];\n      }\n    } else if (!falsyValue(items[key])) {\n      result[key] = items[key];\n    }\n  });\n\n  return result;\n}\n\nfunction filterArray(func, items) {\n  if (func) {\n    return items.filter(func);\n  }\n  var result = [];\n  for (var i = 0; i < items.length; i += 1) {\n    var item = items[i];\n    if (!falsyValue(item)) {\n      result.push(item);\n    }\n  }\n\n  return result;\n}\n\nmodule.exports = function filter(fn) {\n  var func = fn || false;\n  var filteredItems = null;\n  if (Array.isArray(this.items)) {\n    filteredItems = filterArray(func, this.items);\n  } else {\n    filteredItems = filterObject(func, this.items);\n  }\n\n  return new this.constructor(filteredItems);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/filter.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/first.js":
+/*!*******************************!*\
+  !*** ./dist/methods/first.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function first(fn, defaultValue) {\n  if (typeof fn === 'function') {\n    for (var i = 0, length = this.items.length; i < length; i += 1) {\n      var item = this.items[i];\n      if (fn(item)) {\n        return item;\n      }\n    }\n\n    if (typeof defaultValue === 'function') {\n      return defaultValue();\n    }\n\n    return defaultValue;\n  }\n\n  if (Array.isArray(this.items) && this.items.length || Object.keys(this.items).length) {\n    if (Array.isArray(this.items)) {\n      return this.items[0];\n    }\n\n    var firstKey = Object.keys(this.items)[0];\n\n    return this.items[firstKey];\n  }\n\n  if (typeof defaultValue === 'function') {\n    return defaultValue();\n  }\n\n  return defaultValue;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/first.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/firstWhere.js":
+/*!************************************!*\
+  !*** ./dist/methods/firstWhere.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function firstWhere(key, operator, value) {\n  return this.where(key, operator, value).first() || null;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/firstWhere.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/flatMap.js":
+/*!*********************************!*\
+  !*** ./dist/methods/flatMap.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function flatMap(fn) {\n  return this.map(fn).collapse();\n};\n\n//# sourceURL=webpack://collect/./dist/methods/flatMap.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/flatten.js":
+/*!*********************************!*\
+  !*** ./dist/methods/flatten.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function flatten(depth) {\n  var flattenDepth = depth || Infinity;\n\n  var fullyFlattened = false;\n  var collection = [];\n\n  var flat = function flat(items) {\n    collection = [];\n\n    if (Array.isArray(items)) {\n      items.forEach(function (item) {\n        if (typeof item === 'string') {\n          collection.push(item);\n        } else if (Array.isArray(item)) {\n          collection = collection.concat(item);\n        } else {\n          Object.keys(item).forEach(function (property) {\n            collection = collection.concat(item[property]);\n          });\n        }\n      });\n    } else {\n      Object.keys(items).forEach(function (property) {\n        if (typeof items[property] === 'string') {\n          collection.push(items[property]);\n        } else if (Array.isArray(items[property])) {\n          collection = collection.concat(items[property]);\n        } else {\n          Object.keys(items).forEach(function (prop) {\n            collection = collection.concat(items[prop]);\n          });\n        }\n      });\n    }\n\n    fullyFlattened = collection.filter(function (item) {\n      return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object';\n    });\n    fullyFlattened = fullyFlattened.length === 0;\n\n    flattenDepth -= 1;\n  };\n\n  flat(this.items);\n\n  while (!fullyFlattened && flattenDepth > 0) {\n    flat(collection);\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/flatten.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/flip.js":
+/*!******************************!*\
+  !*** ./dist/methods/flip.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function flip() {\n  var _this = this;\n\n  var collection = {};\n\n  if (Array.isArray(this.items)) {\n    Object.keys(this.items).forEach(function (key) {\n      collection[_this.items[key]] = Number(key);\n    });\n  } else {\n    Object.keys(this.items).forEach(function (key) {\n      collection[_this.items[key]] = key;\n    });\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/flip.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/forPage.js":
+/*!*********************************!*\
+  !*** ./dist/methods/forPage.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function forPage(page, chunk) {\n  var _this = this;\n\n  var collection = {};\n\n  if (Array.isArray(this.items)) {\n    collection = this.items.slice(page * chunk - chunk, page * chunk);\n  } else {\n    Object.keys(this.items).slice(page * chunk - chunk, page * chunk).forEach(function (key) {\n      collection[key] = _this.items[key];\n    });\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/forPage.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/forget.js":
+/*!********************************!*\
+  !*** ./dist/methods/forget.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function forget(key) {\n  if (Array.isArray(this.items)) {\n    this.items.splice(key, 1);\n  } else {\n    delete this.items[key];\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/forget.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/get.js":
+/*!*****************************!*\
+  !*** ./dist/methods/get.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function get(key) {\n  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;\n\n  if (this.items[key] !== undefined) {\n    return this.items[key];\n  }\n\n  if (typeof defaultValue === 'function') {\n    return defaultValue();\n  }\n\n  if (defaultValue !== null) {\n    return defaultValue;\n  }\n\n  return null;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/get.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/groupBy.js":
+/*!*********************************!*\
+  !*** ./dist/methods/groupBy.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function groupBy(key) {\n  var _this = this;\n\n  var collection = {};\n\n  this.items.forEach(function (item, index) {\n    var resolvedKey = void 0;\n\n    if (typeof key === 'function') {\n      resolvedKey = key(item, index);\n    } else if (nestedValue(item, key) || nestedValue(item, key) === 0) {\n      resolvedKey = nestedValue(item, key);\n    } else {\n      resolvedKey = '';\n    }\n\n    if (collection[resolvedKey] === undefined) {\n      collection[resolvedKey] = new _this.constructor([]);\n    }\n\n    collection[resolvedKey].push(item);\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/groupBy.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/has.js":
+/*!*****************************!*\
+  !*** ./dist/methods/has.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function has() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  return properties.filter(function (key) {\n    return _this.items[key];\n  }).length === properties.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/has.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/implode.js":
+/*!*********************************!*\
+  !*** ./dist/methods/implode.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function implode(key, glue) {\n  if (glue === undefined) {\n    return this.items.join(key);\n  }\n\n  return new this.constructor(this.items).pluck(key).all().join(glue);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/implode.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/intersect.js":
+/*!***********************************!*\
+  !*** ./dist/methods/intersect.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function intersect(values) {\n  var intersectValues = values;\n\n  if (values instanceof this.constructor) {\n    intersectValues = values.all();\n  }\n\n  var collection = this.items.filter(function (item) {\n    return intersectValues.indexOf(item) !== -1;\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/intersect.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/intersectByKeys.js":
+/*!*****************************************!*\
+  !*** ./dist/methods/intersectByKeys.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function intersectByKeys(values) {\n  var _this = this;\n\n  var intersectKeys = Object.keys(values);\n\n  if (values instanceof this.constructor) {\n    intersectKeys = Object.keys(values.all());\n  }\n\n  var collection = {};\n\n  Object.keys(this.items).forEach(function (key) {\n    if (intersectKeys.indexOf(key) !== -1) {\n      collection[key] = _this.items[key];\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/intersectByKeys.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/isEmpty.js":
+/*!*********************************!*\
+  !*** ./dist/methods/isEmpty.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function isEmpty() {\n  return !this.items.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/isEmpty.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/isNotEmpty.js":
+/*!************************************!*\
+  !*** ./dist/methods/isNotEmpty.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function isNotEmpty() {\n  return !!this.items.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/isNotEmpty.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/join.js":
+/*!******************************!*\
+  !*** ./dist/methods/join.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function join(glue, finalGlue) {\n  var collection = this.values();\n\n  if (finalGlue === undefined) {\n    return collection.implode(glue);\n  }\n\n  var count = collection.count();\n\n  if (count === 0) {\n    return '';\n  }\n\n  if (count === 1) {\n    return collection.last();\n  }\n\n  var finalItem = collection.pop();\n\n  return collection.implode(glue) + finalGlue + finalItem;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/join.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/keyBy.js":
+/*!*******************************!*\
+  !*** ./dist/methods/keyBy.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function keyBy(key) {\n  var collection = {};\n\n  if (typeof key === 'function') {\n    this.items.forEach(function (item) {\n      collection[key(item)] = item;\n    });\n  } else {\n    this.items.forEach(function (item) {\n      var keyValue = nestedValue(item, key);\n\n      collection[keyValue || ''] = item;\n    });\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/keyBy.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/keys.js":
+/*!******************************!*\
+  !*** ./dist/methods/keys.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function keys() {\n  var collection = Object.keys(this.items);\n\n  if (Array.isArray(this.items)) {\n    collection = collection.map(Number);\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/keys.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/last.js":
+/*!******************************!*\
+  !*** ./dist/methods/last.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function last(fn, defaultValue) {\n  var items = this.items;\n\n\n  if (typeof fn === 'function') {\n    items = this.filter(fn).all();\n  }\n\n  if (Array.isArray(items) && !items.length || !Object.keys(items).length) {\n    if (typeof defaultValue === 'function') {\n      return defaultValue();\n    }\n\n    return defaultValue;\n  }\n\n  if (Array.isArray(items)) {\n    return items[items.length - 1];\n  }\n  var keys = Object.keys(items);\n\n  return items[keys[keys.length - 1]];\n};\n\n//# sourceURL=webpack://collect/./dist/methods/last.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/macro.js":
+/*!*******************************!*\
+  !*** ./dist/methods/macro.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function macro(name, fn) {\n  this.constructor.prototype[name] = fn;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/macro.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/make.js":
+/*!******************************!*\
+  !*** ./dist/methods/make.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function make() {\n  var items = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n\n  return new this.constructor(items);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/make.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/map.js":
+/*!*****************************!*\
+  !*** ./dist/methods/map.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function map(fn) {\n  var _this = this;\n\n  if (Array.isArray(this.items)) {\n    return new this.constructor(this.items.map(fn));\n  }\n\n  var collection = {};\n\n  Object.keys(this.items).forEach(function (key) {\n    collection[key] = fn(_this.items[key], key);\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/map.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/mapInto.js":
+/*!*********************************!*\
+  !*** ./dist/methods/mapInto.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function mapInto(ClassName) {\n  return this.map(function (value, key) {\n    return new ClassName(value, key);\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/mapInto.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/mapSpread.js":
+/*!***********************************!*\
+  !*** ./dist/methods/mapSpread.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function mapSpread(fn) {\n  return this.map(function (values, key) {\n    return fn.apply(undefined, _toConsumableArray(values).concat([key]));\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/mapSpread.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/mapToDictionary.js":
+/*!*****************************************!*\
+  !*** ./dist/methods/mapToDictionary.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"]) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError(\"Invalid attempt to destructure non-iterable instance\"); } }; }();\n\nmodule.exports = function mapToDictionary(fn) {\n  var collection = {};\n\n  this.items.forEach(function (item, k) {\n    var _fn = fn(item, k),\n        _fn2 = _slicedToArray(_fn, 2),\n        key = _fn2[0],\n        value = _fn2[1];\n\n    if (collection[key] === undefined) {\n      collection[key] = [value];\n    } else {\n      collection[key].push(value);\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/mapToDictionary.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/mapToGroups.js":
+/*!*************************************!*\
+  !*** ./dist/methods/mapToGroups.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"]) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError(\"Invalid attempt to destructure non-iterable instance\"); } }; }();\n\nmodule.exports = function mapToGroups(fn) {\n  var collection = {};\n\n  this.items.forEach(function (item, key) {\n    var _fn = fn(item, key),\n        _fn2 = _slicedToArray(_fn, 2),\n        keyed = _fn2[0],\n        value = _fn2[1];\n\n    if (collection[keyed] === undefined) {\n      collection[keyed] = [value];\n    } else {\n      collection[keyed].push(value);\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/mapToGroups.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/mapWithKeys.js":
+/*!*************************************!*\
+  !*** ./dist/methods/mapWithKeys.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"]) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError(\"Invalid attempt to destructure non-iterable instance\"); } }; }();\n\nmodule.exports = function mapWithKeys(fn) {\n  var _this = this;\n\n  var collection = {};\n\n  if (Array.isArray(this.items)) {\n    this.items.forEach(function (item) {\n      var _fn = fn(item),\n          _fn2 = _slicedToArray(_fn, 2),\n          keyed = _fn2[0],\n          value = _fn2[1];\n\n      collection[keyed] = value;\n    });\n  } else {\n    Object.keys(this.items).forEach(function (key) {\n      var _fn3 = fn(_this.items[key]),\n          _fn4 = _slicedToArray(_fn3, 2),\n          keyed = _fn4[0],\n          value = _fn4[1];\n\n      collection[keyed] = value;\n    });\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/mapWithKeys.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/max.js":
+/*!*****************************!*\
+  !*** ./dist/methods/max.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function max(key) {\n  if (typeof key === 'string') {\n    return Math.max.apply(Math, _toConsumableArray(this.pluck(key).all()));\n  }\n\n  return Math.max.apply(Math, _toConsumableArray(this.items));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/max.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/median.js":
+/*!********************************!*\
+  !*** ./dist/methods/median.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function median(key) {\n  var length = this.items.length;\n\n\n  if (key === undefined) {\n    if (length % 2 === 0) {\n      return (this.items[length / 2 - 1] + this.items[length / 2]) / 2;\n    }\n\n    return this.items[Math.floor(length / 2)];\n  }\n\n  if (length % 2 === 0) {\n    return (this.items[length / 2 - 1][key] + this.items[length / 2][key]) / 2;\n  }\n\n  return this.items[Math.floor(length / 2)][key];\n};\n\n//# sourceURL=webpack://collect/./dist/methods/median.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/merge.js":
+/*!*******************************!*\
+  !*** ./dist/methods/merge.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function merge(value) {\n  var arrayOrObject = value;\n\n  if (typeof arrayOrObject === 'string') {\n    arrayOrObject = [arrayOrObject];\n  }\n\n  if (Array.isArray(this.items) && Array.isArray(arrayOrObject)) {\n    return new this.constructor(this.items.concat(arrayOrObject));\n  }\n\n  var collection = JSON.parse(JSON.stringify(this.items));\n\n  Object.keys(arrayOrObject).forEach(function (key) {\n    collection[key] = arrayOrObject[key];\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/merge.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/mergeRecursive.js":
+/*!****************************************!*\
+  !*** ./dist/methods/mergeRecursive.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function mergeRecursive(items) {\n  var merge = function merge(target, source) {\n    var merged = {};\n\n    var mergedKeys = Object.keys(Object.assign({}, target, source));\n\n    mergedKeys.forEach(function (key) {\n      if (target[key] === undefined && source[key] !== undefined) {\n        merged[key] = source[key];\n      } else if (target[key] !== undefined && source[key] === undefined) {\n        merged[key] = target[key];\n      } else if (target[key] !== undefined && source[key] !== undefined) {\n        if (target[key] === source[key]) {\n          merged[key] = target[key];\n        } else if (!Array.isArray(target[key]) && _typeof(target[key]) === 'object' && !Array.isArray(source[key]) && _typeof(source[key]) === 'object') {\n          merged[key] = merge(target[key], source[key]);\n        } else {\n          merged[key] = [].concat(target[key], source[key]);\n        }\n      }\n    });\n\n    return merged;\n  };\n\n  if (!items) {\n    return this;\n  }\n\n  if (items.constructor.name === 'Collection') {\n    return new this.constructor(merge(this.items, items.all()));\n  }\n\n  return new this.constructor(merge(this.items, items));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/mergeRecursive.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/min.js":
+/*!*****************************!*\
+  !*** ./dist/methods/min.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function min(key) {\n  if (key !== undefined) {\n    return Math.min.apply(Math, _toConsumableArray(this.pluck(key).all()));\n  }\n\n  return Math.min.apply(Math, _toConsumableArray(this.items));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/min.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/mode.js":
+/*!******************************!*\
+  !*** ./dist/methods/mode.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function mode(key) {\n  var values = [];\n  var highestCount = 1;\n\n  if (!this.items.length) {\n    return null;\n  }\n\n  this.items.forEach(function (item) {\n    var tempValues = values.filter(function (value) {\n      if (key !== undefined) {\n        return value.key === item[key];\n      }\n\n      return value.key === item;\n    });\n\n    if (!tempValues.length) {\n      if (key !== undefined) {\n        values.push({ key: item[key], count: 1 });\n      } else {\n        values.push({ key: item, count: 1 });\n      }\n    } else {\n      tempValues[0].count += 1;\n      var count = tempValues[0].count;\n\n\n      if (count > highestCount) {\n        highestCount = count;\n      }\n    }\n  });\n\n  return values.filter(function (value) {\n    return value.count === highestCount;\n  }).map(function (value) {\n    return value.key;\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/mode.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/nth.js":
+/*!*****************************!*\
+  !*** ./dist/methods/nth.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function nth(n) {\n  var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;\n\n  var items = values(this.items);\n\n  var collection = items.slice(offset).filter(function (item, index) {\n    return index % n === 0;\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/nth.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/only.js":
+/*!******************************!*\
+  !*** ./dist/methods/only.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function only() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  if (Array.isArray(this.items)) {\n    var _collection = this.items.filter(function (item) {\n      return properties.indexOf(item) !== -1;\n    });\n\n    return new this.constructor(_collection);\n  }\n\n  var collection = {};\n\n  Object.keys(this.items).forEach(function (prop) {\n    if (properties.indexOf(prop) !== -1) {\n      collection[prop] = _this.items[prop];\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/only.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/pad.js":
+/*!*****************************!*\
+  !*** ./dist/methods/pad.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar clone = __webpack_require__(/*! ../helpers/clone */ \"./dist/helpers/clone.js\");\n\nmodule.exports = function pad(size, value) {\n  var abs = Math.abs(size);\n  var count = this.count();\n\n  if (abs <= count) {\n    return this;\n  }\n\n  var diff = abs - count;\n  var items = clone(this.items);\n  var isArray = Array.isArray(this.items);\n  var prepend = size < 0;\n\n  for (var iterator = 0; iterator < diff;) {\n    if (!isArray) {\n      if (items[iterator] !== undefined) {\n        diff += 1;\n      } else {\n        items[iterator] = value;\n      }\n    } else if (prepend) {\n      items.unshift(value);\n    } else {\n      items.push(value);\n    }\n\n    iterator += 1;\n  }\n\n  return new this.constructor(items);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/pad.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/partition.js":
+/*!***********************************!*\
+  !*** ./dist/methods/partition.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function partition(fn) {\n  var _this = this;\n\n  var arrays = void 0;\n\n  if (Array.isArray(this.items)) {\n    arrays = [new this.constructor([]), new this.constructor([])];\n\n    this.items.forEach(function (item) {\n      if (fn(item) === true) {\n        arrays[0].push(item);\n      } else {\n        arrays[1].push(item);\n      }\n    });\n  } else {\n    arrays = [new this.constructor({}), new this.constructor({})];\n\n    Object.keys(this.items).forEach(function (prop) {\n      var value = _this.items[prop];\n\n      if (fn(value) === true) {\n        arrays[0].put(prop, value);\n      } else {\n        arrays[1].put(prop, value);\n      }\n    });\n  }\n\n  return new this.constructor(arrays);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/partition.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/pipe.js":
+/*!******************************!*\
+  !*** ./dist/methods/pipe.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function pipe(fn) {\n  return fn(this);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/pipe.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/pluck.js":
+/*!*******************************!*\
+  !*** ./dist/methods/pluck.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nvar buildKeyPathMap = function buildKeyPathMap(items) {\n  var keyPaths = {};\n\n  items.forEach(function (item, index) {\n    function buildKeyPath(val, keyPath) {\n      if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {\n        Object.keys(val).forEach(function (prop) {\n          buildKeyPath(val[prop], keyPath + '.' + prop);\n        });\n      }\n\n      keyPaths[keyPath] = val;\n    }\n\n    buildKeyPath(item, index);\n  });\n\n  return keyPaths;\n};\n\nmodule.exports = function pluck(value, key) {\n  if (value.indexOf('*') !== -1) {\n    var keyPathMap = buildKeyPathMap(this.items);\n\n    var keyMatches = [];\n\n    if (key !== undefined) {\n      var keyRegex = new RegExp('0.' + key, 'g');\n      var keyNumberOfLevels = ('0.' + key).split('.').length;\n\n      Object.keys(keyPathMap).forEach(function (k) {\n        var matchingKey = k.match(keyRegex);\n\n        if (matchingKey) {\n          var match = matchingKey[0];\n\n          if (match.split('.').length === keyNumberOfLevels) {\n            keyMatches.push(keyPathMap[match]);\n          }\n        }\n      });\n    }\n\n    var valueMatches = [];\n    var valueRegex = new RegExp('0.' + value, 'g');\n    var valueNumberOfLevels = ('0.' + value).split('.').length;\n\n    Object.keys(keyPathMap).forEach(function (k) {\n      var matchingValue = k.match(valueRegex);\n\n      if (matchingValue) {\n        var match = matchingValue[0];\n\n        if (match.split('.').length === valueNumberOfLevels) {\n          valueMatches.push(keyPathMap[match]);\n        }\n      }\n    });\n\n    if (key !== undefined) {\n      var collection = {};\n\n      this.items.forEach(function (item, index) {\n        collection[keyMatches[index] || ''] = valueMatches;\n      });\n\n      return new this.constructor(collection);\n    }\n\n    return new this.constructor([valueMatches]);\n  }\n\n  if (key !== undefined) {\n    var _collection = {};\n\n    this.items.forEach(function (item) {\n      if (nestedValue(item, value) !== undefined) {\n        _collection[item[key] || ''] = nestedValue(item, value);\n      } else {\n        _collection[item[key] || ''] = null;\n      }\n    });\n\n    return new this.constructor(_collection);\n  }\n\n  return this.map(function (item) {\n    if (nestedValue(item, value) !== undefined) {\n      return nestedValue(item, value);\n    }\n\n    return null;\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/pluck.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/pop.js":
+/*!*****************************!*\
+  !*** ./dist/methods/pop.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function pop() {\n  if (Array.isArray(this.items)) {\n    return this.items.pop();\n  }\n\n  var keys = Object.keys(this.items);\n  var key = keys[keys.length - 1];\n  var last = this.items[key];\n\n  delete this.items[key];\n\n  return last;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/pop.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/prepend.js":
+/*!*********************************!*\
+  !*** ./dist/methods/prepend.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function prepend(value, key) {\n  if (key !== undefined) {\n    return this.put(key, value);\n  }\n\n  this.items.unshift(value);\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/prepend.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/pull.js":
+/*!******************************!*\
+  !*** ./dist/methods/pull.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function pull(key, defaultValue) {\n  var returnValue = this.items[key] || null;\n\n  if (!returnValue && defaultValue !== undefined) {\n    if (typeof defaultValue === 'function') {\n      returnValue = defaultValue();\n    } else {\n      returnValue = defaultValue;\n    }\n  }\n\n  delete this.items[key];\n\n  return returnValue;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/pull.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/push.js":
+/*!******************************!*\
+  !*** ./dist/methods/push.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function push() {\n  var _items;\n\n  (_items = this.items).push.apply(_items, arguments);\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/push.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/put.js":
+/*!*****************************!*\
+  !*** ./dist/methods/put.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function put(key, value) {\n  this.items[key] = value;\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/put.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/random.js":
+/*!********************************!*\
+  !*** ./dist/methods/random.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function random() {\n  var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;\n\n  var items = values(this.items);\n\n  var collection = new this.constructor(items).shuffle();\n\n  // If not a length was specified\n  if (length !== parseInt(length, 10)) {\n    return collection.first();\n  }\n\n  return collection.take(length);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/random.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/reduce.js":
+/*!********************************!*\
+  !*** ./dist/methods/reduce.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function reduce(fn, carry) {\n  var _this = this;\n\n  var reduceCarry = null;\n\n  if (carry !== undefined) {\n    reduceCarry = carry;\n  }\n\n  if (Array.isArray(this.items)) {\n    this.items.forEach(function (item) {\n      reduceCarry = fn(reduceCarry, item);\n    });\n  } else {\n    Object.keys(this.items).forEach(function (key) {\n      reduceCarry = fn(reduceCarry, _this.items[key], key);\n    });\n  }\n\n  return reduceCarry;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/reduce.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/reject.js":
+/*!********************************!*\
+  !*** ./dist/methods/reject.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function reject(fn) {\n  return new this.constructor(this.items).filter(function (item) {\n    return !fn(item);\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/reject.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/replace.js":
+/*!*********************************!*\
+  !*** ./dist/methods/replace.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function replace(items) {\n  if (!items) {\n    return this;\n  }\n\n  if (Array.isArray(items)) {\n    var _replaced = this.items.map(function (value, index) {\n      return items[index] || value;\n    });\n\n    return new this.constructor(_replaced);\n  }\n\n  if (items.constructor.name === 'Collection') {\n    var _replaced2 = Object.assign({}, this.items, items.all());\n\n    return new this.constructor(_replaced2);\n  }\n\n  var replaced = Object.assign({}, this.items, items);\n\n  return new this.constructor(replaced);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/replace.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/replaceRecursive.js":
+/*!******************************************!*\
+  !*** ./dist/methods/replaceRecursive.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function replaceRecursive(items) {\n  var replace = function replace(target, source) {\n    var replaced = Object.assign({}, target);\n\n    var mergedKeys = Object.keys(Object.assign({}, target, source));\n\n    mergedKeys.forEach(function (key) {\n      if (!Array.isArray(source[key]) && _typeof(source[key]) === 'object') {\n        replaced[key] = replace(target[key], source[key]);\n      } else if (target[key] === undefined && source[key] !== undefined) {\n        if (_typeof(target[key]) === 'object') {\n          replaced[key] = Object.assign({}, source[key]);\n        } else {\n          replaced[key] = source[key];\n        }\n      } else if (target[key] !== undefined && source[key] === undefined) {\n        if (_typeof(target[key]) === 'object') {\n          replaced[key] = Object.assign({}, target[key]);\n        } else {\n          replaced[key] = target[key];\n        }\n      } else if (target[key] !== undefined && source[key] !== undefined) {\n        if (_typeof(source[key]) === 'object') {\n          replaced[key] = Object.assign({}, source[key]);\n        } else {\n          replaced[key] = source[key];\n        }\n      }\n    });\n\n    return replaced;\n  };\n\n  if (!items) {\n    return this;\n  }\n\n  if (!Array.isArray(items) && (typeof items === 'undefined' ? 'undefined' : _typeof(items)) !== 'object') {\n    return new this.constructor(replace(this.items, [items]));\n  }\n\n  if (items.constructor.name === 'Collection') {\n    return new this.constructor(replace(this.items, items.all()));\n  }\n\n  return new this.constructor(replace(this.items, items));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/replaceRecursive.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/reverse.js":
+/*!*********************************!*\
+  !*** ./dist/methods/reverse.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function reverse() {\n  var collection = [].concat(this.items).reverse();\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/reverse.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/search.js":
+/*!********************************!*\
+  !*** ./dist/methods/search.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function search(valueOrFunction, strict) {\n  var _this = this;\n\n  var valueFn = valueOrFunction;\n\n  if (typeof valueOrFunction === 'function') {\n    valueFn = this.items.find(function (value, key) {\n      return valueOrFunction(value, key);\n    });\n  }\n\n  var index = false;\n\n  if (Array.isArray(this.items)) {\n    var itemKey = this.items.filter(function (item) {\n      if (strict === true) {\n        return item === valueFn;\n      }\n\n      return item === Number(valueFn) || item === String(valueFn);\n    })[0];\n\n    index = this.items.indexOf(itemKey);\n  } else {\n    return Object.keys(this.items).filter(function (prop) {\n      if (strict === true) {\n        return _this.items[prop] === valueFn;\n      }\n\n      return _this.items[prop] === Number(valueFn) || _this.items[prop] === valueFn.toString();\n    })[0] || false;\n  }\n\n  if (index === -1) {\n    return false;\n  }\n\n  return index;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/search.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/shift.js":
+/*!*******************************!*\
+  !*** ./dist/methods/shift.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function shift() {\n  if (Array.isArray(this.items)) {\n    return this.items.shift();\n  }\n\n  var key = Object.keys(this.items)[0];\n  var value = this.items[key] || null;\n  delete this.items[key];\n\n  return value;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/shift.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/shuffle.js":
+/*!*********************************!*\
+  !*** ./dist/methods/shuffle.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function shuffle() {\n  var items = values(this.items);\n\n  var j = void 0;\n  var x = void 0;\n  var i = void 0;\n\n  for (i = items.length; i; i -= 1) {\n    j = Math.floor(Math.random() * i);\n    x = items[i - 1];\n    items[i - 1] = items[j];\n    items[j] = x;\n  }\n\n  this.items = items;\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/shuffle.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/slice.js":
+/*!*******************************!*\
+  !*** ./dist/methods/slice.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function slice(remove, limit) {\n  var collection = this.items.slice(remove);\n\n  if (limit !== undefined) {\n    collection = collection.slice(0, limit);\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/slice.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/sort.js":
+/*!******************************!*\
+  !*** ./dist/methods/sort.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function sort(fn) {\n  var collection = [].concat(this.items);\n\n  if (fn === undefined) {\n    if (this.every(function (item) {\n      return typeof item === 'number';\n    })) {\n      collection.sort(function (a, b) {\n        return a - b;\n      });\n    } else {\n      collection.sort();\n    }\n  } else {\n    collection.sort(fn);\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sort.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/sortBy.js":
+/*!********************************!*\
+  !*** ./dist/methods/sortBy.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function sortBy(valueOrFunction) {\n  var collection = [].concat(this.items);\n\n  if (typeof valueOrFunction === 'function') {\n    collection.sort(function (a, b) {\n      if (valueOrFunction(a) < valueOrFunction(b)) return -1;\n      if (valueOrFunction(a) > valueOrFunction(b)) return 1;\n\n      return 0;\n    });\n  } else {\n    collection.sort(function (a, b) {\n      if (a[valueOrFunction] < b[valueOrFunction]) return -1;\n      if (a[valueOrFunction] > b[valueOrFunction]) return 1;\n\n      return 0;\n    });\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sortBy.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/sortByDesc.js":
+/*!************************************!*\
+  !*** ./dist/methods/sortByDesc.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function sortByDesc(valueOrFunction) {\n  return this.sortBy(valueOrFunction).reverse();\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sortByDesc.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/sortKeys.js":
+/*!**********************************!*\
+  !*** ./dist/methods/sortKeys.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function sortKeys() {\n  var _this = this;\n\n  var ordered = {};\n\n  Object.keys(this.items).sort().forEach(function (key) {\n    ordered[key] = _this.items[key];\n  });\n\n  return new this.constructor(ordered);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sortKeys.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/sortKeysDesc.js":
+/*!**************************************!*\
+  !*** ./dist/methods/sortKeysDesc.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function sortKeysByDesc(valueOrFunction) {\n  return this.sortKeys(valueOrFunction).reverse();\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sortKeysDesc.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/splice.js":
+/*!********************************!*\
+  !*** ./dist/methods/splice.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function splice(index, limit, replace) {\n  var slicedCollection = this.slice(index, limit);\n\n  this.items = this.diff(slicedCollection.all()).all();\n\n  if (Array.isArray(replace)) {\n    for (var iterator = 0, length = replace.length; iterator < length; iterator += 1) {\n      this.items.splice(index + iterator, 0, replace[iterator]);\n    }\n  }\n\n  return slicedCollection;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/splice.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/split.js":
+/*!*******************************!*\
+  !*** ./dist/methods/split.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function split(numberOfGroups) {\n  var itemsPerGroup = Math.round(this.items.length / numberOfGroups);\n\n  var items = JSON.parse(JSON.stringify(this.items));\n  var collection = [];\n\n  for (var iterator = 0; iterator < numberOfGroups; iterator += 1) {\n    collection.push(new this.constructor(items.splice(0, itemsPerGroup)));\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/split.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/sum.js":
+/*!*****************************!*\
+  !*** ./dist/methods/sum.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function sum(key) {\n  var items = values(this.items);\n\n  var total = 0;\n\n  if (key === undefined) {\n    for (var i = 0, length = items.length; i < length; i += 1) {\n      total += items[i];\n    }\n  } else if (typeof key === 'function') {\n    for (var _i = 0, _length = items.length; _i < _length; _i += 1) {\n      total += key(items[_i]);\n    }\n  } else {\n    for (var _i2 = 0, _length2 = items.length; _i2 < _length2; _i2 += 1) {\n      total += items[_i2][key];\n    }\n  }\n\n  return total;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sum.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/symbol.iterator.js":
+/*!*****************************************!*\
+  !*** ./dist/methods/symbol.iterator.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function SymbolIterator() {\n  var _this = this;\n\n  var index = -1;\n\n  return {\n    next: function next() {\n      index += 1;\n\n      return {\n        value: _this.items[index],\n        done: index >= _this.items.length\n      };\n    }\n  };\n};\n\n//# sourceURL=webpack://collect/./dist/methods/symbol.iterator.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/take.js":
+/*!******************************!*\
+  !*** ./dist/methods/take.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function take(length) {\n  var _this = this;\n\n  if (!Array.isArray(this.items) && _typeof(this.items) === 'object') {\n    var keys = Object.keys(this.items);\n    var slicedKeys = void 0;\n\n    if (length < 0) {\n      slicedKeys = keys.slice(length);\n    } else {\n      slicedKeys = keys.slice(0, length);\n    }\n\n    var collection = {};\n\n    keys.forEach(function (prop) {\n      if (slicedKeys.indexOf(prop) !== -1) {\n        collection[prop] = _this.items[prop];\n      }\n    });\n\n    return new this.constructor(collection);\n  }\n\n  if (length < 0) {\n    return new this.constructor(this.items.slice(length));\n  }\n\n  return new this.constructor(this.items.slice(0, length));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/take.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/tap.js":
+/*!*****************************!*\
+  !*** ./dist/methods/tap.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function tap(fn) {\n  fn(this);\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/tap.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/times.js":
+/*!*******************************!*\
+  !*** ./dist/methods/times.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function times(n, fn) {\n  for (var iterator = 1; iterator <= n; iterator += 1) {\n    this.items.push(fn(iterator));\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/times.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/toArray.js":
+/*!*********************************!*\
+  !*** ./dist/methods/toArray.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function toArray() {\n  var collectionInstance = this.constructor;\n\n  function iterate(list, collection) {\n    var childCollection = [];\n\n    if (list instanceof collectionInstance) {\n      list.items.forEach(function (i) {\n        return iterate(i, childCollection);\n      });\n      collection.push(childCollection);\n    } else if (Array.isArray(list)) {\n      list.forEach(function (i) {\n        return iterate(i, childCollection);\n      });\n      collection.push(childCollection);\n    } else {\n      collection.push(list);\n    }\n  }\n\n  if (Array.isArray(this.items)) {\n    var collection = [];\n\n    this.items.forEach(function (items) {\n      iterate(items, collection);\n    });\n\n    return collection;\n  }\n\n  return this.values().all();\n};\n\n//# sourceURL=webpack://collect/./dist/methods/toArray.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/toJson.js":
+/*!********************************!*\
+  !*** ./dist/methods/toJson.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function toJson() {\n  if (_typeof(this.items) === 'object' && !Array.isArray(this.items)) {\n    return JSON.stringify(this.all());\n  }\n\n  return JSON.stringify(this.toArray());\n};\n\n//# sourceURL=webpack://collect/./dist/methods/toJson.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/transform.js":
+/*!***********************************!*\
+  !*** ./dist/methods/transform.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function transform(fn) {\n  var _this = this;\n\n  if (Array.isArray(this.items)) {\n    this.items = this.items.map(fn);\n  } else {\n    var collection = {};\n\n    Object.keys(this.items).forEach(function (key) {\n      collection[key] = fn(_this.items[key], key);\n    });\n\n    this.items = collection;\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/transform.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/union.js":
+/*!*******************************!*\
+  !*** ./dist/methods/union.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function union(object) {\n  var _this = this;\n\n  var collection = JSON.parse(JSON.stringify(this.items));\n\n  Object.keys(object).forEach(function (prop) {\n    if (_this.items[prop] === undefined) {\n      collection[prop] = object[prop];\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/union.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/unique.js":
+/*!********************************!*\
+  !*** ./dist/methods/unique.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function unique(key) {\n  var collection = void 0;\n\n  if (key === undefined) {\n    collection = this.items.filter(function (element, index, self) {\n      return self.indexOf(element) === index;\n    });\n  } else {\n    collection = [];\n\n    var usedKeys = [];\n\n    for (var iterator = 0, length = this.items.length; iterator < length; iterator += 1) {\n      var uniqueKey = void 0;\n      if (typeof key === 'function') {\n        uniqueKey = key(this.items[iterator]);\n      } else {\n        uniqueKey = this.items[iterator][key];\n      }\n\n      if (usedKeys.indexOf(uniqueKey) === -1) {\n        collection.push(this.items[iterator]);\n        usedKeys.push(uniqueKey);\n      }\n    }\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/unique.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/unless.js":
+/*!********************************!*\
+  !*** ./dist/methods/unless.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function when(value, fn, defaultFn) {\n  if (!value) {\n    fn(this);\n  } else {\n    defaultFn(this);\n  }\n};\n\n//# sourceURL=webpack://collect/./dist/methods/unless.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/unwrap.js":
+/*!********************************!*\
+  !*** ./dist/methods/unwrap.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function unwrap(value) {\n  if (value instanceof this.constructor) {\n    return value.all();\n  }\n\n  return value;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/unwrap.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/values.js":
+/*!********************************!*\
+  !*** ./dist/methods/values.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nvar getValues = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function values() {\n  var valuesRecursive = function valuesRecursive(items) {\n    var extractedValues = getValues(items);\n\n    if (items !== null && (typeof items === 'undefined' ? 'undefined' : _typeof(items)) === 'object') {\n      return extractedValues.map(function (item) {\n        return valuesRecursive(item);\n      });\n    }\n\n    return items;\n  };\n\n  return new this.constructor(valuesRecursive(this.items));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/values.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/when.js":
+/*!******************************!*\
+  !*** ./dist/methods/when.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function when(value, fn, defaultFn) {\n  if (value) {\n    return fn(this, value);\n  }\n\n  if (defaultFn) {\n    return defaultFn(this, value);\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/when.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/whenEmpty.js":
+/*!***********************************!*\
+  !*** ./dist/methods/whenEmpty.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function whenEmpty(fn, defaultFn) {\n  if (Array.isArray(this.items) && !this.items.length) {\n    return fn(this);\n  }if (!Object.keys(this.items).length) {\n    return fn(this);\n  }\n\n  if (defaultFn !== undefined) {\n    if (Array.isArray(this.items) && this.items.length) {\n      return defaultFn(this);\n    }if (Object.keys(this.items).length) {\n      return defaultFn(this);\n    }\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/whenEmpty.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/whenNotEmpty.js":
+/*!**************************************!*\
+  !*** ./dist/methods/whenNotEmpty.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function whenNotEmpty(fn, defaultFn) {\n  if (Array.isArray(this.items) && this.items.length) {\n    return fn(this);\n  }if (Object.keys(this.items).length) {\n    return fn(this);\n  }\n\n  if (defaultFn !== undefined) {\n    if (Array.isArray(this.items) && !this.items.length) {\n      return defaultFn(this);\n    }if (!Object.keys(this.items).length) {\n      return defaultFn(this);\n    }\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/whenNotEmpty.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/where.js":
+/*!*******************************!*\
+  !*** ./dist/methods/where.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function where(key, operator, value) {\n  var comparisonOperator = operator;\n  var comparisonValue = value;\n\n  var items = values(this.items);\n\n  if (operator === undefined || operator === true) {\n    return new this.constructor(items.filter(function (item) {\n      return nestedValue(item, key);\n    }));\n  }\n\n  if (operator === false) {\n    return new this.constructor(items.filter(function (item) {\n      return !nestedValue(item, key);\n    }));\n  }\n\n  if (value === undefined) {\n    comparisonValue = operator;\n    comparisonOperator = '===';\n  }\n\n  var collection = items.filter(function (item) {\n    switch (comparisonOperator) {\n      case '==':\n        return nestedValue(item, key) === Number(comparisonValue) || nestedValue(item, key) === comparisonValue.toString();\n\n      default:\n      case '===':\n        return nestedValue(item, key) === comparisonValue;\n\n      case '!=':\n      case '<>':\n        return nestedValue(item, key) !== Number(comparisonValue) && nestedValue(item, key) !== comparisonValue.toString();\n\n      case '!==':\n        return nestedValue(item, key) !== comparisonValue;\n\n      case '<':\n        return nestedValue(item, key) < comparisonValue;\n\n      case '<=':\n        return nestedValue(item, key) <= comparisonValue;\n\n      case '>':\n        return nestedValue(item, key) > comparisonValue;\n\n      case '>=':\n        return nestedValue(item, key) >= comparisonValue;\n    }\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/where.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/whereBetween.js":
+/*!**************************************!*\
+  !*** ./dist/methods/whereBetween.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function whereBetween(key, values) {\n  return this.where(key, '>=', values[0]).where(key, '<=', values[values.length - 1]);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/whereBetween.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/whereIn.js":
+/*!*********************************!*\
+  !*** ./dist/methods/whereIn.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar extractValues = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function whereIn(key, values) {\n  var items = extractValues(values);\n\n  var collection = this.items.filter(function (item) {\n    return items.indexOf(nestedValue(item, key)) !== -1;\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/whereIn.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/whereInstanceOf.js":
+/*!*****************************************!*\
+  !*** ./dist/methods/whereInstanceOf.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function whereInstanceOf(type) {\n  return this.filter(function (item) {\n    return item instanceof type;\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/whereInstanceOf.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/whereNotBetween.js":
+/*!*****************************************!*\
+  !*** ./dist/methods/whereNotBetween.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function whereNotBetween(key, values) {\n  return this.filter(function (item) {\n    return nestedValue(item, key) < values[0] || nestedValue(item, key) > values[values.length - 1];\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/methods/whereNotBetween.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/whereNotIn.js":
+/*!************************************!*\
+  !*** ./dist/methods/whereNotIn.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar extractValues = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function whereNotIn(key, values) {\n  var items = extractValues(values);\n\n  var collection = this.items.filter(function (item) {\n    return items.indexOf(nestedValue(item, key)) === -1;\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/whereNotIn.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/wrap.js":
+/*!******************************!*\
+  !*** ./dist/methods/wrap.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function wrap(value) {\n  if (value instanceof this.constructor) {\n    return value;\n  }\n\n  if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {\n    return new this.constructor(value);\n  }\n\n  return new this.constructor([value]);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/wrap.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/zip.js":
+/*!*****************************!*\
+  !*** ./dist/methods/zip.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function zip(array) {\n  var _this = this;\n\n  var values = array;\n\n  if (values instanceof this.constructor) {\n    values = values.all();\n  }\n\n  var collection = this.items.map(function (item, index) {\n    return new _this.constructor([item, values[index]]);\n  });\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/zip.js?");
+
+/***/ }),
+
+/***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function diff(values) {
-  var valuesToDiff = void 0;
-
-  if (values instanceof this.constructor) {
-    valuesToDiff = values.all();
-  } else {
-    valuesToDiff = values;
-  }
-
-  var collection = this.items.filter(function (item) {
-    return valuesToDiff.indexOf(item) === -1;
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function diffAssoc(values) {
-  var _this = this;
-
-  var diffValues = values;
-
-  if (values instanceof this.constructor) {
-    diffValues = values.all();
-  }
-
-  var collection = {};
-
-  Object.keys(this.items).forEach(function (key) {
-    if (diffValues[key] === undefined || diffValues[key] !== _this.items[key]) {
-      collection[key] = _this.items[key];
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function diffKeys(object) {
-  var objectToDiff = void 0;
-
-  if (object instanceof this.constructor) {
-    objectToDiff = object.all();
-  } else {
-    objectToDiff = object;
-  }
-
-  var objectKeys = Object.keys(objectToDiff);
-
-  var remainingKeys = Object.keys(this.items).filter(function (item) {
-    return objectKeys.indexOf(item) === -1;
-  });
-
-  return new this.constructor(this.items).only(remainingKeys);
-};
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function dump() {
-  // eslint-disable-next-line
-  console.log(this);
-
-  return this;
-};
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function duplicates() {
-  var _this = this;
-
-  var occuredValues = [];
-  var duplicateValues = {};
-
-  var stringifiedValue = function stringifiedValue(value) {
-    if (Array.isArray(value) || (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
-      return JSON.stringify(value);
-    }
-
-    return value;
-  };
-
-  if (Array.isArray(this.items)) {
-    this.items.forEach(function (value, index) {
-      var valueAsString = stringifiedValue(value);
-
-      if (occuredValues.indexOf(valueAsString) === -1) {
-        occuredValues.push(valueAsString);
-      } else {
-        duplicateValues[index] = value;
-      }
-    });
-  } else if (_typeof(this.items) === 'object') {
-    Object.keys(this.items).forEach(function (key) {
-      var valueAsString = stringifiedValue(_this.items[key]);
-
-      if (occuredValues.indexOf(valueAsString) === -1) {
-        occuredValues.push(valueAsString);
-      } else {
-        duplicateValues[key] = _this.items[key];
-      }
-    });
-  }
-
-  return new this.constructor(duplicateValues);
-};
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function each(fn) {
-  var _this = this;
-
-  var stop = false;
-
-  if (Array.isArray(this.items)) {
-    this.items.forEach(function (item, key, array) {
-      if (!stop) {
-        var output = fn(item, key, array);
-
-        if (output === false) {
-          stop = true;
-        }
-      }
-    });
-  } else {
-    Object.keys(this.items).forEach(function (key) {
-      if (!stop) {
-        var output = fn(_this.items[key], key, _this.items);
-
-        if (output === false) {
-          stop = true;
-        }
-      }
-    });
-  }
-
-  return this;
-};
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function eachSpread(fn) {
-  this.each(function (values, key) {
-    fn.apply(undefined, _toConsumableArray(values).concat([key]));
-  });
-
-  return this;
-};
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var values = __webpack_require__(0);
-
-module.exports = function every(fn) {
-  var items = values(this.items);
-
-  return items.map(function (item, index) {
-    return fn(item, index);
-  }).indexOf(false) === -1;
-};
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var variadic = __webpack_require__(2);
-
-module.exports = function except() {
-  var _this = this;
-
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  var properties = variadic(args);
-
-  if (Array.isArray(this.items)) {
-    var _collection = this.items.filter(function (item) {
-      return properties.indexOf(item) === -1;
-    });
-
-    return new this.constructor(_collection);
-  }
-
-  var collection = {};
-
-  Object.keys(this.items).forEach(function (property) {
-    if (properties.indexOf(property) === -1) {
-      collection[property] = _this.items[property];
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-function falsyValue(item) {
-  if (Array.isArray(item)) {
-    if (item.length) {
-      return false;
-    }
-  } else if (item !== undefined && item !== null && (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') {
-    if (Object.keys(item).length) {
-      return false;
-    }
-  } else if (item) {
-    return false;
-  }
-
-  return true;
-}
-
-function filterObject(func, items) {
-  var result = {};
-  Object.keys(items).forEach(function (key) {
-    if (func) {
-      if (func(items[key], key)) {
-        result[key] = items[key];
-      }
-    } else if (!falsyValue(items[key])) {
-      result[key] = items[key];
-    }
-  });
-
-  return result;
-}
-
-function filterArray(func, items) {
-  if (func) {
-    return items.filter(func);
-  }
-  var result = [];
-  for (var i = 0; i < items.length; i += 1) {
-    var item = items[i];
-    if (!falsyValue(item)) {
-      result.push(item);
-    }
-  }
-
-  return result;
-}
-
-module.exports = function filter(fn) {
-  var func = fn || false;
-  var filteredItems = null;
-  if (Array.isArray(this.items)) {
-    filteredItems = filterArray(func, this.items);
-  } else {
-    filteredItems = filterObject(func, this.items);
-  }
-
-  return new this.constructor(filteredItems);
-};
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function first(fn, defaultValue) {
-  if (typeof fn === 'function') {
-    for (var i = 0, length = this.items.length; i < length; i += 1) {
-      var item = this.items[i];
-      if (fn(item)) {
-        return item;
-      }
-    }
-
-    if (typeof defaultValue === 'function') {
-      return defaultValue();
-    }
-
-    return defaultValue;
-  }
-
-  if (Array.isArray(this.items) && this.items.length || Object.keys(this.items).length) {
-    if (Array.isArray(this.items)) {
-      return this.items[0];
-    }
-
-    var firstKey = Object.keys(this.items)[0];
-
-    return this.items[firstKey];
-  }
-
-  if (typeof defaultValue === 'function') {
-    return defaultValue();
-  }
-
-  return defaultValue;
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function firstWhere(key, operator, value) {
-  return this.where(key, operator, value).first() || null;
-};
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function flatMap(fn) {
-  return this.map(fn).collapse();
-};
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function flatten(depth) {
-  var flattenDepth = depth || Infinity;
-
-  var fullyFlattened = false;
-  var collection = [];
-
-  var flat = function flat(items) {
-    collection = [];
-
-    if (Array.isArray(items)) {
-      items.forEach(function (item) {
-        if (typeof item === 'string') {
-          collection.push(item);
-        } else if (Array.isArray(item)) {
-          collection = collection.concat(item);
-        } else {
-          Object.keys(item).forEach(function (property) {
-            collection = collection.concat(item[property]);
-          });
-        }
-      });
-    } else {
-      Object.keys(items).forEach(function (property) {
-        if (typeof items[property] === 'string') {
-          collection.push(items[property]);
-        } else if (Array.isArray(items[property])) {
-          collection = collection.concat(items[property]);
-        } else {
-          Object.keys(items).forEach(function (prop) {
-            collection = collection.concat(items[prop]);
-          });
-        }
-      });
-    }
-
-    fullyFlattened = collection.filter(function (item) {
-      return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object';
-    });
-    fullyFlattened = fullyFlattened.length === 0;
-
-    flattenDepth -= 1;
-  };
-
-  flat(this.items);
-
-  while (!fullyFlattened && flattenDepth > 0) {
-    flat(collection);
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function flip() {
-  var _this = this;
-
-  var collection = {};
-
-  if (Array.isArray(this.items)) {
-    Object.keys(this.items).forEach(function (key) {
-      collection[_this.items[key]] = Number(key);
-    });
-  } else {
-    Object.keys(this.items).forEach(function (key) {
-      collection[_this.items[key]] = key;
-    });
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function forPage(page, chunk) {
-  var _this = this;
-
-  var collection = {};
-
-  if (Array.isArray(this.items)) {
-    collection = this.items.slice(page * chunk - chunk, page * chunk);
-  } else {
-    Object.keys(this.items).slice(page * chunk - chunk, page * chunk).forEach(function (key) {
-      collection[key] = _this.items[key];
-    });
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function forget(key) {
-  if (Array.isArray(this.items)) {
-    this.items.splice(key, 1);
-  } else {
-    delete this.items[key];
-  }
-
-  return this;
-};
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function get(key) {
-  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-  if (this.items[key] !== undefined) {
-    return this.items[key];
-  }
-
-  if (typeof defaultValue === 'function') {
-    return defaultValue();
-  }
-
-  if (defaultValue !== null) {
-    return defaultValue;
-  }
-
-  return null;
-};
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var nestedValue = __webpack_require__(1);
-
-module.exports = function groupBy(key) {
-  var _this = this;
-
-  var collection = {};
-
-  this.items.forEach(function (item, index) {
-    var resolvedKey = void 0;
-
-    if (typeof key === 'function') {
-      resolvedKey = key(item, index);
-    } else if (nestedValue(item, key) || nestedValue(item, key) === 0) {
-      resolvedKey = nestedValue(item, key);
-    } else {
-      resolvedKey = '';
-    }
-
-    if (collection[resolvedKey] === undefined) {
-      collection[resolvedKey] = new _this.constructor([]);
-    }
-
-    collection[resolvedKey].push(item);
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var variadic = __webpack_require__(2);
-
-module.exports = function has() {
-  var _this = this;
-
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  var properties = variadic(args);
-
-  return properties.filter(function (key) {
-    return _this.items[key];
-  }).length === properties.length;
-};
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function implode(key, glue) {
-  if (glue === undefined) {
-    return this.items.join(key);
-  }
-
-  return new this.constructor(this.items).pluck(key).all().join(glue);
-};
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function intersect(values) {
-  var intersectValues = values;
-
-  if (values instanceof this.constructor) {
-    intersectValues = values.all();
-  }
-
-  var collection = this.items.filter(function (item) {
-    return intersectValues.indexOf(item) !== -1;
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function intersectByKeys(values) {
-  var _this = this;
-
-  var intersectKeys = Object.keys(values);
-
-  if (values instanceof this.constructor) {
-    intersectKeys = Object.keys(values.all());
-  }
-
-  var collection = {};
-
-  Object.keys(this.items).forEach(function (key) {
-    if (intersectKeys.indexOf(key) !== -1) {
-      collection[key] = _this.items[key];
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isEmpty() {
-  return !this.items.length;
-};
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function isNotEmpty() {
-  return !!this.items.length;
-};
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function join(glue, finalGlue) {
-  var collection = this.values();
-
-  if (finalGlue === undefined) {
-    return collection.implode(glue);
-  }
-
-  var count = collection.count();
-
-  if (count === 0) {
-    return '';
-  }
-
-  if (count === 1) {
-    return collection.last();
-  }
-
-  var finalItem = collection.pop();
-
-  return collection.implode(glue) + finalGlue + finalItem;
-};
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var nestedValue = __webpack_require__(1);
-
-module.exports = function keyBy(key) {
-  var collection = {};
-
-  if (typeof key === 'function') {
-    this.items.forEach(function (item) {
-      collection[key(item)] = item;
-    });
-  } else {
-    this.items.forEach(function (item) {
-      var keyValue = nestedValue(item, key);
-
-      collection[keyValue || ''] = item;
-    });
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function keys() {
-  var collection = Object.keys(this.items);
-
-  if (Array.isArray(this.items)) {
-    collection = collection.map(Number);
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function last(fn, defaultValue) {
-  var items = this.items;
-
-
-  if (typeof fn === 'function') {
-    items = this.filter(fn).all();
-  }
-
-  if (Array.isArray(items) && !items.length || !Object.keys(items).length) {
-    if (typeof defaultValue === 'function') {
-      return defaultValue();
-    }
-
-    return defaultValue;
-  }
-
-  if (Array.isArray(items)) {
-    return items[items.length - 1];
-  }
-  var keys = Object.keys(items);
-
-  return items[keys[keys.length - 1]];
-};
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function macro(name, fn) {
-  this.constructor.prototype[name] = fn;
-};
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function make() {
-  var items = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-  return new this.constructor(items);
-};
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function map(fn) {
-  var _this = this;
-
-  if (Array.isArray(this.items)) {
-    return new this.constructor(this.items.map(fn));
-  }
-
-  var collection = {};
-
-  Object.keys(this.items).forEach(function (key) {
-    collection[key] = fn(_this.items[key], key);
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function mapSpread(fn) {
-  return this.map(function (values, key) {
-    return fn.apply(undefined, _toConsumableArray(values).concat([key]));
-  });
-};
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-module.exports = function mapToDictionary(fn) {
-  var collection = {};
-
-  this.items.forEach(function (item, k) {
-    var _fn = fn(item, k),
-        _fn2 = _slicedToArray(_fn, 2),
-        key = _fn2[0],
-        value = _fn2[1];
-
-    if (collection[key] === undefined) {
-      collection[key] = [value];
-    } else {
-      collection[key].push(value);
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function mapInto(ClassName) {
-  return this.map(function (value, key) {
-    return new ClassName(value, key);
-  });
-};
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-module.exports = function mapToGroups(fn) {
-  var collection = {};
-
-  this.items.forEach(function (item, key) {
-    var _fn = fn(item, key),
-        _fn2 = _slicedToArray(_fn, 2),
-        keyed = _fn2[0],
-        value = _fn2[1];
-
-    if (collection[keyed] === undefined) {
-      collection[keyed] = [value];
-    } else {
-      collection[keyed].push(value);
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-module.exports = function mapWithKeys(fn) {
-  var _this = this;
-
-  var collection = {};
-
-  if (Array.isArray(this.items)) {
-    this.items.forEach(function (item) {
-      var _fn = fn(item),
-          _fn2 = _slicedToArray(_fn, 2),
-          keyed = _fn2[0],
-          value = _fn2[1];
-
-      collection[keyed] = value;
-    });
-  } else {
-    Object.keys(this.items).forEach(function (key) {
-      var _fn3 = fn(_this.items[key]),
-          _fn4 = _slicedToArray(_fn3, 2),
-          keyed = _fn4[0],
-          value = _fn4[1];
-
-      collection[keyed] = value;
-    });
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function max(key) {
-  if (typeof key === 'string') {
-    return Math.max.apply(Math, _toConsumableArray(this.pluck(key).all()));
-  }
-
-  return Math.max.apply(Math, _toConsumableArray(this.items));
-};
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function median(key) {
-  var length = this.items.length;
-
-
-  if (key === undefined) {
-    if (length % 2 === 0) {
-      return (this.items[length / 2 - 1] + this.items[length / 2]) / 2;
-    }
-
-    return this.items[Math.floor(length / 2)];
-  }
-
-  if (length % 2 === 0) {
-    return (this.items[length / 2 - 1][key] + this.items[length / 2][key]) / 2;
-  }
-
-  return this.items[Math.floor(length / 2)][key];
-};
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function merge(value) {
-  var arrayOrObject = value;
-
-  if (typeof arrayOrObject === 'string') {
-    arrayOrObject = [arrayOrObject];
-  }
-
-  if (Array.isArray(this.items) && Array.isArray(arrayOrObject)) {
-    return new this.constructor(this.items.concat(arrayOrObject));
-  }
-
-  var collection = JSON.parse(JSON.stringify(this.items));
-
-  Object.keys(arrayOrObject).forEach(function (key) {
-    collection[key] = arrayOrObject[key];
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function mergeRecursive(items) {
-  var merge = function merge(target, source) {
-    var merged = {};
-
-    var mergedKeys = Object.keys(Object.assign({}, target, source));
-
-    mergedKeys.forEach(function (key) {
-      if (target[key] === undefined && source[key] !== undefined) {
-        merged[key] = source[key];
-      } else if (target[key] !== undefined && source[key] === undefined) {
-        merged[key] = target[key];
-      } else if (target[key] !== undefined && source[key] !== undefined) {
-        if (target[key] === source[key]) {
-          merged[key] = target[key];
-        } else if (!Array.isArray(target[key]) && _typeof(target[key]) === 'object' && !Array.isArray(source[key]) && _typeof(source[key]) === 'object') {
-          merged[key] = merge(target[key], source[key]);
-        } else {
-          merged[key] = [].concat(target[key], source[key]);
-        }
-      }
-    });
-
-    return merged;
-  };
-
-  if (!items) {
-    return this;
-  }
-
-  if (items.constructor.name === 'Collection') {
-    return new this.constructor(merge(this.items, items.all()));
-  }
-
-  return new this.constructor(merge(this.items, items));
-};
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-module.exports = function min(key) {
-  if (key !== undefined) {
-    return Math.min.apply(Math, _toConsumableArray(this.pluck(key).all()));
-  }
-
-  return Math.min.apply(Math, _toConsumableArray(this.items));
-};
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function mode(key) {
-  var values = [];
-  var highestCount = 1;
-
-  if (!this.items.length) {
-    return null;
-  }
-
-  this.items.forEach(function (item) {
-    var tempValues = values.filter(function (value) {
-      if (key !== undefined) {
-        return value.key === item[key];
-      }
-
-      return value.key === item;
-    });
-
-    if (!tempValues.length) {
-      if (key !== undefined) {
-        values.push({ key: item[key], count: 1 });
-      } else {
-        values.push({ key: item, count: 1 });
-      }
-    } else {
-      tempValues[0].count += 1;
-      var count = tempValues[0].count;
-
-
-      if (count > highestCount) {
-        highestCount = count;
-      }
-    }
-  });
-
-  return values.filter(function (value) {
-    return value.count === highestCount;
-  }).map(function (value) {
-    return value.key;
-  });
-};
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var values = __webpack_require__(0);
-
-module.exports = function nth(n) {
-  var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
-  var items = values(this.items);
-
-  var collection = items.slice(offset).filter(function (item, index) {
-    return index % n === 0;
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var variadic = __webpack_require__(2);
-
-module.exports = function only() {
-  var _this = this;
-
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  var properties = variadic(args);
-
-  if (Array.isArray(this.items)) {
-    var _collection = this.items.filter(function (item) {
-      return properties.indexOf(item) !== -1;
-    });
-
-    return new this.constructor(_collection);
-  }
-
-  var collection = {};
-
-  Object.keys(this.items).forEach(function (prop) {
-    if (properties.indexOf(prop) !== -1) {
-      collection[prop] = _this.items[prop];
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var clone = __webpack_require__(4);
-
-module.exports = function pad(size, value) {
-  var abs = Math.abs(size);
-  var count = this.count();
-
-  if (abs <= count) {
-    return this;
-  }
-
-  var diff = abs - count;
-  var items = clone(this.items);
-  var isArray = Array.isArray(this.items);
-  var prepend = size < 0;
-
-  for (var iterator = 0; iterator < diff;) {
-    if (!isArray) {
-      if (items[iterator] !== undefined) {
-        diff += 1;
-      } else {
-        items[iterator] = value;
-      }
-    } else if (prepend) {
-      items.unshift(value);
-    } else {
-      items.push(value);
-    }
-
-    iterator += 1;
-  }
-
-  return new this.constructor(items);
-};
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function partition(fn) {
-  var _this = this;
-
-  var arrays = void 0;
-
-  if (Array.isArray(this.items)) {
-    arrays = [new this.constructor([]), new this.constructor([])];
-
-    this.items.forEach(function (item) {
-      if (fn(item) === true) {
-        arrays[0].push(item);
-      } else {
-        arrays[1].push(item);
-      }
-    });
-  } else {
-    arrays = [new this.constructor({}), new this.constructor({})];
-
-    Object.keys(this.items).forEach(function (prop) {
-      var value = _this.items[prop];
-
-      if (fn(value) === true) {
-        arrays[0].put(prop, value);
-      } else {
-        arrays[1].put(prop, value);
-      }
-    });
-  }
-
-  return new this.constructor(arrays);
-};
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function pipe(fn) {
-  return fn(this);
-};
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var nestedValue = __webpack_require__(1);
-
-var buildKeyPathMap = function buildKeyPathMap(items) {
-  var keyPaths = {};
-
-  items.forEach(function (item, index) {
-    function buildKeyPath(val, keyPath) {
-      if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
-        Object.keys(val).forEach(function (prop) {
-          buildKeyPath(val[prop], keyPath + '.' + prop);
-        });
-      }
-
-      keyPaths[keyPath] = val;
-    }
-
-    buildKeyPath(item, index);
-  });
-
-  return keyPaths;
-};
-
-module.exports = function pluck(value, key) {
-  if (value.indexOf('*') !== -1) {
-    var keyPathMap = buildKeyPathMap(this.items);
-
-    var keyMatches = [];
-
-    if (key !== undefined) {
-      var keyRegex = new RegExp('0.' + key, 'g');
-      var keyNumberOfLevels = ('0.' + key).split('.').length;
-
-      Object.keys(keyPathMap).forEach(function (k) {
-        var matchingKey = k.match(keyRegex);
-
-        if (matchingKey) {
-          var match = matchingKey[0];
-
-          if (match.split('.').length === keyNumberOfLevels) {
-            keyMatches.push(keyPathMap[match]);
-          }
-        }
-      });
-    }
-
-    var valueMatches = [];
-    var valueRegex = new RegExp('0.' + value, 'g');
-    var valueNumberOfLevels = ('0.' + value).split('.').length;
-
-    Object.keys(keyPathMap).forEach(function (k) {
-      var matchingValue = k.match(valueRegex);
-
-      if (matchingValue) {
-        var match = matchingValue[0];
-
-        if (match.split('.').length === valueNumberOfLevels) {
-          valueMatches.push(keyPathMap[match]);
-        }
-      }
-    });
-
-    if (key !== undefined) {
-      var collection = {};
-
-      this.items.forEach(function (item, index) {
-        collection[keyMatches[index] || ''] = valueMatches;
-      });
-
-      return new this.constructor(collection);
-    }
-
-    return new this.constructor([valueMatches]);
-  }
-
-  if (key !== undefined) {
-    var _collection = {};
-
-    this.items.forEach(function (item) {
-      if (nestedValue(item, value) !== undefined) {
-        _collection[item[key] || ''] = nestedValue(item, value);
-      } else {
-        _collection[item[key] || ''] = null;
-      }
-    });
-
-    return new this.constructor(_collection);
-  }
-
-  return this.map(function (item) {
-    if (nestedValue(item, value) !== undefined) {
-      return nestedValue(item, value);
-    }
-
-    return null;
-  });
-};
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function pop() {
-  if (Array.isArray(this.items)) {
-    return this.items.pop();
-  }
-
-  var keys = Object.keys(this.items);
-  var key = keys[keys.length - 1];
-  var last = this.items[key];
-
-  delete this.items[key];
-
-  return last;
-};
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function prepend(value, key) {
-  if (key !== undefined) {
-    return this.put(key, value);
-  }
-
-  this.items.unshift(value);
-
-  return this;
-};
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function pull(key, defaultValue) {
-  var returnValue = this.items[key] || null;
-
-  if (!returnValue && defaultValue !== undefined) {
-    if (typeof defaultValue === 'function') {
-      returnValue = defaultValue();
-    } else {
-      returnValue = defaultValue;
-    }
-  }
-
-  delete this.items[key];
-
-  return returnValue;
-};
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function push() {
-  var _items;
-
-  (_items = this.items).push.apply(_items, arguments);
-
-  return this;
-};
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function put(key, value) {
-  this.items[key] = value;
-
-  return this;
-};
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var values = __webpack_require__(0);
-
-module.exports = function random() {
-  var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-  var items = values(this.items);
-
-  var collection = new this.constructor(items).shuffle();
-
-  // If not a length was specified
-  if (length !== parseInt(length, 10)) {
-    return collection.first();
-  }
-
-  return collection.take(length);
-};
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function reduce(fn, carry) {
-  var _this = this;
-
-  var reduceCarry = null;
-
-  if (carry !== undefined) {
-    reduceCarry = carry;
-  }
-
-  if (Array.isArray(this.items)) {
-    this.items.forEach(function (item) {
-      reduceCarry = fn(reduceCarry, item);
-    });
-  } else {
-    Object.keys(this.items).forEach(function (key) {
-      reduceCarry = fn(reduceCarry, _this.items[key], key);
-    });
-  }
-
-  return reduceCarry;
-};
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function reject(fn) {
-  return new this.constructor(this.items).filter(function (item) {
-    return !fn(item);
-  });
-};
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function replace(items) {
-  if (!items) {
-    return this;
-  }
-
-  if (Array.isArray(items)) {
-    var _replaced = this.items.map(function (value, index) {
-      return items[index] || value;
-    });
-
-    return new this.constructor(_replaced);
-  }
-
-  if (items.constructor.name === 'Collection') {
-    var _replaced2 = Object.assign({}, this.items, items.all());
-
-    return new this.constructor(_replaced2);
-  }
-
-  var replaced = Object.assign({}, this.items, items);
-
-  return new this.constructor(replaced);
-};
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function replaceRecursive(items) {
-  var replace = function replace(target, source) {
-    var replaced = Object.assign({}, target);
-
-    var mergedKeys = Object.keys(Object.assign({}, target, source));
-
-    mergedKeys.forEach(function (key) {
-      if (!Array.isArray(source[key]) && _typeof(source[key]) === 'object') {
-        replaced[key] = replace(target[key], source[key]);
-      } else if (target[key] === undefined && source[key] !== undefined) {
-        if (_typeof(target[key]) === 'object') {
-          replaced[key] = Object.assign({}, source[key]);
-        } else {
-          replaced[key] = source[key];
-        }
-      } else if (target[key] !== undefined && source[key] === undefined) {
-        if (_typeof(target[key]) === 'object') {
-          replaced[key] = Object.assign({}, target[key]);
-        } else {
-          replaced[key] = target[key];
-        }
-      } else if (target[key] !== undefined && source[key] !== undefined) {
-        if (_typeof(source[key]) === 'object') {
-          replaced[key] = Object.assign({}, source[key]);
-        } else {
-          replaced[key] = source[key];
-        }
-      }
-    });
-
-    return replaced;
-  };
-
-  if (!items) {
-    return this;
-  }
-
-  if (!Array.isArray(items) && (typeof items === 'undefined' ? 'undefined' : _typeof(items)) !== 'object') {
-    return new this.constructor(replace(this.items, [items]));
-  }
-
-  if (items.constructor.name === 'Collection') {
-    return new this.constructor(replace(this.items, items.all()));
-  }
-
-  return new this.constructor(replace(this.items, items));
-};
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function reverse() {
-  var collection = [].concat(this.items).reverse();
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function search(valueOrFunction, strict) {
-  var _this = this;
-
-  var valueFn = valueOrFunction;
-
-  if (typeof valueOrFunction === 'function') {
-    valueFn = this.items.find(function (value, key) {
-      return valueOrFunction(value, key);
-    });
-  }
-
-  var index = false;
-
-  if (Array.isArray(this.items)) {
-    var itemKey = this.items.filter(function (item) {
-      if (strict === true) {
-        return item === valueFn;
-      }
-
-      return item === Number(valueFn) || item === String(valueFn);
-    })[0];
-
-    index = this.items.indexOf(itemKey);
-  } else {
-    return Object.keys(this.items).filter(function (prop) {
-      if (strict === true) {
-        return _this.items[prop] === valueFn;
-      }
-
-      return _this.items[prop] === Number(valueFn) || _this.items[prop] === valueFn.toString();
-    })[0] || false;
-  }
-
-  if (index === -1) {
-    return false;
-  }
-
-  return index;
-};
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function shift() {
-  if (Array.isArray(this.items)) {
-    return this.items.shift();
-  }
-
-  var key = Object.keys(this.items)[0];
-  var value = this.items[key] || null;
-  delete this.items[key];
-
-  return value;
-};
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var values = __webpack_require__(0);
-
-module.exports = function shuffle() {
-  var items = values(this.items);
-
-  var j = void 0;
-  var x = void 0;
-  var i = void 0;
-
-  for (i = items.length; i; i -= 1) {
-    j = Math.floor(Math.random() * i);
-    x = items[i - 1];
-    items[i - 1] = items[j];
-    items[j] = x;
-  }
-
-  this.items = items;
-
-  return this;
-};
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function slice(remove, limit) {
-  var collection = this.items.slice(remove);
-
-  if (limit !== undefined) {
-    collection = collection.slice(0, limit);
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function sort(fn) {
-  var collection = [].concat(this.items);
-
-  if (fn === undefined) {
-    if (this.every(function (item) {
-      return typeof item === 'number';
-    })) {
-      collection.sort(function (a, b) {
-        return a - b;
-      });
-    } else {
-      collection.sort();
-    }
-  } else {
-    collection.sort(fn);
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function sortBy(valueOrFunction) {
-  var collection = [].concat(this.items);
-
-  if (typeof valueOrFunction === 'function') {
-    collection.sort(function (a, b) {
-      if (valueOrFunction(a) < valueOrFunction(b)) return -1;
-      if (valueOrFunction(a) > valueOrFunction(b)) return 1;
-
-      return 0;
-    });
-  } else {
-    collection.sort(function (a, b) {
-      if (a[valueOrFunction] < b[valueOrFunction]) return -1;
-      if (a[valueOrFunction] > b[valueOrFunction]) return 1;
-
-      return 0;
-    });
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function sortByDesc(valueOrFunction) {
-  return this.sortBy(valueOrFunction).reverse();
-};
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function sortKeys() {
-  var _this = this;
-
-  var ordered = {};
-
-  Object.keys(this.items).sort().forEach(function (key) {
-    ordered[key] = _this.items[key];
-  });
-
-  return new this.constructor(ordered);
-};
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function sortKeysByDesc(valueOrFunction) {
-  return this.sortKeys(valueOrFunction).reverse();
-};
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function splice(index, limit, replace) {
-  var slicedCollection = this.slice(index, limit);
-
-  this.items = this.diff(slicedCollection.all()).all();
-
-  if (Array.isArray(replace)) {
-    for (var iterator = 0, length = replace.length; iterator < length; iterator += 1) {
-      this.items.splice(index + iterator, 0, replace[iterator]);
-    }
-  }
-
-  return slicedCollection;
-};
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function split(numberOfGroups) {
-  var itemsPerGroup = Math.round(this.items.length / numberOfGroups);
-
-  var items = JSON.parse(JSON.stringify(this.items));
-  var collection = [];
-
-  for (var iterator = 0; iterator < numberOfGroups; iterator += 1) {
-    collection.push(new this.constructor(items.splice(0, itemsPerGroup)));
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var values = __webpack_require__(0);
-
-module.exports = function sum(key) {
-  var items = values(this.items);
-
-  var total = 0;
-
-  if (key === undefined) {
-    for (var i = 0, length = items.length; i < length; i += 1) {
-      total += items[i];
-    }
-  } else if (typeof key === 'function') {
-    for (var _i = 0, _length = items.length; _i < _length; _i += 1) {
-      total += key(items[_i]);
-    }
-  } else {
-    for (var _i2 = 0, _length2 = items.length; _i2 < _length2; _i2 += 1) {
-      total += items[_i2][key];
-    }
-  }
-
-  return total;
-};
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function take(length) {
-  var _this = this;
-
-  if (!Array.isArray(this.items) && _typeof(this.items) === 'object') {
-    var keys = Object.keys(this.items);
-    var slicedKeys = void 0;
-
-    if (length < 0) {
-      slicedKeys = keys.slice(length);
-    } else {
-      slicedKeys = keys.slice(0, length);
-    }
-
-    var collection = {};
-
-    keys.forEach(function (prop) {
-      if (slicedKeys.indexOf(prop) !== -1) {
-        collection[prop] = _this.items[prop];
-      }
-    });
-
-    return new this.constructor(collection);
-  }
-
-  if (length < 0) {
-    return new this.constructor(this.items.slice(length));
-  }
-
-  return new this.constructor(this.items.slice(0, length));
-};
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function tap(fn) {
-  fn(this);
-
-  return this;
-};
-
-/***/ }),
-/* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function times(n, fn) {
-  for (var iterator = 1; iterator <= n; iterator += 1) {
-    this.items.push(fn(iterator));
-  }
-
-  return this;
-};
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function toArray() {
-  var collectionInstance = this.constructor;
-
-  function iterate(list, collection) {
-    var childCollection = [];
-
-    if (list instanceof collectionInstance) {
-      list.items.forEach(function (i) {
-        return iterate(i, childCollection);
-      });
-      collection.push(childCollection);
-    } else if (Array.isArray(list)) {
-      list.forEach(function (i) {
-        return iterate(i, childCollection);
-      });
-      collection.push(childCollection);
-    } else {
-      collection.push(list);
-    }
-  }
-
-  if (Array.isArray(this.items)) {
-    var collection = [];
-
-    this.items.forEach(function (items) {
-      iterate(items, collection);
-    });
-
-    return collection;
-  }
-
-  return this.values().all();
-};
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function toJson() {
-  if (_typeof(this.items) === 'object' && !Array.isArray(this.items)) {
-    return JSON.stringify(this.all());
-  }
-
-  return JSON.stringify(this.toArray());
-};
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function transform(fn) {
-  var _this = this;
-
-  if (Array.isArray(this.items)) {
-    this.items = this.items.map(fn);
-  } else {
-    var collection = {};
-
-    Object.keys(this.items).forEach(function (key) {
-      collection[key] = fn(_this.items[key], key);
-    });
-
-    this.items = collection;
-  }
-
-  return this;
-};
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function when(value, fn, defaultFn) {
-  if (!value) {
-    fn(this);
-  } else {
-    defaultFn(this);
-  }
-};
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function union(object) {
-  var _this = this;
-
-  var collection = JSON.parse(JSON.stringify(this.items));
-
-  Object.keys(object).forEach(function (prop) {
-    if (_this.items[prop] === undefined) {
-      collection[prop] = object[prop];
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function unique(key) {
-  var collection = void 0;
-
-  if (key === undefined) {
-    collection = this.items.filter(function (element, index, self) {
-      return self.indexOf(element) === index;
-    });
-  } else {
-    collection = [];
-
-    var usedKeys = [];
-
-    for (var iterator = 0, length = this.items.length; iterator < length; iterator += 1) {
-      var uniqueKey = void 0;
-      if (typeof key === 'function') {
-        uniqueKey = key(this.items[iterator]);
-      } else {
-        uniqueKey = this.items[iterator][key];
-      }
-
-      if (usedKeys.indexOf(uniqueKey) === -1) {
-        collection.push(this.items[iterator]);
-        usedKeys.push(uniqueKey);
-      }
-    }
-  }
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 101 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function unwrap(value) {
-  if (value instanceof this.constructor) {
-    return value.all();
-  }
-
-  return value;
-};
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var getValues = __webpack_require__(0);
-
-module.exports = function values() {
-  var valuesRecursive = function valuesRecursive(items) {
-    var extractedValues = getValues(items);
-
-    if (items !== null && (typeof items === 'undefined' ? 'undefined' : _typeof(items)) === 'object') {
-      return extractedValues.map(function (item) {
-        return valuesRecursive(item);
-      });
-    }
-
-    return items;
-  };
-
-  return new this.constructor(valuesRecursive(this.items));
-};
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function when(value, fn, defaultFn) {
-  if (value) {
-    return fn(this, value);
-  }
-
-  if (defaultFn) {
-    return defaultFn(this, value);
-  }
-
-  return this;
-};
-
-/***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var values = __webpack_require__(0);
-var nestedValue = __webpack_require__(1);
-
-module.exports = function where(key, operator, value) {
-  var comparisonOperator = operator;
-  var comparisonValue = value;
-
-  var items = values(this.items);
-
-  if (operator === undefined || operator === true) {
-    return new this.constructor(items.filter(function (item) {
-      return nestedValue(item, key);
-    }));
-  }
-
-  if (operator === false) {
-    return new this.constructor(items.filter(function (item) {
-      return !nestedValue(item, key);
-    }));
-  }
-
-  if (value === undefined) {
-    comparisonValue = operator;
-    comparisonOperator = '===';
-  }
-
-  var collection = items.filter(function (item) {
-    switch (comparisonOperator) {
-      case '==':
-        return nestedValue(item, key) === Number(comparisonValue) || nestedValue(item, key) === comparisonValue.toString();
-
-      default:
-      case '===':
-        return nestedValue(item, key) === comparisonValue;
-
-      case '!=':
-      case '<>':
-        return nestedValue(item, key) !== Number(comparisonValue) && nestedValue(item, key) !== comparisonValue.toString();
-
-      case '!==':
-        return nestedValue(item, key) !== comparisonValue;
-
-      case '<':
-        return nestedValue(item, key) < comparisonValue;
-
-      case '<=':
-        return nestedValue(item, key) <= comparisonValue;
-
-      case '>':
-        return nestedValue(item, key) > comparisonValue;
-
-      case '>=':
-        return nestedValue(item, key) >= comparisonValue;
-    }
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function whereBetween(key, values) {
-  return this.where(key, '>=', values[0]).where(key, '<=', values[values.length - 1]);
-};
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var extractValues = __webpack_require__(0);
-var nestedValue = __webpack_require__(1);
-
-module.exports = function whereIn(key, values) {
-  var items = extractValues(values);
-
-  var collection = this.items.filter(function (item) {
-    return items.indexOf(nestedValue(item, key)) !== -1;
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 107 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function whereInstanceOf(type) {
-  return this.filter(function (item) {
-    return item instanceof type;
-  });
-};
-
-/***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var nestedValue = __webpack_require__(1);
-
-module.exports = function whereNotBetween(key, values) {
-  return this.filter(function (item) {
-    return nestedValue(item, key) < values[0] || nestedValue(item, key) > values[values.length - 1];
-  });
-};
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var extractValues = __webpack_require__(0);
-var nestedValue = __webpack_require__(1);
-
-module.exports = function whereNotIn(key, values) {
-  var items = extractValues(values);
-
-  var collection = this.items.filter(function (item) {
-    return items.indexOf(nestedValue(item, key)) === -1;
-  });
-
-  return new this.constructor(collection);
-};
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function wrap(value) {
-  if (value instanceof this.constructor) {
-    return value;
-  }
-
-  if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
-    return new this.constructor(value);
-  }
-
-  return new this.constructor([value]);
-};
-
-/***/ }),
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function zip(array) {
-  var _this = this;
-
-  var values = array;
-
-  if (values instanceof this.constructor) {
-    values = values.all();
-  }
-
-  var collection = this.items.map(function (item, index) {
-    return new _this.constructor([item, values[index]]);
-  });
-
-  return new this.constructor(collection);
-};
+eval("// shim for using process in browser\nvar process = module.exports = {};\n\n// cached from whatever global is present so that test runners that stub it\n// don't break things.  But we need to wrap it in a try catch in case it is\n// wrapped in strict mode code which doesn't define any globals.  It's inside a\n// function because try/catches deoptimize in certain engines.\n\nvar cachedSetTimeout;\nvar cachedClearTimeout;\n\nfunction defaultSetTimout() {\n    throw new Error('setTimeout has not been defined');\n}\nfunction defaultClearTimeout () {\n    throw new Error('clearTimeout has not been defined');\n}\n(function () {\n    try {\n        if (typeof setTimeout === 'function') {\n            cachedSetTimeout = setTimeout;\n        } else {\n            cachedSetTimeout = defaultSetTimout;\n        }\n    } catch (e) {\n        cachedSetTimeout = defaultSetTimout;\n    }\n    try {\n        if (typeof clearTimeout === 'function') {\n            cachedClearTimeout = clearTimeout;\n        } else {\n            cachedClearTimeout = defaultClearTimeout;\n        }\n    } catch (e) {\n        cachedClearTimeout = defaultClearTimeout;\n    }\n} ())\nfunction runTimeout(fun) {\n    if (cachedSetTimeout === setTimeout) {\n        //normal enviroments in sane situations\n        return setTimeout(fun, 0);\n    }\n    // if setTimeout wasn't available but was latter defined\n    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {\n        cachedSetTimeout = setTimeout;\n        return setTimeout(fun, 0);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedSetTimeout(fun, 0);\n    } catch(e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally\n            return cachedSetTimeout.call(null, fun, 0);\n        } catch(e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error\n            return cachedSetTimeout.call(this, fun, 0);\n        }\n    }\n\n\n}\nfunction runClearTimeout(marker) {\n    if (cachedClearTimeout === clearTimeout) {\n        //normal enviroments in sane situations\n        return clearTimeout(marker);\n    }\n    // if clearTimeout wasn't available but was latter defined\n    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {\n        cachedClearTimeout = clearTimeout;\n        return clearTimeout(marker);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedClearTimeout(marker);\n    } catch (e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally\n            return cachedClearTimeout.call(null, marker);\n        } catch (e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.\n            // Some versions of I.E. have different rules for clearTimeout vs setTimeout\n            return cachedClearTimeout.call(this, marker);\n        }\n    }\n\n\n\n}\nvar queue = [];\nvar draining = false;\nvar currentQueue;\nvar queueIndex = -1;\n\nfunction cleanUpNextTick() {\n    if (!draining || !currentQueue) {\n        return;\n    }\n    draining = false;\n    if (currentQueue.length) {\n        queue = currentQueue.concat(queue);\n    } else {\n        queueIndex = -1;\n    }\n    if (queue.length) {\n        drainQueue();\n    }\n}\n\nfunction drainQueue() {\n    if (draining) {\n        return;\n    }\n    var timeout = runTimeout(cleanUpNextTick);\n    draining = true;\n\n    var len = queue.length;\n    while(len) {\n        currentQueue = queue;\n        queue = [];\n        while (++queueIndex < len) {\n            if (currentQueue) {\n                currentQueue[queueIndex].run();\n            }\n        }\n        queueIndex = -1;\n        len = queue.length;\n    }\n    currentQueue = null;\n    draining = false;\n    runClearTimeout(timeout);\n}\n\nprocess.nextTick = function (fun) {\n    var args = new Array(arguments.length - 1);\n    if (arguments.length > 1) {\n        for (var i = 1; i < arguments.length; i++) {\n            args[i - 1] = arguments[i];\n        }\n    }\n    queue.push(new Item(fun, args));\n    if (queue.length === 1 && !draining) {\n        runTimeout(drainQueue);\n    }\n};\n\n// v8 likes predictible objects\nfunction Item(fun, array) {\n    this.fun = fun;\n    this.array = array;\n}\nItem.prototype.run = function () {\n    this.fun.apply(null, this.array);\n};\nprocess.title = 'browser';\nprocess.browser = true;\nprocess.env = {};\nprocess.argv = [];\nprocess.version = ''; // empty string to avoid regexp issues\nprocess.versions = {};\n\nfunction noop() {}\n\nprocess.on = noop;\nprocess.addListener = noop;\nprocess.once = noop;\nprocess.off = noop;\nprocess.removeListener = noop;\nprocess.removeAllListeners = noop;\nprocess.emit = noop;\nprocess.prependListener = noop;\nprocess.prependOnceListener = noop;\n\nprocess.listeners = function (name) { return [] }\n\nprocess.binding = function (name) {\n    throw new Error('process.binding is not supported');\n};\n\nprocess.cwd = function () { return '/' };\nprocess.chdir = function (dir) {\n    throw new Error('process.chdir is not supported');\n};\nprocess.umask = function() { return 0; };\n\n\n//# sourceURL=webpack://collect/./node_modules/process/browser.js?");
 
 /***/ })
-/******/ ]);
+
+/******/ });
