@@ -181,11 +181,11 @@ module.exports = (it, expect, collect) => {
     expect(replaced.values().all()).to.eql([
       'Gomez',
       'van Dijk',
-      [
-        'Mané',
-        'Origi',
-        'Salah',
-      ],
+      {
+        0: 'Mané',
+        1: 'Origi',
+        2: 'Salah',
+      },
     ]);
   });
 };

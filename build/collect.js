@@ -1283,7 +1283,7 @@ eval("\n\nmodule.exports = function unwrap(value) {\n  if (value instanceof this
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nvar getValues = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function values() {\n  var valuesRecursive = function valuesRecursive(items) {\n    var extractedValues = getValues(items);\n\n    if (items !== null && (typeof items === 'undefined' ? 'undefined' : _typeof(items)) === 'object') {\n      return extractedValues.map(function (item) {\n        return valuesRecursive(item);\n      });\n    }\n\n    return items;\n  };\n\n  return new this.constructor(valuesRecursive(this.items));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/values.js?");
+eval("\n\nvar getValues = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nmodule.exports = function values() {\n  return new this.constructor(getValues(this.items));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/values.js?");
 
 /***/ }),
 
