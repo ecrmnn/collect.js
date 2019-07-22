@@ -1,7 +1,6 @@
 const { readdirSync } = require('fs');
 
 module.exports = {
-  base: '/<REPO>/',
   title: 'collect.js',
   description: 'Convenient and dependency free wrapper for working with arrays and objects.',
   themeConfig: {
