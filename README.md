@@ -1933,11 +1933,11 @@ const replaced.values().all();
 //=> [
 //=>   'Gomez',
 //=>   'van Dijk',
-//=>   [
-//=>     'Mané',
-//=>     'Origi',
-//=>     'Salah',
-//=>   ],
+//=>   {
+//=>     0: 'Mané',
+//=>     1: 'Origi',
+//=>     2: 'Salah',
+//=>   },
 //=> ]
 ```
 
