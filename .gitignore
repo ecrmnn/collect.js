@@ -8,3 +8,4 @@ coverage
 .nyc_output
 .DS_Store
 package-lock.json
+docs/.vuepress/dist/*
