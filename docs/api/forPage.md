@@ -9,7 +9,7 @@ const forPage = collection.forPage(2, 3);
 
 forPage.all();
 
-//=> [4, 5, 6]
+// [4, 5, 6]
 ```
 
 

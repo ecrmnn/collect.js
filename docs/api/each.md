@@ -7,12 +7,12 @@ let sum = 0;
 
 const collection = collect([1, 3, 3, 7]);
 
-collection.each(item => {
+collection.each((item) => {
   sum += item;
 });
 
-//=> console.log(sum);
-//=> 14
+// console.log(sum);
+// 14
 ```
 
 If you would like to stop iterating through the items, you may return false from your callback:
@@ -22,16 +22,12 @@ let sum = 0;
 
 const collection = collect([1, 3, 3, 7]);
 
-collection.each(item => {
-  if (item > 3) {
-    return false;
-  }
-
+collection.each((item) => {
   sum += item;
 });
 
-//=> console.log(sum);
-//=> 7
+// console.log(sum);
+// 7
 ```
 
 

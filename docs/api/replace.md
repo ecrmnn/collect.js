@@ -4,20 +4,20 @@ The replace method behaves similarly to merge; however, in addition to overwriti
 
 ```js
 const collection = collect({
-  name: "Bob"
+  name: 'Bob',
 });
 
 const replaced = collection.replace({
-  name: "John",
-  number: 45
+  name: 'John',
+  number: 45,
 });
 
 replaced.all();
 
-//=> {
-//=>   name: 'John',
-//=>   number: 45,
-//=> }
+// {
+//   name: 'John',
+//   number: 45,
+// }
 ```
 
 

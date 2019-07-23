@@ -9,7 +9,7 @@ const diff = collection.diff([1, 2, 3, 9]);
 
 diff.all();
 
-//=> [4, 5]
+// [4, 5]
 ```
 
 

@@ -7,23 +7,23 @@ const collection = collect([1, 2, 3, 4, 5]);
 
 collection.random();
 
-//=> 4 (retrieved randomly)
+// 4 (retrieved randomly)
 ```
 
 You may optionally pass an integer to random to specify how many items you would like to randomly retrieve. A collection of items is always returned when explicitly passing the number of items you wish to receive:
 
 ```js
-const random = collection.random(3);
+const threeRandom = collection.random(3);
 
-//=> Collection { items: [ 5, 3, 4 ] } (retrieved randomly)
+// Collection { items: [ 5, 3, 4 ] } (retrieved randomly)
 
-const random = collection.random(1);
+const oneRandom = collection.random(1);
 
-//=> Collection { items: [ 3 ] } (retrieved randomly)
+// Collection { items: [ 3 ] } (retrieved randomly)
 
-random.all();
+oneRandom.all();
 
-//=> [3]
+// [3]
 ```
 
 

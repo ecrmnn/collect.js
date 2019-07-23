@@ -5,29 +5,29 @@ The merge method merges the given object into the original collection. If a key 
 ```js
 const collection = collect({
   id: 1,
-  price: 29
+  price: 29,
 });
 
 const merged = collection.merge({
   price: 400,
-  discount: false
+  discount: false,
 });
 
 merged.all();
 
-//=> { id: 1, price: 400, discount: false }
+// { id: 1, price: 400, discount: false }
 ```
 
 If our collection is an array, the values will be appended to the end of the collection:
 
 ```js
-const collection = collect(["Unicorn", "Rainbow"]);
+const collection = collect(['Unicorn', 'Rainbow']);
 
-const merged = collection.merge(["Sunshine", "Rainbow"]);
+const merged = collection.merge(['Sunshine', 'Rainbow']);
 
 merged.all();
 
-//=> ['Unicorn', 'Rainbow', 'Sunshine', 'Rainbow']
+// ['Unicorn', 'Rainbow', 'Sunshine', 'Rainbow']
 ```
 
 

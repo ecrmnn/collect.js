@@ -5,27 +5,27 @@ The `whenEmpty` method will execute the given callback when the collection is em
 ```js
 const collection = collect([]);
 
-collection.whenEmpty(c => c.push("Mohamed Salah"));
+collection.whenEmpty(c => c.push('Mohamed Salah'));
 
 collection.all();
 
-//=> ['Mohamed Salah']
+// ['Mohamed Salah']
 ```
 
 ```js
-const collection = collect(["Sadio Mané"]);
+const collection = collect(['Sadio Mané']);
 
 collection.whenEmpty(
-  c => c.push("Mohamed Salah"),
-  c => c.push("Xherdan Shaqiri")
+  c => c.push('Mohamed Salah'),
+  c => c.push('Xherdan Shaqiri'),
 );
 
 collection.all();
 
-//=> [
-//=>   'Sadio Mané',
-//=>   'Xherdan Shaqiri',
-//=> ];
+// [
+//   'Sadio Mané',
+//   'Xherdan Shaqiri',
+// ];
 ```
 
 

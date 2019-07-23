@@ -5,20 +5,20 @@ The flatMap method iterates through the collection and passes each value to the 
 ```js
 const collection = collect([
   {
-    name: "Sadio Mané",
-    number: 10
+    name: 'Sadio Mané',
+    number: 10,
   },
   {
-    name: "Mohamed Salah",
-    number: 11
-  }
+    name: 'Mohamed Salah',
+    number: 11,
+  },
 ]);
 
 const flatMapped = collection.flatMap(value => value.name.toUpperCase());
 
 flatMapped.all();
 
-//=> ['SADIO MANÉ', 'MOHAMED SALAH']
+// ['SADIO MANÉ', 'MOHAMED SALAH']
 ```
 
 

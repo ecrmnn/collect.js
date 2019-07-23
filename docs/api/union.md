@@ -4,23 +4,23 @@ The union method adds the given array to the collection. If the given array cont
 
 ```js
 const collection = collect({
-  a: "A",
-  b: "B"
+  a: 'A',
+  b: 'B',
 });
 
 const union = collection.union({
-  a: "AAA",
-  c: "CCC",
-  b: "BBB"
+  a: 'AAA',
+  c: 'CCC',
+  b: 'BBB',
 });
 
 union.all();
 
-//=> {
-//=>   a: 'A',
-//=>   b: 'B',
-//=>   c: 'CCC',
-//=> }
+// {
+//   a: 'A',
+//   b: 'B',
+//   c: 'CCC',
+// }
 ```
 
 

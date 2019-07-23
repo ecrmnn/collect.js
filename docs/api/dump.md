@@ -8,8 +8,8 @@ collect([1, 2, 3, 4])
   .map(item => item * 2)
   .dump();
 
-//=> Collection { items: [ 1, 2, 3, 4 ] }
-//=> Collection { items: [ 2, 4, 6, 8 ] }
+// Collection { items: [ 1, 2, 3, 4 ] }
+// Collection { items: [ 2, 4, 6, 8 ] }
 ```
 
 

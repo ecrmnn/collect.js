@@ -8,19 +8,19 @@ const collection = collect({
   price: 100,
 });
 
-const merged = const collection.mergeRecursive({
+const merged = collection.mergeRecursive({
   product_id: 2,
   price: 200,
   discount: false,
 });
 
-const merged.all();
+merged.all();
 
-//=> {
-//=>   product_id: [1, 2],
-//=>   price: [100, 200],
-//=>   discount: false,
-//=> }
+// {
+//   product_id: [1, 2],
+//   price: [100, 200],
+//   discount: false,
+// }
 ```
 
 

@@ -5,30 +5,30 @@ The implode method joins the items in a collection. Its arguments depend on the 
 ```js
 const collection = collect([
   {
-    product: "Chair",
-    manufacturer: "IKEA"
+    product: 'Chair',
+    manufacturer: 'IKEA',
   },
   {
-    product: "Desk",
-    manufacturer: "IKEA"
+    product: 'Desk',
+    manufacturer: 'IKEA',
   },
   {
-    product: "Chair",
-    manufacturer: "Herman Miller"
-  }
+    product: 'Chair',
+    manufacturer: 'Herman Miller',
+  },
 ]);
 
-collection.implode("product", ",");
+collection.implode('product', ',');
 
-//=> Chair, Desk, Chair
+// Chair, Desk, Chair
 ```
 
 If the collection contains simple strings or numeric values, simply pass the "glue" as the only argument to the method:
 
 ```js
-collect([1, 2, 3, 4, 5]).implode("-");
+collect([1, 2, 3, 4, 5]).implode('-');
 
-//=> 1-2-3-4-5
+// 1-2-3-4-5
 ```
 
 

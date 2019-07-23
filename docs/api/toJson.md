@@ -5,13 +5,13 @@ The toJson method converts the collection into JSON string:
 ```js
 const collection = collect({
   id: 384,
-  name: "Rayquaza",
-  gender: "NA"
+  name: 'Rayquaza',
+  gender: 'NA',
 });
 
 const json = collection.toJson();
 
-//=> {"id": 384, "name": "Rayquaza", "gender": "NA"}
+// {"id": 384, "name": "Rayquaza", "gender": "NA"}
 ```
 
 

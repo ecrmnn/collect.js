@@ -5,21 +5,21 @@ This method will return the key / value pairs in the original collection that ar
 
 ```js
 const collection = collect({
-  color: "orange",
-  type: "fruit",
-  remain: 6
+  color: 'orange',
+  type: 'fruit',
+  remain: 6,
 });
 
 const diff = collection.diffAssoc({
-  color: "yellow",
-  type: "fruit",
+  color: 'yellow',
+  type: 'fruit',
   remain: 3,
-  used: 6
+  used: 6,
 });
 
 diff.all();
 
-//=> { color: 'orange', remain: 6 };
+// { color: 'orange', remain: 6 };
 ```
 
 

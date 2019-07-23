@@ -6,19 +6,19 @@ The pluck method retrieves all of the values for a given key:
 const collection = collect([
   {
     id: 78,
-    name: "Aeron"
+    name: 'Aeron',
   },
   {
     id: 79,
-    name: "Embody"
-  }
+    name: 'Embody',
+  },
 ]);
 
-const plucked = collection.pluck("name");
+const plucked = collection.pluck('name');
 
 plucked.all();
 
-//=> ['Aeron', 'Embody']
+// ['Aeron', 'Embody']
 ```
 
 You may also specify how you wish the resulting collection to be keyed:
@@ -27,22 +27,22 @@ You may also specify how you wish the resulting collection to be keyed:
 const collection = collect([
   {
     id: 78,
-    name: "Aeron"
+    name: 'Aeron',
   },
   {
     id: 79,
-    name: "Embody"
-  }
+    name: 'Embody',
+  },
 ]);
 
-const plucked = collection.pluck("name", "id");
+const plucked = collection.pluck('name', 'id');
 
 plucked.all();
 
-//=> {
-//=>   78: 'Aeron',
-//=>   79: 'Embody',
-//=> }
+// {
+//   78: 'Aeron',
+//   79: 'Embody',
+// }
 ```
 
 You can use "dot notation" to access nested values
@@ -50,23 +50,23 @@ You can use "dot notation" to access nested values
 ```js
 const collection = collect([
   {
-    name: "John",
+    name: 'John',
     roles: [
       {
-        name: "Editor"
+        name: 'Editor',
       },
       {
-        name: "Admin"
-      }
-    ]
-  }
+        name: 'Admin',
+      },
+    ],
+  },
 ]);
 
-const plucked = collection.pluck("roles.0.name");
+const plucked = collection.pluck('roles.0.name');
 
 plucked.all();
 
-//=> ['Editor']
+// ['Editor']
 ```
 
 "Dot notation" supports "wildcard"
@@ -74,28 +74,28 @@ plucked.all();
 ```js
 const collection = collect([
   {
-    name: "John",
+    name: 'John',
     roles: [
       {
-        name: "Editor"
+        name: 'Editor',
       },
       {
-        name: "Admin"
-      }
-    ]
-  }
+        name: 'Admin',
+      },
+    ],
+  },
 ]);
 
-const plucked = collection.pluck("roles.*.name");
+const plucked = collection.pluck('roles.*.name');
 
 plucked.all();
 
-//=> [
-//=>   [
-//=>     'Editor',
-//=>     'Admin',
-//=>   ],
-//=> ]
+// [
+//   [
+//     'Editor',
+//     'Admin',
+//   ],
+// ]
 ```
 
 

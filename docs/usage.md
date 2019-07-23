@@ -4,8 +4,14 @@
 
 ```js
 // Using require
-const collect = require('collect.js')
+const collect = require('collect.js');
 
+collect(products)
+  .where('price', '>', 299)
+  .sortBy('brand');
+```
+
+```js
 // Using import
 import collect from 'collect.js';
 

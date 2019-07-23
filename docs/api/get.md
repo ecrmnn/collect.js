@@ -4,50 +4,50 @@ The get method returns the item at a given key or index. If the key or index doe
 
 ```js
 const collection = collect({
-  firstname: "Chuck",
-  lastname: "Norris"
+  firstname: 'Chuck',
+  lastname: 'Norris',
 });
 
-collection.get("lastname");
+collection.get('lastname');
 
-//=> Norris
+// Norris
 
-collection.get("middlename");
+collection.get('middlename');
 
-//=> null
+// null
 ```
 
 ```js
-const collection = collect(["a", "b", "c"]);
+const collection = collect(['a', 'b', 'c']);
 
 collection.get(1);
 
-//=> b
+// b
 ```
 
 You may optionally pass a default value as the second argument:
 
 ```js
 const collection = collect({
-  firstname: "Chuck",
-  lastname: "Norris"
+  firstname: 'Chuck',
+  lastname: 'Norris',
 });
 
-collection.get("middlename", "default-value");
-//=> default-value
+collection.get('middlename', 'default-value');
+// default-value
 ```
 
 You may even pass a callback as the default value. The result of the callback will be returned if the specified key does not exist:
 
 ```js
 const collection = collect({
-  firstname: "Chuck",
-  lastname: "Norris"
+  firstname: 'Chuck',
+  lastname: 'Norris',
 });
 
-collection.get("middlename", () => "default-value");
+collection.get('middlename', () => 'default-value');
 
-//=> default-value
+// default-value
 ```
 
 

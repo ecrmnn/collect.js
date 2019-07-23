@@ -7,7 +7,7 @@ const collection = collect([1, 2, 3, 4, 5]);
 
 const groups = collection.split(3);
 
-//=> [[1, 2], [3, 4], [5]]
+// [[1, 2], [3, 4], [5]]
 ```
 
 
