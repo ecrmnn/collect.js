@@ -5,7 +5,7 @@ The first method returns the first element in the collection that passes a given
 ```js
 collect([1, 2, 3, 4]).first(item => item > 1);
 
-//=> 2
+// 2
 ```
 
 You may also call the first method with no arguments to get the first element in the collection. If the collection is empty, null is returned:
@@ -13,7 +13,7 @@ You may also call the first method with no arguments to get the first element in
 ```js
 collect([1, 2, 3, 4]).first();
 
-//=> 1
+// 1
 ```
 
 

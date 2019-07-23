@@ -3,32 +3,32 @@
 The `whenNotEmpty` method will execute the given callback when the collection is not empty:
 
 ```js
-const collection = collect(["Sadio Mané"]);
+const collection = collect(['Sadio Mané']);
 
-collection.whenNotEmpty(c => c.push("Mohamed Salah"));
+collection.whenNotEmpty(c => c.push('Mohamed Salah'));
 
 collection.all();
 
-//=> [
-//=>   'Sadio Mané',
-//=>   'Mohamed Salah',
-//=> ]
+// [
+//   'Sadio Mané',
+//   'Mohamed Salah',
+// ]
 ```
 
 ```js
-const collection = collect(["Sadio Mané"]);
+const collection = collect(['Sadio Mané']);
 
 collection.whenNotEmpty(
-  c => c.push("Mohamed Salah"),
-  c => c.push("Xherdan Shaqiri")
+  c => c.push('Mohamed Salah'),
+  c => c.push('Xherdan Shaqiri'),
 );
 
 collection.all();
 
-//=> [
-//=>   'Sadio Mané',
-//=>   'Mohamed Salah',
-//=> ];
+// [
+//   'Sadio Mané',
+//   'Mohamed Salah',
+// ];
 ```
 
 

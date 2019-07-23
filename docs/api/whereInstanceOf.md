@@ -4,19 +4,19 @@ The whereInstanceOf method filters the collection by a given class type:
 
 ```js
 const collection = collect([
-  new Player("Firmino"),
-  new Player("Salah"),
-  new Manager("Klopp")
+  new Player('Firmino'),
+  new Player('Salah'),
+  new Manager('Klopp'),
 ]);
 
 const filtered = collection.whereInstanceOf(Player);
 
 filtered.all();
 
-//=> [
-//=>   new Player('Firmino'),
-//=>   new Player('Salah'),
-//=> ]
+// [
+//   new Player('Firmino'),
+//   new Player('Salah'),
+// ]
 ```
 
 

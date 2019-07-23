@@ -4,17 +4,17 @@ The pull method removes and returns an item from the collection by its key:
 
 ```js
 const collection = collect({
-  firstname: "Michael",
-  lastname: "Cera"
+  firstname: 'Michael',
+  lastname: 'Cera',
 });
 
-collection.pull("lastname");
+collection.pull('lastname');
 
-//=> Cera
+// Cera
 
 collection.all();
 
-//=> { firstname: 'Michael' }
+// { firstname: 'Michael' }
 ```
 
 

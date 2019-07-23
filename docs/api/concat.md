@@ -7,16 +7,16 @@ _You can also `concat()` an array of objects, or a multidimensional array_
 ```js
 const collection = collect([1, 2, 3]);
 
-let concatenated = collection.concat(["a", "b", "c"]);
+let concatenated = collection.concat(['a', 'b', 'c']);
 
 concatenated = concatenated.concat({
-  name: "Steven Gerrard",
-  number: 8
+  name: 'Steven Gerrard',
+  number: 8,
 });
 
 concatenated.all();
 
-//=> [1, 2, 3, 'a', 'b', 'c', 'Steven Gerrard', 8]
+// [1, 2, 3, 'a', 'b', 'c', 'Steven Gerrard', 8]
 ```
 
 

@@ -9,7 +9,7 @@ intersect = collection.intersect([1, 2, 3, 9]);
 
 intersect.all();
 
-//=> [1, 2, 3]
+// [1, 2, 3]
 ```
 
 

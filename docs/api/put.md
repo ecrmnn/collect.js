@@ -3,13 +3,13 @@
 The put method sets the given key and value in the collection:
 
 ```js
-const collection = collect(["JavaScript", "Python"]);
+const collection = collect(['JavaScript', 'Python']);
 
-collection.put("Ruby");
+collection.put('Ruby');
 
 collection.all();
 
-//=> ['JavaScript', 'Python', 'Ruby']
+// ['JavaScript', 'Python', 'Ruby']
 ```
 
 

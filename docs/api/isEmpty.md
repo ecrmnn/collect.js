@@ -5,7 +5,7 @@ The isEmpty method returns true if the collection is empty; otherwise, false is 
 ```js
 collect([]).isEmpty();
 
-//=>  true
+//  true
 ```
 
 

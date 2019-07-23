@@ -5,11 +5,11 @@ The unless method will execute the given callback when the first argument given 
 ```js
 const collection = collect([1, 2, 3]);
 
-collection.unless(false, collection => collection.push(4));
+collection.unless(false, items => items.push(4));
 
 collection.all();
 
-//=> [1, 2, 3, 4]
+// [1, 2, 3, 4]
 ```
 
 

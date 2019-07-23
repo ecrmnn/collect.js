@@ -7,7 +7,7 @@ const collection = collect([1, 2, 3, 4]);
 
 collection.count();
 
-//=> 4
+// 4
 ```
 
 

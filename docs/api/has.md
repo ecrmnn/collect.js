@@ -4,21 +4,21 @@ The has method determines if one or more keys exists in the collection:
 
 ```js
 const collection = collect({
-  animal: "unicorn",
-  ability: "magical"
+  animal: 'unicorn',
+  ability: 'magical',
 });
 
-collection.has("ability");
+collection.has('ability');
 
-//=> true
+// true
 
-collection.has(["animal", "ability"]);
+collection.has(['animal', 'ability']);
 
-//=> true
+// true
 
-collection.has(["animal", "ability", "name"]);
+collection.has(['animal', 'ability', 'name']);
 
-//=> false
+// false
 ```
 
 

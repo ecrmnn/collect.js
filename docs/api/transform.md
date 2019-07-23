@@ -5,13 +5,11 @@ The transform method iterates over the collection and calls the given callback w
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
 
-collection.transform(function(item, key) {
-  return item * 2;
-});
+collection.transform((item, key) => item * 2);
 
 collection.all();
 
-//=> [2, 4, 6, 8, 10]
+// [2, 4, 6, 8, 10]
 ```
 
 > Unlike most other collection methods, `transform` modifies the collection itself. If you wish to create a new collection instead, use the `map` method.

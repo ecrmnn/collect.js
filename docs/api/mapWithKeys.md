@@ -5,27 +5,25 @@ The mapWithKeys method iterates through the collection and passes each value to 
 ```js
 const collection = collect([
   {
-    name: "John",
-    department: "Sales",
-    email: "john@example.com"
+    name: 'John',
+    department: 'Sales',
+    email: 'john@example.com',
   },
   {
-    name: "Jane",
-    department: "Marketing",
-    email: "jane@example.com"
-  }
+    name: 'Jane',
+    department: 'Marketing',
+    email: 'jane@example.com',
+  },
 ]);
 
-const keyed = collection.mapWithKeys(function(item) {
-  return [item.email, item.name];
-});
+const keyed = collection.mapWithKeys(item => [item.email, item.name]);
 
 keyed.all();
 
-//=> {
-//=>   'john@example.com': 'John',
-//=>   'jane@example.com': 'Jane',
-//=> }
+// {
+//   'john@example.com': 'John',
+//   'jane@example.com': 'Jane',
+// }
 ```
 
 

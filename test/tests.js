@@ -34,7 +34,7 @@ if (!runSingleTest) {
       expect(missingTests).to.eql([]);
     });
 
-    it('should document all methods', () => {
+    it('should document all methods in README.md', () => {
       const content = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf-8');
 
       const re = /#### `(.*)\(\)`/g;
@@ -49,6 +49,16 @@ if (!runSingleTest) {
 
       const missingDocumentation = collect(methods).transform(t => t.replace(/.js/, '')).diff(documentedMethods).all();
       expect(missingDocumentation).to.eql(['symbol.iterator']);
+    });
+
+    it('should document all methods in docs/api', () => {
+      const docFiles = fs.readdirSync(path.join(__dirname, '../docs/api'), 'utf-8');
+      const methodFiles = fs.readdirSync(path.join(__dirname, '../src/methods'), 'utf-8');
+
+      const docsCollection = collect(docFiles).map(t => t.replace(/.md/, ''));
+      const methodsCollection = collect(methodFiles).map(t => t.replace(/.js/, ''));
+
+      expect(methodsCollection.diff(docsCollection).all()).to.eql(['symbol.iterator']);
     });
 
     it('should not have any dependencies', () => {

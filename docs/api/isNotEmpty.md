@@ -5,7 +5,7 @@ The isNotEmpty method returns true if the collection is not empty; otherwise, fa
 ```js
 collect([1, 2, 3]).isNotEmpty();
 
-//=>  true
+//  true
 ```
 
 

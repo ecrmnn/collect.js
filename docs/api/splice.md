@@ -9,11 +9,11 @@ const chunk = collection.splice(2);
 
 chunk.all();
 
-//=> [3, 4, 5]
+// [3, 4, 5]
 
 collection.all();
 
-//=> [1, 2]
+// [1, 2]
 ```
 
 You may pass a second argument to limit the size of the resulting chunk:
@@ -25,11 +25,11 @@ const chunk = collection.splice(2, 1);
 
 chunk.all();
 
-//=> [3]
+// [3]
 
 collection.all();
 
-//=> [1, 2, 4, 5]
+// [1, 2, 4, 5]
 ```
 
 In addition, you can pass a third argument containing the new items to replace the items removed from the collection:
@@ -41,11 +41,11 @@ const chunk = collection.splice(2, 1, [10, 11]);
 
 chunk.all();
 
-//=> [3]
+// [3]
 
 collection.all();
 
-//=> [1, 2, 10, 11, 4, 5]
+// [1, 2, 10, 11, 4, 5]
 ```
 
 

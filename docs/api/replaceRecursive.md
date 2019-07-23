@@ -20,23 +20,11 @@ const replaced = collection.replaceRecursive({
 
 replaced.all();
 
-//=> {
-//=>   0: 'Gomez',
-//=>   1: 'van Dijk',
-//=>   2: { 0: 'Mané', 1: 'Origi', 2: 'Salah' },
-//=> }
-
-const replaced.values().all();
-
-//=> [
-//=>   'Gomez',
-//=>   'van Dijk',
-//=>   [
-//=>     'Mané',
-//=>     'Origi',
-//=>     'Salah',
-//=>   ],
-//=> ]
+// {
+//   0: 'Gomez',
+//   1: 'van Dijk',
+//   2: { 0: 'Mané', 1: 'Origi', 2: 'Salah' },
+// }
 ```
 
 

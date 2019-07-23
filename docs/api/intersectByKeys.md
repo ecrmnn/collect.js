@@ -4,15 +4,15 @@ The intersectByKeys method removes any keys from the original collection that ar
 
 ```js
 const collection = collect({
-  serial: "UX301",
-  type: "screen",
-  year: 2009
+  serial: 'UX301',
+  type: 'screen',
+  year: 2009,
 });
 
 const intersect = collection.intersectByKeys({
-  reference: "UX404",
-  type: "tab",
-  year: 2011
+  reference: 'UX404',
+  type: 'tab',
+  year: 2011,
 });
 
 intersect.all();
@@ -28,7 +28,7 @@ intersect = firstCollection.intersect(secondCollection);
 
 intersect.all();
 
-//=> [1, 2, 3]
+// [1, 2, 3]
 ```
 
 

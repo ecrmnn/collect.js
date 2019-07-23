@@ -9,7 +9,7 @@ const filtered = collection.filter((value, key) => value > 2);
 
 filtered.all();
 
-//=> [3, 4]
+// [3, 4]
 ```
 
 If no callback is supplied, all entries of the collection that are equivalent to `false` will be removed:
@@ -30,14 +30,14 @@ const collection = collect([
   8,
   9,
   {},
-  10
+  10,
 ]);
 
 const filtered = collection.filter();
 
 filtered.all();
 
-//=> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
 > For the inverse of `filter`, see the `reject` method.
