@@ -3,16 +3,16 @@
 The combine method combines the keys of the collection with the values of another array or collection:
 
 ```js
-const collection = collect(["name", "number"]);
+const collection = collect(['name', 'number']);
 
-const combine = collection.combine(["Steven Gerrard", 8]);
+const combine = collection.combine(['Steven Gerrard', 8]);
 
 combine.all();
 
-//=> {
-//=>   name: 'Steven Gerrard',
-//=>   number: 8
-//=> }
+// {
+//   name: 'Steven Gerrard',
+//   number: 8
+// }
 ```
 
 

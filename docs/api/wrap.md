@@ -7,7 +7,7 @@ const collection = collect().wrap([1, 2, 3]);
 
 collection.all();
 
-//=> [1, 2, 3]
+// [1, 2, 3]
 ```
 
 

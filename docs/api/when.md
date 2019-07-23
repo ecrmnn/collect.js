@@ -5,11 +5,11 @@ The when method will execute the given callback when the first argument given to
 ```js
 const collection = collect([1, 2, 3]);
 
-collection.when(true, collection => collection.push(4));
+collection.when(true, items => items.push(4));
 
 collection.all();
 
-//=> [1, 2, 3, 4]
+// [1, 2, 3, 4]
 ```
 
 

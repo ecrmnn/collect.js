@@ -9,7 +9,7 @@ const multiplied = collection.map(item => item * 2);
 
 multiplied.all();
 
-//=> [2, 4, 6, 8, 10]
+// [2, 4, 6, 8, 10]
 ```
 
 > Like most other collection methods, `map` returns a new collection instance; it does not modify the collection it is called on. If you want to transform the original collection, use the `transform` method.

@@ -4,17 +4,17 @@ The values method returns a new collection with the keys reset to consecutive in
 
 ```js
 const collection = collect({
-  a: "xoxo",
-  b: "abab",
-  c: "1337",
-  1337: 12
+  a: 'xoxo',
+  b: 'abab',
+  c: '1337',
+  1337: 12,
 });
 
 const values = collection.values();
 
 values.all();
 
-//=> [12, 'xoxo', 'abab', '1337']
+// [12, 'xoxo', 'abab', '1337']
 ```
 
 

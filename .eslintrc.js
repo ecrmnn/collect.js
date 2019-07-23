@@ -5,6 +5,7 @@ module.exports = {
   },
   plugins: [
     'import',
+    'markdown',
   ],
   rules: {
     'curly': 'error',

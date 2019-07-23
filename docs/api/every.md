@@ -5,7 +5,7 @@ The every method may be used to verify that all elements of a collection pass a 
 ```js
 collect([1, 2, 3, 4]).every((value, key) => value > 2);
 
-//=> false
+// false
 ```
 
 

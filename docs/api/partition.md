@@ -5,9 +5,7 @@ The partition method may be combined with destructuring to separate elements tha
 ```js
 const collection = collect([1, 2, 3, 4, 5, 6]);
 
-const [underThree, overThree] = collection.partition(function(i) {
-  return i < 3;
-});
+const [underThree, overThree] = collection.partition(i => i < 3);
 ```
 
 

@@ -10,7 +10,7 @@ const chunk = collection.take(3);
 
 chunk.all();
 
-//=> [0, 1, 2]
+// [0, 1, 2]
 ```
 
 

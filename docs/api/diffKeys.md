@@ -4,20 +4,20 @@ The diffKeys method compares the collection against another collection or a plai
 
 ```js
 const collection = collect({
-  a: "a",
-  b: "b",
-  c: "c",
-  d: "d"
+  a: 'a',
+  b: 'b',
+  c: 'c',
+  d: 'd',
 });
 
 const diff = collection.diffKeys({
-  b: "b",
-  d: "d"
+  b: 'b',
+  d: 'd',
 });
 
 diff.all();
 
-//=> { a: 'a', c: 'c' }
+// { a: 'a', c: 'c' }
 ```
 
 

@@ -9,7 +9,7 @@ collection.prepend(0);
 
 collection.all();
 
-//=> [0, 1, 2, 3, 4, 5]
+// [0, 1, 2, 3, 4, 5]
 ```
 
 You may also pass a second argument to set the key of the prepended item:
@@ -23,12 +23,12 @@ const collection = collect({
 
 collection.prepend('Apple', 'brand');
 
-collection.all():
+collection.all();
 
-//=> {
-//=>   brand: 'Apple',
-//=>   product: 'iPhone 6s',
-//=> }
+// {
+//   brand: 'Apple',
+//   product: 'iPhone 6s',
+// }
 ```
 
 

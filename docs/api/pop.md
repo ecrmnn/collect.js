@@ -7,7 +7,7 @@ const collection = collect([1, 2, 3, 4, 5]);
 
 collection.pop();
 
-//=> 5
+// 5
 
 collection.all();
 

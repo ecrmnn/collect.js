@@ -5,14 +5,14 @@ The tap method passes the collection to the given callback, allowing you to "tap
 ```js
 collect([2, 4, 3, 1, 5])
   .sort()
-  .tap(function(collection) {
+  .tap((collection) => {
     console.log(collection.all());
 
-    //=> [1, 2, 3, 4, 5]
+    // [1, 2, 3, 4, 5]
   })
   .shift();
 
-//=> 1
+// 1
 ```
 
 

@@ -9,7 +9,7 @@ const shuffled = collection.shuffle();
 
 shuffled.all();
 
-//=> [3, 5, 1, 2, 4] (generated randomly)
+// [3, 5, 1, 2, 4] (generated randomly)
 ```
 
 

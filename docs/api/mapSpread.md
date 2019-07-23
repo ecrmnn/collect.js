@@ -8,13 +8,11 @@ const collection = collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
 const chunks = collection.chunk(2);
 
-const sequence = chunks.mapSpread((even, odd) => {
-  return even + odd;
-});
+const sequence = chunks.mapSpread((even, odd) => even + odd);
 
 sequence.all();
 
-//=> [1, 5, 9, 13, 17]
+// [1, 5, 9, 13, 17]
 ```
 
 
