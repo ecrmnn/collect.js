@@ -1,3 +1,11 @@
+# 4.16.0
+
+## Breaking changes
+
+## Methods
+#### ``sortBy()``
+- Null values, ``null`` and ``undefined`` will be sorted last, like normal ``.sort()``
+
 # 4.14.0
 
 ## Breaking changes
