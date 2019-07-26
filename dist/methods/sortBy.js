@@ -12,6 +12,9 @@ module.exports = function sortBy(valueOrFunction) {
     });
   } else {
     collection.sort(function (a, b) {
+      if (a[valueOrFunction] === null || a[valueOrFunction] === undefined) return 1;
+      if (b[valueOrFunction] === null || b[valueOrFunction] === undefined) return -1;
+
       if (a[valueOrFunction] < b[valueOrFunction]) return -1;
       if (a[valueOrFunction] > b[valueOrFunction]) return 1;
 

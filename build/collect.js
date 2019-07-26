@@ -1067,7 +1067,7 @@ eval("\n\nmodule.exports = function sort(fn) {\n  var collection = [].concat(thi
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function sortBy(valueOrFunction) {\n  var collection = [].concat(this.items);\n\n  if (typeof valueOrFunction === 'function') {\n    collection.sort(function (a, b) {\n      if (valueOrFunction(a) < valueOrFunction(b)) return -1;\n      if (valueOrFunction(a) > valueOrFunction(b)) return 1;\n\n      return 0;\n    });\n  } else {\n    collection.sort(function (a, b) {\n      if (a[valueOrFunction] < b[valueOrFunction]) return -1;\n      if (a[valueOrFunction] > b[valueOrFunction]) return 1;\n\n      return 0;\n    });\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sortBy.js?");
+eval("\n\nmodule.exports = function sortBy(valueOrFunction) {\n  var collection = [].concat(this.items);\n\n  if (typeof valueOrFunction === 'function') {\n    collection.sort(function (a, b) {\n      if (valueOrFunction(a) < valueOrFunction(b)) return -1;\n      if (valueOrFunction(a) > valueOrFunction(b)) return 1;\n\n      return 0;\n    });\n  } else {\n    collection.sort(function (a, b) {\n      if (a[valueOrFunction] === null || a[valueOrFunction] === undefined) return 1;\n      if (b[valueOrFunction] === null || b[valueOrFunction] === undefined) return -1;\n\n      if (a[valueOrFunction] < b[valueOrFunction]) return -1;\n      if (a[valueOrFunction] > b[valueOrFunction]) return 1;\n\n      return 0;\n    });\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sortBy.js?");
 
 /***/ }),
 
