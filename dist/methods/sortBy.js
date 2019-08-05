@@ -2,25 +2,27 @@
 
 module.exports = function sortBy(valueOrFunction) {
   var collection = [].concat(this.items);
+  var isFunction = typeof valueOrFunction === 'function';
+  var getValue = function getValue(item) {
+    if (isFunction) {
+      return valueOrFunction(item);
+    }
 
-  if (typeof valueOrFunction === 'function') {
-    collection.sort(function (a, b) {
-      if (valueOrFunction(a) < valueOrFunction(b)) return -1;
-      if (valueOrFunction(a) > valueOrFunction(b)) return 1;
+    return item[valueOrFunction];
+  };
 
-      return 0;
-    });
-  } else {
-    collection.sort(function (a, b) {
-      if (a[valueOrFunction] === null || a[valueOrFunction] === undefined) return 1;
-      if (b[valueOrFunction] === null || b[valueOrFunction] === undefined) return -1;
+  collection.sort(function (a, b) {
+    var valueA = getValue(a);
+    var valueB = getValue(b);
 
-      if (a[valueOrFunction] < b[valueOrFunction]) return -1;
-      if (a[valueOrFunction] > b[valueOrFunction]) return 1;
+    if (valueA === null || valueA === undefined) return 1;
+    if (valueB === null || valueB === undefined) return -1;
 
-      return 0;
-    });
-  }
+    if (valueA < valueB) return -1;
+    if (valueA > valueB) return 1;
+
+    return 0;
+  });
 
   return new this.constructor(collection);
 };
