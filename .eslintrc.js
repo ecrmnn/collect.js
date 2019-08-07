@@ -8,7 +8,15 @@ module.exports = {
     'markdown',
   ],
   rules: {
-    'curly': 'error',
+    'curly': [
+      'error',
+      'all'
+    ],
+    'brace-style': [
+      'error',
+      '1tbs',
+      { 'allowSingleLine': false },
+    ],
     'no-console': 'error',
     'no-ternary': 'error',
     'newline-before-return': 'error',
