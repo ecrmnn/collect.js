@@ -83,4 +83,20 @@ module.exports = (it, expect, collect) => {
       { order: null },
     ]);
   });
+
+  it('should sort strings before integers and integers before null when using a callback function', () => {
+    const collection = collect([
+      { order: '1971-11-13T23:00:00.000000Z' },
+      { order: null },
+      { order: 1 },
+    ]);
+
+    const sorted = collection.sortBy(item => item.order);
+
+    expect(sorted.all()).to.eql([
+      { order: '1971-11-13T23:00:00.000000Z' },
+      { order: 1 },
+      { order: null },
+    ]);
+  });
 };

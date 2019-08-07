@@ -2,25 +2,27 @@
 
 module.exports = function sortBy(valueOrFunction) {
   const collection = [].concat(this.items);
+  const isFunction = typeof valueOrFunction === 'function';
+  const getValue = (item) => {
+    if (isFunction) {
+      return valueOrFunction(item);
+    }
 
-  if (typeof valueOrFunction === 'function') {
-    collection.sort((a, b) => {
-      if (valueOrFunction(a) < valueOrFunction(b)) return -1;
-      if (valueOrFunction(a) > valueOrFunction(b)) return 1;
+    return item[valueOrFunction];
+  };
 
-      return 0;
-    });
-  } else {
-    collection.sort((a, b) => {
-      if (a[valueOrFunction] === null || a[valueOrFunction] === undefined) return 1;
-      if (b[valueOrFunction] === null || b[valueOrFunction] === undefined) return -1;
+  collection.sort((a, b) => {
+    const valueA = getValue(a);
+    const valueB = getValue(b);
 
-      if (a[valueOrFunction] < b[valueOrFunction]) return -1;
-      if (a[valueOrFunction] > b[valueOrFunction]) return 1;
+    if (valueA === null || valueA === undefined) return 1;
+    if (valueB === null || valueB === undefined) return -1;
 
-      return 0;
-    });
-  }
+    if (valueA < valueB) return -1;
+    if (valueA > valueB) return 1;
+
+    return 0;
+  });
 
   return new this.constructor(collection);
 };
