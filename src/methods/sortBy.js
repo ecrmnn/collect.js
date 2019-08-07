@@ -15,11 +15,19 @@ module.exports = function sortBy(valueOrFunction) {
     const valueA = getValue(a);
     const valueB = getValue(b);
 
-    if (valueA === null || valueA === undefined) return 1;
-    if (valueB === null || valueB === undefined) return -1;
+    if (valueA === null || valueA === undefined) {
+      return 1;
+    }
+    if (valueB === null || valueB === undefined) {
+      return -1;
+    }
 
-    if (valueA < valueB) return -1;
-    if (valueA > valueB) return 1;
+    if (valueA < valueB) {
+      return -1;
+    }
+    if (valueA > valueB) {
+      return 1;
+    }
 
     return 0;
   });
