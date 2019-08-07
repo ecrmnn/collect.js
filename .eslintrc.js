@@ -10,7 +10,7 @@ module.exports = {
   rules: {
     'curly': [
       'error',
-      'all'
+      'all',
     ],
     'brace-style': [
       'error',
