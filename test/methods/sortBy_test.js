@@ -99,4 +99,20 @@ module.exports = (it, expect, collect) => {
       { order: null },
     ]);
   });
+
+  it('should sort nested data with dot notation', () => {
+    const collection = collect([
+      { nested: { data: '1971-11-13T23:00:00.000000Z' } },
+      { nested: { data: null } },
+      { nested: { data: 1 } },
+    ]);
+
+    const sorted = collection.sortBy('nested.data');
+
+    expect(sorted.all()).to.eql([
+      { nested: { data: '1971-11-13T23:00:00.000000Z' } },
+      { nested: { data: 1 } },
+      { nested: { data: null } },
+    ]);
+  });
 };
