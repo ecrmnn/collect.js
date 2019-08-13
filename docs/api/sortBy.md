@@ -20,6 +20,61 @@ sorted.all();
 // ]
 ```
 
+You can use dot notation to sort by nested values
+```js
+const collection = collect([
+  {
+    name: 'Desk',
+    price: 200,
+    manufacturer: {
+      name: 'IKEA',
+    },
+  },
+  {
+    name: 'Chair',
+    price: 100,
+    manufacturer: {
+      name: 'Herman Miller',
+    },
+  },
+  {
+    name: 'Bookcase',
+    price: 150,
+    manufacturer: {
+      name: 'IKEA',
+    },
+  },
+]);
+
+const sorted = collection.sortBy('manufacturer.name');
+
+sorted.all();
+
+// [
+//   {
+//     name: 'Chair',
+//     price: 100,
+//     manufacturer: {
+//       name: 'Herman Miller',
+//     },
+//   },
+//   {
+//     name: 'Desk',
+//     price: 200,
+//     manufacturer: {
+//       name: 'IKEA',
+//     },
+//   },
+//   {
+//     name: 'Bookcase',
+//     price: 150,
+//     manufacturer: {
+//       name: 'IKEA',
+//     },
+//   },
+// ]
+```
+
 You can also pass your own callback to determine how to sort the collection values:
 
 ```js
