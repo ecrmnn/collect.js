@@ -1,5 +1,7 @@
 'use strict';
 
+const nestedValue = require('../helpers/nestedValue');
+
 module.exports = function sortBy(valueOrFunction) {
   const collection = [].concat(this.items);
   const isFunction = typeof valueOrFunction === 'function';
@@ -8,7 +10,7 @@ module.exports = function sortBy(valueOrFunction) {
       return valueOrFunction(item);
     }
 
-    return item[valueOrFunction];
+    return nestedValue(item, valueOrFunction);
   };
 
   collection.sort((a, b) => {
