@@ -38,7 +38,7 @@ module.exports = function flatten(depth) {
     }
 
     fullyFlattened = collection.filter(function (item) {
-      return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object';
+      return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' && item !== null;
     });
     fullyFlattened = fullyFlattened.length === 0;
 

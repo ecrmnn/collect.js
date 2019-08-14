@@ -35,7 +35,7 @@ module.exports = function flatten(depth) {
       });
     }
 
-    fullyFlattened = collection.filter(item => typeof item === 'object');
+    fullyFlattened = collection.filter(item => typeof item === 'object' && item !== null);
     fullyFlattened = fullyFlattened.length === 0;
 
     flattenDepth -= 1;
