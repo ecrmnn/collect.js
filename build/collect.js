@@ -99,6 +99,18 @@ eval("\n\n/**\n * Clone helper\n *\n * Clone an array or object\n *\n * @param i
 
 /***/ }),
 
+/***/ "./dist/helpers/is.js":
+/*!****************************!*\
+  !*** ./dist/helpers/is.js ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = {\n  /**\n   * @returns {boolean}\n   */\n  isArray: function isArray(item) {\n    return Array.isArray(item);\n  },\n\n  /**\n   * @returns {boolean}\n   */\n  isObject: function isObject(item) {\n    return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' && item !== null;\n  },\n\n  /**\n   * @returns {boolean}\n   */\n  isFunction: function isFunction(item) {\n    return typeof item === 'function';\n  }\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/is.js?");
+
+/***/ }),
+
 /***/ "./dist/helpers/nestedValue.js":
 /*!*************************************!*\
   !*** ./dist/helpers/nestedValue.js ***!
@@ -443,7 +455,7 @@ eval("\n\nmodule.exports = function flatMap(fn) {\n  return this.map(fn).collaps
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; };\n\nmodule.exports = function flatten(depth) {\n  var flattenDepth = depth || Infinity;\n\n  var fullyFlattened = false;\n  var collection = [];\n\n  var flat = function flat(items) {\n    collection = [];\n\n    if (Array.isArray(items)) {\n      items.forEach(function (item) {\n        if (typeof item === 'string') {\n          collection.push(item);\n        } else if (Array.isArray(item)) {\n          collection = collection.concat(item);\n        } else {\n          Object.keys(item).forEach(function (property) {\n            collection = collection.concat(item[property]);\n          });\n        }\n      });\n    } else {\n      Object.keys(items).forEach(function (property) {\n        if (typeof items[property] === 'string') {\n          collection.push(items[property]);\n        } else if (Array.isArray(items[property])) {\n          collection = collection.concat(items[property]);\n        } else {\n          Object.keys(items).forEach(function (prop) {\n            collection = collection.concat(items[prop]);\n          });\n        }\n      });\n    }\n\n    fullyFlattened = collection.filter(function (item) {\n      return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object';\n    });\n    fullyFlattened = fullyFlattened.length === 0;\n\n    flattenDepth -= 1;\n  };\n\n  flat(this.items);\n\n  while (!fullyFlattened && flattenDepth > 0) {\n    flat(collection);\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/flatten.js?");
+eval("\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isArray = _require.isArray,\n    isObject = _require.isObject;\n\nmodule.exports = function flatten(depth) {\n  var flattenDepth = depth || Infinity;\n\n  var fullyFlattened = false;\n  var collection = [];\n\n  var flat = function flat(items) {\n    collection = [];\n\n    if (isArray(items)) {\n      items.forEach(function (item) {\n        if (isArray(item)) {\n          collection = collection.concat(item);\n        } else if (isObject(item)) {\n          Object.keys(item).forEach(function (property) {\n            collection = collection.concat(item[property]);\n          });\n        } else {\n          collection.push(item);\n        }\n      });\n    } else {\n      Object.keys(items).forEach(function (property) {\n        if (isArray(items[property])) {\n          collection = collection.concat(items[property]);\n        } else if (isObject(items[property])) {\n          Object.keys(items).forEach(function (prop) {\n            collection = collection.concat(items[prop]);\n          });\n        } else {\n          collection.push(items[property]);\n        }\n      });\n    }\n\n    fullyFlattened = collection.filter(function (item) {\n      return isObject(item);\n    });\n    fullyFlattened = fullyFlattened.length === 0;\n\n    flattenDepth -= 1;\n  };\n\n  flat(this.items);\n\n  while (!fullyFlattened && flattenDepth > 0) {\n    flat(collection);\n  }\n\n  return new this.constructor(collection);\n};\n\n//# sourceURL=webpack://collect/./dist/methods/flatten.js?");
 
 /***/ }),
 
