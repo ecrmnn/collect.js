@@ -1,6 +1,8 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _require = require('../helpers/is'),
+    isArray = _require.isArray,
+    isObject = _require.isObject;
 
 module.exports = function flatten(depth) {
   var flattenDepth = depth || Infinity;
@@ -11,34 +13,34 @@ module.exports = function flatten(depth) {
   var flat = function flat(items) {
     collection = [];
 
-    if (Array.isArray(items)) {
+    if (isArray(items)) {
       items.forEach(function (item) {
-        if (typeof item === 'string') {
-          collection.push(item);
-        } else if (Array.isArray(item)) {
+        if (isArray(item)) {
           collection = collection.concat(item);
-        } else {
+        } else if (isObject(item)) {
           Object.keys(item).forEach(function (property) {
             collection = collection.concat(item[property]);
           });
+        } else {
+          collection.push(item);
         }
       });
     } else {
       Object.keys(items).forEach(function (property) {
-        if (typeof items[property] === 'string') {
-          collection.push(items[property]);
-        } else if (Array.isArray(items[property])) {
+        if (isArray(items[property])) {
           collection = collection.concat(items[property]);
-        } else {
+        } else if (isObject(items[property])) {
           Object.keys(items).forEach(function (prop) {
             collection = collection.concat(items[prop]);
           });
+        } else {
+          collection.push(items[property]);
         }
       });
     }
 
     fullyFlattened = collection.filter(function (item) {
-      return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' && item !== null;
+      return isObject(item);
     });
     fullyFlattened = fullyFlattened.length === 0;
 

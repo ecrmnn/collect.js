@@ -37,8 +37,28 @@ module.exports = (it, expect, collect) => {
     expect(flattened3.all()).to.eql(['iPhone 6S', 'Apple', 'Galaxy S7', 'Samsung']);
   });
 
+  it('should flatten null', () => {
+    const data = [null];
+    const flattened = collect(data).flatten();
+    expect(flattened.all()).to.eql([null]);
+
+    const data2 = { name: null };
+    const flattened2 = collect(data2).flatten();
+    expect(flattened2.all()).to.eql([null]);
+  });
+
+  it('should flatten undefined', () => {
+    const data = [undefined];
+    const flattened = collect(data).flatten();
+    expect(flattened.all()).to.eql([undefined]);
+
+    const data2 = { name: undefined };
+    const flattened2 = collect(data2).flatten();
+    expect(flattened2.all()).to.eql([undefined]);
+  });
+
   it('should not throw exceptions when encountering null', () => {
-    const data2 = {
+    const data = {
       Apple: [
         { name: null, brand: 'Apple' },
       ],
@@ -47,7 +67,7 @@ module.exports = (it, expect, collect) => {
       ],
     };
 
-    const flattened = collect(data2).flatten();
+    const flattened = collect(data).flatten();
     expect(flattened.all()).to.eql([null, 'Apple', 'Galaxy S7', 'Samsung']);
   });
 };
