@@ -96,7 +96,7 @@ declare module 'collect.js' {
     /**
      * The except method returns all items in the collection except for those with the specified keys.
      */
-    except<K>(properties: K[]): Object;
+    except<K>(properties: K[]): Collection<Item>;
 
     /**
      * The filter method filters the collection using the given callback,
@@ -267,7 +267,7 @@ declare module 'collect.js' {
     /**
      * The only method returns the items in the collection with the specified keys.
      */
-    only<K>(properties: K[]): Object;
+    only<K>(properties: K[]): Collection<Item>;
 
     /**
      * The partition method may be combined with destructuring to separate elements
