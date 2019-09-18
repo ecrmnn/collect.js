@@ -2,13 +2,15 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var clone = require('./helpers/clone');
+
 function Collection(collection) {
   if (collection !== undefined && !Array.isArray(collection) && (typeof collection === 'undefined' ? 'undefined' : _typeof(collection)) !== 'object') {
     this.items = [collection];
   } else if (collection instanceof this.constructor) {
-    this.items = collection.all();
+    this.items = clone(collection.all());
   } else {
-    this.items = collection || [];
+    this.items = clone(collection) || [];
   }
 }
 
