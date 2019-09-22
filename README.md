@@ -527,6 +527,9 @@ const collection = collect([1, 3, 3, 7]);
 
 collection.each((item) => {
   sum += item;
+  if(sum > 5) {
+    return false;
+  }
 });
 
 // console.log(sum);
