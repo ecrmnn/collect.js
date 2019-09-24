@@ -6,8 +6,9 @@
   "typings": "index.d.ts",
   "scripts": {
     "pretest": "npm run transpile",
-    "test": "mocha test/tests.js && npm run test-ts",
-    "test-ts": "mocha -r ts-node/register test/typescripts/*.spec.ts",
+    "test": "mocha test/tests.js",
+    "test:ts": "mocha -r ts-node/register test/typescripts/*.spec.ts",
+    "test:both": "npm run test && npm run test:ts",
     "transpile": "babel src --quiet --out-dir dist",
     "bundle": "webpack-cli dist/index.js --output build/collect.js --mode development --output-library collect",
     "uglify": "uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",

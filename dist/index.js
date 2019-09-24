@@ -133,4 +133,5 @@ var collect = function collect(collection) {
 };
 
 module.exports = collect;
+module.exports.collect = collect;
 module.exports.default = collect;
