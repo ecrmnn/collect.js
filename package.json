@@ -13,7 +13,7 @@
     "build": "npm run transpile && npm run bundle && npm run uglify",
     "eslint": "npm run eslint:js && npm run eslint:md",
     "eslint:js": "eslint src/ test/ --fix",
-    "eslint:md": "eslint --fix --ext md README.md docs/ --rule strict:off --rule no-undef:off --rule no-unused-vars:off --rule func-names:off --rule no-console:off --rule import/no-unresolved:off --rule import/extensions:off --parser-options sourceType:module",
+    "eslint:md": "eslint --fix --ext md README.md docs/ --rule strict:off --rule no-undef:off --rule no-unused-vars:off --rule func-names:off --rule no-console:off --rule consistent-return:off --rule import/no-unresolved:off --rule import/extensions:off --parser-options sourceType:module",
     "coverage": "npm run transpile && nyc mocha test/tests.js",
     "reporter": "nyc report --reporter=html",
     "docs:dev": "vuepress dev docs",
