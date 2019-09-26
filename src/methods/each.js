@@ -6,15 +6,15 @@ module.exports = function each(fn) {
   if (Array.isArray(this.items)) {
     const { length } = this.items;
 
-    for (let i = 0; i < length && !stop; i++) {
-      stop = fn(this.items[i], i, this.items) === false;
+    for (let index = 0; index < length && !stop; index += 1) {
+      stop = fn(this.items[index], index, this.items) === false;
     }
   } else {
     const keys = Object.keys(this.items);
     const { length } = keys;
 
-    for (let i = 0; i < length && !stop; i++) {
-      const key = keys[i];
+    for (let index = 0; index < length && !stop; index += 1) {
+      const key = keys[index];
 
       stop = fn(this.items[key], key, this.items) === false;
     }
