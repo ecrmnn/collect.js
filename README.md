@@ -131,6 +131,7 @@ All available methods
 - [times](#times)
 - [toArray](#toarray)
 - [toJson](#tojson)
+- [toJSON](#toJSON)
 - [transform](#transform)
 - [union](#union)
 - [unique](#unique)
@@ -2283,6 +2284,22 @@ const collection = collect({
 const json = collection.toJson();
 
 // {"id": 384, "name": "Rayquaza", "gender": "NA"}
+```
+
+#### `toJSON()`
+
+The toJSON is a compatiblity method used by [JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#Description).
+
+```js
+const collection = collect({
+  id: 384,
+  name: 'Rayquaza',
+  gender: 'NA',
+});
+
+const isCompatible = (JSON.stringify(collection)===collection.toJson());
+
+// true
 ```
 
 #### `transform()`
