@@ -25,4 +25,16 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.toJson()).to.eql('{"string":"abc"}');
   });
+
+  it('should be compatible with JSON.stringify()', () => {
+    /*
+    JSON.stringify() looks for a toJSON() method. Note the capitalization difference.
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+    */
+    const collection = collect({
+      string: 'abc',
+    });
+
+    expect(JSON.stringify(collection)).to.equal(collection.toJson());
+  });
 };
