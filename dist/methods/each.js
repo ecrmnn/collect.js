@@ -1,30 +1,25 @@
 'use strict';
 
 module.exports = function each(fn) {
-  var _this = this;
-
   var stop = false;
 
   if (Array.isArray(this.items)) {
-    this.items.forEach(function (item, key, array) {
-      if (!stop) {
-        var output = fn(item, key, array);
+    var length = this.items.length;
 
-        if (output === false) {
-          stop = true;
-        }
-      }
-    });
+
+    for (var index = 0; index < length && !stop; index += 1) {
+      stop = fn(this.items[index], index, this.items) === false;
+    }
   } else {
-    Object.keys(this.items).forEach(function (key) {
-      if (!stop) {
-        var output = fn(_this.items[key], key, _this.items);
+    var keys = Object.keys(this.items);
+    var _length = keys.length;
 
-        if (output === false) {
-          stop = true;
-        }
-      }
-    });
+
+    for (var _index = 0; _index < _length && !stop; _index += 1) {
+      var key = keys[_index];
+
+      stop = fn(this.items[key], key, this.items) === false;
+    }
   }
 
   return this;
