@@ -359,7 +359,7 @@ eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function each(fn) {\n  var _this = this;\n\n  var stop = false;\n\n  if (Array.isArray(this.items)) {\n    this.items.forEach(function (item, key, array) {\n      if (!stop) {\n        var output = fn(item, key, array);\n\n        if (output === false) {\n          stop = true;\n        }\n      }\n    });\n  } else {\n    Object.keys(this.items).forEach(function (key) {\n      if (!stop) {\n        var output = fn(_this.items[key], key, _this.items);\n\n        if (output === false) {\n          stop = true;\n        }\n      }\n    });\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/each.js?");
+eval("\n\nmodule.exports = function each(fn) {\n  var stop = false;\n\n  if (Array.isArray(this.items)) {\n    var length = this.items.length;\n\n\n    for (var index = 0; index < length && !stop; index += 1) {\n      stop = fn(this.items[index], index, this.items) === false;\n    }\n  } else {\n    var keys = Object.keys(this.items);\n    var _length = keys.length;\n\n\n    for (var _index = 0; _index < _length && !stop; _index += 1) {\n      var key = keys[_index];\n\n      stop = fn(this.items[key], key, this.items) === false;\n    }\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/each.js?");
 
 /***/ }),
 
