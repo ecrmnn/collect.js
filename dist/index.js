@@ -12,11 +12,23 @@ function Collection(collection) {
   }
 }
 
+/**
+ * Symbol.iterator
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
+ */
 var SymbolIterator = require('./methods/symbol.iterator');
 
 if (typeof Symbol !== 'undefined') {
   Collection.prototype[Symbol.iterator] = SymbolIterator;
 }
+
+/**
+ * Support JSON.stringify
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+ */
+Collection.prototype.toJSON = function toJSON() {
+  return this.items;
+};
 
 Collection.prototype.all = require('./methods/all');
 Collection.prototype.average = require('./methods/average');
