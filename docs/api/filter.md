@@ -42,7 +42,4 @@ filtered.all();
 
 > For the inverse of `filter`, see the `reject` method.
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/filter.js)

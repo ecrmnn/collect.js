@@ -12,7 +12,4 @@ shuffled.all();
 // [3, 5, 1, 2, 4] (generated randomly)
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/shuffle.js)

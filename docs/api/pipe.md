@@ -5,12 +5,9 @@ The pipe method passes the collection to the given callback and returns the resu
 ```js
 const collection = collect([1, 2, 3]);
 
-const piped = collection.pipe(item => item.sum());
+const piped = collection.pipe(items => items.sum());
 
 // 6
 ```
-
-
-
 
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/pipe.js)

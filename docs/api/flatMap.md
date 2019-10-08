@@ -21,7 +21,4 @@ flatMapped.all();
 // ['SADIO MANÉ', 'MOHAMED SALAH']
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/flatMap.js)

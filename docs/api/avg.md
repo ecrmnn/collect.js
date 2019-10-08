@@ -27,7 +27,4 @@ collection.avg('pages');
 // 636
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/avg.js)

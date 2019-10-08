@@ -10,7 +10,4 @@ collection.all();
 // [9, 18, 27, 36, 45, 54, 63, 72, 81, 90]
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/times.js)

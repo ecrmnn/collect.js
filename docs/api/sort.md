@@ -26,7 +26,4 @@ sorted.all();
 
 > If you need to sort a collection of nested arrays or objects, see the `sortBy` and `sortByDesc` methods.
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/sort.js)

@@ -8,7 +8,4 @@ const collection = collect([1, 2, 3, 4, 5, 6]);
 const [underThree, overThree] = collection.partition(i => i < 3);
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/partition.js)

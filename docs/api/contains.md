@@ -49,7 +49,4 @@ collection.contains((value, key) => value > 5);
 // false
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/contains.js)

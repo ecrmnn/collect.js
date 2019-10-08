@@ -39,12 +39,13 @@ yarn add collect.js
 
 Using Laravel as your backend? Collect.js offers an (almost) identical api to [Laravel Collections](https://laravel.com/docs/master/collections). [See differences](#strictness-and-comparisons).
 
-### Usage
+### API
 
 All available methods
 
 - [all](#all)
 - [average](#average)
+- [avg](#avg)
 - [chunk](#chunk)
 - [collapse](#collapse)
 - [combine](#combine)
@@ -69,8 +70,8 @@ All available methods
 - [flatMap](#flatmap)
 - [flatten](#flatten)
 - [flip](#flip)
-- [forget](#forget)
 - [forPage](#forpage)
+- [forget](#forget)
 - [get](#get)
 - [groupBy](#groupby)
 - [has](#has)
@@ -112,7 +113,7 @@ All available methods
 - [reduce](#reduce)
 - [reject](#reject)
 - [replace](#replace)
-- [replaceRecursive](#replaceecursive)
+- [replaceRecursive](#replacerecursive)
 - [reverse](#reverse)
 - [search](#search)
 - [shift](#shift)
@@ -123,6 +124,7 @@ All available methods
 - [sortBy](#sortby)
 - [sortByDesc](#sortbydesc)
 - [sortKeys](#sortkeys)
+- [sortKeysDesc](#sortkeysdesc)
 - [splice](#splice)
 - [split](#split)
 - [sum](#sum)
@@ -135,13 +137,13 @@ All available methods
 - [union](#union)
 - [unique](#unique)
 - [unless](#unless)
-- [unlessEmpty](#unlessEmpty)
-- [unlessNotEmpty](#unlessNotEmpty)
+- [unlessEmpty](#unlessempty)
+- [unlessNotEmpty](#unlessnotempty)
 - [unwrap](#unwrap)
 - [values](#values)
 - [when](#when)
-- [whenEmpty](#whenEmpty)
-- [whenNotEmpty](#whenNotEmpty)
+- [whenEmpty](#whenempty)
+- [whenNotEmpty](#whennotempty)
 - [where](#where)
 - [whereBetween](#wherebetween)
 - [whereIn](#wherein)
@@ -762,6 +764,20 @@ flipped.all();
 // }
 ```
 
+#### `forPage()`
+
+The forPage method returns a new collection containing the items that would be present on a given page number. The method accepts the page number as its first argument and the number of items to show per page as its second argument:
+
+```js
+const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+const forPage = collection.forPage(2, 3);
+
+forPage.all();
+
+// [4, 5, 6]
+```
+
 #### `forget()`
 
 The forget method removes an item from the collection by its key:
@@ -782,20 +798,6 @@ collection.all();
 ```
 
 > Unlike most other collection methods, forget does not return a new modified collection; it modifies the collection it is called on.
-
-#### `forPage()`
-
-The forPage method returns a new collection containing the items that would be present on a given page number. The method accepts the page number as its first argument and the number of items to show per page as its second argument:
-
-```js
-const collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-
-const forPage = collection.forPage(2, 3);
-
-forPage.all();
-
-// [4, 5, 6]
-```
 
 #### `get()`
 
@@ -2057,6 +2059,61 @@ sorted.all();
 // ]
 ```
 
+You can use dot notation to sort by nested values
+```js
+const collection = collect([
+  {
+    name: 'Desk',
+    price: 200,
+    manufacturer: {
+      name: 'IKEA',
+    },
+  },
+  {
+    name: 'Chair',
+    price: 100,
+    manufacturer: {
+      name: 'Herman Miller',
+    },
+  },
+  {
+    name: 'Bookcase',
+    price: 150,
+    manufacturer: {
+      name: 'IKEA',
+    },
+  },
+]);
+
+const sorted = collection.sortBy('manufacturer.name');
+
+sorted.all();
+
+// [
+//   {
+//     name: 'Chair',
+//     price: 100,
+//     manufacturer: {
+//       name: 'Herman Miller',
+//     },
+//   },
+//   {
+//     name: 'Desk',
+//     price: 200,
+//     manufacturer: {
+//       name: 'IKEA',
+//     },
+//   },
+//   {
+//     name: 'Bookcase',
+//     price: 150,
+//     manufacturer: {
+//       name: 'IKEA',
+//     },
+//   },
+// ]
+```
+
 You can also pass your own callback to determine how to sort the collection values:
 
 ```js
@@ -2772,4 +2829,4 @@ PRs are welcomed to this project, and help is needed in order to keep up with th
 
 ### License
 
-MIT © [Daniel Eckermann](http://danieleckermann.com)
+MIT © [Daniel Eckermann](https://danieleckermann.com)

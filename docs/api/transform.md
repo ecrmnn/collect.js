@@ -14,7 +14,4 @@ collection.all();
 
 > Unlike most other collection methods, `transform` modifies the collection itself. If you wish to create a new collection instead, use the `map` method.
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/transform.js)

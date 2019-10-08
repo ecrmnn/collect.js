@@ -12,7 +12,4 @@ duplicates.all();
 // { 2: 'a', 4: 'b' }
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/duplicates.js)

@@ -1,16 +1,18 @@
 {
   "name": "collect.js",
-  "version": "4.17.2",
+  "version": "4.18.0",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
   "scripts": {
+    "all": "npm run build && npm test && npm run eslint",
     "pretest": "npm run transpile",
     "test": "mocha test/tests.js",
     "transpile": "babel src --quiet --out-dir dist",
+    "readme": "node bundler/bundle.js",
     "bundle": "webpack-cli dist/index.js --output build/collect.js --mode development --output-library collect",
     "uglify": "uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",
-    "build": "npm run transpile && npm run bundle && npm run uglify",
+    "build": "npm run transpile && npm run bundle && npm run uglify && npm run readme",
     "eslint": "npm run eslint:js && npm run eslint:md",
     "eslint:js": "eslint src/ test/ --fix",
     "eslint:md": "eslint --fix --ext md README.md docs/ --rule strict:off --rule no-undef:off --rule no-unused-vars:off --rule func-names:off --rule no-console:off --rule consistent-return:off --rule import/no-unresolved:off --rule import/extensions:off --parser-options sourceType:module",
@@ -18,7 +20,7 @@
     "reporter": "nyc report --reporter=html",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run all"
   },
   "babel": {
     "presets": [

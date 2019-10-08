@@ -16,7 +16,4 @@ You may stop iterating through the items by returning false from the callback:
 collection.eachSpread((name, age) => false);
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/eachSpread.js)

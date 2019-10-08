@@ -17,7 +17,4 @@ values.all();
 // [12, 'xoxo', 'abab', '1337']
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/values.js)

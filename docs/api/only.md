@@ -27,7 +27,4 @@ collect([1, 2, 3, 4])
 
 > For the inverse of `only`, see the `except` method.
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/only.js)

@@ -12,7 +12,4 @@ collect([1, 2, 3, 4])
 // Collection { items: [ 2, 4, 6, 8 ] }
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/dump.js)

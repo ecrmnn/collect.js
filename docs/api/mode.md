@@ -27,7 +27,4 @@ collect([
 // [1]
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/mode.js)

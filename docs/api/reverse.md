@@ -12,7 +12,4 @@ reversed.all();
 // [5, 4, 3, 2, 1]
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/reverse.js)
