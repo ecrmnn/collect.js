@@ -50,7 +50,4 @@ collection.get('middlename', () => 'default-value');
 // default-value
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/get.js)

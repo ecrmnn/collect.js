@@ -17,7 +17,4 @@ collection.all();
 // { firstname: 'Michael' }
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/pull.js)

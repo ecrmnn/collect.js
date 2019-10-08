@@ -22,7 +22,4 @@ groups.all();
 // }
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/mapToDictionary.js)

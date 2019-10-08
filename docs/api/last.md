@@ -18,7 +18,4 @@ collect([1, 2, 3, 4]).last();
 // 4
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/last.js)

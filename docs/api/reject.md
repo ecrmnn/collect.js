@@ -12,7 +12,4 @@ const filtered = collection.reject(value => value > 2);
 
 > For the inverse of the `reject` method, see the `filter` method.
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/reject.js)

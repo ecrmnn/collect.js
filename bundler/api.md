@@ -1,0 +1,3 @@
+### API
+
+All available methods

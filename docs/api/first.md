@@ -16,7 +16,4 @@ collect([1, 2, 3, 4]).first();
 // 1
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/first.js)

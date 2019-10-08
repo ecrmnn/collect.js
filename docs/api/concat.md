@@ -19,7 +19,4 @@ concatenated.all();
 // [1, 2, 3, 'a', 'b', 'c', 'Steven Gerrard', 8]
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/concat.js)

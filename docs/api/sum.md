@@ -35,7 +35,4 @@ const total = collection.sum(product => product.colors.length);
 // 6
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/sum.js)

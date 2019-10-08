@@ -8,7 +8,4 @@ collect([]).isEmpty();
 //  true
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/isEmpty.js)

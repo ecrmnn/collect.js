@@ -19,7 +19,4 @@ const groups = collection.mapToGroups((item, key) => [item.name, item.id]);
 // }
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/mapToGroups.js)

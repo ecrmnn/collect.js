@@ -22,7 +22,4 @@ collection.toArray();
 // ['Elon Musk', ['Tesla', 'Space X', 'SolarCity']]
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/toArray.js)

@@ -20,7 +20,4 @@ diff.all();
 // { a: 'a', c: 'c' }
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/diffKeys.js)

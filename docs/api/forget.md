@@ -19,7 +19,4 @@ collection.all();
 
 > Unlike most other collection methods, forget does not return a new modified collection; it modifies the collection it is called on.
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/forget.js)

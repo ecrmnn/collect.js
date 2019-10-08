@@ -22,7 +22,4 @@ diff.all();
 // { color: 'orange', remain: 6 };
 ```
 
-
-
-
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/diffAssoc.js)
