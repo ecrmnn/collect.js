@@ -1,14 +1,23 @@
 'use strict';
 
-const { collect } = require('../../dist');
+const commonImport = require('../../dist');
+const { collect: destructuredCollection } = require('../../dist');
 
 module.exports = (it, expect) => {
   it('should be a function', () => {
-    expect(typeof collect).equal('function');
+    expect(typeof commonImport).to.eql('function');
+    expect(typeof destructuredCollection).to.eql('function');
+
+    expect(commonImport).to.eql(destructuredCollection);
   });
 
-  it('should return an object of Collection', () => {
-    const collection = collect();
-    expect(collection.constructor.name).equal('Collection');
+  it('should return an object of collection', () => {
+    const firstCollection = commonImport();
+    expect(firstCollection.constructor.name).eql('Collection');
+
+    const secondCollection = destructuredCollection();
+    expect(secondCollection.constructor.name).eql('Collection');
+
+    expect(firstCollection).to.eql(secondCollection);
   });
 };
