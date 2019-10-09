@@ -3,11 +3,11 @@
 const { collect } = require('../../dist');
 
 module.exports = (it, expect) => {
-  it('collect should be a function', () => {
+  it('should be a function', () => {
     expect(typeof collect).equal('function');
   });
 
-  it('collect should be an object of Collection', () => {
+  it('should return an object of Collection', () => {
     const collection = collect();
     expect(collection.constructor.name).equal('Collection');
   });
