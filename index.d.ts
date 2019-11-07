@@ -12,12 +12,12 @@ declare module 'collect.js' {
     /**
      * Alias for the avg() method.
      */
-    average<K>(key?: K): number;
+    average<K>(key?: keyof Item | K): number;
 
     /**
      * The avg method returns the average of all items in the collection.
      */
-    avg<K>(key?: K): number;
+    avg<K>(key?: keyof Item | K): number;
 
     /**
      * The chunk method breaks the collection into multiple, smaller collections of a given size.
@@ -42,7 +42,7 @@ declare module 'collect.js' {
     /**
      * The contains method determines whether the collection contains a given item.
      */
-    contains<K, V>(key: K | Function, value?: V): boolean;
+    contains<K, V>(key: keyof Item | K | Function, value?: V): boolean;
 
     /**
      * The count method returns the total number of items in the collection.
@@ -130,7 +130,7 @@ declare module 'collect.js' {
     /**
      * The forget method removes an item from the collection by its key.
      */
-    forget<K>(key: K): this;
+    forget<K>(key: keyof Item | K): this;
 
     /**
      * The forPage method returns a new collection containing the items that would be present on a given page number.
@@ -142,18 +142,18 @@ declare module 'collect.js' {
     /**
      * The get method returns the item at a given key. If the key does not exist, null is returned.
      */
-    get<K, V>(key: K, defaultValue?: (...any: any[]) => V | Item): Item | null;
+    get<K, V>(key: keyof Item | K, defaultValue?: (...any: any[]) => V | Item): Item | null;
 
     /**
      * The groupBy method groups the collection's items by a given key.
      *
      */
-    groupBy<T, K>(key: ((item: Item, index?: number) => K) | K): Collection<T>;
+    groupBy<T, K>(key: ((item: Item, index?: number) => K) | keyof Item | K): Collection<T>;
 
     /**
      * The has method determines if one or more keys exists in the collection.
      */
-    has<K>(key: K | Item[]): boolean;
+    has<K>(key: keyof Item | K | (keyof Item)[]): boolean;
 
     /**
      * The implode method joins the items in a collection.
@@ -163,7 +163,7 @@ declare module 'collect.js' {
      * you should pass the key of the attributes you wish to join,
      * and the "glue" string you wish to place between the values.
      */
-    implode<K>(key: K, glue?: string): string;
+    implode<K>(key: keyof Item | K, glue?: string): string;
 
     /**
      * The intersect method removes any values from the original collection
@@ -192,7 +192,7 @@ declare module 'collect.js' {
      * The keyBy method keys the collection by the given key.
      * If multiple items have the same key, only the last one will appear in the new collection.
      */
-    keyBy<T, K>(key: K | Function): Collection<T>;
+    keyBy<T, K>(key: keyof Item | K | Function): Collection<T>;
 
     /**
      * The keys method returns all of the collection's keys.
@@ -235,12 +235,12 @@ declare module 'collect.js' {
     /**
      * The max method returns the maximum value of a given key.
      */
-    max(key?: string): number;
+    max(key?: keyof Item | string): number;
 
     /**
      * The median method returns the median value of a given key.
      */
-    median<K>(key?: K): Item;
+    median<K>(key?: keyof Item | K): Item;
 
     /**
      * The merge method merges the given object into the original collection.
@@ -252,12 +252,12 @@ declare module 'collect.js' {
     /**
      * The min method returns the minimum value of a given key.
      */
-    min<K>(key?: K): number;
+    min<K>(key?: keyof Item | K): number;
 
     /**
      * The mode method returns the mode value of a given key.
      */
-    mode<K>(key?: K): Collection<Item> | null;
+    mode<K>(key?: keyof Item | K): Collection<Item> | null;
 
     /**
      * The nth method creates a new collection consisting of every n-th element.
@@ -283,7 +283,7 @@ declare module 'collect.js' {
     /**
      * The pluck method retrieves all of the values for a given key.
      */
-    pluck<T, K, V>(value: V, key?: K): Collection<T>;
+    pluck<T, K, V>(value: keyof Item | V, key?: keyof Item | K): Collection<T>;
 
     /**
      * The pop method removes and returns the last item from the collection.
@@ -298,7 +298,7 @@ declare module 'collect.js' {
     /**
      * The pull method removes and returns an item from the collection by its key.
      */
-    pull<K>(key: K): Item | null;
+    pull<K>(key: keyof Item | K): Item | null;
 
     /**
      * The push method appends an item to the end of the collection.
@@ -396,7 +396,7 @@ declare module 'collect.js' {
     /**
      * The sum method returns the sum of all items in the collection.
      */
-    sum<K>(key?: K | ((item: Item) => number | string)): number | string;
+    sum<K>(key?: keyof Item | K | ((item: Item) => number | string)): number | string;
 
     [Symbol.iterator]: () => Iterator<Item>;
 
@@ -445,7 +445,7 @@ declare module 'collect.js' {
     /**
      * The unique method returns all of the unique items in the collection.
      */
-    unique<K>(key?: K | Function): Collection<Item>;
+    unique<K>(key?: keyof Item | K | Function): Collection<Item>;
 
     /**
      * The unless method will execute the given callback when the first argument given to the method evaluates to false.
@@ -470,22 +470,22 @@ declare module 'collect.js' {
     /**
      * The where method filters the collection by a given key / value pair.
      */
-    where<K, V>(key: K, value: V): Collection<Item>;
+    where<K, V>(key: keyof Item | K, value: V): Collection<Item>;
 
     /**
      * The where method filters the collection by a given key / value pair.
      */
-    where<K, V>(key: K, operator: Operator, value: V): Collection<Item>;
+    where<K, V>(key: keyof Item | K, operator: Operator, value: V): Collection<Item>;
 
     /**
      * The whereIn method filters the collection by a given key / value contained within the given array.
      */
-    whereIn<K, V>(key: K, values: V[]): Collection<Item>;
+    whereIn<K, V>(key: keyof Item | K, values: V[]): Collection<Item>;
 
     /**
      * The whereNotIn method filters the collection by a given key / value not contained within the given array.
      */
-    whereNotIn<K, V>(key: K, values: V[]): Collection<Item>;
+    whereNotIn<K, V>(key: keyof Item | K, values: V[]): Collection<Item>;
 
     /**
      * The wrap method will wrap the given value in a collection.
