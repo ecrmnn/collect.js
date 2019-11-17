@@ -1,6 +1,6 @@
 # `all()`
 
-The all method returns the underlying array represented by the collection:
+The all method returns the underlying array or object represented by the collection:
 
 ```js
 collect([1, 2, 3]).all();
