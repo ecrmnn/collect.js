@@ -168,13 +168,26 @@ All comparisons in `collect.js` are done using strict equality. Using loose equa
 
 #### `all()`
 
-The all method returns the underlying array represented by the collection:
+The all method returns the underlying array or object represented by the collection:
 
 ```js
 collect([1, 2, 3]).all();
 
 // [1, 2, 3]
 ```
+
+```js
+collect({
+  firstname: 'Sadio',
+  lastname: 'Mané',
+}).all();
+
+// {
+//   firstname: 'Sadio',
+//   lastname: 'Mané',
+// }
+```
+
 
 #### `average()`
 
@@ -1057,9 +1070,14 @@ intersect.all();
 The isEmpty method returns true if the collection is empty; otherwise, false is returned:
 
 ```js
-collect([]).isEmpty();
+collect().isEmpty();
+// true
 
-//  true
+collect([]).isEmpty();
+// true
+
+collect({}).isEmpty();
+// true
 ```
 
 #### `isNotEmpty()`
@@ -1068,8 +1086,16 @@ The isNotEmpty method returns true if the collection is not empty; otherwise, fa
 
 ```js
 collect([1, 2, 3]).isNotEmpty();
-
 //  true
+
+collect().isNotEmpty();
+// false
+
+collect([]).isNotEmpty();
+// false
+
+collect({}).isNotEmpty();
+// false
 ```
 
 #### `join()`
