@@ -4,8 +4,16 @@ The isNotEmpty method returns true if the collection is not empty; otherwise, fa
 
 ```js
 collect([1, 2, 3]).isNotEmpty();
-
 //  true
+
+collect().isNotEmpty();
+// false
+
+collect([]).isNotEmpty();
+// false
+
+collect({}).isNotEmpty();
+// false
 ```
 
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/isNotEmpty.js)

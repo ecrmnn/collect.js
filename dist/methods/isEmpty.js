@@ -1,5 +1,9 @@
 'use strict';
 
 module.exports = function isEmpty() {
-  return !this.items.length;
+  if (Array.isArray(this.items)) {
+    return !this.items.length;
+  }
+
+  return !Object.keys(this.items).length;
 };
