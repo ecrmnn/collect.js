@@ -1,6 +1,8 @@
 # `groupBy()`
 
-The groupBy method groups the collection's items by a given key:
+The groupBy method groups the collection's items into multiple collections by a given key:
+
+> If you want to group the collection by keys as a plain object, see [mapToGroups](mapToGroups)
 
 ```js
 const collection = collect([
@@ -23,28 +25,32 @@ const grouped = collection.groupBy('manufacturer');
 grouped.all();
 
 // {
-//   IKEA: [
-//     {
-//       id: 100,
-//       product: 'Chair',
-//       manufacturer: 'IKEA',
-//       price: '1490 NOK',
-//     },
-//     {
-//       id: 150,
-//       product: 'Desk',
-//       manufacturer: 'IKEA',
-//       price: '900 NOK',
-//     },
-//   ],
-//   'Herman Miller': [
-//     {
-//       id: 200,
-//       product: 'Chair',
-//       manufacturer: 'Herman Miller',
-//       price: '9990 NOK',
-//     },
-//   ]
+//   IKEA: Collection {
+//     items: [
+//        {
+//          id: 100,
+//          product: 'Chair',
+//          manufacturer: 'IKEA',
+//          price: '1490 NOK',
+//        },
+//        {
+//          id: 150,
+//          product: 'Desk',
+//          manufacturer: 'IKEA',
+//          price: '900 NOK',
+//        },
+//      ],
+//   },
+//   'Herman Miller': Collection {
+//     items: [
+//       {
+//         id: 200,
+//         product: 'Chair',
+//         manufacturer: 'Herman Miller',
+//         price: '9990 NOK',
+//       },
+//     ],
+//   },
 // }
 ```
 
@@ -71,28 +77,32 @@ const grouped = collection.groupBy((item, key) => item.manufacturer.substring(0,
 grouped.all();
 
 // {
-//   IKE: [
-//     {
-//       id: 100,
-//       product: 'Chair',
-//       manufacturer: 'IKEA',
-//       price: '1490 NOK',
-//     },
-//     {
-//       id: 150,
-//       product: 'Desk',
-//       manufacturer: 'IKEA',
-//       price: '900 NOK',
-//     },
-//   ],
-//   Her: [
-//     {
-//       id: 200,
-//       product: 'Chair',
-//       manufacturer: 'Herman Miller',
-//       price: '9990 NOK',
-//     },
-//   ]
+//   IKE: Collection {
+//     items: [
+//       {
+//         id: 100,
+//         product: 'Chair',
+//         manufacturer: 'IKEA',
+//         price: '1490 NOK',
+//       },
+//       {
+//         id: 150,
+//         product: 'Desk',
+//         manufacturer: 'IKEA',
+//         price: '900 NOK',
+//       },
+//     ],
+//   },
+//   Her: Collection {
+//     items: [
+//       {
+//         id: 200,
+//         product: 'Chair',
+//         manufacturer: 'Herman Miller',
+//         price: '9990 NOK',
+//       },
+//     ],
+//   },
 // }
 ```
 
