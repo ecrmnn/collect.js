@@ -575,7 +575,7 @@ eval("\n\nmodule.exports = function intersectByKeys(values) {\n  var _this = thi
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function isEmpty() {\n  return !this.items.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/isEmpty.js?");
+eval("\n\nmodule.exports = function isEmpty() {\n  if (Array.isArray(this.items)) {\n    return !this.items.length;\n  }\n\n  return !Object.keys(this.items).length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/isEmpty.js?");
 
 /***/ }),
 
@@ -587,7 +587,7 @@ eval("\n\nmodule.exports = function isEmpty() {\n  return !this.items.length;\n}
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function isNotEmpty() {\n  return !!this.items.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/isNotEmpty.js?");
+eval("\n\nmodule.exports = function isNotEmpty() {\n  return !this.isEmpty();\n};\n\n//# sourceURL=webpack://collect/./dist/methods/isNotEmpty.js?");
 
 /***/ }),
 
