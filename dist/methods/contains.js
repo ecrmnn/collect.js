@@ -4,6 +4,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var values = require('../helpers/values');
 
+var _require = require('../helpers/is'),
+    isFunction = _require.isFunction;
+
 module.exports = function contains(key, value) {
   if (value !== undefined) {
     if (Array.isArray(this.items)) {
@@ -15,7 +18,7 @@ module.exports = function contains(key, value) {
     return this.items[key] !== undefined && this.items[key] === value;
   }
 
-  if (typeof key === 'function') {
+  if (isFunction(key)) {
     return this.items.filter(function (item, index) {
       return key(item, index);
     }).length > 0;

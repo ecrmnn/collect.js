@@ -1,14 +1,16 @@
 'use strict';
 
+const { isFunction } = require('../helpers/is');
+
 module.exports = function last(fn, defaultValue) {
   let { items } = this;
 
-  if (typeof fn === 'function') {
+  if (isFunction(fn)) {
     items = this.filter(fn).all();
   }
 
   if ((Array.isArray(items) && !items.length) || (!Object.keys(items).length)) {
-    if (typeof defaultValue === 'function') {
+    if (isFunction(defaultValue)) {
       return defaultValue();
     }
 

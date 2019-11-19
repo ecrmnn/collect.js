@@ -1,6 +1,7 @@
 'use strict';
 
 const values = require('../helpers/values');
+const { isFunction } = require('../helpers/is');
 
 module.exports = function contains(key, value) {
   if (value !== undefined) {
@@ -13,7 +14,7 @@ module.exports = function contains(key, value) {
     return this.items[key] !== undefined && this.items[key] === value;
   }
 
-  if (typeof key === 'function') {
+  if (isFunction(key)) {
     return (this.items.filter((item, index) => key(item, index)).length > 0);
   }
 

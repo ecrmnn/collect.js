@@ -1,3 +1,20 @@
+# 4.18.8
+
+## Bug fixes
+
+## Methods
+#### ``shift()``
+- Calling `shift()` on an empty collection returns null in all cases
+
+#### ``sortKeysDesc()``
+- Now works correctly when collections is an object
+
+#### ``min()``
+- Passing an array of object where not every element contains the given key no longer causes an error
+
+#### ``max()``
+- Passing an array of object where not every element contains the given key no longer causes an error
+
 # 4.16.0
 
 ## Breaking changes

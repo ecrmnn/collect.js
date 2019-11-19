@@ -1,5 +1,8 @@
 'use strict';
 
+var _require = require('../helpers/is'),
+    isFunction = _require.isFunction;
+
 module.exports = function unique(key) {
   var collection = void 0;
 
@@ -14,7 +17,7 @@ module.exports = function unique(key) {
 
     for (var iterator = 0, length = this.items.length; iterator < length; iterator += 1) {
       var uniqueKey = void 0;
-      if (typeof key === 'function') {
+      if (isFunction(key)) {
         uniqueKey = key(this.items[iterator]);
       } else {
         uniqueKey = this.items[iterator][key];
