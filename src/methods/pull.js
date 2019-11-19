@@ -1,10 +1,12 @@
 'use strict';
 
+const { isFunction } = require('../helpers/is');
+
 module.exports = function pull(key, defaultValue) {
   let returnValue = this.items[key] || null;
 
   if (!returnValue && defaultValue !== undefined) {
-    if (typeof defaultValue === 'function') {
+    if (isFunction(defaultValue)) {
       returnValue = defaultValue();
     } else {
       returnValue = defaultValue;

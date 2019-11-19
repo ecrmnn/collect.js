@@ -24,6 +24,10 @@ module.exports = (it, expect, collect) => {
       worth: 900,
     }, {
       worth: 79,
+    }, {
+      worth: undefined,
+    }, {
+      unicorn: false,
     }];
 
     const collection = collect(data);
