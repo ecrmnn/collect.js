@@ -2,11 +2,13 @@
 
 var nestedValue = require('../helpers/nestedValue');
 
+var _require = require('../helpers/is'),
+    isFunction = _require.isFunction;
+
 module.exports = function sortBy(valueOrFunction) {
   var collection = [].concat(this.items);
-  var isFunction = typeof valueOrFunction === 'function';
   var getValue = function getValue(item) {
-    if (isFunction) {
+    if (isFunction(valueOrFunction)) {
       return valueOrFunction(item);
     }
 

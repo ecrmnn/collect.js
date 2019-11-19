@@ -1,11 +1,14 @@
 'use strict';
 
+var _require = require('../helpers/is'),
+    isFunction = _require.isFunction;
+
 module.exports = function search(valueOrFunction, strict) {
   var _this = this;
 
   var valueFn = valueOrFunction;
 
-  if (typeof valueOrFunction === 'function') {
+  if (isFunction(valueOrFunction)) {
     valueFn = this.items.find(function (value, key) {
       return valueOrFunction(value, key);
     });

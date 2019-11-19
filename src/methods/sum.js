@@ -1,6 +1,7 @@
 'use strict';
 
 const values = require('../helpers/values');
+const { isFunction } = require('../helpers/is');
 
 module.exports = function sum(key) {
   const items = values(this.items);
@@ -11,7 +12,7 @@ module.exports = function sum(key) {
     for (let i = 0, { length } = items; i < length; i += 1) {
       total += items[i];
     }
-  } else if (typeof key === 'function') {
+  } else if (isFunction(key)) {
     for (let i = 0, { length } = items; i < length; i += 1) {
       total += key(items[i]);
     }

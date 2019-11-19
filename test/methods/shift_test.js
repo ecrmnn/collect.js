@@ -42,4 +42,10 @@ module.exports = (it, expect, collect) => {
       number: 11,
     });
   });
+
+  it('should return null when shifting an empty collection', () => {
+    expect(collect().shift()).to.eql(null);
+    expect(collect([]).shift()).to.eql(null);
+    expect(collect({}).shift()).to.eql(null);
+  });
 };

@@ -2,6 +2,9 @@
 
 var nestedValue = require('../helpers/nestedValue');
 
+var _require = require('../helpers/is'),
+    isFunction = _require.isFunction;
+
 module.exports = function groupBy(key) {
   var _this = this;
 
@@ -10,7 +13,7 @@ module.exports = function groupBy(key) {
   this.items.forEach(function (item, index) {
     var resolvedKey = void 0;
 
-    if (typeof key === 'function') {
+    if (isFunction(key)) {
       resolvedKey = key(item, index);
     } else if (nestedValue(item, key) || nestedValue(item, key) === 0) {
       resolvedKey = nestedValue(item, key);

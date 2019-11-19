@@ -9,6 +9,8 @@ module.exports = (it, expect, collect) => {
     }, {
       value: 12,
     }, {
+      value: undefined,
+    }, {
       unicorn: false,
     }]);
 
@@ -22,6 +24,8 @@ module.exports = (it, expect, collect) => {
       value: -13,
     }, {
       value: 12,
+    }, {
+      value: undefined,
     }, {
       unicorn: false,
     }]);

@@ -8,7 +8,7 @@ module.exports = (it, expect, collect) => {
       c: 3,
     });
 
-    expect(collection.sortKeys().all()).to.eql({
+    expect(collection.sortKeysDesc().all()).to.eql({
       c: 3,
       b: 2,
       a: 1,

@@ -1,9 +1,11 @@
 'use strict';
 
+const { isFunction } = require('../helpers/is');
+
 module.exports = function search(valueOrFunction, strict) {
   let valueFn = valueOrFunction;
 
-  if (typeof valueOrFunction === 'function') {
+  if (isFunction(valueOrFunction)) {
     valueFn = this.items.find((value, key) => valueOrFunction(value, key));
   }
 

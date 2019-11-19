@@ -1,7 +1,9 @@
 'use strict';
 
+const { isFunction } = require('../helpers/is');
+
 module.exports = function first(fn, defaultValue) {
-  if (typeof fn === 'function') {
+  if (isFunction(fn)) {
     for (let i = 0, { length } = this.items; i < length; i += 1) {
       const item = this.items[i];
       if (fn(item)) {
@@ -9,7 +11,7 @@ module.exports = function first(fn, defaultValue) {
       }
     }
 
-    if (typeof defaultValue === 'function') {
+    if (isFunction(defaultValue)) {
       return defaultValue();
     }
 
@@ -26,7 +28,7 @@ module.exports = function first(fn, defaultValue) {
     return this.items[firstKey];
   }
 
-  if (typeof defaultValue === 'function') {
+  if (isFunction(defaultValue)) {
     return defaultValue();
   }
 

@@ -2,6 +2,9 @@
 
 var values = require('../helpers/values');
 
+var _require = require('../helpers/is'),
+    isFunction = _require.isFunction;
+
 module.exports = function sum(key) {
   var items = values(this.items);
 
@@ -11,7 +14,7 @@ module.exports = function sum(key) {
     for (var i = 0, length = items.length; i < length; i += 1) {
       total += items[i];
     }
-  } else if (typeof key === 'function') {
+  } else if (isFunction(key)) {
     for (var _i = 0, _length = items.length; _i < _length; _i += 1) {
       total += key(items[_i]);
     }
