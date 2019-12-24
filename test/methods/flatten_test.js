@@ -70,4 +70,17 @@ module.exports = (it, expect, collect) => {
     const flattened = collect(data).flatten();
     expect(flattened.all()).to.eql([null, 'Apple', 'Galaxy S7', 'Samsung']);
   });
+
+  // https://github.com/ecrmnn/collect.js/issues/240
+  it('should flatten an object with objects', () => {
+    const collection = collect({
+      k: { a: [2, 3, 4] },
+      b: { a: [5, 6, 7] },
+      t: { a: [8, 9, 0] },
+    });
+
+    expect(collection.flatten(2).all()).to.eql([
+      2, 3, 4, 5, 6, 7, 8, 9, 0,
+    ]);
+  });
 };

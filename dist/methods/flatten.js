@@ -30,8 +30,8 @@ module.exports = function flatten(depth) {
         if (isArray(items[property])) {
           collection = collection.concat(items[property]);
         } else if (isObject(items[property])) {
-          Object.keys(items).forEach(function (prop) {
-            collection = collection.concat(items[prop]);
+          Object.keys(items[property]).forEach(function (prop) {
+            collection = collection.concat(items[property][prop]);
           });
         } else {
           collection.push(items[property]);
