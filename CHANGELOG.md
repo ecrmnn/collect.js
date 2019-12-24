@@ -1,3 +1,11 @@
+# 4.19.0
+
+## Bug fixes
+
+## Methods
+#### ``flatten()``
+- Now properly flattens an object with multiple objects. [Issue](https://github.com/ecrmnn/collect.js/issues/240)
+
 # 4.18.8
 
 ## Bug fixes
