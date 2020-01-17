@@ -5,13 +5,13 @@ The combine method combines the keys of the collection with the values of anothe
 ```js
 const collection = collect(['name', 'number']);
 
-const combine = collection.combine(['Steven Gerrard', 8]);
+const combine = collection.combine(['Mohamed Salah', 11]);
 
 combine.all();
 
 // {
-//   name: 'Steven Gerrard',
-//   number: 8
+//   name: 'Mohamed Salah',
+//   number: 11
 // }
 ```
 

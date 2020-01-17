@@ -4,8 +4,8 @@ The flip method swaps the collection's keys with their corresponding values:
 
 ```js
 const collection = collect({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Sadio Mané',
+  number: 10,
 });
 
 const flipped = collection.flip();
@@ -13,8 +13,8 @@ const flipped = collection.flip();
 flipped.all();
 
 // {
-//   'Steven Gerrard': 'name',
-//   '8': 'number',
+//   'Sadio Mané': 'name',
+//   '10': 'number',
 // }
 ```
 

@@ -4,8 +4,8 @@ The contains method determines whether the collection contains a given item:
 
 ```js
 const collection = collect({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Mohamed Salah',
+  number: 11,
 });
 
 collection.contains('name');
@@ -14,7 +14,7 @@ collection.contains('name');
 collection.contains('age');
 // false
 
-collection.contains('Steven Gerrard');
+collection.contains('Mohamed Salah');
 // true
 ```
 
@@ -31,8 +31,8 @@ You may also pass a key / value pair to the contains method, which will determin
 
 ```js
 const collection = collect({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Mohamed Salah',
+  number: 11,
 });
 
 collection.contains('name', 'Steve Jobs');
