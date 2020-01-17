@@ -4,13 +4,13 @@ The get method returns the item at a given key or index. If the key or index doe
 
 ```js
 const collection = collect({
-  firstname: 'Chuck',
-  lastname: 'Norris',
+  firstname: 'Mohamed',
+  lastname: 'Salah',
 });
 
 collection.get('lastname');
 
-// Norris
+// Salah
 
 collection.get('middlename');
 
@@ -29,8 +29,8 @@ You may optionally pass a default value as the second argument:
 
 ```js
 const collection = collect({
-  firstname: 'Chuck',
-  lastname: 'Norris',
+  firstname: 'Mohamed',
+  lastname: 'Salah',
 });
 
 collection.get('middlename', 'default-value');
@@ -41,8 +41,8 @@ You may even pass a callback as the default value. The result of the callback wi
 
 ```js
 const collection = collect({
-  firstname: 'Chuck',
-  lastname: 'Norris',
+  firstname: 'Mohamed',
+  lastname: 'Salah',
 });
 
 collection.get('middlename', () => 'default-value');
