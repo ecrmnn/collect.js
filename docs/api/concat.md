@@ -10,13 +10,13 @@ const collection = collect([1, 2, 3]);
 let concatenated = collection.concat(['a', 'b', 'c']);
 
 concatenated = concatenated.concat({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Mohamed Salah',
+  number: 11,
 });
 
 concatenated.all();
 
-// [1, 2, 3, 'a', 'b', 'c', 'Steven Gerrard', 8]
+// [1, 2, 3, 'a', 'b', 'c', 'Mohamed Salah', 11]
 ```
 
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/concat.js)

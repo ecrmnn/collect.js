@@ -20,9 +20,9 @@ However, you pass a callback to the countBy method to count all items by a custo
 
 ```js
 const collection = collect([
-  'alice@gmail.com',
-  'bob@yahoo.com',
-  'carlos@gmail.com',
+  'mohamed.salah@gmail.com',
+  'sadio.mane@yahoo.com',
+  'roberto.firmino@gmail.com',
 ]);
 
 const counted = collection.countBy(email => email.split('@')[1]);

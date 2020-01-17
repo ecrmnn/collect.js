@@ -7,7 +7,10 @@ const Player = function (name) {
   this.name = name;
 };
 
-const collection = collect(['Roberto Firmino', 'Sadio Mané']);
+const collection = collect([
+  'Roberto Firmino',
+  'Sadio Mané',
+]);
 
 const players = collection.mapInto(Player);
 

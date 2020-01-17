@@ -267,13 +267,13 @@ The combine method combines the keys of the collection with the values of anothe
 ```js
 const collection = collect(['name', 'number']);
 
-const combine = collection.combine(['Steven Gerrard', 8]);
+const combine = collection.combine(['Mohamed Salah', 11]);
 
 combine.all();
 
 // {
-//   name: 'Steven Gerrard',
-//   number: 8
+//   name: 'Mohamed Salah',
+//   number: 11
 // }
 ```
 
@@ -289,13 +289,13 @@ const collection = collect([1, 2, 3]);
 let concatenated = collection.concat(['a', 'b', 'c']);
 
 concatenated = concatenated.concat({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Mohamed Salah',
+  number: 11,
 });
 
 concatenated.all();
 
-// [1, 2, 3, 'a', 'b', 'c', 'Steven Gerrard', 8]
+// [1, 2, 3, 'a', 'b', 'c', 'Mohamed Salah', 11]
 ```
 
 #### `contains()`
@@ -304,8 +304,8 @@ The contains method determines whether the collection contains a given item:
 
 ```js
 const collection = collect({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Mohamed Salah',
+  number: 11,
 });
 
 collection.contains('name');
@@ -314,7 +314,7 @@ collection.contains('name');
 collection.contains('age');
 // false
 
-collection.contains('Steven Gerrard');
+collection.contains('Mohamed Salah');
 // true
 ```
 
@@ -331,8 +331,8 @@ You may also pass a key / value pair to the contains method, which will determin
 
 ```js
 const collection = collect({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Mohamed Salah',
+  number: 11,
 });
 
 collection.contains('name', 'Steve Jobs');
@@ -383,9 +383,9 @@ However, you pass a callback to the countBy method to count all items by a custo
 
 ```js
 const collection = collect([
-  'alice@gmail.com',
-  'bob@yahoo.com',
-  'carlos@gmail.com',
+  'mohamed.salah@gmail.com',
+  'sadio.mane@yahoo.com',
+  'roberto.firmino@gmail.com',
 ]);
 
 const counted = collection.countBy(email => email.split('@')[1]);
@@ -763,8 +763,8 @@ The flip method swaps the collection's keys with their corresponding values:
 
 ```js
 const collection = collect({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Sadio Mané',
+  number: 10,
 });
 
 const flipped = collection.flip();
@@ -772,8 +772,8 @@ const flipped = collection.flip();
 flipped.all();
 
 // {
-//   'Steven Gerrard': 'name',
-//   '8': 'number',
+//   'Sadio Mané': 'name',
+//   '10': 'number',
 // }
 ```
 
@@ -797,8 +797,8 @@ The forget method removes an item from the collection by its key:
 
 ```js
 const collection = collect({
-  name: 'Steven Gerrard',
-  number: 8,
+  name: 'Sadio Mané',
+  number: 10,
 });
 
 collection.forget('number');
@@ -806,7 +806,7 @@ collection.forget('number');
 collection.all();
 
 // {
-//   name: 'Steven Gerrard',
+//   name: 'Sadio Mané',
 // }
 ```
 
@@ -818,13 +818,13 @@ The get method returns the item at a given key or index. If the key or index doe
 
 ```js
 const collection = collect({
-  firstname: 'Chuck',
-  lastname: 'Norris',
+  firstname: 'Mohamed',
+  lastname: 'Salah',
 });
 
 collection.get('lastname');
 
-// Norris
+// Salah
 
 collection.get('middlename');
 
@@ -843,8 +843,8 @@ You may optionally pass a default value as the second argument:
 
 ```js
 const collection = collect({
-  firstname: 'Chuck',
-  lastname: 'Norris',
+  firstname: 'Mohamed',
+  lastname: 'Salah',
 });
 
 collection.get('middlename', 'default-value');
@@ -855,8 +855,8 @@ You may even pass a callback as the default value. The result of the callback wi
 
 ```js
 const collection = collect({
-  firstname: 'Chuck',
-  lastname: 'Norris',
+  firstname: 'Mohamed',
+  lastname: 'Salah',
 });
 
 collection.get('middlename', () => 'default-value');
@@ -1272,7 +1272,10 @@ const Player = function (name) {
   this.name = name;
 };
 
-const collection = collect(['Roberto Firmino', 'Sadio Mané']);
+const collection = collect([
+  'Roberto Firmino',
+  'Sadio Mané',
+]);
 
 const players = collection.mapInto(Player);
 
