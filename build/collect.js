@@ -1055,7 +1055,7 @@ eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/hel
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isObject = _require.isObject;\n\nmodule.exports = function skip(number) {\n  if (isObject(this.items)) {\n    return new this.constructor(Object.fromEntries(Object.entries(this.items).slice(number)));\n  }\n\n  return new this.constructor(this.items.slice(number));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/skip.js?");
+eval("\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isObject = _require.isObject;\n\nmodule.exports = function skip(number) {\n  var _this = this;\n\n  if (isObject(this.items)) {\n    return new this.constructor(Object.keys(this.items).reduce(function (accumulator, key, index) {\n      if (index + 1 > number) {\n        accumulator[key] = _this.items[key];\n      }\n\n      return accumulator;\n    }, {}));\n  }\n\n  return new this.constructor(this.items.slice(number));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/skip.js?");
 
 /***/ }),
 
