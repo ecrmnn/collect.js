@@ -103,6 +103,7 @@ Collection.prototype.reverse = require('./methods/reverse');
 Collection.prototype.search = require('./methods/search');
 Collection.prototype.shift = require('./methods/shift');
 Collection.prototype.shuffle = require('./methods/shuffle');
+Collection.prototype.skip = require('./methods/skip');
 Collection.prototype.slice = require('./methods/slice');
 Collection.prototype.some = require('./methods/contains');
 Collection.prototype.sort = require('./methods/sort');
