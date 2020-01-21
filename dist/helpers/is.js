@@ -14,7 +14,7 @@ module.exports = {
    * @returns {boolean}
    */
   isObject: function isObject(item) {
-    return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' && item !== null;
+    return (typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object' && Array.isArray(item) === false && item !== null;
   },
 
   /**

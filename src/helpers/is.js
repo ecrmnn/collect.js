@@ -9,7 +9,7 @@ module.exports = {
   /**
    * @returns {boolean}
    */
-  isObject: item => typeof item === 'object' && item !== null,
+  isObject: item => typeof item === 'object' && Array.isArray(item) === false && item !== null,
 
   /**
    * @returns {boolean}
