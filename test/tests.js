@@ -67,5 +67,9 @@ if (!runSingleTest) {
 
       expect(pckg.dependencies).to.eql(undefined);
     });
+
+    it('should export the collection class', () => {
+      expect(collect()).to.instanceOf(collect.Collection);
+    });
   });
 }
