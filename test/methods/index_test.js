@@ -2,6 +2,7 @@
 
 const commonImport = require('../../dist');
 const { collect: destructuredCollection } = require('../../dist');
+const { Collection } = require('../../dist');
 
 module.exports = (it, expect) => {
   it('should be a function', () => {
@@ -19,5 +20,10 @@ module.exports = (it, expect) => {
     expect(secondCollection.constructor.name).eql('Collection');
 
     expect(firstCollection).to.eql(secondCollection);
+  });
+
+  it('should equal the same instance', () => {
+    expect(commonImport()).to.instanceOf(Collection);
+    expect(destructuredCollection()).to.instanceOf(Collection);
   });
 };
