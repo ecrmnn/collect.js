@@ -144,3 +144,4 @@ const collect = collection => new Collection(collection);
 module.exports = collect;
 module.exports.collect = collect;
 module.exports.default = collect;
+module.exports.Collection = Collection;

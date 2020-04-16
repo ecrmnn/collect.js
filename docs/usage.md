@@ -20,6 +20,15 @@ collect(products)
   .sortBy('brand');
 ```
 
+```js
+// Using the underlying class
+import { Collection } from 'collect.js';
+
+new Collection(products)
+  .where('price', '>', 299)
+  .sortBy('brand');
+```
+
 ### TypeScript
 
 ```ts
