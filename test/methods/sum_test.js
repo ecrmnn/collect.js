@@ -50,4 +50,11 @@ module.exports = (it, expect, collect) => {
       L: { ordered: 15, deliverd: 10 },
     });
   });
+
+  it('should strip a number to nearest right number', () => {
+    // Issue: https://github.com/ecrmnn/collect.js/issues/245
+    // Solution: https://github.com/nefe/number-precision/blob/master/src/index.ts#L10
+    expect(collect([0.1, 0.2]).sum()).to.eql(0.3);
+    expect(collect([1.0 - 0.9]).sum()).to.eql(0.1);
+  });
 };

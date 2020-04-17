@@ -22,5 +22,5 @@ module.exports = function sum(key) {
     }
   }
 
-  return total;
+  return parseFloat(total.toPrecision(12));
 };
