@@ -12,15 +12,15 @@ module.exports = function sum(key) {
 
   if (key === undefined) {
     for (var i = 0, length = items.length; i < length; i += 1) {
-      total += items[i];
+      total += parseFloat(items[i]);
     }
   } else if (isFunction(key)) {
     for (var _i = 0, _length = items.length; _i < _length; _i += 1) {
-      total += key(items[_i]);
+      total += parseFloat(key(items[_i]));
     }
   } else {
     for (var _i2 = 0, _length2 = items.length; _i2 < _length2; _i2 += 1) {
-      total += items[_i2][key];
+      total += parseFloat(items[_i2][key]);
     }
   }
 
