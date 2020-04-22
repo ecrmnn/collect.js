@@ -1,44 +1,40 @@
 'use strict';
 
+/* eslint-disable eqeqeq */
+
 var _require = require('../helpers/is'),
+    isArray = _require.isArray,
+    isObject = _require.isObject,
     isFunction = _require.isFunction;
 
 module.exports = function search(valueOrFunction, strict) {
   var _this = this;
 
-  var valueFn = valueOrFunction;
+  var result = void 0;
 
-  if (isFunction(valueOrFunction)) {
-    valueFn = this.items.find(function (value, key) {
-      return valueOrFunction(value, key);
+  var find = function find(item, key) {
+    if (isFunction(valueOrFunction)) {
+      return valueOrFunction(_this.items[key], key);
+    }
+
+    if (strict) {
+      return _this.items[key] === valueOrFunction;
+    }
+
+    return _this.items[key] == valueOrFunction;
+  };
+
+  if (isArray(this.items)) {
+    result = this.items.findIndex(find);
+  } else if (isObject(this.items)) {
+    result = Object.keys(this.items).find(function (key) {
+      return find(_this.items[key], key);
     });
   }
 
-  var index = false;
-
-  if (Array.isArray(this.items)) {
-    var itemKey = this.items.filter(function (item) {
-      if (strict === true) {
-        return item === valueFn;
-      }
-
-      return item === Number(valueFn) || item === String(valueFn);
-    })[0];
-
-    index = this.items.indexOf(itemKey);
-  } else {
-    return Object.keys(this.items).filter(function (prop) {
-      if (strict === true) {
-        return _this.items[prop] === valueFn;
-      }
-
-      return _this.items[prop] === Number(valueFn) || _this.items[prop] === valueFn.toString();
-    })[0] || false;
-  }
-
-  if (index === -1) {
+  if (result === undefined || result < 0) {
     return false;
   }
 
-  return index;
+  return result;
 };
