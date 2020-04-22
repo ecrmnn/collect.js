@@ -57,4 +57,10 @@ module.exports = (it, expect, collect) => {
     expect(collect([0.1, 0.2]).sum()).to.eql(0.3);
     expect(collect([1.0 - 0.9]).sum()).to.eql(0.1);
   });
+
+  it('should parse strings to numbers', () => {
+    expect(collect(['5', '5']).sum()).to.eql(10);
+    expect(collect(['0.1', '0.2']).sum()).to.eql(0.3);
+    expect(collect(['1.0' - '0.9']).sum()).to.eql(0.1);
+  });
 };

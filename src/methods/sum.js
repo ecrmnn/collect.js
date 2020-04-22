@@ -10,17 +10,18 @@ module.exports = function sum(key) {
 
   if (key === undefined) {
     for (let i = 0, { length } = items; i < length; i += 1) {
-      total += items[i];
+      total += parseFloat(items[i]);
     }
   } else if (isFunction(key)) {
     for (let i = 0, { length } = items; i < length; i += 1) {
-      total += key(items[i]);
+      total += parseFloat(key(items[i]));
     }
   } else {
     for (let i = 0, { length } = items; i < length; i += 1) {
-      total += items[i][key];
+      total += parseFloat(items[i][key]);
     }
   }
+
 
   return parseFloat(total.toPrecision(12));
 };
