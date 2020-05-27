@@ -152,6 +152,8 @@ All available methods
 - [whereInstanceOf](#whereinstanceof)
 - [whereNotBetween](#wherenotbetween)
 - [whereNotIn](#wherenotin)
+- [whereNotNull](#wherenotnull)
+- [whereNull](#wherenull)
 - [wrap](#wrap)
 - [zip](#zip)
 
@@ -2880,6 +2882,51 @@ filtered.all();
 ```
 
 > When working with nested objects `whereNotIn()` method allows dot notated keys. E.g. `whereNotIn('product .categories', ['office-supplies', 'furniture'])`
+
+#### `whereNotNull()``
+
+The `whereNotNull` method filters items where the given key is not null.
+
+```js
+const collection = collect([{
+  name: 'Mohamed Salah',
+}, {
+  name: null,
+}, {
+  name: 'Sadio Mané',
+}]);
+
+const filtered = collection.whereNotNull();
+
+filtered.all();
+
+// [
+//   { name: 'Mohamed Salah' },
+//   { name: 'Sadio Mané' },
+// ]
+```
+
+#### `whereNull()``
+
+The `whereNull` method filters items where the given key is null.
+
+```js
+const collection = collect([{
+  name: 'Mohamed Salah',
+}, {
+  name: null,
+}, {
+  name: 'Sadio Mané',
+}]);
+
+const filtered = collection.whereNull();
+
+filtered.all();
+
+// [
+//   { name: null },
+// ]
+```
 
 #### `wrap()`
 

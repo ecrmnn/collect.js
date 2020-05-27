@@ -14,6 +14,7 @@ module.exports = function nestedValue(mainObject, key) {
       return obj[property];
     }, mainObject);
   } catch (err) {
-    return null;
+    // If we end up here, we're not working with an object, and @var mainObject is the value itself
+    return mainObject;
   }
 };
