@@ -32,7 +32,7 @@ Collection.prototype.toJSON = function toJSON() {
 
 Collection.prototype.all = require('./methods/all');
 Collection.prototype.average = require('./methods/average');
-Collection.prototype.avg = require('./methods/average');
+Collection.prototype.avg = require('./methods/avg');
 Collection.prototype.chunk = require('./methods/chunk');
 Collection.prototype.collapse = require('./methods/collapse');
 Collection.prototype.combine = require('./methods/combine');
@@ -107,7 +107,7 @@ Collection.prototype.shift = require('./methods/shift');
 Collection.prototype.shuffle = require('./methods/shuffle');
 Collection.prototype.skip = require('./methods/skip');
 Collection.prototype.slice = require('./methods/slice');
-Collection.prototype.some = require('./methods/contains');
+Collection.prototype.some = require('./methods/some');
 Collection.prototype.sort = require('./methods/sort');
 Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');
