@@ -137,6 +137,8 @@ Collection.prototype.whereIn = require('./methods/whereIn');
 Collection.prototype.whereInstanceOf = require('./methods/whereInstanceOf');
 Collection.prototype.whereNotBetween = require('./methods/whereNotBetween');
 Collection.prototype.whereNotIn = require('./methods/whereNotIn');
+Collection.prototype.whereNull = require('./methods/whereNull');
+Collection.prototype.whereNotNull = require('./methods/whereNotNull');
 Collection.prototype.wrap = require('./methods/wrap');
 Collection.prototype.zip = require('./methods/zip');
 
