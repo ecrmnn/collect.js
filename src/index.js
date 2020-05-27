@@ -107,6 +107,7 @@ Collection.prototype.skip = require('./methods/skip');
 Collection.prototype.slice = require('./methods/slice');
 Collection.prototype.some = require('./methods/some');
 Collection.prototype.sort = require('./methods/sort');
+Collection.prototype.sortDesc = require('./methods/sortDesc');
 Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');
 Collection.prototype.sortKeys = require('./methods/sortKeys');

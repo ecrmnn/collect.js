@@ -124,6 +124,7 @@ All available methods
 - [sort](#sort)
 - [sortBy](#sortby)
 - [sortByDesc](#sortbydesc)
+- [sortDesc](#sortdesc)
 - [sortKeys](#sortkeys)
 - [sortKeysDesc](#sortkeysdesc)
 - [splice](#splice)
@@ -2204,6 +2205,22 @@ sorted.all();
 #### `sortByDesc()`
 
 This method has the same signature as the `sortBy` method, but will sort the collection in the opposite order.
+
+#### `sortDesc()`
+
+This method will sort the collection in the opposite order as the `sort` method.
+
+```js
+const collection = collect([1, 3, 5, 2, 4]);
+
+const sorted = collection.sortDesc();
+
+sorted.all();
+
+// [5, 4, 3, 2, 1]
+```
+
+Unlike `sort`, you may not pass a callback to `sortDesc`. If you wish to use a callback, you should use `sort` and invert your comparison.
 
 #### `sortKeys()`
 
