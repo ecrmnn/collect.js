@@ -171,4 +171,16 @@ module.exports = (it, expect, collect) => {
       { product: 'Door', price: '100' },
     ]);
   });
+
+  it('should work with nested properties', () => {
+    const collection2 = collect([
+      { name: { firstname: 'Mohamed', lastname: 'Salah' } },
+      { name: { firstname: 'Sadio', lastname: 'Mané' } },
+      { name: { firstname: 'Roberto', lastname: 'Firmino' } },
+    ]);
+
+    expect(collection2.where('name.lastname', 'Mané').all()).to.eql([
+      { name: { firstname: 'Sadio', lastname: 'Mané' } },
+    ]);
+  });
 };
