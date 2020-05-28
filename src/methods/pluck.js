@@ -1,5 +1,6 @@
 'use strict';
 
+const { isArray, isObject } = require('../helpers/is');
 const nestedValue = require('../helpers/nestedValue');
 
 const buildKeyPathMap = function buildKeyPathMap(items) {
@@ -7,9 +8,13 @@ const buildKeyPathMap = function buildKeyPathMap(items) {
 
   items.forEach((item, index) => {
     function buildKeyPath(val, keyPath) {
-      if (typeof val === 'object') {
+      if (isObject(val)) {
         Object.keys(val).forEach((prop) => {
           buildKeyPath(val[prop], `${keyPath}.${prop}`);
+        });
+      } else if (isArray(val)) {
+        val.forEach((v, i) => {
+          buildKeyPath(v, `${keyPath}.${i}`);
         });
       }
 

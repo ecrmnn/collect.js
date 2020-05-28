@@ -1,6 +1,8 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var _require = require('../helpers/is'),
+    isArray = _require.isArray,
+    isObject = _require.isObject;
 
 var nestedValue = require('../helpers/nestedValue');
 
@@ -9,9 +11,13 @@ var buildKeyPathMap = function buildKeyPathMap(items) {
 
   items.forEach(function (item, index) {
     function buildKeyPath(val, keyPath) {
-      if ((typeof val === 'undefined' ? 'undefined' : _typeof(val)) === 'object') {
+      if (isObject(val)) {
         Object.keys(val).forEach(function (prop) {
           buildKeyPath(val[prop], keyPath + '.' + prop);
+        });
+      } else if (isArray(val)) {
+        val.forEach(function (v, i) {
+          buildKeyPath(v, keyPath + '.' + i);
         });
       }
 
