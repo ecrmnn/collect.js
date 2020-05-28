@@ -2883,7 +2883,7 @@ filtered.all();
 
 > When working with nested objects `whereNotIn()` method allows dot notated keys. E.g. `whereNotIn('product .categories', ['office-supplies', 'furniture'])`
 
-#### `whereNotNull()``
+#### `whereNotNull()`
 
 The `whereNotNull` method filters items where the given key is not null.
 
@@ -2906,7 +2906,7 @@ filtered.all();
 // ]
 ```
 
-#### `whereNull()``
+#### `whereNull()`
 
 The `whereNull` method filters items where the given key is null.
 
