@@ -1,4 +1,4 @@
-# `whereNotNull()``
+# `whereNotNull()`
 
 The `whereNotNull` method filters items where the given key is not null.
 
