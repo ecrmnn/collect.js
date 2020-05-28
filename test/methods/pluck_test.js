@@ -147,6 +147,62 @@ module.exports = (it, expect, collect) => {
     ]);
   });
 
+  it('should allow null as value in wildcard', () => {
+    const users = collect([{
+      name: 'John',
+      roles: [{
+        name: 'Editor',
+      }, {
+        name: null,
+      }],
+    }]);
+
+    expect(users.pluck('roles.*.name').all()).to.eql([
+      [
+        'Editor',
+        null,
+      ],
+    ]);
+  });
+
+  it('should allow undefined as value in wildcard', () => {
+    const users = collect([{
+      name: 'John',
+      roles: [{
+        name: 'Editor',
+      }, {
+        name: undefined,
+      }],
+    }]);
+
+    expect(users.pluck('roles.*.name').all()).to.eql([
+      [
+        'Editor',
+        undefined,
+      ],
+    ]);
+  });
+
+  it('should allow symbol as value in wildcard', () => {
+    const symbol = Symbol('Foo');
+
+    const users = collect([{
+      name: 'John',
+      roles: [{
+        name: 'Editor',
+      }, {
+        name: symbol,
+      }],
+    }]);
+
+    expect(users.pluck('roles.*.name').all()).to.eql([
+      [
+        'Editor',
+        symbol,
+      ],
+    ]);
+  });
+
   it('should allow multiple wildcards', () => {
     const users = collect([{
       name: 'John',
