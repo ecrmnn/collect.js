@@ -75,5 +75,8 @@
     "uglify-js": "^3.2.2",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "decimal.js": "10.2.0"
   }
 }
