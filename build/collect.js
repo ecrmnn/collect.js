@@ -111,6 +111,18 @@ eval("\n\nvar _typeof = typeof Symbol === \"function\" && typeof Symbol.iterator
 
 /***/ }),
 
+/***/ "./dist/helpers/localDecimal.js":
+/*!**************************************!*\
+  !*** ./dist/helpers/localDecimal.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\n\n/**\n *\n * @param {number} v\n * @returns {LocalDecimal}\n * @constructor\n */\n\nvar LocalDecimal = function LocalDecimal(v) {\n  this.value = 0;\n  this.exp = 0;\n  this.expLength = 0;\n\n  var parts = v.toString().split('.');\n  this.value = parseInt(parts[0], 10);\n  if (parts.length === 2) {\n    var neg = 1;\n    if (this.value < 0) {\n      neg = -1;\n    }\n    this.exp = parseInt(parts[1], 10) * neg;\n    this.expLength = parts[1].length;\n  }\n\n  /**\n     *\n     * @param {LocalDecimal} ldb\n     */\n  this.add = function (ldb) {\n    if (!(ldb instanceof LocalDecimal)) {\n      throw Error('LocalDecimalError: ' + ldb.toString() + ' is not a LocalDecimal instance!');\n    }\n    var ldr = new LocalDecimal(0);\n    // the integer part\n    ldr.value = this.value + ldb.value;\n    // the decimal part\n    var maxExpLength = this.expLength;\n    if (maxExpLength < ldb.expLength) {\n      maxExpLength = ldb.expLength;\n    }\n    ldr.expLength = maxExpLength;\n\n    var ldaExp = this.exp;\n    if (this.expLength < maxExpLength) {\n      ldaExp = Math.pow(10, maxExpLength - this.expLength) * this.exp;\n    }\n    var ldbExp = ldb.exp;\n    if (ldb.expLength < maxExpLength) {\n      ldbExp = Math.pow(10, maxExpLength - ldb.expLength) * ldb.exp;\n    }\n    var ldrExp = ldaExp + ldbExp;\n    var carryPoint = Math.pow(10, maxExpLength + 1);\n    if (ldrExp >= carryPoint) {\n      ldr.value += 1;\n      ldrExp -= carryPoint;\n    }\n    ldr.exp = ldrExp;\n\n    return ldr;\n  };\n\n  this.toNumber = function () {\n    return this.value + this.exp / Math.pow(10, this.expLength);\n  };\n\n  return this;\n};\n\nmodule.exports = LocalDecimal;\n\n//# sourceURL=webpack://collect/./dist/helpers/localDecimal.js?");
+
+/***/ }),
+
 /***/ "./dist/helpers/nestedValue.js":
 /*!*************************************!*\
   !*** ./dist/helpers/nestedValue.js ***!
@@ -1199,7 +1211,7 @@ eval("\n\nmodule.exports = function split(numberOfGroups) {\n  var itemsPerGroup
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isFunction = _require.isFunction;\n\nmodule.exports = function sum(key) {\n  var items = values(this.items);\n\n  var total = 0;\n\n  if (key === undefined) {\n    for (var i = 0, length = items.length; i < length; i += 1) {\n      total += parseFloat(items[i]);\n    }\n  } else if (isFunction(key)) {\n    for (var _i = 0, _length = items.length; _i < _length; _i += 1) {\n      total += parseFloat(key(items[_i]));\n    }\n  } else {\n    for (var _i2 = 0, _length2 = items.length; _i2 < _length2; _i2 += 1) {\n      total += parseFloat(items[_i2][key]);\n    }\n  }\n\n  return parseFloat(total.toPrecision(12));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sum.js?");
+eval("\n\nvar values = __webpack_require__(/*! ../helpers/values */ \"./dist/helpers/values.js\");\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isFunction = _require.isFunction;\n\nvar LocalDecimal = __webpack_require__(/*! ../helpers/localDecimal */ \"./dist/helpers/localDecimal.js\");\n\nmodule.exports = function sum(key) {\n  var items = values(this.items);\n\n  var t = new LocalDecimal(0);\n\n  if (key === undefined) {\n    for (var i = 0, length = items.length; i < length; i += 1) {\n      t = t.add(new LocalDecimal(items[i]));\n    }\n  } else if (isFunction(key)) {\n    for (var _i = 0, _length = items.length; _i < _length; _i += 1) {\n      t = t.add(new LocalDecimal(key(items[_i])));\n    }\n  } else {\n    for (var _i2 = 0, _length2 = items.length; _i2 < _length2; _i2 += 1) {\n      t = t.add(new LocalDecimal(items[_i2][key]));\n    }\n  }\n\n  var total = t.toNumber();\n\n  return parseFloat(total.toPrecision(12));\n};\n\n//# sourceURL=webpack://collect/./dist/methods/sum.js?");
 
 /***/ }),
 
