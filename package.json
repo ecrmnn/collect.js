@@ -10,9 +10,9 @@
     "test": "mocha test/tests.js",
     "transpile": "babel src --quiet --out-dir dist",
     "readme": "node bundler/bundle.js",
-    "bundle": "webpack-cli dist/index.js --output build/collect.js --mode development --output-library collect",
-    "uglify": "uglifyjs build/collect.js --compress --mangle --output build/collect.min.js",
-    "build": "npm run transpile && npm run bundle && npm run uglify && npm run readme",
+    "bundle.development": "webpack-cli dist/index.js --output build/collect.js --mode development --output-library collect",
+    "bundle.production": "webpack-cli dist/index.js --output build/collect.min.js --mode production --output-library collect",
+    "build": "npm run transpile && npm run bundle.development && npm run bundle.production && npm run uglify && npm run readme",
     "eslint": "npm run eslint:js && npm run eslint:md",
     "eslint:js": "eslint src/ test/ --fix",
     "eslint:md": "eslint --fix --ext md README.md docs/ --rule strict:off --rule no-undef:off --rule no-unused-vars:off --rule func-names:off --rule no-console:off --rule consistent-return:off --rule import/no-unresolved:off --rule import/extensions:off --parser-options sourceType:module",
@@ -72,7 +72,6 @@
     "hoax.js": "^1.0.0",
     "mocha": "^3.5.2",
     "nyc": "^11.0.2",
-    "uglify-js": "^3.2.2",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6"
   }
