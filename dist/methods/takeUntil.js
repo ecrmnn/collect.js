@@ -2,32 +2,40 @@
 
 var _require = require('../helpers/is'),
     isArray = _require.isArray,
-    isObject = _require.isObject;
+    isObject = _require.isObject,
+    isFunction = _require.isFunction;
 
-module.exports = function takeUntil(value) {
+module.exports = function takeUntil(valueOrFunction) {
   var _this = this;
 
-  var seen = false;
-  var items = null;
+  var previous = null;
+  var items = void 0;
+
+  var callback = function callback(value) {
+    return value === valueOrFunction;
+  };
+  if (isFunction(valueOrFunction)) {
+    callback = valueOrFunction;
+  }
 
   if (isArray(this.items)) {
-    items = this.items.filter(function (v) {
-      if (!seen) {
-        seen = v === value;
+    items = this.items.filter(function (item) {
+      if (previous !== false) {
+        previous = !callback(item);
       }
 
-      return !seen;
+      return previous;
     });
   }
 
   if (isObject(this.items)) {
     items = Object.keys(this.items).reduce(function (acc, key) {
-      if (!seen) {
-        seen = _this.items[key] === value;
+      if (previous !== false) {
+        previous = !callback(_this.items[key]);
+      }
 
-        if (!seen) {
-          acc[key] = _this.items[key];
-        }
+      if (previous !== false) {
+        acc[key] = _this.items[key];
       }
 
       return acc;
