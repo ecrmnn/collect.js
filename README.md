@@ -119,6 +119,8 @@ All available methods
 - [shift](#shift)
 - [shuffle](#shuffle)
 - [skip](#skip)
+- [skipUntil](#skipuntil)
+- [skipWhile](#skipwhile)
 - [slice](#slice)
 - [some](#some)
 - [sort](#sort)
@@ -131,6 +133,8 @@ All available methods
 - [split](#split)
 - [sum](#sum)
 - [take](#take)
+- [takeUntil](#takeuntil)
+- [takeWhile](#takewhile)
 - [tap](#tap)
 - [times](#times)
 - [toArray](#toarray)
@@ -2051,6 +2055,62 @@ collection.skip(4).all();
 ```
 
 
+#### `skipUntil()`
+
+The `skipUntil` method skips items until the given callback returns `true` and then returns the remaining items in the collection:
+
+```js
+const collection = collect([1, 2, 3, 4]);
+
+const subset = collection.skipUntil(item => item >= 3);
+
+subset.all();
+
+// [3, 4]
+```
+
+You may also pass a simple value to the `skipUntil` method to skip all items until the given value is found:
+
+```js
+const collection = collect([1, 2, 3, 4]);
+
+const subset = collection.skipUntil(3);
+
+subset.all();
+
+// [3, 4]
+```
+
+
+#### `skipWhile()`
+
+The `skipWhile` method skips items while the given callback returns `true` and then returns the remaining items in the collection:
+
+```js
+const collection = collect([1, 2, 3, 4]);
+
+const subset = collection.skipWhile(item => item <= 3);
+
+subset.all();
+
+// [4]
+```
+
+> If the callback never returns true, the skipWhile method will return an empty collection.
+
+You may also pass a simple value to the `skipWhile`:
+
+```js
+const collection = collect([1, 1, 2, 2, 3, 3, 4, 4]);
+
+const subset = collection.skipWhile(1);
+
+subset.all();
+
+// [2, 2, 3, 3, 4, 4]
+```
+
+
 #### `slice()`
 
 The slice method returns a slice of the collection starting at the given index:
@@ -2362,6 +2422,52 @@ chunk.all();
 
 // [0, 1, 2]
 ```
+
+#### `takeUntil()`
+
+The `takeUntil` method returns items in the collection until the given callback returns `true`:
+
+```js
+const collection = collect([1, 2, 3, 4]);
+
+const subset = collection.takeUntil(item => item >= 3);
+
+subset.all();
+
+// [1, 2]
+```
+
+> If the given value is not found or the callback never returns `true`, the `takeUntil` method will return all items in the collection.
+
+You may also pass a simple value to the `takeUntil` method to get the items until the given value is found:
+
+```js
+const collection = collect([1, 2, 3, 4]);
+
+const subset = collection.takeUntil(3);
+
+subset.all();
+
+// [1, 2]
+```
+
+
+#### `takeWhile()`
+
+The `takeWhile` method returns items in the collection until the given callback returns `false`:
+
+```js
+const collection = collect([1, 2, 3, 4]);
+
+const subset = collection.takeWhile(item => item < 3);
+
+subset.all();
+
+// [1, 2]
+```
+
+> If the callback never returns `false`, the `takeWhile` method will return all items in the collection.
+
 
 #### `tap()`
 
