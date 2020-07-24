@@ -86,7 +86,7 @@ declare module 'collect.js' {
     /**
      * The each method iterates over the items in the collection and passes each item to a callback.
      */
-    each(fn: (item: Item) => void): this;
+    each(fn: (item: Item) => void, index: number, items: Item[]): this;
 
     /**
      * The every method may be used to verify that all elements of a collection pass a given truth test.
