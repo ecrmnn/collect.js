@@ -47,6 +47,7 @@ All available methods
 - [average](#average)
 - [avg](#avg)
 - [chunk](#chunk)
+- [chunkWhile](#chunkWhile)
 - [collapse](#collapse)
 - [combine](#combine)
 - [concat](#concat)
@@ -242,6 +243,32 @@ const chunks = collection.chunk(4);
 chunks.all();
 
 // [[1, 2, 3, 4], [5, 6, 7]]
+```
+
+#### `chunkWhile()`
+
+The chunkWhile method breaks the collection into multiple, smaller collections based on the evaluation of the given function:
+
+```js
+const collection = collect(['A', 'A', 'B', 'B', 'C', 'C', 'C', 'D']);
+
+const chunks = collection.chunkWhile((current, key, chunk) => current === chunk.last());
+
+chunks.all();
+
+// [['A', 'A'], ['B', 'B'], ['C', 'C', 'C'], ['D']]
+```
+
+An empty collection is returned when `chunkWhile` is applied on an empty collection:
+
+```js
+const collection = collect([]);
+
+const chunks = collection.chunkWhile((current, key, chunk) => current === chunk.last());
+
+chunks.all();
+
+// []
 ```
 
 #### `collapse()`
