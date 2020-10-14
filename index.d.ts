@@ -4,6 +4,8 @@ declare module 'collect.js' {
   export function collect<T>(collection?: T[] | Object): Collection<T>;
   export default function collect<T>(collection?: T[] | Object): Collection<T>;
   export class Collection<Item> {
+    constructor(collection?: Item[] | Object);
+
     /**
      * The all method returns the underlying array represented by the collection.
      */
