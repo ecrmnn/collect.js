@@ -338,7 +338,7 @@ declare module 'collect.js' {
      * The search method searches the collection for the given value and returns its key if found.
      * If the item is not found, false is returned.
      */
-    search(valueOrFunction: Item | ((value: Item, key: number) => boolean), strict: boolean): any;
+    search(valueOrFunction: Item | ((value: Item, key: number) => boolean), strict?: boolean): any;
 
     /**
      * The shift method removes and returns the first item from the collection.
