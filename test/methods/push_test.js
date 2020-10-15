@@ -24,4 +24,12 @@ module.exports = (it, expect, collect) => {
     collection.push(...values);
     expect(collection.all()).to.eql([1, 2, 3, 4, 1, 2, 3, 4, 5]);
   });
+
+  it('should not modify the source', () => {
+    const data = [1, 2, 3];
+    const collection = collect(data).push(4);
+
+    expect(data).to.eql([1, 2, 3]);
+    expect(collection.all()).to.eql([1, 2, 3, 4]);
+  });
 };
