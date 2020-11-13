@@ -3,6 +3,11 @@
 const unicorn = {
   animal: 'unicorn',
   ability: 'magical',
+  description: '',
+  amount: 0,
+  food: null,
+  area: undefined,
+  isExist: false,
 };
 
 module.exports = (it, expect, collect) => {
@@ -54,5 +59,21 @@ module.exports = (it, expect, collect) => {
     expect(hasAbility).to.eql(false);
     expect(hasName).to.eql(false);
     expect(collection.all()).to.eql(pig);
+  });
+
+  it('should determine if a key exists in the collection and has negative value (which equates to "false")', () => {
+    const collection = collect(unicorn);
+    const hasDescription = collection.has('description');
+    const hasAmount = collection.has('amount');
+    const hasFood = collection.has('food');
+    const hasArea = collection.has('area');
+    const hasIsExist = collection.has('isExist');
+
+    expect(hasDescription).to.eql(true);
+    expect(hasAmount).to.eql(true);
+    expect(hasFood).to.eql(true);
+    expect(hasArea).to.eql(true);
+    expect(hasIsExist).to.eql(true);
+    expect(collection.all()).to.eql(unicorn);
   });
 };
