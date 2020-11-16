@@ -539,7 +539,7 @@ eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function has() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  return properties.filter(function (key) {\n    return _this.items[key];\n  }).length === properties.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/has.js?");
+eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function has() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  return properties.filter(function (key) {\n    return Object.keys(_this.items).includes(key);\n  }).length === properties.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/has.js?");
 
 /***/ }),
 
