@@ -12,6 +12,6 @@ module.exports = function has() {
   var properties = variadic(args);
 
   return properties.filter(function (key) {
-    return Object.keys(_this.items).includes(key);
+    return Object.hasOwnProperty.call(_this.items, key);
   }).length === properties.length;
 };
