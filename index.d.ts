@@ -1,10 +1,10 @@
 type Operator = "===" | "==" | "!==" | "!=" | "<>" | ">" | "<" | ">=" | "<="
 
 declare module 'collect.js' {
-  export function collect<T>(collection?: T[] | Object): Collection<T>;
-  export default function collect<T>(collection?: T[] | Object): Collection<T>;
+  export function collect<T>(collection?: T[] | object): Collection<T>;
+  export default function collect<T>(collection?: T[] | object): Collection<T>;
   export class Collection<Item> {
-    constructor(collection?: Item[] | Object);
+    constructor(collection?: Item[] | object);
 
     /**
      * The all method returns the underlying array represented by the collection.
@@ -52,6 +52,11 @@ declare module 'collect.js' {
     count(): number;
 
     /**
+     * The countBy method counts the occurences of values in the collection. By default, the method counts the occurrences of every element.
+     */
+    countBy(): Collection<Item>;
+
+    /**
      * The crossJoin method cross joins the collection with the given array or collection, returning all possible permutations.
      */
     crossJoin<T>(values: T[]): Collection<[Item, T]>;
@@ -86,9 +91,19 @@ declare module 'collect.js' {
     dump(): this;
 
     /**
+     * The duplicates method retrieves and returns duplicate values from the collection.
+     */
+    duplicates(): object;
+
+    /**
      * The each method iterates over the items in the collection and passes each item to a callback.
      */
-    each(fn: (item: Item) => void, index?: number, items?: Item[]): this;
+    each(fn: (item: Item) => void): this;
+
+    /**
+     * The eachSpread method iterates over the collection's items, passing each nested item value into the given callback
+     */
+    eachSpread(fn: (item: Item) => void): this;
 
     /**
      * The every method may be used to verify that all elements of a collection pass a given truth test.
@@ -111,6 +126,8 @@ declare module 'collect.js' {
      * The first method returns the first element in the collection that passes a given truth test.
      */
     first<V>(fn?: (item: Item) => boolean, defaultValue?: (...any: any[]) => V | Item): Item;
+
+    // TODO firstWhere
 
     /**
      * The flatMap method iterates through the collection and passes each value to the given callback.
@@ -142,9 +159,9 @@ declare module 'collect.js' {
     forPage(page: number, chunk: number): Collection<Item>;
 
     /**
-     * The get method returns the item at a given key. If the key does not exist, null is returned.
+     * The get method returns the item at a given key. If the key does not exist, null or default value is returned.
      */
-    get<K, V>(key: keyof Item | K, defaultValue?: (...any: any[]) => V | Item): Item | null;
+    get<K, V>(key: string | number, defaultValue?: V): K | V | null;
 
     /**
      * The groupBy method groups the collection's items by a given key.
@@ -191,6 +208,11 @@ declare module 'collect.js' {
     isNotEmpty(): boolean;
 
     /**
+     * The join method joins the collection's values with a string.
+     */
+    join(glue: string, finalGlue?: string): string;
+
+    /**
      * The keyBy method keys the collection by the given key.
      * If multiple items have the same key, only the last one will appear in the new collection.
      */
@@ -223,6 +245,16 @@ declare module 'collect.js' {
     mapInto<T extends Function>(ClassName: T): Collection<T>;
 
     /**
+     * The mapSpread method iterates over the collection's items, passing each nested item value into the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items.
+     */
+    mapSpread<T>(fn: (item: Item, index: any) => T): Collection<T>;
+
+    /**
+     * Run a dictionary map over the items. The callback should return an associative array with a single key/value pair.
+     */
+    mapToDictionary<T>(fn: (item: Item) => T): Collection<T>;
+
+    /**
      * The mapToGroups method iterates through the collection and passes each value to the given callback.
      */
     mapToGroups(fn: Function): Collection<any>;
@@ -251,6 +283,8 @@ declare module 'collect.js' {
      */
     merge<T>(objectOrArray: object | T[]): Collection<T>;
 
+    // TODO mergeRecursive
+
     /**
      * The min method returns the minimum value of a given key.
      */
@@ -270,6 +304,8 @@ declare module 'collect.js' {
      * The only method returns the items in the collection with the specified keys.
      */
     only<K>(properties: K[]): Collection<Item>;
+
+    // TODO pad
 
     /**
      * The partition method may be combined with destructuring to separate elements
@@ -329,6 +365,9 @@ declare module 'collect.js' {
      */
     reject(fn: (item: Item) => boolean): Collection<Item>;
 
+    // TODO replace
+    // TODO replaceRecursive
+
     /**
      * The reverse method reverses the order of the collection's items.
      */
@@ -350,10 +389,16 @@ declare module 'collect.js' {
      */
     shuffle(): this;
 
+    // TODO skip
+    // TODO skipUntil
+    // TODO skipWhile
+
     /**
      * The slice method returns a slice of the collection starting at the given index.
      */
     slice(remove: number, limit?: number): Collection<Item>;
+
+    // TODO some
 
     /**
      * The sort method sorts the collection.
@@ -384,11 +429,16 @@ declare module 'collect.js' {
      */
     sortByDesc(fn: (item: Item) => number): Collection<Item>;
 
+    // TODO sortDesc
+    // TODO sortKeys
+    // TODO sortKeysDesc
+
     /**
      * The splice method removes and returns a slice of items starting at the specified index.
      * You may pass a second argument to limit the size of the resulting chunk.
      */
     splice(index: number, limit: number, replace?: Item[]): Collection<Item>;
+
 
     /**
      * The split method breaks a collection into the given number of groups.
@@ -442,7 +492,7 @@ declare module 'collect.js' {
      * If the given array contains keys that are already in the original collection,
      * the original collection's values will be preferred.
      */
-    union<T>(object: Object): Collection<T>;
+    union<T>(object: object): Collection<T>;
 
     /**
      * The unique method returns all of the unique items in the collection.
@@ -469,25 +519,46 @@ declare module 'collect.js' {
      */
     when(condition: boolean, fn: (this: any) => any, defaultFn: (this: any) => any): void;
 
-    /**
-     * The where method filters the collection by a given key / value pair.
-     */
-    where<K, V>(key: keyof Item | K, value: V): Collection<Item>;
+    // TODO whenEmpty
+    // TODO whenNotEmpty
 
     /**
      * The where method filters the collection by a given key / value pair.
      */
+    where<K, V>(key: keyof Item | K, value: V): Collection<Item>;
     where<K, V>(key: keyof Item | K, operator: Operator, value: V): Collection<Item>;
+
+    /**
+     * The whereBetween method filters the collection within a given range.
+     */
+    whereBetween<K>(key: keyof Item | K, range: [from: number, to: number]): Collection<Item>;
 
     /**
      * The whereIn method filters the collection by a given key / value contained within the given array.
      */
     whereIn<K, V>(key: keyof Item | K, values: V[]): Collection<Item>;
 
+    // TODO whereInstanceOf
+
+    /**
+     * The whereNotBetween method filters the collection outside a given range.
+     */
+    whereNotBetween<K>(key: keyof Item | K, range: [from: number, to: number]): Collection<Item>;
+
     /**
      * The whereNotIn method filters the collection by a given key / value not contained within the given array.
      */
     whereNotIn<K, V>(key: keyof Item | K, values: V[]): Collection<Item>;
+
+    /**
+     * The whereNotNull method filters items where the given key is not null.
+     */
+    whereNotNull<K>(key?: keyof Item | K): Collection<Item>;
+
+    /**
+     * The whereNull method filters items where the given key is null.
+     */
+    whereNull<K>(key?: keyof Item | K): Collection<Item>;
 
     /**
      * The wrap method will wrap the given value in a collection.
