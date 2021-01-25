@@ -439,7 +439,6 @@ declare module 'collect.js' {
      */
     splice(index: number, limit: number, replace?: Item[]): Collection<Item>;
 
-
     /**
      * The split method breaks a collection into the given number of groups.
      */
