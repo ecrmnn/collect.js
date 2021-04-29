@@ -4,7 +4,8 @@ const nestedValue = require('../helpers/nestedValue');
 const { isFunction } = require('../helpers/is');
 
 module.exports = function sortBy(valueOrFunction) {
-  const collection = [].concat(this.items);
+  const isArray = Array.isArray(this.items);
+  const collection = Object.entries(this.items);
   const getValue = (item) => {
     if (isFunction(valueOrFunction)) {
       return valueOrFunction(item);
@@ -14,8 +15,8 @@ module.exports = function sortBy(valueOrFunction) {
   };
 
   collection.sort((a, b) => {
-    const valueA = getValue(a);
-    const valueB = getValue(b);
+    const valueA = getValue(a[1]);
+    const valueB = getValue(b[1]);
 
     if (valueA === null || valueA === undefined) {
       return 1;
@@ -34,5 +35,12 @@ module.exports = function sortBy(valueOrFunction) {
     return 0;
   });
 
-  return new this.constructor(collection);
+  if (isArray) {
+    return new this.constructor(collection.map(entry => entry[1]));
+  }
+
+  return new this.constructor(collection.map(entry => ({
+    key: entry[0],
+    value: entry[1],
+  }))).pluck('value', 'key');
 };
