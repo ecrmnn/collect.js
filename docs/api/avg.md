@@ -27,4 +27,23 @@ collection.avg('pages');
 // 636
 ```
 
+You may also define a callback function
+
+```js
+const collection = collect([
+  {
+    name: 'My story',
+    pages: 176,
+  },
+  {
+    name: 'Fantastic Beasts and Where to Find Them',
+    pages: 1096,
+  },
+]);
+
+collection.avg(book => book.pages);
+
+// 636
+```
+
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/avg.js)
