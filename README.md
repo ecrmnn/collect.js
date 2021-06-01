@@ -230,6 +230,25 @@ collection.avg('pages');
 // 636
 ```
 
+You may also define a callback function
+
+```js
+const collection = collect([
+  {
+    name: 'My story',
+    pages: 176,
+  },
+  {
+    name: 'Fantastic Beasts and Where to Find Them',
+    pages: 1096,
+  },
+]);
+
+collection.avg(book => book.pages);
+
+// 636
+```
+
 #### `chunk()`
 
 The chunk method breaks the collection into multiple, smaller collections of a given size:

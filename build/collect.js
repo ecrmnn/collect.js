@@ -179,7 +179,7 @@ eval("\n\nmodule.exports = function all() {\n  return this.items;\n};\n\n//# sou
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function average(key) {\n  if (key === undefined) {\n    return this.sum() / this.items.length;\n  }\n\n  return new this.constructor(this.items).pluck(key).sum() / this.items.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/average.js?");
+eval("\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isFunction = _require.isFunction;\n\nmodule.exports = function average(key) {\n  if (key === undefined) {\n    return this.sum() / this.items.length;\n  }\n\n  if (isFunction(key)) {\n    return new this.constructor(this.items).sum(key) / this.items.length;\n  }\n\n  return new this.constructor(this.items).pluck(key).sum() / this.items.length;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/average.js?");
 
 /***/ }),
 
