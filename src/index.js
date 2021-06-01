@@ -32,6 +32,7 @@ Collection.prototype.all = require('./methods/all');
 Collection.prototype.average = require('./methods/average');
 Collection.prototype.avg = require('./methods/avg');
 Collection.prototype.chunk = require('./methods/chunk');
+Collection.prototype.chunkWhile = require('./methods/chunkWhile');
 Collection.prototype.collapse = require('./methods/collapse');
 Collection.prototype.combine = require('./methods/combine');
 Collection.prototype.concat = require('./methods/concat');
