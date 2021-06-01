@@ -41,7 +41,7 @@ const collection = collect([
   },
 ]);
 
-collection.avg((book) => book.pages);
+collection.avg(book => book.pages);
 
 // 636
 ```
