@@ -398,7 +398,7 @@ declare module 'collect.js' {
     /**
      * The sum method returns the sum of all items in the collection.
      */
-    sum<K>(key?: keyof Item | K | ((item: Item) => number | string)): number | string;
+    sum<K>(key?: keyof Item | K | ((item: Item) => number | string)): number;
 
     [Symbol.iterator]: () => Iterator<Item>;
 
