@@ -148,9 +148,13 @@ declare module 'collect.js' {
 
     /**
      * The groupBy method groups the collection's items by a given key.
-     *
      */
-    groupBy<T, K>(key: ((item: Item, index?: number) => K) | keyof Item | K): Collection<T>;
+    groupBy(key: keyof Item): Collection<this>;
+
+    /**
+     * The groupBy method groups the collection's items by a given key extracted from a callback.
+     */
+    groupBy<K>(key: ((item: Item, index?: number) => K) | K): Collection<this>;
 
     /**
      * The has method determines if one or more keys exists in the collection.
@@ -462,7 +466,7 @@ declare module 'collect.js' {
     /**
      * The values method returns a new collection with the keys reset to consecutive integers.
      */
-    values<T>(): Collection<T>;
+    values(): this;
 
     /**
      * The when method will execute the given callback when the first argument given to the method evaluates to true.
