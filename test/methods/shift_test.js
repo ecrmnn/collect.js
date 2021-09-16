@@ -8,6 +8,13 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql([2, 3, 4, 5]);
   });
 
+  it('should return the first n item and remove it from the collection', () => {
+    const collection = collect([1, 2, 3, 4, 5]);
+
+    expect(collection.shift(2)).to.eql(collect([1, 2]));
+    expect(collection.all()).to.eql([3, 4, 5]);
+  });
+
   it('should also work when the collection is based on an object', () => {
     const collection = collect({
       name: 'Mohamed Salah',
@@ -41,6 +48,28 @@ module.exports = (it, expect, collect) => {
       name: 'Mohamed Salah',
       number: 11,
     });
+  });
+
+  it('should return the first n values when collection is based on an object', () => {
+    const collection = collect({
+      name: 'Mohamed Salah',
+      club: 'Liverpool FC',
+      country: 'Egypt',
+    });
+
+    expect(collection.shift(2)).to.eql(collect({
+      name: 'Mohamed Salah',
+      club: 'Liverpool FC',
+    }));
+
+    expect(collection.all()).to.eql({
+      country: 'Egypt',
+    });
+  });
+
+  it('should work with strings', () => {
+    expect(collect('xoxo').shift()).to.eql('xoxo');
+    expect(collect('xoxo').shift(20).first()).to.eql('xoxo');
   });
 
   it('should return null when shifting an empty collection', () => {
