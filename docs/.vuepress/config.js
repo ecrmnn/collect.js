@@ -3,6 +3,13 @@ const { readdirSync } = require('fs');
 module.exports = {
   title: 'collect.js',
   description: 'Convenient and dependency free wrapper for working with arrays and objects.',
+  head: [
+    ['link', {
+      rel: 'icon',
+      type: 'image/png',
+      href: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/298/gem-stone_1f48e.png',
+    }],
+  ],
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -13,7 +20,7 @@ module.exports = {
     ],
     sidebar: [{
       title: 'Get started',
-      collapsable:false,
+      collapsable: false,
       children: [
         'installation',
         'usage',

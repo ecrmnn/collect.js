@@ -4,7 +4,7 @@
  * Variadic helper function
  *
  * @param args
- * @returns {*}
+ * @returns {Array}
  */
 
 module.exports = function variadic(args) {

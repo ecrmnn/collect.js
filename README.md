@@ -1782,6 +1782,19 @@ collection.all();
 // => [1, 2, 3, 4]
 ```
 
+You may provide number of items to pop. This will return the popped items in a new collection:
+```js
+const collection = collect([1, 2, 3, 4, 5]);
+
+collection.pop(2).all();
+
+// [4, 5]
+
+collection.all();
+
+// => [1, 2, 3]
+```
+
 #### `prepend()`
 
 The prepend method adds an item to the beginning of the collection:
@@ -2031,6 +2044,19 @@ collection.shift();
 collection.all();
 
 // [2, 3, 4, 5]
+```
+
+You may provide number of items to shift. This will return the shifted items in a new collection:
+```js
+const collection = collect([1, 2, 3, 4, 5]);
+
+collection.shift(2).all();
+
+// [1, 2]
+
+collection.all();
+
+// => [3, 4, 5]
 ```
 
 #### `shuffle()`
