@@ -99,6 +99,18 @@ eval("\n\n/**\n * Clone helper\n *\n * Clone an array or object\n *\n * @param i
 
 /***/ }),
 
+/***/ "./dist/helpers/deleteKeys.js":
+/*!************************************!*\
+  !*** ./dist/helpers/deleteKeys.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar variadic = __webpack_require__(/*! ./variadic */ \"./dist/helpers/variadic.js\");\n\n/**\n * Delete keys helper\n *\n * Delete one or multiple keys from an object\n *\n * @param obj\n * @param keys\n * @returns {void}\n */\nmodule.exports = function deleteKeys(obj) {\n  for (var _len = arguments.length, keys = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {\n    keys[_key - 1] = arguments[_key];\n  }\n\n  variadic(keys).forEach(function (key) {\n    // eslint-disable-next-line\n    delete obj[key];\n  });\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/deleteKeys.js?");
+
+/***/ }),
+
 /***/ "./dist/helpers/is.js":
 /*!****************************!*\
   !*** ./dist/helpers/is.js ***!
@@ -131,7 +143,7 @@ eval("\n\n/**\n * Get value of a nested property\n *\n * @param mainObject\n * @
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n\n/**\n * Values helper\n *\n * Retrieve values from [this.items] when it is an array, object or Collection\n *\n * @returns {*}\n * @param items\n */\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function values(items) {\n  var valuesArray = [];\n\n  if (Array.isArray(items)) {\n    valuesArray.push.apply(valuesArray, _toConsumableArray(items));\n  } else if (items.constructor.name === 'Collection') {\n    valuesArray.push.apply(valuesArray, _toConsumableArray(items.all()));\n  } else {\n    Object.keys(items).forEach(function (prop) {\n      return valuesArray.push(items[prop]);\n    });\n  }\n\n  return valuesArray;\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/values.js?");
+eval("\n\n/**\n * Values helper\n *\n * Retrieve values from [this.items] when it is an array, object or Collection\n *\n * @returns {*}\n * @param items\n */\n\nfunction _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }\n\nmodule.exports = function values(items) {\n  var valuesArray = [];\n\n  if (Array.isArray(items)) {\n    valuesArray.push.apply(valuesArray, _toConsumableArray(items));\n  } else if (items.constructor.name === 'Collection') {\n    valuesArray.push.apply(valuesArray, _toConsumableArray(items.all()));\n  } else {\n    Object.keys(items).forEach(function (prop) {\n      return valuesArray.push(items[prop]);\n    });\n  }\n\n  return valuesArray;\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/values.js?");
 
 /***/ }),
 
@@ -143,7 +155,7 @@ eval("\n\n\n/**\n * Values helper\n *\n * Retrieve values from [this.items] when
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n/**\n * Variadic helper function\n *\n * @param args\n * @returns {*}\n */\n\nmodule.exports = function variadic(args) {\n  if (Array.isArray(args[0])) {\n    return args[0];\n  }\n\n  return args;\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/variadic.js?");
+eval("\n\n/**\n * Variadic helper function\n *\n * @param args\n * @returns {Array}\n */\n\nmodule.exports = function variadic(args) {\n  if (Array.isArray(args[0])) {\n    return args[0];\n  }\n\n  return args;\n};\n\n//# sourceURL=webpack://collect/./dist/helpers/variadic.js?");
 
 /***/ }),
 
@@ -899,7 +911,7 @@ eval("\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpe
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function pop() {\n  if (Array.isArray(this.items)) {\n    return this.items.pop();\n  }\n\n  var keys = Object.keys(this.items);\n  var key = keys[keys.length - 1];\n  var last = this.items[key];\n\n  delete this.items[key];\n\n  return last;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/pop.js?");
+eval("\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isArray = _require.isArray,\n    isObject = _require.isObject;\n\nvar deleteKeys = __webpack_require__(/*! ../helpers/deleteKeys */ \"./dist/helpers/deleteKeys.js\");\n\nmodule.exports = function pop() {\n  var _this = this;\n\n  var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;\n\n  if (this.isEmpty()) {\n    return null;\n  }\n\n  if (isArray(this.items)) {\n    if (count === 1) {\n      return this.items.pop();\n    }\n\n    return new this.constructor(this.items.splice(-count));\n  }\n\n  if (isObject(this.items)) {\n    var keys = Object.keys(this.items);\n\n    if (count === 1) {\n      var key = keys[keys.length - 1];\n      var last = this.items[key];\n\n      deleteKeys(this.items, key);\n\n      return last;\n    }\n\n    var poppedKeys = keys.slice(-count);\n\n    var newObject = poppedKeys.reduce(function (acc, current) {\n      acc[current] = _this.items[current];\n\n      return acc;\n    }, {});\n\n    deleteKeys(this.items, poppedKeys);\n\n    return new this.constructor(newObject);\n  }\n\n  return null;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/pop.js?");
 
 /***/ }),
 
@@ -1043,7 +1055,7 @@ eval("\n\n/* eslint-disable eqeqeq */\n\nvar _require = __webpack_require__(/*! 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function shift() {\n  if (Array.isArray(this.items) && this.items.length) {\n    return this.items.shift();\n  }\n\n  if (Object.keys(this.items).length) {\n    var key = Object.keys(this.items)[0];\n    var value = this.items[key];\n    delete this.items[key];\n\n    return value;\n  }\n\n  return null;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/shift.js?");
+eval("\n\nvar _require = __webpack_require__(/*! ../helpers/is */ \"./dist/helpers/is.js\"),\n    isArray = _require.isArray,\n    isObject = _require.isObject;\n\nvar deleteKeys = __webpack_require__(/*! ../helpers/deleteKeys */ \"./dist/helpers/deleteKeys.js\");\n\nmodule.exports = function shift() {\n  var _this = this;\n\n  var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;\n\n  if (this.isEmpty()) {\n    return null;\n  }\n\n  if (isArray(this.items)) {\n    if (count === 1) {\n      return this.items.shift();\n    }\n\n    return new this.constructor(this.items.splice(0, count));\n  }\n\n  if (isObject(this.items)) {\n    if (count === 1) {\n      var key = Object.keys(this.items)[0];\n      var value = this.items[key];\n      delete this.items[key];\n\n      return value;\n    }\n\n    var keys = Object.keys(this.items);\n    var poppedKeys = keys.slice(0, count);\n\n    var newObject = poppedKeys.reduce(function (acc, current) {\n      acc[current] = _this.items[current];\n\n      return acc;\n    }, {});\n\n    deleteKeys(this.items, poppedKeys);\n\n    return new this.constructor(newObject);\n  }\n\n  return null;\n};\n\n//# sourceURL=webpack://collect/./dist/methods/shift.js?");
 
 /***/ }),
 
