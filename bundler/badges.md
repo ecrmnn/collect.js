@@ -1,4 +1,4 @@
-[![Travis](https://img.shields.io/travis/ecrmnn/collect.js/master.svg?style=flat-square)](https://travis-ci.org/ecrmnn/collect.js/builds)
+[![Travis](https://img.shields.io/travis/com/ecrmnn/collect.js?style=flat-square)](https://app.travis-ci.com/github/ecrmnn/collect.js/builds)
 [![npm version](https://img.shields.io/npm/v/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
 [![npm downloads](https://img.shields.io/npm/dm/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
 [![npm license](https://img.shields.io/npm/l/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
