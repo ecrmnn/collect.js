@@ -8,8 +8,8 @@ module.exports = function mapWithKeys(fn) {
   var collection = {};
 
   if (Array.isArray(this.items)) {
-    this.items.forEach(function (item) {
-      var _fn = fn(item),
+    this.items.forEach(function (item, index) {
+      var _fn = fn(item, index),
           _fn2 = _slicedToArray(_fn, 2),
           keyed = _fn2[0],
           value = _fn2[1];
@@ -18,7 +18,7 @@ module.exports = function mapWithKeys(fn) {
     });
   } else {
     Object.keys(this.items).forEach(function (key) {
-      var _fn3 = fn(_this.items[key]),
+      var _fn3 = fn(_this.items[key], key),
           _fn4 = _slicedToArray(_fn3, 2),
           keyed = _fn4[0],
           value = _fn4[1];
