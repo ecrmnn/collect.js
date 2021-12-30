@@ -51,6 +51,7 @@ Collection.prototype.every = require('./methods/every');
 Collection.prototype.except = require('./methods/except');
 Collection.prototype.filter = require('./methods/filter');
 Collection.prototype.first = require('./methods/first');
+Collection.prototype.firstOr = require('./methods/firstOr');
 Collection.prototype.firstWhere = require('./methods/firstWhere');
 Collection.prototype.flatMap = require('./methods/flatMap');
 Collection.prototype.flatten = require('./methods/flatten');
