@@ -24,8 +24,8 @@ module.exports = (it, expect, collect) => {
   it('should accept a callback', () => {
     const collection = collect([1, 2, 3, 4]);
 
-    expect(
-      collection.sole(item => item === 4)
-    ).to.equal(4);
+    const result = collection.sole(item => item === 4);
+
+    expect(result).to.equal(4);
   });
 };
