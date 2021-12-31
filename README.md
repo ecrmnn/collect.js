@@ -744,6 +744,36 @@ collect([1, 2, 3, 4]).first();
 // 1
 ```
 
+#### `firstOrFail()`
+
+The firstOrFail method returns the first element in the collection, or throws an error if there are no elements:
+
+```js
+collect([1, 2, 3, 4]).firstOrFail(item => item > 1);
+
+// 2
+```
+
+```js
+collect([1, 2, 3, 4]).firstOrFail(item => item > 4);
+
+// Error ("Item not found.") is thrown.
+```
+
+You may also call the firstOrFail method with no arguments to get the first element in the collection. If the collection is empty, an error is thrown:
+
+```js
+collect([1, 2, 3, 4]).firstOrFail();
+
+// 1
+```
+
+```js
+collect().firstOrFail();
+
+// Error ("Item not found.") is thrown.
+```
+
 #### `firstWhere()`
 
 The firstWhere method returns the first element in the collection with the given key / value pair:
@@ -2225,6 +2255,32 @@ const slice = collection.slice(4, 2);
 slice.all();
 
 // [5, 6]
+```
+
+#### `sole()`
+
+The sole method returns the first element in the collection that passes a given truth test, but only if the truth test matches exactly one element:
+
+```js
+collect([1, 2, 3, 4]).sole(item => item === 1);
+
+// 1
+```
+
+If there are no elements in the collection that should be returned by the sole method, then an error will be thrown:
+
+```js
+collect([1, 2, 3, 4]).sole(item => item > 4);
+
+// Error ("Item not found.") is thrown.
+```
+
+If there are multiple elements in the collection that should be returned by the sole method, then an error will be thrown:
+
+```js
+collect([1, 2, 3, 4]).sole();
+
+// Error ("Multiple items found.") is thrown.
 ```
 
 #### `some()`
