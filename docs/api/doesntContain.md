@@ -1,6 +1,6 @@
 # `doesntContain()`
 
-The `doesntContainè method determines whether the collection does not contain a given item. You may pass a closure to the `doesntContain` method to determine if an element does not exist in the collection matching a given truth test:
+The `doesntContain` method determines whether the collection does not contain a given item. You may pass a closure to the `doesntContain` method to determine if an element does not exist in the collection matching a given truth test:
 
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
