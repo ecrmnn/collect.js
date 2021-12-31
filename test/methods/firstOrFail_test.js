@@ -14,9 +14,9 @@ module.exports = (it, expect, collect) => {
   it('should accept a callback', () => {
     const collection = collect([1, 2, 3, 4]);
 
-    expect(
-      collection.firstOrFail(item => item === 4)
-    ).to.equal(4);
+    const result = collection.firstOrFail(item => item === 4);
+
+    expect(result).to.equal(4);
   });
 
   it('should return element when there is only one in the collection', () => {
