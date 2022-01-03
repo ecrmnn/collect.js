@@ -5,8 +5,8 @@
  *
  * Retrieve values from [this.items] when it is an array, object or Collection
  *
- * @returns {*}
  * @param items
+ * @returns {*}
  */
 module.exports = function values(items) {
   const valuesArray = [];
