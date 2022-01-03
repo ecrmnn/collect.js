@@ -6,7 +6,7 @@ module.exports = (it, expect, collect) => {
       { name: 'foo' },
       { name: 'bar' },
     ]);
-    
+
     expect(collection.where('name', 'foo').firstOrFail()).to.deep.equal({ name: 'foo' });
     expect(collection.firstOrFail('name', '=', 'foo')).to.deep.equal({ name: 'foo' });
     expect(collection.firstOrFail('name', 'foo')).to.deep.equal({ name: 'foo' });
@@ -23,7 +23,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should not throw exception if more than one item exists', () => {
+  it('should not throw error if more than one item exists', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'foo' },
@@ -49,7 +49,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should not throw exception if more than one item exists with callback', () => {
+  it('should not throw error if more than one item exists with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     const result = collection.firstOrFail((value) => value === 'bar');

@@ -12,7 +12,7 @@ module.exports = (it, expect, collect) => {
     expect(collection.sole('name', 'foo')).to.deep.equal({ name: 'foo' });
   });
 
-  it('should throw exception if no items exist', () => {
+  it('should throw error if no items exist', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'bar' },
@@ -23,7 +23,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should throw exception if more than one item exists', () => {
+  it('should throw error if more than one item exists', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'foo' },
@@ -43,7 +43,7 @@ module.exports = (it, expect, collect) => {
     expect(result).to.equal('bar');
   });
 
-  it('should throw exception if no items exist with callback', () => {
+  it('should throw error if no items exist with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     expect(() => {
@@ -51,7 +51,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should throw exception if more than one items exist with callback', () => {
+  it('should throw error if more than one items exist with callback', () => {
     const collection = collect(['foo', 'bar', 'bar']);
 
     expect(() => {
