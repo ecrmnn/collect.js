@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (it, expect, collect) => {
-  it('should return first element in collection if only one exists', () => {
+  it('should return first item in collection if only one exists', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'bar' },
@@ -12,7 +12,7 @@ module.exports = (it, expect, collect) => {
     expect(collection.sole('name', 'foo')).to.deep.equal({ name: 'foo' });
   });
 
-  it('should throw exception if no elements exist', () => {
+  it('should throw exception if no items exist', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'bar' },
@@ -23,7 +23,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should throw exception if more than one element exists', () => {
+  it('should throw exception if more than one item exists', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'foo' },
@@ -35,7 +35,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Multiple items found.');
   });
 
-  it('should return first element in collection if only one exists with callback', () => {
+  it('should return first item in collection if only one exists with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     const result = collection.sole((value) => value === 'bar');
@@ -43,7 +43,7 @@ module.exports = (it, expect, collect) => {
     expect(result).to.equal('bar');
   });
 
-  it('should throw exception if no elements exist with callback', () => {
+  it('should throw exception if no items exist with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     expect(() => {
@@ -51,7 +51,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should throw exception if more than one elements exist with callback', () => {
+  it('should throw exception if more than one items exist with callback', () => {
     const collection = collect(['foo', 'bar', 'bar']);
 
     expect(() => {

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = (it, expect, collect) => {
-  it('should return the first element in collection', () => {
+  it('should return the first item in collection', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'bar' },
@@ -12,7 +12,7 @@ module.exports = (it, expect, collect) => {
     expect(collection.firstOrFail('name', 'foo')).to.deep.equal({ name: 'foo' });
   });
 
-  it('should throw error if no elements exists', () => {
+  it('should throw error if no items exists', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'bar' },
@@ -23,7 +23,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should not throw exception if more than one element exists', () => {
+  it('should not throw exception if more than one item exists', () => {
     const collection = collect([
       { name: 'foo' },
       { name: 'foo' },
@@ -33,7 +33,7 @@ module.exports = (it, expect, collect) => {
     expect(collection.where('name', 'foo').firstOrFail()).to.deep.equal({ name: 'foo' });
   });
 
-  it('should return first element in collection if only one exists with callback', () => {
+  it('should return first item in collection if only one exists with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     const result = collection.firstOrFail((value) => value === 'bar');
@@ -41,7 +41,7 @@ module.exports = (it, expect, collect) => {
     expect(result).to.equal('bar');
   });
 
-  it('should throw an exveption if no elements exist with callback', () => {
+  it('should throw an exveption if no items exist with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     expect(() => {
@@ -49,7 +49,7 @@ module.exports = (it, expect, collect) => {
     }).to.throw('Item not found.');
   });
 
-  it('should not throw exception if more than one element exists with callback', () => {
+  it('should not throw exception if more than one item exists with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     const result = collection.firstOrFail((value) => value === 'bar');
