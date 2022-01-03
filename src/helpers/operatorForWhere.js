@@ -21,7 +21,6 @@ module.exports = function operatorForWhere(key, operator = null, value = null) {
 
   if (arguments.length === 2) {
     comparisonValue = operator;
-
     comparisonOperator = '=';
   }
 
