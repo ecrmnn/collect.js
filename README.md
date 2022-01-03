@@ -757,7 +757,7 @@ collect([1, 2, 3, 4]).firstOrFail(item => item > 1);
 ```js
 collect([1, 2, 3, 4]).firstOrFail(item => item > 4);
 
-// Error ("Item not found.") is thrown.
+// Error ('Item not found.') is thrown.
 ```
 
 You may also call the firstOrFail method with no arguments to get the first element in the collection. If the collection is empty, an error is thrown:
@@ -771,7 +771,22 @@ collect([1, 2, 3, 4]).firstOrFail();
 ```js
 collect().firstOrFail();
 
-// Error ("Item not found.") is thrown.
+// Error ('Item not found.') is thrown.
+```
+
+Like the where method, you may also pass an attribute, operator, and value:
+
+```js
+const collection = collect([
+    { product: 'Desk', price: 200, discounted: true },
+    { product: 'Chair', price: 100, discounted: true },
+    { product: 'Bookcase', price: 150, discounted: true },
+    { product: 'Door', price: 100 },
+]);
+
+collection.firstOrFail('product', '=', 'Desk');
+
+// { product: 'Desk', price: 200, discounted: true }
 ```
 
 #### `firstWhere()`
@@ -2272,7 +2287,7 @@ If there are no elements in the collection that should be returned by the sole m
 ```js
 collect([1, 2, 3, 4]).sole(item => item > 4);
 
-// Error ("Item not found.") is thrown.
+// Error ('Item not found.') is thrown.
 ```
 
 If there are multiple elements in the collection that should be returned by the sole method, then an error will be thrown:
@@ -2280,7 +2295,22 @@ If there are multiple elements in the collection that should be returned by the 
 ```js
 collect([1, 2, 3, 4]).sole();
 
-// Error ("Multiple items found.") is thrown.
+// Error ('Multiple items found.') is thrown.
+```
+
+Like the firstOrFail method, you may also pass an attribute, operator, and value:
+
+```js
+const collection = collect([
+    { product: 'Desk', price: 200, discounted: true },
+    { product: 'Chair', price: 100, discounted: true },
+    { product: 'Bookcase', price: 150, discounted: true },
+    { product: 'Door', price: 100 },
+]);
+
+collection.sole('product', '=', 'Desk');
+
+// { product: 'Desk', price: 200, discounted: true }
 ```
 
 #### `some()`
