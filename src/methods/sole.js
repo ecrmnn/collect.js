@@ -2,10 +2,14 @@
 
 const operatorForWhere = require('../helpers/operatorForWhere');
 
-module.exports = function sole(key = null, operator = null, value = null) {
-  const filter = arguments.length > 1
-    ? operatorForWhere(...arguments)
-    : key;
+module.exports = function sole(key = null, ...operatorAndValue) {
+  let filter = null;
+
+  if (arguments.length > 1) {
+    filter = operatorForWhere(key, ...operatorAndValue);
+  } else {
+    filter = key;
+  }
 
   const items = this.when(filter, (collection) => collection.filter(filter));
 
