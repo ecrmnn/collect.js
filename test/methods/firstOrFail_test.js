@@ -1,33 +1,73 @@
 'use strict';
 
 module.exports = (it, expect, collect) => {
-  it('should throw an error when item is not found', () => {
+  it('should return the first element in collection', () => {
+    const collection = collect([
+      { name: 'foo' },
+      { name: 'bar' },
+    ]);
+    
+    expect(collection.where('name', 'foo').firstOrFail()).to.deep.equal({ name: 'foo' });
+    expect(collection.firstOrFail('name', '=', 'foo')).to.deep.equal({ name: 'foo' });
+    expect(collection.firstOrFail('name', 'foo')).to.deep.equal({ name: 'foo' });
+  });
+
+  it('should throw error if no elements exists', () => {
+    const collection = collect([
+      { name: 'foo' },
+      { name: 'bar' },
+    ]);
+
     expect(() => {
-      collect().firstOrFail()
+      collection.where('name', 'INVALID').firstOrFail();
     }).to.throw('Item not found.');
   });
 
-  it('should return the first element when item is found', () => {
-    expect(collect([1, 2, 3, 4]).firstOrFail()).to.equal(1);
+  it('should not throw exception if more than one element exists', () => {
+    const collection = collect([
+      { name: 'foo' },
+      { name: 'foo' },
+      { name: 'bar' },
+    ]);
+
+    expect(collection.where('name', 'foo').firstOrFail()).to.deep.equal({ name: 'foo' });
   });
 
-  it('should accept a callback', () => {
-    const collection = collect([1, 2, 3, 4]);
+  it('should return first element in collection if only one exists with callback', () => {
+    const collection = collect(['foo', 'bar', 'baz']);
 
-    const result = collection.firstOrFail(item => item === 4);
+    const result = collection.firstOrFail((value) => value === 'bar');
 
-    expect(result).to.equal(4);
+    expect(result).to.equal('bar');
   });
 
-  it('should return element when there is only one in the collection', () => {
-    const collection = collect([1]);
+  it('should throw an exveption if no elements exist with callback', () => {
+    const collection = collect(['foo', 'bar', 'baz']);
 
-    expect(collection.sole()).to.equal(1);
+    expect(() => {
+      collection.firstOrFail((value) => value === 'invalid');
+    }).to.throw('Item not found.');
   });
 
-  it('should return element when one element remains in the collection', () => {
-    const collection = collect([1, 2, 3, 4]).filter(item => item === 4);
+  it('should not throw exception if more than one element exists with callback', () => {
+    const collection = collect(['foo', 'bar', 'baz']);
 
-    expect(collection.sole()).to.equal(4);
-  })
+    const result = collection.firstOrFail((value) => value === 'bar');
+
+    expect(result).to.equal('bar');
+  });
+
+  it('should stop iterating at first match', () => {
+    const collection = collect([
+      () => false,
+      () => true,
+      () => {
+        throw new Error();
+      }
+    ]);
+
+    const result = collection.firstOrFail((callback) => callback());
+
+    expect(result).to.not.equal(null);
+  });
 };

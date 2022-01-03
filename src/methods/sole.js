@@ -1,7 +1,13 @@
 'use strict';
 
-module.exports = function sole(fn) {
-  const items = this.when(fn, (collection) => collection.filter(fn));
+const operatorForWhere = require('../helpers/operatorForWhere');
+
+module.exports = function sole(key = null, operator = null, value = null) {
+  const filter = arguments.length > 1
+    ? operatorForWhere(...arguments)
+    : key;
+
+  const items = this.when(filter, (collection) => collection.filter(filter));
 
   if (items.isEmpty()) {
     throw new Error('Item not found.');
