@@ -1,7 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-const gtv = require('git-tag-version');
 const { it } = require('mocha');
 const { describe } = require('mocha');
 const path = require('path');
@@ -67,13 +66,6 @@ if (!runSingleTest) {
       const pckg = JSON.parse(content);
 
       expect(pckg.dependencies).to.eql(undefined);
-    });
-
-    it('package.json should match git version', () => {
-      const content = fs.readFileSync('package.json');
-      const pckg = JSON.parse(content);
-
-      expect(pckg.version).to.eql(gtv());
     });
   });
 }
