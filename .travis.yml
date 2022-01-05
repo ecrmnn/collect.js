@@ -1,4 +1,5 @@
 language: node_js
+
 node_js:
   - '16'
   - '14'
@@ -6,6 +7,12 @@ node_js:
   - '10'
   - '8'
   - '6'
+
 script:
   - npm run eslint:strict
   - npm run coverage
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
