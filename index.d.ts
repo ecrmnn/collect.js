@@ -110,7 +110,7 @@ declare module 'collect.js' {
     /**
      * The first method returns the first element in the collection that passes a given truth test.
      */
-    first<V>(fn?: (item: Item) => boolean, defaultValue?: (...any: any[]) => V | Item): Item;
+    first<V>(fn?: (item: Item) => boolean, defaultValue?: ((...any: any[]) => V | Item) | V | Item): Item;
 
     /**
      * The flatMap method iterates through the collection and passes each value to the given callback.
@@ -144,7 +144,7 @@ declare module 'collect.js' {
     /**
      * The get method returns the item at a given key. If the key does not exist, null is returned.
      */
-    get<K, V>(key: keyof Item | K, defaultValue?: (...any: any[]) => V | Item): Item | null;
+    get<K, V>(key: keyof Item | K, defaultValue?: ((...any: any[]) => V | Item) | V | Item): Item | null;
 
     /**
      * The groupBy method groups the collection's items by a given key.
