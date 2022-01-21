@@ -1,9 +1,10 @@
 'use strict';
 
-const { isFunction } = require('../helpers/is');
+var _require = require('../helpers/is'),
+    isFunction = _require.isFunction;
 
 module.exports = function sole(key, operator, value) {
-  let collection;
+  var collection = void 0;
 
   if (isFunction(key)) {
     collection = this.filter(key);

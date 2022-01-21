@@ -38,7 +38,7 @@ module.exports = (it, expect, collect) => {
   it('should return first item in collection if only one exists with callback', () => {
     const collection = collect(['foo', 'bar', 'baz']);
 
-    const result = collection.sole((value) => value === 'bar');
+    const result = collection.sole(value => value === 'bar');
 
     expect(result).to.equal('bar');
   });
@@ -47,7 +47,7 @@ module.exports = (it, expect, collect) => {
     const collection = collect(['foo', 'bar', 'baz']);
 
     expect(() => {
-      collection.sole((value) => value === 'invalid');
+      collection.sole(value => value === 'invalid');
     }).to.throw('Item not found.');
   });
 
@@ -55,7 +55,7 @@ module.exports = (it, expect, collect) => {
     const collection = collect(['foo', 'bar', 'bar']);
 
     expect(() => {
-      collection.sole((value) => value === 'bar');
+      collection.sole(value => value === 'bar');
     }).to.throw('Multiple items found.');
   });
 };

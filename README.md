@@ -67,6 +67,7 @@ All available methods
 - [except](#except)
 - [filter](#filter)
 - [first](#first)
+- [firstOrFail](#firstorfail)
 - [firstWhere](#firstwhere)
 - [flatMap](#flatmap)
 - [flatten](#flatten)
@@ -123,6 +124,7 @@ All available methods
 - [skipUntil](#skipuntil)
 - [skipWhile](#skipwhile)
 - [slice](#slice)
+- [sole](#sole)
 - [some](#some)
 - [sort](#sort)
 - [sortBy](#sortby)
@@ -744,7 +746,7 @@ collect([1, 2, 3, 4]).first();
 // 1
 ```
 
-#### `firstOrFail()`
+####### `firstOrFail()`
 
 The firstOrFail method returns the first element in the collection, or throws an error if there are no elements:
 
@@ -778,16 +780,17 @@ Like the where method, you may also pass an attribute, operator, and value:
 
 ```js
 const collection = collect([
-    { product: 'Desk', price: 200, discounted: true },
-    { product: 'Chair', price: 100, discounted: true },
-    { product: 'Bookcase', price: 150, discounted: true },
-    { product: 'Door', price: 100 },
+  { product: 'Desk', price: 200, discounted: true },
+  { product: 'Chair', price: 100, discounted: true },
+  { product: 'Bookcase', price: 150, discounted: true },
+  { product: 'Door', price: 100 },
 ]);
 
 collection.firstOrFail('product', '=', 'Desk');
 
 // { product: 'Desk', price: 200, discounted: true }
 ```
+
 
 #### `firstWhere()`
 
@@ -2272,7 +2275,7 @@ slice.all();
 // [5, 6]
 ```
 
-#### `sole()`
+####### `sole()`
 
 The sole method returns the first element in the collection that passes a given truth test, but only if the truth test matches exactly one element:
 
@@ -2302,16 +2305,17 @@ Like the firstOrFail method, you may also pass an attribute, operator, and value
 
 ```js
 const collection = collect([
-    { product: 'Desk', price: 200, discounted: true },
-    { product: 'Chair', price: 100, discounted: true },
-    { product: 'Bookcase', price: 150, discounted: true },
-    { product: 'Door', price: 100 },
+  { product: 'Desk', price: 200, discounted: true },
+  { product: 'Chair', price: 100, discounted: true },
+  { product: 'Bookcase', price: 150, discounted: true },
+  { product: 'Door', price: 100 },
 ]);
 
 collection.sole('product', '=', 'Desk');
 
 // { product: 'Desk', price: 200, discounted: true }
 ```
+
 
 #### `some()`
 

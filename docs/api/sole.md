@@ -28,10 +28,10 @@ Like the firstOrFail method, you may also pass an attribute, operator, and value
 
 ```js
 const collection = collect([
-    { product: 'Desk', price: 200, discounted: true },
-    { product: 'Chair', price: 100, discounted: true },
-    { product: 'Bookcase', price: 150, discounted: true },
-    { product: 'Door', price: 100 },
+  { product: 'Desk', price: 200, discounted: true },
+  { product: 'Chair', price: 100, discounted: true },
+  { product: 'Bookcase', price: 150, discounted: true },
+  { product: 'Door', price: 100 },
 ]);
 
 collection.sole('product', '=', 'Desk');
