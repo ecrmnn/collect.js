@@ -1,6 +1,6 @@
 {
   "name": "collect.js",
-  "version": "4.30.7",
+  "version": "4.31.0",
   "description": "Convenient and dependency free wrapper for working with arrays and objects.",
   "main": "dist/index.js",
   "typings": "index.d.ts",
@@ -8,7 +8,7 @@
     "all": "npm run build && npm test && npm run eslint && npm run validate-version",
     "pretest": "npm run transpile",
     "test": "mocha test/tests.js",
-    "transpile": "babel src --quiet --out-dir dist",
+    "transpile": "rm -rf dist && babel src --quiet --out-dir dist",
     "readme": "node bundler/bundle.js",
     "bundle.development": "webpack-cli dist/index.js --output build/collect.js --mode development --output-library collect",
     "bundle.production": "webpack-cli dist/index.js --output build/collect.min.js --mode production --output-library collect",
