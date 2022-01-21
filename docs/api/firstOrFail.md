@@ -1,4 +1,4 @@
-#### `firstOrFail()`
+# `firstOrFail()`
 
 The firstOrFail method returns the first element in the collection, or throws an error if there are no elements:
 

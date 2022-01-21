@@ -51,6 +51,20 @@ if (!runSingleTest) {
       expect(missingDocumentation).to.eql(['symbol.iterator']);
     });
 
+    it('should use correct heading in documentation files', () => {
+      const docFiles = fs.readdirSync(path.join(__dirname, '../docs/api'), 'utf-8');
+
+      docFiles.forEach((fileName) => {
+        const content = fs.readFileSync(path.join(__dirname, '../docs/api', fileName), 'utf-8');
+
+        const methodName = fileName.replace(/.md/, '');
+        const expectedHeading = `# \`${methodName}()\``;
+        const actualHeading = content.split(/\n/)[0];
+
+        expect(actualHeading).to.eql(expectedHeading);
+      });
+    });
+
     it('should document all methods in docs/api', () => {
       const docFiles = fs.readdirSync(path.join(__dirname, '../docs/api'), 'utf-8');
       const methodFiles = fs.readdirSync(path.join(__dirname, '../src/methods'), 'utf-8');

@@ -1,4 +1,4 @@
-#### `sole()`
+# `sole()`
 
 The sole method returns the first element in the collection that passes a given truth test, but only if the truth test matches exactly one element:
 

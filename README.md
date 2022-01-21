@@ -746,7 +746,7 @@ collect([1, 2, 3, 4]).first();
 // 1
 ```
 
-####### `firstOrFail()`
+#### `firstOrFail()`
 
 The firstOrFail method returns the first element in the collection, or throws an error if there are no elements:
 
@@ -2275,7 +2275,7 @@ slice.all();
 // [5, 6]
 ```
 
-####### `sole()`
+#### `sole()`
 
 The sole method returns the first element in the collection that passes a given truth test, but only if the truth test matches exactly one element:
 
