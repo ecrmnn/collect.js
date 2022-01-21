@@ -8,7 +8,7 @@
     "all": "npm run build && npm test && npm run eslint && npm run validate-version",
     "pretest": "npm run transpile",
     "test": "mocha test/tests.js",
-    "transpile": "babel src --quiet --out-dir dist",
+    "transpile": "rm -rf dist && babel src --quiet --out-dir dist",
     "readme": "node bundler/bundle.js",
     "bundle.development": "webpack-cli dist/index.js --output build/collect.js --mode development --output-library collect",
     "bundle.production": "webpack-cli dist/index.js --output build/collect.min.js --mode production --output-library collect",

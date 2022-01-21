@@ -57,7 +57,7 @@ module.exports = (it, expect, collect) => {
     expect(flattened2.all()).to.eql([undefined]);
   });
 
-  it('should not throw exceptions when encountering null', () => {
+  it('should not throw errors when encountering null', () => {
     const data = {
       Apple: [
         { name: null, brand: 'Apple' },
