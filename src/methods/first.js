@@ -4,7 +4,7 @@ const { isFunction } = require('../helpers/is');
 
 module.exports = function first(fn, defaultValue) {
   if (isFunction(fn)) {
-    for (const [item, key] of Object.entries(this.items)) {
+    for (const [key, item] of Object.entries(this.items)) {
       if (fn(item, key)) {
         return item;
       }
