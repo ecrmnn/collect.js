@@ -4,10 +4,9 @@ const { isFunction } = require('../helpers/is');
 
 module.exports = function first(fn, defaultValue) {
   if (isFunction(fn)) {
-
     const entries = Object.entries(this.items);
 
-    for (i = 0; i < entries.length; i++) {
+    for (let i = 0; i < entries.length; i += 1) {
       const entry = entries[i];
       const key = entry[0];
       const item = entry[1];
@@ -15,7 +14,7 @@ module.exports = function first(fn, defaultValue) {
       if (fn(item, key)) {
         return item;
       }
-    };
+    }
 
     if (isFunction(defaultValue)) {
       return defaultValue();
