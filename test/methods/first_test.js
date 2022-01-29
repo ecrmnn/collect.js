@@ -39,7 +39,7 @@ module.exports = (it, expect, collect) => {
       name: 'Sadio Mané',
       club: 'Liverpool FC',
     });
-    const first = collection.first((item, key) => key == "club");
+    const first = collection.first((item, key) => key === 'club');
 
     expect(first).to.eql('Liverpool FC');
     expect(collection.all()).to.eql({
