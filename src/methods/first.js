@@ -4,12 +4,11 @@ const { isFunction } = require('../helpers/is');
 
 module.exports = function first(fn, defaultValue) {
   if (isFunction(fn)) {
-    const entries = Object.entries(this.items);
+    const keys = Object.keys(this.items);
 
-    for (let i = 0; i < entries.length; i += 1) {
-      const entry = entries[i];
-      const key = entry[0];
-      const item = entry[1];
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
+      const item = this.items[key];
 
       if (fn(item, key)) {
         return item;
