@@ -4,11 +4,14 @@ const { isFunction } = require('../helpers/is');
 
 module.exports = function first(fn, defaultValue) {
   if (isFunction(fn)) {
-    for (const [key, item] of Object.entries(this.items)) {
+    Object.entries(this.items).forEach((entry) => {
+      const key = entry[0];
+      const item = entry[1];
+
       if (fn(item, key)) {
         return item;
       }
-    }
+    });
 
     if (isFunction(defaultValue)) {
       return defaultValue();
