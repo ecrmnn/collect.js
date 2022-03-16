@@ -34,6 +34,20 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql([1, 2, 3]);
   });
 
+  it('should accept a callback when the collection is an object', () => {
+    const collection = collect({
+      name: 'Sadio Mané',
+      club: 'Liverpool FC',
+    });
+    const first = collection.first((item, key) => key === 'club');
+
+    expect(first).to.eql('Liverpool FC');
+    expect(collection.all()).to.eql({
+      name: 'Sadio Mané',
+      club: 'Liverpool FC',
+    });
+  });
+
   it('should accept a default value', () => {
     const collection = collect([4, 3, 2, 1]);
     const first = collection.first(item => item >= 5, 5);

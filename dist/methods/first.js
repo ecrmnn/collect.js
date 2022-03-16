@@ -5,9 +5,13 @@ var _require = require('../helpers/is'),
 
 module.exports = function first(fn, defaultValue) {
   if (isFunction(fn)) {
-    for (var i = 0, length = this.items.length; i < length; i += 1) {
-      var item = this.items[i];
-      if (fn(item)) {
+    var keys = Object.keys(this.items);
+
+    for (var i = 0; i < keys.length; i += 1) {
+      var key = keys[i];
+      var item = this.items[key];
+
+      if (fn(item, key)) {
         return item;
       }
     }
