@@ -110,7 +110,7 @@ declare module 'collect.js' {
     /**
      * The first method returns the first element in the collection that passes a given truth test.
      */
-    first<V>(fn?: (item: Item) => boolean, defaultValue?: ((...any: any[]) => V | Item) | V | Item): Item;
+    first<V>(fn?: (item: Item, key: any) => boolean, defaultValue?: ((...any: any[]) => V | Item) | V | Item): Item;
 
     /**
      * The flatMap method iterates through the collection and passes each value to the given callback.
