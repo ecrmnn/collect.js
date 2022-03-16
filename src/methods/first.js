@@ -4,9 +4,13 @@ const { isFunction } = require('../helpers/is');
 
 module.exports = function first(fn, defaultValue) {
   if (isFunction(fn)) {
-    for (let i = 0, { length } = this.items; i < length; i += 1) {
-      const item = this.items[i];
-      if (fn(item)) {
+    const keys = Object.keys(this.items);
+
+    for (let i = 0; i < keys.length; i += 1) {
+      const key = keys[i];
+      const item = this.items[key];
+
+      if (fn(item, key)) {
         return item;
       }
     }
