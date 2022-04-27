@@ -51,6 +51,7 @@ All available methods
 - [combine](#combine)
 - [concat](#concat)
 - [contains](#contains)
+- [containsOneItem](#containsoneitem)
 - [count](#count)
 - [countBy](#countby)
 - [crossJoin](#crossjoin)
@@ -378,6 +379,37 @@ collection.contains((value, key) => value > 5);
 
 // false
 ```
+
+#### `containsOneItem()`
+
+The containsOneItem method returns true if the collection contains exactly one item; otherwise, false is returned:
+
+```js
+collect([1]).containsOneItem();
+// true
+
+collect({ firstname: 'Luis' }).containsOneItem();
+// true
+
+collect('value').containsOneItem();
+// true
+
+collect([1, 2, 3]).containsOneItem();
+//  false
+
+collect({ firstname: 'Luis', lastname: 'Díaz' }).containsOneItem();
+// false
+
+collect().containsOneItem();
+// false
+
+collect([]).containsOneItem();
+// false
+
+collect({}).containsOneItem();
+// false
+```
+
 
 #### `count()`
 

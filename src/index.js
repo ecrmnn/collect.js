@@ -36,6 +36,7 @@ Collection.prototype.collapse = require('./methods/collapse');
 Collection.prototype.combine = require('./methods/combine');
 Collection.prototype.concat = require('./methods/concat');
 Collection.prototype.contains = require('./methods/contains');
+Collection.prototype.containsOneItem = require('./methods/containsOneItem');
 Collection.prototype.count = require('./methods/count');
 Collection.prototype.countBy = require('./methods/countBy');
 Collection.prototype.crossJoin = require('./methods/crossJoin');
