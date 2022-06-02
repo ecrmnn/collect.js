@@ -5,7 +5,7 @@ module.exports = (it, expect, collect) => {
     const collection = collect({
       name: 'Taylor',
       'meta.foo': 'bar',
-      'meta.baz': 'boom',
+      'meta.baz': ['boom', 'boom', 'boom'],
       'meta.bam.boom': 'bip',
     });
 
@@ -13,7 +13,7 @@ module.exports = (it, expect, collect) => {
       name: 'Taylor',
       meta: {
         foo: 'bar',
-        baz: 'boom',
+        baz: ['boom', 'boom', 'boom'],
         bam: {
           boom: 'bip',
         },
