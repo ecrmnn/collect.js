@@ -36,4 +36,36 @@ module.exports = (it, expect, collect) => {
       },
     });
   });
+
+  it('should undot documentation example', () => {
+    const person = collect({
+      'name.first_name': 'Marie',
+      'name.last_name': 'Valentine',
+      'address.line_1': '2992 Eagle Drive',
+      'address.line_2': '',
+      'address.suburb': 'Detroit',
+      'address.state': 'MI',
+      'address.postcode': '48219',
+    });
+
+    const undotted = person.undot();
+
+    const all = undotted.all();
+
+    const expected = {
+      name: {
+        first_name: 'Marie',
+        last_name: 'Valentine',
+      },
+      address: {
+        line_1: '2992 Eagle Drive',
+        line_2: '',
+        suburb: 'Detroit',
+        state: 'MI',
+        postcode: '48219',
+      },
+    };
+
+    expect(all).to.eql(expected);
+  });
 };

@@ -6,15 +6,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var clone = require('../helpers/clone');
-
 module.exports = function undot() {
   var _this = this;
 
   var collection = {};
   Object.keys(this.items).forEach(function (key) {
     if (key.indexOf('.') !== -1) {
-      var obj = clone(collection);
+      var obj = collection;
       key.split('.').reduce(function (acc, current, index, array) {
         if (!acc[current]) {
           acc[current] = {};

@@ -15,7 +15,7 @@ const person = collect({
 
 const undotted = person.undot();
 
-const all = person.all();
+const all = undotted.all();
 
 // {
 //   name: {

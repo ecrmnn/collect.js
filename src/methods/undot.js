@@ -1,13 +1,11 @@
 'use strict';
 
-const clone = require('../helpers/clone');
-
 module.exports = function undot() {
   let collection = {};
 
   Object.keys(this.items).forEach((key) => {
     if (key.indexOf('.') !== -1) {
-      const obj = clone(collection);
+      const obj = collection;
 
       key.split('.').reduce((acc, current, index, array) => {
         if (!acc[current]) {
