@@ -9,6 +9,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 module.exports = function undot() {
   var _this = this;
 
+  if (Array.isArray(this.items)) {
+    return this;
+  }
+
   var collection = {};
   Object.keys(this.items).forEach(function (key) {
     if (key.indexOf('.') !== -1) {

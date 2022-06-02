@@ -1,6 +1,10 @@
 'use strict';
 
 module.exports = function undot() {
+  if (Array.isArray(this.items)) {
+    return this;
+  }
+
   let collection = {};
 
   Object.keys(this.items).forEach((key) => {

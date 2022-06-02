@@ -68,4 +68,16 @@ module.exports = (it, expect, collect) => {
 
     expect(all).to.eql(expected);
   });
+
+  it('should ignore array based collections', () => {
+    const data = [
+      'name.first',
+      'name.last',
+      'xoxo',
+    ];
+
+    const collection = collect(data);
+
+    expect(collection.undot().all()).to.eql(data);
+  });
 };
