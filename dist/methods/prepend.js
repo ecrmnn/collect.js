@@ -6,6 +6,5 @@ module.exports = function prepend(value, key) {
   }
 
   this.items.unshift(value);
-
   return this;
 };

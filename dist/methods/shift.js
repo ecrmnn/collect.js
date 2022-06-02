@@ -28,21 +28,16 @@ module.exports = function shift() {
       var key = Object.keys(this.items)[0];
       var value = this.items[key];
       delete this.items[key];
-
       return value;
     }
 
     var keys = Object.keys(this.items);
     var poppedKeys = keys.slice(0, count);
-
     var newObject = poppedKeys.reduce(function (acc, current) {
       acc[current] = _this.items[current];
-
       return acc;
     }, {});
-
     deleteKeys(this.items, poppedKeys);
-
     return new this.constructor(newObject);
   }
 

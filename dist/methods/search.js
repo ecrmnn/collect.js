@@ -1,5 +1,4 @@
 'use strict';
-
 /* eslint-disable eqeqeq */
 
 var _require = require('../helpers/is'),
@@ -10,7 +9,7 @@ var _require = require('../helpers/is'),
 module.exports = function search(valueOrFunction, strict) {
   var _this = this;
 
-  var result = void 0;
+  var result;
 
   var find = function find(item, key) {
     if (isFunction(valueOrFunction)) {

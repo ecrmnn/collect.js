@@ -6,7 +6,6 @@ var _require = require('../helpers/is'),
 
 module.exports = function flatten(depth) {
   var flattenDepth = depth || Infinity;
-
   var fullyFlattened = false;
   var collection = [];
 
@@ -43,7 +42,6 @@ module.exports = function flatten(depth) {
       return isObject(item);
     });
     fullyFlattened = fullyFlattened.length === 0;
-
     flattenDepth -= 1;
   };
 

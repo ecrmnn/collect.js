@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * Get value of a nested property
  *

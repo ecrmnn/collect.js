@@ -1,12 +1,12 @@
 'use strict';
 
 var values = require('../helpers/values');
+
 var nestedValue = require('../helpers/nestedValue');
 
 module.exports = function where(key, operator, value) {
   var comparisonOperator = operator;
   var comparisonValue = value;
-
   var items = values(this.items);
 
   if (operator === undefined || operator === true) {
@@ -55,6 +55,5 @@ module.exports = function where(key, operator, value) {
         return nestedValue(item, key) >= comparisonValue;
     }
   });
-
   return new this.constructor(collection);
 };

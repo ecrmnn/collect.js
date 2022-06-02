@@ -29,7 +29,6 @@ module.exports = function first(fn, defaultValue) {
     }
 
     var firstKey = Object.keys(this.items)[0];
-
     return this.items[firstKey];
   }
 

@@ -1,9 +1,9 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function Collection(collection) {
-  if (collection !== undefined && !Array.isArray(collection) && (typeof collection === 'undefined' ? 'undefined' : _typeof(collection)) !== 'object') {
+  if (collection !== undefined && !Array.isArray(collection) && _typeof(collection) !== 'object') {
     this.items = [collection];
   } else if (collection instanceof this.constructor) {
     this.items = collection.all();
@@ -11,21 +11,23 @@ function Collection(collection) {
     this.items = collection || [];
   }
 }
-
 /**
  * Symbol.iterator
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
  */
+
+
 var SymbolIterator = require('./methods/symbol.iterator');
 
 if (typeof Symbol !== 'undefined') {
   Collection.prototype[Symbol.iterator] = SymbolIterator;
 }
-
 /**
  * Support JSON.stringify
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
  */
+
+
 Collection.prototype.toJSON = function toJSON() {
   return this.items;
 };
@@ -131,6 +133,7 @@ Collection.prototype.times = require('./methods/times');
 Collection.prototype.toArray = require('./methods/toArray');
 Collection.prototype.toJson = require('./methods/toJson');
 Collection.prototype.transform = require('./methods/transform');
+Collection.prototype.undot = require('./methods/undot');
 Collection.prototype.unless = require('./methods/unless');
 Collection.prototype.unlessEmpty = require('./methods/whenNotEmpty');
 Collection.prototype.unlessNotEmpty = require('./methods/whenEmpty');
@@ -158,5 +161,5 @@ var collect = function collect(collection) {
 
 module.exports = collect;
 module.exports.collect = collect;
-module.exports.default = collect;
+module.exports["default"] = collect;
 module.exports.Collection = Collection;

@@ -18,6 +18,5 @@ module.exports = function join(glue, finalGlue) {
   }
 
   var finalItem = collection.pop();
-
   return collection.implode(glue) + finalGlue + finalItem;
 };

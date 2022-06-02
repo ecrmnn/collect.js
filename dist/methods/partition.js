@@ -3,11 +3,10 @@
 module.exports = function partition(fn) {
   var _this = this;
 
-  var arrays = void 0;
+  var arrays;
 
   if (Array.isArray(this.items)) {
     arrays = [new this.constructor([]), new this.constructor([])];
-
     this.items.forEach(function (item) {
       if (fn(item) === true) {
         arrays[0].push(item);
@@ -17,7 +16,6 @@ module.exports = function partition(fn) {
     });
   } else {
     arrays = [new this.constructor({}), new this.constructor({})];
-
     Object.keys(this.items).forEach(function (prop) {
       var value = _this.items[prop];
 

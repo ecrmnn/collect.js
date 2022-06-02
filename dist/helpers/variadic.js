@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * Variadic helper function
  *

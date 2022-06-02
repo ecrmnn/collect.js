@@ -4,7 +4,7 @@ module.exports = function mergeRecursive(items) {
   const merge = (target, source) => {
     const merged = {};
 
-    const mergedKeys = Object.keys(Object.assign({}, target, source));
+    const mergedKeys = Object.keys({ ...target, ...source });
 
     mergedKeys.forEach((key) => {
       if (target[key] === undefined && source[key] !== undefined) {
