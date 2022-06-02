@@ -12,6 +12,5 @@ module.exports = function zip(array) {
   var collection = this.items.map(function (item, index) {
     return new _this.constructor([item, values[index]]);
   });
-
   return new this.constructor(collection);
 };

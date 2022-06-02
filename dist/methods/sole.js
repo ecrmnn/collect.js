@@ -4,7 +4,7 @@ var _require = require('../helpers/is'),
     isFunction = _require.isFunction;
 
 module.exports = function sole(key, operator, value) {
-  var collection = void 0;
+  var collection;
 
   if (isFunction(key)) {
     collection = this.filter(key);

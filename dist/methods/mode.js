@@ -19,21 +19,25 @@ module.exports = function mode(key) {
 
     if (!tempValues.length) {
       if (key !== undefined) {
-        values.push({ key: item[key], count: 1 });
+        values.push({
+          key: item[key],
+          count: 1
+        });
       } else {
-        values.push({ key: item, count: 1 });
+        values.push({
+          key: item,
+          count: 1
+        });
       }
     } else {
       tempValues[0].count += 1;
       var count = tempValues[0].count;
-
 
       if (count > highestCount) {
         highestCount = count;
       }
     }
   });
-
   return values.filter(function (value) {
     return value.count === highestCount;
   }).map(function (value) {

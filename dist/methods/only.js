@@ -5,7 +5,7 @@ var variadic = require('../helpers/variadic');
 module.exports = function only() {
   var _this = this;
 
-  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
 
@@ -20,12 +20,10 @@ module.exports = function only() {
   }
 
   var collection = {};
-
   Object.keys(this.items).forEach(function (prop) {
     if (properties.indexOf(prop) !== -1) {
       collection[prop] = _this.items[prop];
     }
   });
-
   return new this.constructor(collection);
 };

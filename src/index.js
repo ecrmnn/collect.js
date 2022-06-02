@@ -129,6 +129,7 @@ Collection.prototype.times = require('./methods/times');
 Collection.prototype.toArray = require('./methods/toArray');
 Collection.prototype.toJson = require('./methods/toJson');
 Collection.prototype.transform = require('./methods/transform');
+Collection.prototype.undot = require('./methods/undot');
 Collection.prototype.unless = require('./methods/unless');
 Collection.prototype.unlessEmpty = require('./methods/whenNotEmpty');
 Collection.prototype.unlessNotEmpty = require('./methods/whenEmpty');

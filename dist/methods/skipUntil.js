@@ -9,11 +9,12 @@ module.exports = function skipUntil(valueOrFunction) {
   var _this = this;
 
   var previous = null;
-  var items = void 0;
+  var items;
 
   var callback = function callback(value) {
     return value === valueOrFunction;
   };
+
   if (isFunction(valueOrFunction)) {
     callback = valueOrFunction;
   }

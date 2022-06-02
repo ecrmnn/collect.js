@@ -6,7 +6,6 @@ var _require = require('../helpers/is'),
 module.exports = function last(fn, defaultValue) {
   var items = this.items;
 
-
   if (isFunction(fn)) {
     items = this.filter(fn).all();
   }
@@ -22,7 +21,7 @@ module.exports = function last(fn, defaultValue) {
   if (Array.isArray(items)) {
     return items[items.length - 1];
   }
-  var keys = Object.keys(items);
 
+  var keys = Object.keys(items);
   return items[keys[keys.length - 1]];
 };

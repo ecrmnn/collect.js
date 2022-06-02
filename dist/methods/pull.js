@@ -15,6 +15,5 @@ module.exports = function pull(key, defaultValue) {
   }
 
   delete this.items[key];
-
   return returnValue;
 };

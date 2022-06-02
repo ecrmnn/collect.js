@@ -6,26 +6,30 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-module.exports = function replace(items) {
-  if (!items) {
-    return this;
-  }
+var clone = require('../helpers/clone');
 
-  if (Array.isArray(items)) {
-    var _replaced = this.items.map(function (value, index) {
-      return items[index] || value;
-    });
+module.exports = function undot() {
+  var _this = this;
 
-    return new this.constructor(_replaced);
-  }
+  var collection = {};
+  Object.keys(this.items).forEach(function (key) {
+    if (key.indexOf('.') !== -1) {
+      var obj = clone(collection);
+      key.split('.').reduce(function (acc, current, index, array) {
+        if (!acc[current]) {
+          acc[current] = {};
+        }
 
-  if (items.constructor.name === 'Collection') {
-    var _replaced2 = _objectSpread(_objectSpread({}, this.items), items.all());
+        if (index === array.length - 1) {
+          acc[current] = _this.items[key];
+        }
 
-    return new this.constructor(_replaced2);
-  }
-
-  var replaced = _objectSpread(_objectSpread({}, this.items), items);
-
-  return new this.constructor(replaced);
+        return acc[current];
+      }, obj);
+      collection = _objectSpread(_objectSpread({}, collection), obj);
+    } else {
+      collection[key] = _this.items[key];
+    }
+  });
+  return new this.constructor(collection);
 };

@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function push() {
-  var _items;
+  var _this$items;
 
-  (_items = this.items).push.apply(_items, arguments);
+  (_this$items = this.items).push.apply(_this$items, arguments);
 
   return this;
 };

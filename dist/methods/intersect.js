@@ -10,6 +10,5 @@ module.exports = function intersect(values) {
   var collection = this.items.filter(function (item) {
     return intersectValues.indexOf(item) !== -1;
   });
-
   return new this.constructor(collection);
 };
