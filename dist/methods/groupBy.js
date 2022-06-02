@@ -9,9 +9,8 @@ module.exports = function groupBy(key) {
   var _this = this;
 
   var collection = {};
-
   this.items.forEach(function (item, index) {
-    var resolvedKey = void 0;
+    var resolvedKey;
 
     if (isFunction(key)) {
       resolvedKey = key(item, index);
@@ -27,6 +26,5 @@ module.exports = function groupBy(key) {
 
     collection[resolvedKey].push(item);
   });
-
   return new this.constructor(collection);
 };

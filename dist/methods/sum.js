@@ -7,7 +7,6 @@ var _require = require('../helpers/is'),
 
 module.exports = function sum(key) {
   var items = values(this.items);
-
   var total = 0;
 
   if (key === undefined) {

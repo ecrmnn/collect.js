@@ -2,7 +2,6 @@
 
 module.exports = function split(numberOfGroups) {
   var itemsPerGroup = Math.round(this.items.length / numberOfGroups);
-
   var items = JSON.parse(JSON.stringify(this.items));
   var collection = [];
 

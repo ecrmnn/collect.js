@@ -12,12 +12,12 @@ module.exports = function replace(items) {
   }
 
   if (items.constructor.name === 'Collection') {
-    const replaced = Object.assign({}, this.items, items.all());
+    const replaced = { ...this.items, ...items.all() };
 
     return new this.constructor(replaced);
   }
 
-  const replaced = Object.assign({}, this.items, items);
+  const replaced = { ...this.items, ...items };
 
   return new this.constructor(replaced);
 };

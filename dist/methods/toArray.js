@@ -23,11 +23,9 @@ module.exports = function toArray() {
 
   if (Array.isArray(this.items)) {
     var collection = [];
-
     this.items.forEach(function (items) {
       iterate(items, collection);
     });
-
     return collection;
   }
 

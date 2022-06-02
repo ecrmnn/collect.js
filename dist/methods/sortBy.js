@@ -7,6 +7,7 @@ var _require = require('../helpers/is'),
 
 module.exports = function sortBy(valueOrFunction) {
   var collection = [].concat(this.items);
+
   var getValue = function getValue(item) {
     if (isFunction(valueOrFunction)) {
       return valueOrFunction(item);
@@ -22,6 +23,7 @@ module.exports = function sortBy(valueOrFunction) {
     if (valueA === null || valueA === undefined) {
       return 1;
     }
+
     if (valueB === null || valueB === undefined) {
       return -1;
     }
@@ -29,12 +31,12 @@ module.exports = function sortBy(valueOrFunction) {
     if (valueA < valueB) {
       return -1;
     }
+
     if (valueA > valueB) {
       return 1;
     }
 
     return 0;
   });
-
   return new this.constructor(collection);
 };

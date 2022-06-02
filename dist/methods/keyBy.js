@@ -15,7 +15,6 @@ module.exports = function keyBy(key) {
   } else {
     this.items.forEach(function (item) {
       var keyValue = nestedValue(item, key);
-
       collection[keyValue || ''] = item;
     });
   }

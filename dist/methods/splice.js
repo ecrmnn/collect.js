@@ -2,7 +2,6 @@
 
 module.exports = function splice(index, limit, replace) {
   var slicedCollection = this.slice(index, limit);
-
   this.items = this.diff(slicedCollection.all()).all();
 
   if (Array.isArray(replace)) {

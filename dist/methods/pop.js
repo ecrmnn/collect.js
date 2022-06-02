@@ -29,22 +29,16 @@ module.exports = function pop() {
     if (count === 1) {
       var key = keys[keys.length - 1];
       var last = this.items[key];
-
       deleteKeys(this.items, key);
-
       return last;
     }
 
     var poppedKeys = keys.slice(-count);
-
     var newObject = poppedKeys.reduce(function (acc, current) {
       acc[current] = _this.items[current];
-
       return acc;
     }, {});
-
     deleteKeys(this.items, poppedKeys);
-
     return new this.constructor(newObject);
   }
 
