@@ -1977,7 +1977,7 @@ collection.all();
 
 #### `push()`
 
-The push method appends an item to the end of the collection:
+The push method appends items to the end of the collection:
 
 ```js
 const collection = collect([1, 2, 3, 4]);
