@@ -43,6 +43,7 @@ Using Laravel as your backend? Collect.js offers an (almost) identical api to [L
 
 All available methods
 
+- [add](#add)
 - [all](#all)
 - [average](#average)
 - [avg](#avg)
@@ -178,6 +179,16 @@ All comparisons in `collect.js` are done using strict equality. Using loose equa
 - ~~`whereStrict`~~ use `where()`
 - ~~`whereInStrict`~~ use `whereIn()`
 - ~~`whereNotInStrict`~~ use `whereNotIn()`
+
+#### `add()`
+
+The add method adds a single item to the collection.
+
+```js
+collect([1, 2, 3, 4]).add(5);
+
+// [1, 2, 3, 4, 5]
+```
 
 #### `all()`
 
