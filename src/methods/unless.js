@@ -1,9 +1,13 @@
 'use strict';
 
-module.exports = function when(value, fn, defaultFn) {
+module.exports = function unless(value, fn, defaultFn) {
   if (!value) {
-    fn(this);
-  } else {
-    defaultFn(this);
+    return fn(this, value);
   }
+
+  if (defaultFn) {
+    return defaultFn(this, value);
+  }
+
+  return this;
 };
