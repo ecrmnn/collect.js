@@ -7,6 +7,11 @@ declare module 'collect.js' {
     constructor(collection?: Item[] | Object);
 
     /**
+     * The add method adds a single item to the collection.
+     */
+    add(item: Item): this;
+
+    /**
      * The all method returns the underlying array represented by the collection.
      */
     all(): Item[];
