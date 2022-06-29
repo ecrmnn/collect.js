@@ -1,9 +1,7 @@
-'use strict';
+import values from '../helpers/values';
 
-const values = require('../helpers/values');
-
-module.exports = function every(fn) {
+export default function every(fn) {
   const items = values(this.items);
 
   return items.every(fn);
-};
+}

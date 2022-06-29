@@ -1,5 +1,3 @@
-'use strict';
-
-module.exports = function sortDesc() {
+export default function sortDesc() {
   return this.sort().reverse();
 };

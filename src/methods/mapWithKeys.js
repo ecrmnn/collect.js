@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function mapWithKeys(fn) {
+export default function mapWithKeys(fn) {
   const collection = {};
 
   if (Array.isArray(this.items)) {

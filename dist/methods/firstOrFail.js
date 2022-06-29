@@ -1,10 +1,14 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = firstOrFail;
 
-module.exports = function firstOrFail(key, operator, value) {
-  if (isFunction(key)) {
+var _is = require("../helpers/is");
+
+function firstOrFail(key, operator, value) {
+  if ((0, _is.isFunction)(key)) {
     return this.first(key, function () {
       throw new Error('Item not found.');
     });
@@ -17,4 +21,4 @@ module.exports = function firstOrFail(key, operator, value) {
   }
 
   return collection.first();
-};
+}

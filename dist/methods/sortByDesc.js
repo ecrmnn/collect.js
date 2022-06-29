@@ -1,5 +1,12 @@
-'use strict';
+"use strict";
 
-module.exports = function sortByDesc(valueOrFunction) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = sortByDesc;
+
+function sortByDesc(valueOrFunction) {
   return this.sortBy(valueOrFunction).reverse();
-};
+}
+
+;

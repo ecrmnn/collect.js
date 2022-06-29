@@ -1,4 +1,15 @@
-'use strict';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = contains;
+
+var _values = _interopRequireDefault(require("../helpers/values"));
+
+var _is = require("../helpers/is");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -12,12 +23,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-var values = require('../helpers/values');
-
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
-
-module.exports = function contains(key, value) {
+function contains(key, value) {
   if (value !== undefined) {
     if (Array.isArray(this.items)) {
       return this.items.filter(function (items) {
@@ -28,7 +34,7 @@ module.exports = function contains(key, value) {
     return this.items[key] !== undefined && this.items[key] === value;
   }
 
-  if (isFunction(key)) {
+  if ((0, _is.isFunction)(key)) {
     return this.items.filter(function (item, index) {
       return key(item, index);
     }).length > 0;
@@ -38,7 +44,7 @@ module.exports = function contains(key, value) {
     return this.items.indexOf(key) !== -1;
   }
 
-  var keysAndValues = values(this.items);
+  var keysAndValues = (0, _values["default"])(this.items);
   keysAndValues.push.apply(keysAndValues, _toConsumableArray(Object.keys(this.items)));
   return keysAndValues.indexOf(key) !== -1;
-};
+}

@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function sortKeys() {
+
+export default function sortKeys() {
   const ordered = {};
 
   Object.keys(this.items).sort().forEach((key) => {
@@ -8,4 +8,4 @@ module.exports = function sortKeys() {
   });
 
   return new this.constructor(ordered);
-};
+}

@@ -1,5 +1,5 @@
-'use strict';
 
-module.exports = function containsOneItem() {
+
+export default function containsOneItem() {
   return this.count() === 1;
-};
+}

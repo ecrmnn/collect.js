@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function sort(fn) {
+
+export default function sort(fn) {
   const collection = [].concat(this.items);
 
   if (fn === undefined) {
@@ -14,4 +14,4 @@ module.exports = function sort(fn) {
   }
 
   return new this.constructor(collection);
-};
+}

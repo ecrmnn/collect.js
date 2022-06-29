@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function crossJoin(...values) {
+export default function crossJoin(...values) {
   function join(collection, constructor, args) {
     let current = args[0];
 

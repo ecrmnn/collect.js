@@ -1,9 +1,9 @@
-'use strict';
 
-const { isArray, isObject } = require('../helpers/is');
-const deleteKeys = require('../helpers/deleteKeys');
 
-module.exports = function shift(count = 1) {
+import { isArray, isObject } from '../helpers/is';
+import deleteKeys from '../helpers/deleteKeys';
+
+export default function shift(count = 1) {
   if (this.isEmpty()) {
     return null;
   }
@@ -40,4 +40,4 @@ module.exports = function shift(count = 1) {
   }
 
   return null;
-};
+}

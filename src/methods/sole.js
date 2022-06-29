@@ -1,8 +1,6 @@
-'use strict';
+import { isFunction } from '../helpers/is';
 
-const { isFunction } = require('../helpers/is');
-
-module.exports = function sole(key, operator, value) {
+export default function sole(key, operator, value) {
   let collection;
 
   if (isFunction(key)) {
@@ -20,4 +18,4 @@ module.exports = function sole(key, operator, value) {
   }
 
   return collection.first();
-};
+}

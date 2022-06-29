@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function mode(key) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = mode;
+
+function mode(key) {
   var values = [];
   var highestCount = 1;
 
@@ -43,4 +48,4 @@ module.exports = function mode(key) {
   }).map(function (value) {
     return value.key;
   });
-};
+}

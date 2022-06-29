@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function replace(items) {
+export default function replace(items) {
   if (!items) {
     return this;
   }
@@ -20,4 +18,4 @@ module.exports = function replace(items) {
   const replaced = { ...this.items, ...items };
 
   return new this.constructor(replaced);
-};
+}

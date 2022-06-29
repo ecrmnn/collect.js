@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function isEmpty() {
+export default function isEmpty() {
   if (Array.isArray(this.items)) {
     return !this.items.length;
   }

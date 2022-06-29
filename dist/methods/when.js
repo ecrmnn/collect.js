@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function when(value, fn, defaultFn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = when;
+
+function when(value, fn, defaultFn) {
   if (value) {
     return fn(this, value);
   }
@@ -10,4 +15,4 @@ module.exports = function when(value, fn, defaultFn) {
   }
 
   return this;
-};
+}

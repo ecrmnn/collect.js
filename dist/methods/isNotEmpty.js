@@ -1,5 +1,10 @@
-'use strict';
+"use strict";
 
-module.exports = function isNotEmpty() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = isNotEmpty;
+
+function isNotEmpty() {
   return !this.isEmpty();
-};
+}

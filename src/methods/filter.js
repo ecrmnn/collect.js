@@ -1,5 +1,3 @@
-'use strict';
-
 function falsyValue(item) {
   if (Array.isArray(item)) {
     if (item.length) {
@@ -47,7 +45,7 @@ function filterArray(func, items) {
   return result;
 }
 
-module.exports = function filter(fn) {
+export default function filter(fn) {
   const func = fn || false;
   let filteredItems = null;
   if (Array.isArray(this.items)) {
@@ -57,4 +55,4 @@ module.exports = function filter(fn) {
   }
 
   return new this.constructor(filteredItems);
-};
+}

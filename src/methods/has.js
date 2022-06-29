@@ -1,10 +1,8 @@
-'use strict';
+import variadic from '../helpers/variadic';
 
-const variadic = require('../helpers/variadic');
-
-module.exports = function has(...args) {
+export default function has(...args) {
   const properties = variadic(args);
 
   return properties.filter(key => Object.hasOwnProperty.call(this.items, key)).length
     === properties.length;
-};
+}

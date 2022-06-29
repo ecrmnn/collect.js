@@ -1,9 +1,7 @@
-'use strict';
+import nestedValue from '../helpers/nestedValue';
+import { isFunction } from '../helpers/is';
 
-const nestedValue = require('../helpers/nestedValue');
-const { isFunction } = require('../helpers/is');
-
-module.exports = function keyBy(key) {
+export default function keyBy(key) {
   const collection = {};
 
   if (isFunction(key)) {
@@ -19,4 +17,4 @@ module.exports = function keyBy(key) {
   }
 
   return new this.constructor(collection);
-};
+}

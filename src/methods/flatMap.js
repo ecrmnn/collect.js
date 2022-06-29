@@ -1,5 +1,3 @@
-'use strict';
-
-module.exports = function flatMap(fn) {
+export default function flatMap(fn) {
   return this.map(fn).collapse();
-};
+}

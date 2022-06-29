@@ -1,16 +1,20 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = average;
 
-module.exports = function average(key) {
+var _is = require("../helpers/is");
+
+function average(key) {
   if (key === undefined) {
     return this.sum() / this.items.length;
   }
 
-  if (isFunction(key)) {
+  if ((0, _is.isFunction)(key)) {
     return new this.constructor(this.items).sum(key) / this.items.length;
   }
 
   return new this.constructor(this.items).pluck(key).sum() / this.items.length;
-};
+}

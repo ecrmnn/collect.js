@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function union(object) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = union;
+
+function union(object) {
   var _this = this;
 
   var collection = JSON.parse(JSON.stringify(this.items));
@@ -10,4 +15,4 @@ module.exports = function union(object) {
     }
   });
   return new this.constructor(collection);
-};
+}

@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function diffAssoc(values) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = diffAssoc;
+
+function diffAssoc(values) {
   var _this = this;
 
   var diffValues = values;
@@ -16,4 +21,6 @@ module.exports = function diffAssoc(values) {
     }
   });
   return new this.constructor(collection);
-};
+}
+
+;

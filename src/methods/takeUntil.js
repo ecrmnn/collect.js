@@ -1,8 +1,6 @@
-'use strict';
+import { isArray, isObject, isFunction } from '../helpers/is';
 
-const { isArray, isObject, isFunction } = require('../helpers/is');
-
-module.exports = function takeUntil(valueOrFunction) {
+export default function takeUntil(valueOrFunction) {
   let previous = null;
   let items;
 
@@ -36,4 +34,4 @@ module.exports = function takeUntil(valueOrFunction) {
   }
 
   return new this.constructor(items);
-};
+}

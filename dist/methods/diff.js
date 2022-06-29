@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function diff(values) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = diff;
+
+function diff(values) {
   var valuesToDiff;
 
   if (values instanceof this.constructor) {
@@ -13,4 +18,4 @@ module.exports = function diff(values) {
     return valuesToDiff.indexOf(item) === -1;
   });
   return new this.constructor(collection);
-};
+}

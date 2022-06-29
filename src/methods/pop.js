@@ -1,9 +1,7 @@
-'use strict';
+import { isArray, isObject } from '../helpers/is';
+import deleteKeys from '../helpers/deleteKeys';
 
-const { isArray, isObject } = require('../helpers/is');
-const deleteKeys = require('../helpers/deleteKeys');
-
-module.exports = function pop(count = 1) {
+export default function pop(count = 1) {
   if (this.isEmpty()) {
     return null;
   }
@@ -42,4 +40,4 @@ module.exports = function pop(count = 1) {
   }
 
   return null;
-};
+}

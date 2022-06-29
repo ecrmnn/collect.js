@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function flip() {
+export default function flip() {
   const collection = {};
 
   if (Array.isArray(this.items)) {
@@ -14,4 +12,4 @@ module.exports = function flip() {
   }
 
   return new this.constructor(collection);
-};
+}

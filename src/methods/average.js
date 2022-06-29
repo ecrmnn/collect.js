@@ -1,8 +1,6 @@
-'use strict';
+import { isFunction } from '../helpers/is';
 
-const { isFunction } = require('../helpers/is');
-
-module.exports = function average(key) {
+export default function average(key) {
   if (key === undefined) {
     return this.sum() / this.items.length;
   }
@@ -12,4 +10,4 @@ module.exports = function average(key) {
   }
 
   return new this.constructor(this.items).pluck(key).sum() / this.items.length;
-};
+}

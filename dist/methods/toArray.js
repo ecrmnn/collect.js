@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function toArray() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = toArray;
+
+function toArray() {
   var collectionInstance = this.constructor;
 
   function iterate(list, collection) {
@@ -30,4 +35,6 @@ module.exports = function toArray() {
   }
 
   return this.values().all();
-};
+}
+
+;

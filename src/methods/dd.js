@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function dd() {
+export default function dd() {
   this.dump();
 
   if (typeof process !== 'undefined') {

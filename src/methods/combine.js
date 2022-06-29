@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function combine(array) {
+export default function combine(array) {
   let values = array;
 
   if (values instanceof this.constructor) {

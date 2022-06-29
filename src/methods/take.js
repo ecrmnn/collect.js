@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function take(length) {
+
+export default function take(length) {
   if (!Array.isArray(this.items) && typeof this.items === 'object') {
     const keys = Object.keys(this.items);
     let slicedKeys;
@@ -27,4 +27,4 @@ module.exports = function take(length) {
   }
 
   return new this.constructor(this.items.slice(0, length));
-};
+}

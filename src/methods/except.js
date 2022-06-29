@@ -1,8 +1,6 @@
-'use strict';
+import variadic from '../helpers/variadic';
 
-const variadic = require('../helpers/variadic');
-
-module.exports = function except(...args) {
+export default function except(...args) {
   const properties = variadic(args);
 
   if (Array.isArray(this.items)) {
@@ -21,4 +19,4 @@ module.exports = function except(...args) {
   });
 
   return new this.constructor(collection);
-};
+}

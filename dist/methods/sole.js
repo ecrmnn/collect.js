@@ -1,12 +1,16 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = sole;
 
-module.exports = function sole(key, operator, value) {
+var _is = require("../helpers/is");
+
+function sole(key, operator, value) {
   var collection;
 
-  if (isFunction(key)) {
+  if ((0, _is.isFunction)(key)) {
     collection = this.filter(key);
   } else {
     collection = this.where(key, operator, value);
@@ -21,4 +25,4 @@ module.exports = function sole(key, operator, value) {
   }
 
   return collection.first();
-};
+}

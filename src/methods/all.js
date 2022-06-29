@@ -1,5 +1,3 @@
-'use strict';
-
-module.exports = function all() {
+export default function all() {
   return this.items;
-};
+}

@@ -1,9 +1,16 @@
-'use strict';
+"use strict";
 
-var nestedValue = require('../helpers/nestedValue');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = whereNotBetween;
 
-module.exports = function whereNotBetween(key, values) {
+var _nestedValue = _interopRequireDefault(require("../helpers/nestedValue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function whereNotBetween(key, values) {
   return this.filter(function (item) {
-    return nestedValue(item, key) < values[0] || nestedValue(item, key) > values[values.length - 1];
+    return (0, _nestedValue["default"])(item, key) < values[0] || (0, _nestedValue["default"])(item, key) > values[values.length - 1];
   });
-};
+}

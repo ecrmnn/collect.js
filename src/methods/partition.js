@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function partition(fn) {
+export default function partition(fn) {
   let arrays;
 
   if (Array.isArray(this.items)) {

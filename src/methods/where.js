@@ -1,9 +1,9 @@
-'use strict';
 
-const values = require('../helpers/values');
-const nestedValue = require('../helpers/nestedValue');
 
-module.exports = function where(key, operator, value) {
+import values from '../helpers/values';
+import nestedValue from '../helpers/nestedValue';
+
+export default function where(key, operator, value) {
   let comparisonOperator = operator;
   let comparisonValue = value;
 
@@ -55,4 +55,4 @@ module.exports = function where(key, operator, value) {
   });
 
   return new this.constructor(collection);
-};
+}

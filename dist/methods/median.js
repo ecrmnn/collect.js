@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function median(key) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = median;
+
+function median(key) {
   var length = this.items.length;
 
   if (key === undefined) {
@@ -16,4 +21,4 @@ module.exports = function median(key) {
   }
 
   return this.items[Math.floor(length / 2)][key];
-};
+}

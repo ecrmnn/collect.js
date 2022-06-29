@@ -1,159 +1,646 @@
-'use strict';
+import all from './methods/all';
+import average from './methods/average';
+import avg from './methods/avg';
+import chunk from './methods/chunk';
+import collapse from './methods/collapse';
+import combine from './methods/combine';
+import concat from './methods/concat';
+import contains from './methods/contains';
+import containsOneItem from './methods/containsOneItem';
+import count from './methods/count';
+import countBy from './methods/countBy';
+import crossJoin from './methods/crossJoin';
+import dd from './methods/dd';
+import diff from './methods/diff';
+import diffAssoc from './methods/diffAssoc';
+import diffKeys from './methods/diffKeys';
+import doesntContain from './methods/doesntContain';
+import dump from './methods/dump';
+import duplicates from './methods/duplicates';
+import each from './methods/each';
+import eachSpread from './methods/eachSpread';
+import every from './methods/every';
+import except from './methods/except';
+import filter from './methods/filter';
+import first from './methods/first';
+import firstOrFail from './methods/firstOrFail';
+import firstWhere from './methods/firstWhere';
+import flatMap from './methods/flatMap';
+import flatten from './methods/flatten';
+import flip from './methods/flip';
+import forPage from './methods/forPage';
+import forget from './methods/forget';
+import get from './methods/get';
+import groupBy from './methods/groupBy';
+import has from './methods/has';
+import implode from './methods/implode';
+import intersect from './methods/intersect';
+import intersectByKeys from './methods/intersectByKeys';
+import isEmpty from './methods/isEmpty';
+import isNotEmpty from './methods/isNotEmpty';
+import join from './methods/join';
+import keyBy from './methods/keyBy';
+import keys from './methods/keys';
+import last from './methods/last';
+import macro from './methods/macro';
+import make from './methods/make';
+import map from './methods/map';
+import mapSpread from './methods/mapSpread';
+import mapToDictionary from './methods/mapToDictionary';
+import mapInto from './methods/mapInto';
+import mapToGroups from './methods/mapToGroups';
+import mapWithKeys from './methods/mapWithKeys';
+import max from './methods/max';
+import median from './methods/median';
+import merge from './methods/merge';
+import mergeRecursive from './methods/mergeRecursive';
+import min from './methods/min';
+import mode from './methods/mode';
+import nth from './methods/nth';
+import only from './methods/only';
+import pad from './methods/pad';
+import partition from './methods/partition';
+import pipe from './methods/pipe';
+import pluck from './methods/pluck';
+import pop from './methods/pop';
+import prepend from './methods/prepend';
+import pull from './methods/pull';
+import push from './methods/push';
+import put from './methods/put';
+import random from './methods/random';
+import reduce from './methods/reduce';
+import reject from './methods/reject';
+import replace from './methods/replace';
+import replaceRecursive from './methods/replaceRecursive';
+import reverse from './methods/reverse';
+import search from './methods/search';
+import shift from './methods/shift';
+import shuffle from './methods/shuffle';
+import skip from './methods/skip';
+import skipUntil from './methods/skipUntil';
+import skipWhile from './methods/skipWhile';
+import slice from './methods/slice';
+import sole from './methods/sole';
+import some from './methods/some';
+import sort from './methods/sort';
+import sortDesc from './methods/sortDesc';
+import sortBy from './methods/sortBy';
+import sortByDesc from './methods/sortByDesc';
+import sortKeys from './methods/sortKeys';
+import sortKeysDesc from './methods/sortKeysDesc';
+import splice from './methods/splice';
+import split from './methods/split';
+import sum from './methods/sum';
+import take from './methods/take';
+import takeUntil from './methods/takeUntil';
+import takeWhile from './methods/takeWhile';
+import tap from './methods/tap';
+import times from './methods/times';
+import toArray from './methods/toArray';
+import toJson from './methods/toJson';
+import transform from './methods/transform';
+import undot from './methods/undot';
+import union from './methods/union';
+import unique from './methods/unique';
+import unless from './methods/unless';
+import unwrap from './methods/unwrap';
+import values from './methods/values';
+import when from './methods/when';
+import whenEmpty from './methods/whenEmpty';
+import whenNotEmpty from './methods/whenNotEmpty';
+import where from './methods/where';
+import whereBetween from './methods/whereBetween';
+import whereIn from './methods/whereIn';
+import whereInstanceOf from './methods/whereInstanceOf';
+import whereNotBetween from './methods/whereNotBetween';
+import whereNotIn from './methods/whereNotIn';
+import whereNull from './methods/whereNull';
+import whereNotNull from './methods/whereNotNull';
+import wrap from './methods/wrap';
+import zip from './methods/zip';
 
-function Collection(collection) {
-  if (collection !== undefined && !Array.isArray(collection) && typeof collection !== 'object') {
-    this.items = [collection];
-  } else if (collection instanceof this.constructor) {
-    this.items = collection.all();
-  } else {
-    this.items = collection || [];
+import SymbolIterator from './methods/symbol.iterator';
+
+export class Collection {
+  constructor(collection) {
+    if (collection !== undefined && !Array.isArray(collection) && typeof collection !== 'object') {
+      this.items = [collection];
+    } else if (collection instanceof this.constructor) {
+      this.items = collection.all();
+    } else {
+      this.items = collection || [];
+    }
+  }
+
+  all(...args) {
+    return all.call(this, ...args);
+  }
+
+  average(...args) {
+    return average.call(this, ...args);
+  }
+
+  avg(...args) {
+    return avg.call(this, ...args);
+  }
+
+  chunk(...args) {
+    return chunk.call(this, ...args);
+  }
+
+  collapse(...args) {
+    return collapse.call(this, ...args);
+  }
+
+  combine(...args) {
+    return combine.call(this, ...args);
+  }
+
+  concat(...args) {
+    return concat.call(this, ...args);
+  }
+
+  contains(...args) {
+    return contains.call(this, ...args);
+  }
+
+  containsOneItem(...args) {
+    return containsOneItem.call(this, ...args);
+  }
+
+  count(...args) {
+    return count.call(this, ...args);
+  }
+
+  countBy(...args) {
+    return countBy.call(this, ...args);
+  }
+
+  crossJoin(...args) {
+    return crossJoin.call(this, ...args);
+  }
+
+  dd(...args) {
+    return dd.call(this, ...args);
+  }
+
+  diff(...args) {
+    return diff.call(this, ...args);
+  }
+
+  diffAssoc(...args) {
+    return diffAssoc.call(this, ...args);
+  }
+
+  diffKeys(...args) {
+    return diffKeys.call(this, ...args);
+  }
+
+  doesntContain(...args) {
+    return doesntContain.call(this, ...args);
+  }
+
+  dump(...args) {
+    return dump.call(this, ...args);
+  }
+
+  duplicates(...args) {
+    return duplicates.call(this, ...args);
+  }
+
+  each(...args) {
+    return each.call(this, ...args);
+  }
+
+  eachSpread(...args) {
+    return eachSpread.call(this, ...args);
+  }
+
+  every(...args) {
+    return every.call(this, ...args);
+  }
+
+  except(...args) {
+    return except.call(this, ...args);
+  }
+
+  filter(...args) {
+    return filter.call(this, ...args);
+  }
+
+  first(...args) {
+    return first.call(this, ...args);
+  }
+
+  firstOrFail(...args) {
+    return firstOrFail.call(this, ...args);
+  }
+
+  firstWhere(...args) {
+    return firstWhere.call(this, ...args);
+  }
+
+  flatMap(...args) {
+    return flatMap.call(this, ...args);
+  }
+
+  flatten(...args) {
+    return flatten.call(this, ...args);
+  }
+
+  flip(...args) {
+    return flip.call(this, ...args);
+  }
+
+  forPage(...args) {
+    return forPage.call(this, ...args);
+  }
+
+  forget(...args) {
+    return forget.call(this, ...args);
+  }
+
+  get(...args) {
+    return get.call(this, ...args);
+  }
+
+  groupBy(...args) {
+    return groupBy.call(this, ...args);
+  }
+
+  has(...args) {
+    return has.call(this, ...args);
+  }
+
+  implode(...args) {
+    return implode.call(this, ...args);
+  }
+
+  intersect(...args) {
+    return intersect.call(this, ...args);
+  }
+
+  intersectByKeys(...args) {
+    return intersectByKeys.call(this, ...args);
+  }
+
+  isEmpty(...args) {
+    return isEmpty.call(this, ...args);
+  }
+
+  isNotEmpty(...args) {
+    return isNotEmpty.call(this, ...args);
+  }
+
+  join(...args) {
+    return join.call(this, ...args);
+  }
+
+  keyBy(...args) {
+    return keyBy.call(this, ...args);
+  }
+
+  keys(...args) {
+    return keys.call(this, ...args);
+  }
+
+  last(...args) {
+    return last.call(this, ...args);
+  }
+
+  macro(...args) {
+    return macro.call(this, ...args);
+  }
+
+  make(...args) {
+    return make.call(this, ...args);
+  }
+
+  map(...args) {
+    return map.call(this, ...args);
+  }
+
+  mapSpread(...args) {
+    return mapSpread.call(this, ...args);
+  }
+
+  mapToDictionary(...args) {
+    return mapToDictionary.call(this, ...args);
+  }
+
+  mapInto(...args) {
+    return mapInto.call(this, ...args);
+  }
+
+  mapToGroups(...args) {
+    return mapToGroups.call(this, ...args);
+  }
+
+  mapWithKeys(...args) {
+    return mapWithKeys.call(this, ...args);
+  }
+
+  max(...args) {
+    return max.call(this, ...args);
+  }
+
+  median(...args) {
+    return median.call(this, ...args);
+  }
+
+  merge(...args) {
+    return merge.call(this, ...args);
+  }
+
+  mergeRecursive(...args) {
+    return mergeRecursive.call(this, ...args);
+  }
+
+  min(...args) {
+    return min.call(this, ...args);
+  }
+
+  mode(...args) {
+    return mode.call(this, ...args);
+  }
+
+  nth(...args) {
+    return nth.call(this, ...args);
+  }
+
+  only(...args) {
+    return only.call(this, ...args);
+  }
+
+  pad(...args) {
+    return pad.call(this, ...args);
+  }
+
+  partition(...args) {
+    return partition.call(this, ...args);
+  }
+
+  pipe(...args) {
+    return pipe.call(this, ...args);
+  }
+
+  pluck(...args) {
+    return pluck.call(this, ...args);
+  }
+
+  pop(...args) {
+    return pop.call(this, ...args);
+  }
+
+  prepend(...args) {
+    return prepend.call(this, ...args);
+  }
+
+  pull(...args) {
+    return pull.call(this, ...args);
+  }
+
+  push(...args) {
+    return push.call(this, ...args);
+  }
+
+  put(...args) {
+    return put.call(this, ...args);
+  }
+
+  random(...args) {
+    return random.call(this, ...args);
+  }
+
+  reduce(...args) {
+    return reduce.call(this, ...args);
+  }
+
+  reject(...args) {
+    return reject.call(this, ...args);
+  }
+
+  replace(...args) {
+    return replace.call(this, ...args);
+  }
+
+  replaceRecursive(...args) {
+    return replaceRecursive.call(this, ...args);
+  }
+
+  reverse(...args) {
+    return reverse.call(this, ...args);
+  }
+
+  search(...args) {
+    return search.call(this, ...args);
+  }
+
+  shift(...args) {
+    return shift.call(this, ...args);
+  }
+
+  shuffle(...args) {
+    return shuffle.call(this, ...args);
+  }
+
+  skip(...args) {
+    return skip.call(this, ...args);
+  }
+
+  skipUntil(...args) {
+    return skipUntil.call(this, ...args);
+  }
+
+  skipWhile(...args) {
+    return skipWhile.call(this, ...args);
+  }
+
+  slice(...args) {
+    return slice.call(this, ...args);
+  }
+
+  sole(...args) {
+    return sole.call(this, ...args);
+  }
+
+  some(...args) {
+    return some.call(this, ...args);
+  }
+
+  sort(...args) {
+    return sort.call(this, ...args);
+  }
+
+  sortDesc(...args) {
+    return sortDesc.call(this, ...args);
+  }
+
+  sortBy(...args) {
+    return sortBy.call(this, ...args);
+  }
+
+  sortByDesc(...args) {
+    return sortByDesc.call(this, ...args);
+  }
+
+  sortKeys(...args) {
+    return sortKeys.call(this, ...args);
+  }
+
+  sortKeysDesc(...args) {
+    return sortKeysDesc.call(this, ...args);
+  }
+
+  splice(...args) {
+    return splice.call(this, ...args);
+  }
+
+  split(...args) {
+    return split.call(this, ...args);
+  }
+
+  sum(...args) {
+    return sum.call(this, ...args);
+  }
+
+  take(...args) {
+    return take.call(this, ...args);
+  }
+
+  takeUntil(...args) {
+    return takeUntil.call(this, ...args);
+  }
+
+  takeWhile(...args) {
+    return takeWhile.call(this, ...args);
+  }
+
+  tap(...args) {
+    return tap.call(this, ...args);
+  }
+
+  times(...args) {
+    return times.call(this, ...args);
+  }
+
+  toArray(...args) {
+    return toArray.call(this, ...args);
+  }
+
+  toJson(...args) {
+    return toJson.call(this, ...args);
+  }
+
+  transform(...args) {
+    return transform.call(this, ...args);
+  }
+
+  undot(...args) {
+    return undot.call(this, ...args);
+  }
+
+  unless(...args) {
+    return unless.call(this, ...args);
+  }
+
+  unlessEmpty(...args) {
+    return whenNotEmpty.call(this, ...args);
+  }
+
+  unlessNotEmpty(...args) {
+    return whenEmpty.call(this, ...args);
+  }
+
+  union(...args) {
+    return union.call(this, ...args);
+  }
+
+  unique(...args) {
+    return unique.call(this, ...args);
+  }
+
+  unwrap(...args) {
+    return unwrap.call(this, ...args);
+  }
+
+  values(...args) {
+    return values.call(this, ...args);
+  }
+
+  when(...args) {
+    return when.call(this, ...args);
+  }
+
+  whenEmpty(...args) {
+    return whenEmpty.call(this, ...args);
+  }
+
+  whenNotEmpty(...args) {
+    return whenNotEmpty.call(this, ...args);
+  }
+
+  where(...args) {
+    return where.call(this, ...args);
+  }
+
+  whereBetween(...args) {
+    return whereBetween.call(this, ...args);
+  }
+
+  whereIn(...args) {
+    return whereIn.call(this, ...args);
+  }
+
+  whereInstanceOf(...args) {
+    return whereInstanceOf.call(this, ...args);
+  }
+
+  whereNotBetween(...args) {
+    return whereNotBetween.call(this, ...args);
+  }
+
+  whereNotIn(...args) {
+    return whereNotIn.call(this, ...args);
+  }
+
+  whereNull(...args) {
+    return whereNull.call(this, ...args);
+  }
+
+  whereNotNull(...args) {
+    return whereNotNull.call(this, ...args);
+  }
+
+  wrap(...args) {
+    return wrap.call(this, ...args);
+  }
+
+  zip(...args) {
+    return zip.call(this, ...args);
+  }
+
+  /**
+ * Support JSON.stringify
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+ */
+  toJSON() {
+    return this.items;
   }
 }
+export const collect = collection => new Collection(collection);
 
 /**
  * Symbol.iterator
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator
  */
-const SymbolIterator = require('./methods/symbol.iterator');
-
 if (typeof Symbol !== 'undefined') {
   Collection.prototype[Symbol.iterator] = SymbolIterator;
 }
 
-/**
- * Support JSON.stringify
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
- */
-Collection.prototype.toJSON = function toJSON() {
-  return this.items;
-};
+collect.collect = collect;
+collect.Collection = Collection;
 
-Collection.prototype.all = require('./methods/all');
-Collection.prototype.average = require('./methods/average');
-Collection.prototype.avg = require('./methods/avg');
-Collection.prototype.chunk = require('./methods/chunk');
-Collection.prototype.collapse = require('./methods/collapse');
-Collection.prototype.combine = require('./methods/combine');
-Collection.prototype.concat = require('./methods/concat');
-Collection.prototype.contains = require('./methods/contains');
-Collection.prototype.containsOneItem = require('./methods/containsOneItem');
-Collection.prototype.count = require('./methods/count');
-Collection.prototype.countBy = require('./methods/countBy');
-Collection.prototype.crossJoin = require('./methods/crossJoin');
-Collection.prototype.dd = require('./methods/dd');
-Collection.prototype.diff = require('./methods/diff');
-Collection.prototype.diffAssoc = require('./methods/diffAssoc');
-Collection.prototype.diffKeys = require('./methods/diffKeys');
-Collection.prototype.doesntContain = require('./methods/doesntContain');
-Collection.prototype.dump = require('./methods/dump');
-Collection.prototype.duplicates = require('./methods/duplicates');
-Collection.prototype.each = require('./methods/each');
-Collection.prototype.eachSpread = require('./methods/eachSpread');
-Collection.prototype.every = require('./methods/every');
-Collection.prototype.except = require('./methods/except');
-Collection.prototype.filter = require('./methods/filter');
-Collection.prototype.first = require('./methods/first');
-Collection.prototype.firstOrFail = require('./methods/firstOrFail');
-Collection.prototype.firstWhere = require('./methods/firstWhere');
-Collection.prototype.flatMap = require('./methods/flatMap');
-Collection.prototype.flatten = require('./methods/flatten');
-Collection.prototype.flip = require('./methods/flip');
-Collection.prototype.forPage = require('./methods/forPage');
-Collection.prototype.forget = require('./methods/forget');
-Collection.prototype.get = require('./methods/get');
-Collection.prototype.groupBy = require('./methods/groupBy');
-Collection.prototype.has = require('./methods/has');
-Collection.prototype.implode = require('./methods/implode');
-Collection.prototype.intersect = require('./methods/intersect');
-Collection.prototype.intersectByKeys = require('./methods/intersectByKeys');
-Collection.prototype.isEmpty = require('./methods/isEmpty');
-Collection.prototype.isNotEmpty = require('./methods/isNotEmpty');
-Collection.prototype.join = require('./methods/join');
-Collection.prototype.keyBy = require('./methods/keyBy');
-Collection.prototype.keys = require('./methods/keys');
-Collection.prototype.last = require('./methods/last');
-Collection.prototype.macro = require('./methods/macro');
-Collection.prototype.make = require('./methods/make');
-Collection.prototype.map = require('./methods/map');
-Collection.prototype.mapSpread = require('./methods/mapSpread');
-Collection.prototype.mapToDictionary = require('./methods/mapToDictionary');
-Collection.prototype.mapInto = require('./methods/mapInto');
-Collection.prototype.mapToGroups = require('./methods/mapToGroups');
-Collection.prototype.mapWithKeys = require('./methods/mapWithKeys');
-Collection.prototype.max = require('./methods/max');
-Collection.prototype.median = require('./methods/median');
-Collection.prototype.merge = require('./methods/merge');
-Collection.prototype.mergeRecursive = require('./methods/mergeRecursive');
-Collection.prototype.min = require('./methods/min');
-Collection.prototype.mode = require('./methods/mode');
-Collection.prototype.nth = require('./methods/nth');
-Collection.prototype.only = require('./methods/only');
-Collection.prototype.pad = require('./methods/pad');
-Collection.prototype.partition = require('./methods/partition');
-Collection.prototype.pipe = require('./methods/pipe');
-Collection.prototype.pluck = require('./methods/pluck');
-Collection.prototype.pop = require('./methods/pop');
-Collection.prototype.prepend = require('./methods/prepend');
-Collection.prototype.pull = require('./methods/pull');
-Collection.prototype.push = require('./methods/push');
-Collection.prototype.put = require('./methods/put');
-Collection.prototype.random = require('./methods/random');
-Collection.prototype.reduce = require('./methods/reduce');
-Collection.prototype.reject = require('./methods/reject');
-Collection.prototype.replace = require('./methods/replace');
-Collection.prototype.replaceRecursive = require('./methods/replaceRecursive');
-Collection.prototype.reverse = require('./methods/reverse');
-Collection.prototype.search = require('./methods/search');
-Collection.prototype.shift = require('./methods/shift');
-Collection.prototype.shuffle = require('./methods/shuffle');
-Collection.prototype.skip = require('./methods/skip');
-Collection.prototype.skipUntil = require('./methods/skipUntil');
-Collection.prototype.skipWhile = require('./methods/skipWhile');
-Collection.prototype.slice = require('./methods/slice');
-Collection.prototype.sole = require('./methods/sole');
-Collection.prototype.some = require('./methods/some');
-Collection.prototype.sort = require('./methods/sort');
-Collection.prototype.sortDesc = require('./methods/sortDesc');
-Collection.prototype.sortBy = require('./methods/sortBy');
-Collection.prototype.sortByDesc = require('./methods/sortByDesc');
-Collection.prototype.sortKeys = require('./methods/sortKeys');
-Collection.prototype.sortKeysDesc = require('./methods/sortKeysDesc');
-Collection.prototype.splice = require('./methods/splice');
-Collection.prototype.split = require('./methods/split');
-Collection.prototype.sum = require('./methods/sum');
-Collection.prototype.take = require('./methods/take');
-Collection.prototype.takeUntil = require('./methods/takeUntil');
-Collection.prototype.takeWhile = require('./methods/takeWhile');
-Collection.prototype.tap = require('./methods/tap');
-Collection.prototype.times = require('./methods/times');
-Collection.prototype.toArray = require('./methods/toArray');
-Collection.prototype.toJson = require('./methods/toJson');
-Collection.prototype.transform = require('./methods/transform');
-Collection.prototype.undot = require('./methods/undot');
-Collection.prototype.unless = require('./methods/unless');
-Collection.prototype.unlessEmpty = require('./methods/whenNotEmpty');
-Collection.prototype.unlessNotEmpty = require('./methods/whenEmpty');
-Collection.prototype.union = require('./methods/union');
-Collection.prototype.unique = require('./methods/unique');
-Collection.prototype.unwrap = require('./methods/unwrap');
-Collection.prototype.values = require('./methods/values');
-Collection.prototype.when = require('./methods/when');
-Collection.prototype.whenEmpty = require('./methods/whenEmpty');
-Collection.prototype.whenNotEmpty = require('./methods/whenNotEmpty');
-Collection.prototype.where = require('./methods/where');
-Collection.prototype.whereBetween = require('./methods/whereBetween');
-Collection.prototype.whereIn = require('./methods/whereIn');
-Collection.prototype.whereInstanceOf = require('./methods/whereInstanceOf');
-Collection.prototype.whereNotBetween = require('./methods/whereNotBetween');
-Collection.prototype.whereNotIn = require('./methods/whereNotIn');
-Collection.prototype.whereNull = require('./methods/whereNull');
-Collection.prototype.whereNotNull = require('./methods/whereNotNull');
-Collection.prototype.wrap = require('./methods/wrap');
-Collection.prototype.zip = require('./methods/zip');
-
-const collect = collection => new Collection(collection);
+export default collect;
 
 module.exports = collect;
-module.exports.collect = collect;
-module.exports.default = collect;
-module.exports.Collection = Collection;

@@ -1,6 +1,14 @@
-'use strict';
+"use strict";
 
-var variadic = require('./variadic');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = deleteKeys;
+
+var _variadic = _interopRequireDefault(require("./variadic"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 /**
  * Delete keys helper
  *
@@ -10,15 +18,13 @@ var variadic = require('./variadic');
  * @param keys
  * @returns {void}
  */
-
-
-module.exports = function deleteKeys(obj) {
+function deleteKeys(obj) {
   for (var _len = arguments.length, keys = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     keys[_key - 1] = arguments[_key];
   }
 
-  variadic(keys).forEach(function (key) {
+  (0, _variadic["default"])(keys).forEach(function (key) {
     // eslint-disable-next-line
     delete obj[key];
   });
-};
+}

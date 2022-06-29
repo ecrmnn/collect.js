@@ -1,5 +1,3 @@
-'use strict';
+import average from './average';
 
-const average = require('./average');
-
-module.exports = average;
+export default average;

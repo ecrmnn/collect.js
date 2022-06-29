@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function slice(remove, limit) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = slice;
+
+function slice(remove, limit) {
   var collection = this.items.slice(remove);
 
   if (limit !== undefined) {
@@ -8,4 +13,6 @@ module.exports = function slice(remove, limit) {
   }
 
   return new this.constructor(collection);
-};
+}
+
+;

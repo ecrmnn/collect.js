@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function mapToDictionary(fn) {
+export default function mapToDictionary(fn) {
   const collection = {};
 
   this.items.forEach((item, k) => {

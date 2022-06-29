@@ -1,7 +1,7 @@
-'use strict';
 
-module.exports = function tap(fn) {
+
+export default function tap(fn) {
   fn(this);
 
   return this;
-};
+}

@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function join(glue, finalGlue) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = join;
+
+function join(glue, finalGlue) {
   var collection = this.values();
 
   if (finalGlue === undefined) {
@@ -19,4 +24,6 @@ module.exports = function join(glue, finalGlue) {
 
   var finalItem = collection.pop();
   return collection.implode(glue) + finalGlue + finalItem;
-};
+}
+
+;

@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function whenEmpty(fn, defaultFn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = whenEmpty;
+
+function whenEmpty(fn, defaultFn) {
   if (Array.isArray(this.items) && !this.items.length) {
     return fn(this);
   }
@@ -20,4 +25,4 @@ module.exports = function whenEmpty(fn, defaultFn) {
   }
 
   return this;
-};
+}

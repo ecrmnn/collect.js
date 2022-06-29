@@ -1,4 +1,9 @@
-'use strict';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = mergeRecursive;
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -8,7 +13,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-module.exports = function mergeRecursive(items) {
+function mergeRecursive(items) {
   var merge = function merge(target, source) {
     var merged = {};
     var mergedKeys = Object.keys(_objectSpread(_objectSpread({}, target), source));
@@ -39,4 +44,6 @@ module.exports = function mergeRecursive(items) {
   }
 
   return new this.constructor(merge(this.items, items));
-};
+}
+
+;

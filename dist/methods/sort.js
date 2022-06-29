@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function sort(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = sort;
+
+function sort(fn) {
   var collection = [].concat(this.items);
 
   if (fn === undefined) {
@@ -18,4 +23,4 @@ module.exports = function sort(fn) {
   }
 
   return new this.constructor(collection);
-};
+}

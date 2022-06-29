@@ -1,5 +1,3 @@
-'use strict';
-
-module.exports = function make(items = []) {
+export default function make(items = []) {
   return new this.constructor(items);
-};
+}

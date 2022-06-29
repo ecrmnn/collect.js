@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function SymbolIterator() {
+
+export default function SymbolIterator() {
   let index = -1;
 
   return {
@@ -13,4 +13,4 @@ module.exports = function SymbolIterator() {
       };
     },
   };
-};
+}

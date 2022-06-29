@@ -1,21 +1,27 @@
-'use strict';
+"use strict";
 
-var nestedValue = require('../helpers/nestedValue');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = groupBy;
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+var _nestedValue = _interopRequireDefault(require("../helpers/nestedValue"));
 
-module.exports = function groupBy(key) {
+var _is = require("../helpers/is");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function groupBy(key) {
   var _this = this;
 
   var collection = {};
   this.items.forEach(function (item, index) {
     var resolvedKey;
 
-    if (isFunction(key)) {
+    if ((0, _is.isFunction)(key)) {
       resolvedKey = key(item, index);
-    } else if (nestedValue(item, key) || nestedValue(item, key) === 0) {
-      resolvedKey = nestedValue(item, key);
+    } else if ((0, _nestedValue["default"])(item, key) || (0, _nestedValue["default"])(item, key) === 0) {
+      resolvedKey = (0, _nestedValue["default"])(item, key);
     } else {
       resolvedKey = '';
     }
@@ -27,4 +33,4 @@ module.exports = function groupBy(key) {
     collection[resolvedKey].push(item);
   });
   return new this.constructor(collection);
-};
+}

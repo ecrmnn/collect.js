@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function crossJoin() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = crossJoin;
+
+function crossJoin() {
   function join(collection, constructor, args) {
     var current = args[0];
 
@@ -31,4 +36,6 @@ module.exports = function crossJoin() {
   }
 
   return new this.constructor(join([], this.constructor, [].concat([this.items], values)));
-};
+}
+
+;

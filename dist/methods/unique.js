@@ -1,9 +1,13 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = unique;
 
-module.exports = function unique(key) {
+var _is = require("../helpers/is");
+
+function unique(key) {
   var collection;
 
   if (key === undefined) {
@@ -17,7 +21,7 @@ module.exports = function unique(key) {
     for (var iterator = 0, length = this.items.length; iterator < length; iterator += 1) {
       var uniqueKey = void 0;
 
-      if (isFunction(key)) {
+      if ((0, _is.isFunction)(key)) {
         uniqueKey = key(this.items[iterator]);
       } else {
         uniqueKey = this.items[iterator][key];
@@ -31,4 +35,4 @@ module.exports = function unique(key) {
   }
 
   return new this.constructor(collection);
-};
+}

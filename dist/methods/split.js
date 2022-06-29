@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function split(numberOfGroups) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = split;
+
+function split(numberOfGroups) {
   var itemsPerGroup = Math.round(this.items.length / numberOfGroups);
   var items = JSON.parse(JSON.stringify(this.items));
   var collection = [];
@@ -10,4 +15,4 @@ module.exports = function split(numberOfGroups) {
   }
 
   return new this.constructor(collection);
-};
+}

@@ -1,7 +1,5 @@
-'use strict';
-
-module.exports = function push(...items) {
+export default function push(...items) {
   this.items.push(...items);
 
   return this;
-};
+}

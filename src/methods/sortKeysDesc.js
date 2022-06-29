@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function sortKeysDesc() {
+export default function sortKeysDesc() {
   const ordered = {};
 
   Object.keys(this.items).sort().reverse().forEach((key) => {

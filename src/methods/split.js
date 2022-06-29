@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function split(numberOfGroups) {
+
+export default function split(numberOfGroups) {
   const itemsPerGroup = Math.round(this.items.length / numberOfGroups);
 
   const items = JSON.parse(JSON.stringify(this.items));
@@ -11,4 +11,4 @@ module.exports = function split(numberOfGroups) {
   }
 
   return new this.constructor(collection);
-};
+}

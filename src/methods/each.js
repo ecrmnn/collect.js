@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function each(fn) {
+export default function each(fn) {
   let stop = false;
 
   if (Array.isArray(this.items)) {

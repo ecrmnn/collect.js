@@ -1,8 +1,15 @@
-'use strict';
+"use strict";
 
-var clone = require('../helpers/clone');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = pad;
 
-module.exports = function pad(size, value) {
+var _clone = _interopRequireDefault(require("../helpers/clone"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function pad(size, value) {
   var abs = Math.abs(size);
   var count = this.count();
 
@@ -11,7 +18,7 @@ module.exports = function pad(size, value) {
   }
 
   var diff = abs - count;
-  var items = clone(this.items);
+  var items = (0, _clone["default"])(this.items);
   var isArray = Array.isArray(this.items);
   var prepend = size < 0;
 
@@ -32,4 +39,4 @@ module.exports = function pad(size, value) {
   }
 
   return new this.constructor(items);
-};
+}

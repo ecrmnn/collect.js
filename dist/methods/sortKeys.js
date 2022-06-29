@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function sortKeys() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = sortKeys;
+
+function sortKeys() {
   var _this = this;
 
   var ordered = {};
@@ -8,4 +13,4 @@ module.exports = function sortKeys() {
     ordered[key] = _this.items[key];
   });
   return new this.constructor(ordered);
-};
+}

@@ -1,8 +1,6 @@
-'use strict';
+import values from '../helpers/values';
 
-const values = require('../helpers/values');
-
-module.exports = function nth(n, offset = 0) {
+export default function nth(n, offset = 0) {
   const items = values(this.items);
 
   const collection = items
@@ -10,4 +8,4 @@ module.exports = function nth(n, offset = 0) {
     .filter((item, index) => index % n === 0);
 
   return new this.constructor(collection);
-};
+}

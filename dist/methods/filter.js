@@ -1,4 +1,9 @@
-'use strict';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = filter;
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -50,7 +55,7 @@ function filterArray(func, items) {
   return result;
 }
 
-module.exports = function filter(fn) {
+function filter(fn) {
   var func = fn || false;
   var filteredItems = null;
 
@@ -61,4 +66,4 @@ module.exports = function filter(fn) {
   }
 
   return new this.constructor(filteredItems);
-};
+}

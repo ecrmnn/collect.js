@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function transform(fn) {
+
+export default function transform(fn) {
   if (Array.isArray(this.items)) {
     this.items = this.items.map(fn);
   } else {
@@ -14,4 +14,4 @@ module.exports = function transform(fn) {
   }
 
   return this;
-};
+}

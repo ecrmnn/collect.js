@@ -1,5 +1,3 @@
-'use strict';
-
-module.exports = function isNotEmpty() {
+export default function isNotEmpty() {
   return !this.isEmpty();
-};
+}

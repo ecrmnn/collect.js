@@ -1,4 +1,9 @@
-'use strict';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = mapWithKeys;
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -12,7 +17,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-module.exports = function mapWithKeys(fn) {
+function mapWithKeys(fn) {
   var _this = this;
 
   var collection = {};
@@ -38,4 +43,6 @@ module.exports = function mapWithKeys(fn) {
   }
 
   return new this.constructor(collection);
-};
+}
+
+;

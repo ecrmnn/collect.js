@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function intersectByKeys(values) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = intersectByKeys;
+
+function intersectByKeys(values) {
   var _this = this;
 
   var intersectKeys = Object.keys(values);
@@ -16,4 +21,4 @@ module.exports = function intersectByKeys(values) {
     }
   });
   return new this.constructor(collection);
-};
+}

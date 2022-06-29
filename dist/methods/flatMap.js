@@ -1,5 +1,10 @@
-'use strict';
+"use strict";
 
-module.exports = function flatMap(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = flatMap;
+
+function flatMap(fn) {
   return this.map(fn).collapse();
-};
+}

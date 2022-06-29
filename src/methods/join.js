@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function join(glue, finalGlue) {
+export default function join(glue, finalGlue) {
   const collection = this.values();
 
   if (finalGlue === undefined) {

@@ -1,7 +1,5 @@
-'use strict';
+import getValues from '../helpers/values';
 
-const getValues = require('../helpers/values');
-
-module.exports = function values() {
+export default function values() {
   return new this.constructor(getValues(this.items));
-};
+}
