@@ -22,7 +22,7 @@ module.exports = (it, expect, collect) => {
   it('should return false if no items were found in objec', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
       club: 'Liverpool FC',
     });
 
@@ -49,18 +49,18 @@ module.exports = (it, expect, collect) => {
   it('should work when collection is based on an object', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
       club: 'Liverpool FC',
     });
 
     expect(collection.search('Darwin Núñez')).to.eql('name');
     expect(collection.search('Darwin Nunez')).to.eql(false);
 
-    expect(collection.search(19)).to.eql('number');
-    expect(collection.search('19')).to.eql('number');
-    expect(collection.search('19', true)).to.eql(false);
+    expect(collection.search(27)).to.eql('number');
+    expect(collection.search('27')).to.eql('number');
+    expect(collection.search('27', true)).to.eql(false);
 
-    expect(collection.search(item => item === 19)).to.eql('number');
+    expect(collection.search(item => item === 27)).to.eql('number');
   });
 
   it('should accept a custom callback and return the first value that passes', () => {

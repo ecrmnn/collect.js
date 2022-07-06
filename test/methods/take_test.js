@@ -20,7 +20,7 @@ module.exports = (it, expect, collect) => {
   it('should work when the collection is based on an object', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
       club: 'Liverpool FC',
     });
 
@@ -32,7 +32,7 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql({
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
       club: 'Liverpool FC',
     });
   });

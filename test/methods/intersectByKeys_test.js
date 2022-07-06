@@ -5,7 +5,7 @@ module.exports = (it, expect, collect) => {
     + 'are not present in the given array or collection', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
     });
 
     const collection2 = collect({
@@ -22,7 +22,7 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.intersectByKeys(collection2).all()).to.eql({
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
     });
   });
 };
