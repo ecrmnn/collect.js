@@ -10,8 +10,8 @@ module.exports = (it, expect, collect) => {
 
   it('should return the number of items on an object', () => {
     expect(collect({ name: 'Darwin Núñez' }).count()).to.eql(1);
-    expect(collect({ name: 'Darwin Núñez', number: 19 }).count()).to.eql(2);
-    expect(collect({ name: 'Darwin Núñez', number: 19, club: 'Liverpool FC' }).count()).to.eql(3);
+    expect(collect({ name: 'Darwin Núñez', number: 27 }).count()).to.eql(2);
+    expect(collect({ name: 'Darwin Núñez', number: 27, club: 'Liverpool FC' }).count()).to.eql(3);
   });
 
   it('should return the number of items on an array of objects', () => {

@@ -5,7 +5,7 @@ The flip method swaps the collection's keys with their corresponding values:
 ```js
 const collection = collect({
   name: 'Darwin Núñez',
-  number: 10,
+  number: 27,
 });
 
 const flipped = collection.flip();
@@ -14,7 +14,7 @@ flipped.all();
 
 // {
 //   'Darwin Núñez': 'name',
-//   '10': 'number',
+//   '27': 'number',
 // }
 ```
 

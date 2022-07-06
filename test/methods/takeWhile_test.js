@@ -22,7 +22,7 @@ module.exports = (it, expect, collect) => {
   it('should work with collection based on an object', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     });
 
@@ -38,7 +38,7 @@ module.exports = (it, expect, collect) => {
   it('should work when multidimentional', () => {
     const data = [{
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     }, {
       name: 'Mohamed Salah',

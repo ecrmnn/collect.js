@@ -6,7 +6,7 @@ The flatMap method iterates through the collection and passes each value to the 
 const collection = collect([
   {
     name: 'Darwin Núñez',
-    number: 10,
+    number: 27,
   },
   {
     name: 'Mohamed Salah',
