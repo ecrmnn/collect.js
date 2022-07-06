@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function map(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = map;
+
+function map(fn) {
   var _this = this;
 
   if (Array.isArray(this.items)) {
@@ -12,4 +17,4 @@ module.exports = function map(fn) {
     collection[key] = fn(_this.items[key], key);
   });
   return new this.constructor(collection);
-};
+}

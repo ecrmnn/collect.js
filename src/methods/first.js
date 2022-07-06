@@ -1,8 +1,6 @@
-'use strict';
+import { isFunction } from '../helpers/is';
 
-const { isFunction } = require('../helpers/is');
-
-module.exports = function first(fn, defaultValue) {
+export default function first(fn, defaultValue) {
   if (isFunction(fn)) {
     const keys = Object.keys(this.items);
 
@@ -37,4 +35,4 @@ module.exports = function first(fn, defaultValue) {
   }
 
   return defaultValue;
-};
+}

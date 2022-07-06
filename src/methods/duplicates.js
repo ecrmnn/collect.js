@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function duplicates() {
+export default function duplicates() {
   const occuredValues = [];
   const duplicateValues = {};
 

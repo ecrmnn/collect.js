@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function splice(index, limit, replace) {
+export default function splice(index, limit, replace) {
   const slicedCollection = this.slice(index, limit);
 
   this.items = this.diff(slicedCollection.all()).all();
@@ -13,4 +11,4 @@ module.exports = function splice(index, limit, replace) {
   }
 
   return slicedCollection;
-};
+}

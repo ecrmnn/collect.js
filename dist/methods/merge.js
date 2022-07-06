@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function merge(value) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = merge;
+
+function merge(value) {
   var arrayOrObject = value;
 
   if (typeof arrayOrObject === 'string') {
@@ -16,4 +21,6 @@ module.exports = function merge(value) {
     collection[key] = arrayOrObject[key];
   });
   return new this.constructor(collection);
-};
+}
+
+;

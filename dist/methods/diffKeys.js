@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function diffKeys(object) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = diffKeys;
+
+function diffKeys(object) {
   var objectToDiff;
 
   if (object instanceof this.constructor) {
@@ -14,4 +19,6 @@ module.exports = function diffKeys(object) {
     return objectKeys.indexOf(item) === -1;
   });
   return new this.constructor(this.items).only(remainingKeys);
-};
+}
+
+;

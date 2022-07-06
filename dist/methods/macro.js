@@ -1,5 +1,10 @@
-'use strict';
+"use strict";
 
-module.exports = function macro(name, fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = macro;
+
+function macro(name, fn) {
   this.constructor.prototype[name] = fn;
-};
+}

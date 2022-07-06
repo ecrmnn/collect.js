@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function median(key) {
+export default function median(key) {
   const { length } = this.items;
 
   if (key === undefined) {
@@ -17,4 +15,4 @@ module.exports = function median(key) {
   }
 
   return this.items[Math.floor(length / 2)][key];
-};
+}

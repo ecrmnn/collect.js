@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function SymbolIterator() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = SymbolIterator;
+
+function SymbolIterator() {
   var _this = this;
 
   var index = -1;
@@ -13,4 +18,4 @@ module.exports = function SymbolIterator() {
       };
     }
   };
-};
+}

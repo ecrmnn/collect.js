@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function mapToGroups(fn) {
+export default function mapToGroups(fn) {
   const collection = {};
 
   this.items.forEach((item, key) => {

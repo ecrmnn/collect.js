@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function intersectByKeys(values) {
+export default function intersectByKeys(values) {
   let intersectKeys = Object.keys(values);
 
   if (values instanceof this.constructor) {
@@ -16,4 +14,4 @@ module.exports = function intersectByKeys(values) {
   });
 
   return new this.constructor(collection);
-};
+}

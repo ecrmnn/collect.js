@@ -1,9 +1,7 @@
-'use strict';
+import values from '../helpers/values';
+import { isFunction } from '../helpers/is';
 
-const values = require('../helpers/values');
-const { isFunction } = require('../helpers/is');
-
-module.exports = function contains(key, value) {
+export default function contains(key, value) {
   if (value !== undefined) {
     if (Array.isArray(this.items)) {
       return this.items
@@ -26,4 +24,4 @@ module.exports = function contains(key, value) {
   keysAndValues.push(...Object.keys(this.items));
 
   return keysAndValues.indexOf(key) !== -1;
-};
+}

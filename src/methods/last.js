@@ -1,8 +1,8 @@
-'use strict';
+
 
 const { isFunction } = require('../helpers/is');
 
-module.exports = function last(fn, defaultValue) {
+export default function last(fn, defaultValue) {
   let { items } = this;
 
   if (isFunction(fn)) {
@@ -23,4 +23,4 @@ module.exports = function last(fn, defaultValue) {
   const keys = Object.keys(items);
 
   return items[keys[keys.length - 1]];
-};
+}

@@ -1,5 +1,10 @@
-'use strict';
+"use strict";
 
-module.exports = function firstWhere(key, operator, value) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = firstWhere;
+
+function firstWhere(key, operator, value) {
   return this.where(key, operator, value).first() || null;
-};
+}

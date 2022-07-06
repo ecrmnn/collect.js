@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function forget(key) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = forget;
+
+function forget(key) {
   if (Array.isArray(this.items)) {
     this.items.splice(key, 1);
   } else {
@@ -8,4 +13,6 @@ module.exports = function forget(key) {
   }
 
   return this;
-};
+}
+
+;

@@ -1,8 +1,6 @@
-'use strict';
+import { isArray, isObject } from '../helpers/is';
 
-const { isArray, isObject } = require('../helpers/is');
-
-module.exports = function flatten(depth) {
+export default function flatten(depth) {
   let flattenDepth = depth || Infinity;
 
   let fullyFlattened = false;
@@ -50,4 +48,4 @@ module.exports = function flatten(depth) {
   }
 
   return new this.constructor(collection);
-};
+}

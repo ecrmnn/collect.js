@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function when(value, fn, defaultFn) {
+export default function when(value, fn, defaultFn) {
   if (value) {
     return fn(this, value);
   }
@@ -10,4 +8,4 @@ module.exports = function when(value, fn, defaultFn) {
   }
 
   return this;
-};
+}

@@ -1,23 +1,30 @@
-'use strict';
+"use strict";
 
-var values = require('../helpers/values');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = where;
 
-var nestedValue = require('../helpers/nestedValue');
+var _values = _interopRequireDefault(require("../helpers/values"));
 
-module.exports = function where(key, operator, value) {
+var _nestedValue = _interopRequireDefault(require("../helpers/nestedValue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function where(key, operator, value) {
   var comparisonOperator = operator;
   var comparisonValue = value;
-  var items = values(this.items);
+  var items = (0, _values["default"])(this.items);
 
   if (operator === undefined || operator === true) {
     return new this.constructor(items.filter(function (item) {
-      return nestedValue(item, key);
+      return (0, _nestedValue["default"])(item, key);
     }));
   }
 
   if (operator === false) {
     return new this.constructor(items.filter(function (item) {
-      return !nestedValue(item, key);
+      return !(0, _nestedValue["default"])(item, key);
     }));
   }
 
@@ -29,31 +36,31 @@ module.exports = function where(key, operator, value) {
   var collection = items.filter(function (item) {
     switch (comparisonOperator) {
       case '==':
-        return nestedValue(item, key) === Number(comparisonValue) || nestedValue(item, key) === comparisonValue.toString();
+        return (0, _nestedValue["default"])(item, key) === Number(comparisonValue) || (0, _nestedValue["default"])(item, key) === comparisonValue.toString();
 
       default:
       case '===':
-        return nestedValue(item, key) === comparisonValue;
+        return (0, _nestedValue["default"])(item, key) === comparisonValue;
 
       case '!=':
       case '<>':
-        return nestedValue(item, key) !== Number(comparisonValue) && nestedValue(item, key) !== comparisonValue.toString();
+        return (0, _nestedValue["default"])(item, key) !== Number(comparisonValue) && (0, _nestedValue["default"])(item, key) !== comparisonValue.toString();
 
       case '!==':
-        return nestedValue(item, key) !== comparisonValue;
+        return (0, _nestedValue["default"])(item, key) !== comparisonValue;
 
       case '<':
-        return nestedValue(item, key) < comparisonValue;
+        return (0, _nestedValue["default"])(item, key) < comparisonValue;
 
       case '<=':
-        return nestedValue(item, key) <= comparisonValue;
+        return (0, _nestedValue["default"])(item, key) <= comparisonValue;
 
       case '>':
-        return nestedValue(item, key) > comparisonValue;
+        return (0, _nestedValue["default"])(item, key) > comparisonValue;
 
       case '>=':
-        return nestedValue(item, key) >= comparisonValue;
+        return (0, _nestedValue["default"])(item, key) >= comparisonValue;
     }
   });
   return new this.constructor(collection);
-};
+}

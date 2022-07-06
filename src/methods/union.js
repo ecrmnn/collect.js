@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function union(object) {
+export default function union(object) {
   const collection = JSON.parse(JSON.stringify(this.items));
 
   Object.keys(object).forEach((prop) => {
@@ -10,4 +8,4 @@ module.exports = function union(object) {
   });
 
   return new this.constructor(collection);
-};
+}

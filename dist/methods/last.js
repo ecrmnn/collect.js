@@ -1,9 +1,14 @@
-'use strict';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = last;
 
 var _require = require('../helpers/is'),
     isFunction = _require.isFunction;
 
-module.exports = function last(fn, defaultValue) {
+function last(fn, defaultValue) {
   var items = this.items;
 
   if (isFunction(fn)) {
@@ -24,4 +29,4 @@ module.exports = function last(fn, defaultValue) {
 
   var keys = Object.keys(items);
   return items[keys[keys.length - 1]];
-};
+}

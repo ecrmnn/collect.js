@@ -1,9 +1,7 @@
-'use strict';
+import values from '../helpers/values';
+import { isFunction } from '../helpers/is';
 
-const values = require('../helpers/values');
-const { isFunction } = require('../helpers/is');
-
-module.exports = function sum(key) {
+export default function sum(key) {
   const items = values(this.items);
 
   let total = 0;
@@ -24,4 +22,4 @@ module.exports = function sum(key) {
 
 
   return parseFloat(total.toPrecision(12));
-};
+}

@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function toArray() {
+export default function toArray() {
   const collectionInstance = this.constructor;
 
   function iterate(list, collection) {

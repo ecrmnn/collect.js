@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function diffKeys(object) {
+export default function diffKeys(object) {
   let objectToDiff;
 
   if (object instanceof this.constructor) {

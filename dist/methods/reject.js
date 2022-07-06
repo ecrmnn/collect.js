@@ -1,7 +1,14 @@
-'use strict';
+"use strict";
 
-module.exports = function reject(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = reject;
+
+function reject(fn) {
   return new this.constructor(this.items).filter(function (item) {
     return !fn(item);
   });
-};
+}
+
+;

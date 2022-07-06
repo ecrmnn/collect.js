@@ -1,6 +1,6 @@
-'use strict';
 
-module.exports = function whenEmpty(fn, defaultFn) {
+
+export default function whenEmpty(fn, defaultFn) {
   if (Array.isArray(this.items) && !this.items.length) {
     return fn(this);
   } if (!Object.keys(this.items).length) {
@@ -16,4 +16,4 @@ module.exports = function whenEmpty(fn, defaultFn) {
   }
 
   return this;
-};
+}

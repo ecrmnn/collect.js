@@ -1,8 +1,15 @@
-'use strict';
+"use strict";
 
-var values = require('../helpers/values');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = every;
 
-module.exports = function every(fn) {
-  var items = values(this.items);
+var _values = _interopRequireDefault(require("../helpers/values"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function every(fn) {
+  var items = (0, _values["default"])(this.items);
   return items.every(fn);
-};
+}

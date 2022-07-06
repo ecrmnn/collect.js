@@ -1,8 +1,6 @@
-'use strict';
+import clone from '../helpers/clone';
 
-const clone = require('../helpers/clone');
-
-module.exports = function concat(collectionOrArrayOrObject) {
+export default function concat(collectionOrArrayOrObject) {
   let list = collectionOrArrayOrObject;
 
   if (collectionOrArrayOrObject instanceof this.constructor) {
@@ -25,4 +23,4 @@ module.exports = function concat(collectionOrArrayOrObject) {
   });
 
   return new this.constructor(collection);
-};
+}

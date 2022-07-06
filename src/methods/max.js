@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function max(key) {
+export default function max(key) {
   if (typeof key === 'string') {
     const filtered = this.items.filter(item => item[key] !== undefined);
 

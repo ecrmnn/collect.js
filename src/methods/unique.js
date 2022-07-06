@@ -1,8 +1,6 @@
-'use strict';
+import { isFunction } from '../helpers/is';
 
-const { isFunction } = require('../helpers/is');
-
-module.exports = function unique(key) {
+export default function unique(key) {
   let collection;
 
   if (key === undefined) {
@@ -30,4 +28,4 @@ module.exports = function unique(key) {
   }
 
   return new this.constructor(collection);
-};
+}

@@ -1,8 +1,6 @@
-'use strict';
+import values from '../helpers/values';
 
-const values = require('../helpers/values');
-
-module.exports = function random(length = null) {
+export default function random(length = null) {
   const items = values(this.items);
 
   const collection = new this.constructor(items).shuffle();
@@ -13,4 +11,4 @@ module.exports = function random(length = null) {
   }
 
   return collection.take(length);
-};
+}

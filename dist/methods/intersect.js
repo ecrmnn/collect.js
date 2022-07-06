@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function intersect(values) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = intersect;
+
+function intersect(values) {
   var intersectValues = values;
 
   if (values instanceof this.constructor) {
@@ -11,4 +16,4 @@ module.exports = function intersect(values) {
     return intersectValues.indexOf(item) !== -1;
   });
   return new this.constructor(collection);
-};
+}

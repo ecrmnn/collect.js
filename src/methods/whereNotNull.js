@@ -1,5 +1,3 @@
-'use strict';
-
-module.exports = function whereNotNull(key = null) {
+export default function whereNotNull(key = null) {
   return this.where(key, '!==', null);
-};
+}

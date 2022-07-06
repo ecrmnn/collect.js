@@ -1,8 +1,6 @@
-'use strict';
+import { isFunction } from '../helpers/is';
 
-const { isFunction } = require('../helpers/is');
-
-module.exports = function firstOrFail(key, operator, value) {
+export default function firstOrFail(key, operator, value) {
   if (isFunction(key)) {
     return this.first(key, () => {
       throw new Error('Item not found.');
@@ -16,4 +14,4 @@ module.exports = function firstOrFail(key, operator, value) {
   }
 
   return collection.first();
-};
+}

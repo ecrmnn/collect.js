@@ -1,10 +1,10 @@
-'use strict';
+
 
 /* eslint-disable eqeqeq */
 
-const { isArray, isObject, isFunction } = require('../helpers/is');
+import { isArray, isObject, isFunction } from '../helpers/is';
 
-module.exports = function search(valueOrFunction, strict) {
+export default function search(valueOrFunction, strict) {
   let result;
 
   const find = (item, key) => {
@@ -30,4 +30,4 @@ module.exports = function search(valueOrFunction, strict) {
   }
 
   return result;
-};
+}

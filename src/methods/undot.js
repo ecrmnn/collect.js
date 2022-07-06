@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function undot() {
+export default function undot() {
   if (Array.isArray(this.items)) {
     return this;
   }

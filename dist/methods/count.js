@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function count() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = count;
+
+function count() {
   var arrayLength = 0;
 
   if (Array.isArray(this.items)) {
@@ -8,4 +13,4 @@ module.exports = function count() {
   }
 
   return Math.max(Object.keys(this.items).length, arrayLength);
-};
+}

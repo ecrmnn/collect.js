@@ -1,5 +1,3 @@
-'use strict';
+import contains from './contains';
 
-const contains = require('./contains');
-
-module.exports = contains;
+export default contains;

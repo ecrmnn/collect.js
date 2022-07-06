@@ -1,5 +1,10 @@
-'use strict';
+"use strict";
 
-module.exports = function contains(key, value) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = contains;
+
+function contains(key, value) {
   return !this.contains(key, value);
-};
+}

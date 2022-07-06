@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Clone helper
  *
@@ -8,7 +6,7 @@
  * @param items
  * @returns {*}
  */
-module.exports = function clone(items) {
+export default function clone(items) {
   let cloned;
 
   if (Array.isArray(items)) {
@@ -24,4 +22,4 @@ module.exports = function clone(items) {
   }
 
   return cloned;
-};
+}

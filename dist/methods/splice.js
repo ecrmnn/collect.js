@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function splice(index, limit, replace) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = splice;
+
+function splice(index, limit, replace) {
   var slicedCollection = this.slice(index, limit);
   this.items = this.diff(slicedCollection.all()).all();
 
@@ -11,4 +16,4 @@ module.exports = function splice(index, limit, replace) {
   }
 
   return slicedCollection;
-};
+}

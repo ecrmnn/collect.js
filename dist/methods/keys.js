@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function keys() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = keys;
+
+function keys() {
   var collection = Object.keys(this.items);
 
   if (Array.isArray(this.items)) {
@@ -8,4 +13,6 @@ module.exports = function keys() {
   }
 
   return new this.constructor(collection);
-};
+}
+
+;

@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function forPage(page, chunk) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = forPage;
+
+function forPage(page, chunk) {
   var _this = this;
 
   var collection = {};
@@ -14,4 +19,4 @@ module.exports = function forPage(page, chunk) {
   }
 
   return new this.constructor(collection);
-};
+}

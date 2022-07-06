@@ -1,8 +1,8 @@
-'use strict';
 
-const values = require('../helpers/values');
 
-module.exports = function shuffle() {
+import values from '../helpers/values';
+
+export default function shuffle() {
   const items = values(this.items);
 
   let j;
@@ -19,4 +19,4 @@ module.exports = function shuffle() {
   this.items = items;
 
   return this;
-};
+}

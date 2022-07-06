@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function chunk(size) {
+export default function chunk(size) {
   const chunks = [];
   let index = 0;
 
@@ -29,4 +27,4 @@ module.exports = function chunk(size) {
   }
 
   return new this.constructor(chunks);
-};
+}

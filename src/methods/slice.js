@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function slice(remove, limit) {
+export default function slice(remove, limit) {
   let collection = this.items.slice(remove);
 
   if (limit !== undefined) {

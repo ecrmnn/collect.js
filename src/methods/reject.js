@@ -1,5 +1,3 @@
-'use strict';
-
-module.exports = function reject(fn) {
+export default function reject(fn) {
   return new this.constructor(this.items).filter(item => !fn(item));
 };

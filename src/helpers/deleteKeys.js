@@ -1,6 +1,4 @@
-'use strict';
-
-const variadic = require('./variadic');
+import variadic from './variadic';
 
 /**
  * Delete keys helper
@@ -11,9 +9,9 @@ const variadic = require('./variadic');
  * @param keys
  * @returns {void}
  */
-module.exports = function deleteKeys(obj, ...keys) {
+export default function deleteKeys(obj, ...keys) {
   variadic(keys).forEach((key) => {
     // eslint-disable-next-line
     delete obj[key];
   });
-};
+}

@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function mergeRecursive(items) {
+export default function mergeRecursive(items) {
   const merge = (target, source) => {
     const merged = {};
 

@@ -1,8 +1,6 @@
-'use strict';
+import clone from '../helpers/clone';
 
-const clone = require('../helpers/clone');
-
-module.exports = function pad(size, value) {
+export default function pad(size, value) {
   const abs = Math.abs(size);
   const count = this.count();
 
@@ -32,4 +30,4 @@ module.exports = function pad(size, value) {
   }
 
   return new this.constructor(items);
-};
+}

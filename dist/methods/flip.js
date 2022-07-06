@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function flip() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = flip;
+
+function flip() {
   var _this = this;
 
   var collection = {};
@@ -16,4 +21,4 @@ module.exports = function flip() {
   }
 
   return new this.constructor(collection);
-};
+}

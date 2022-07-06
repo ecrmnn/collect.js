@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function wrap(value) {
+export default function wrap(value) {
   if (value instanceof this.constructor) {
     return value;
   }

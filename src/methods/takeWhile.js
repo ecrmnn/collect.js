@@ -1,8 +1,6 @@
-'use strict';
+import { isArray, isObject, isFunction } from '../helpers/is';
 
-const { isArray, isObject, isFunction } = require('../helpers/is');
-
-module.exports = function takeWhile(valueOrFunction) {
+export default function takeWhile(valueOrFunction) {
   let previous = null;
   let items;
 
@@ -36,4 +34,4 @@ module.exports = function takeWhile(valueOrFunction) {
   }
 
   return new this.constructor(items);
-};
+}

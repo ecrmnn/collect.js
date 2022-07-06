@@ -1,7 +1,5 @@
-'use strict';
-
-const { isArray, isObject } = require('../helpers/is');
-const nestedValue = require('../helpers/nestedValue');
+import { isArray, isObject } from '../helpers/is';
+import nestedValue from '../helpers/nestedValue';
 
 const buildKeyPathMap = function buildKeyPathMap(items) {
   const keyPaths = {};
@@ -27,7 +25,7 @@ const buildKeyPathMap = function buildKeyPathMap(items) {
   return keyPaths;
 };
 
-module.exports = function pluck(value, key) {
+export default function pluck(value, key) {
   if (value.indexOf('*') !== -1) {
     const keyPathMap = buildKeyPathMap(this.items);
 
@@ -101,4 +99,4 @@ module.exports = function pluck(value, key) {
 
     return null;
   });
-};
+}

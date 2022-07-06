@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function replaceRecursive(items) {
+export default function replaceRecursive(items) {
   const replace = (target, source) => {
     const replaced = { ...target };
 
@@ -46,4 +44,4 @@ module.exports = function replaceRecursive(items) {
   }
 
   return new this.constructor(replace(this.items, items));
-};
+}

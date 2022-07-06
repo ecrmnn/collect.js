@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function mode(key) {
+export default function mode(key) {
   const values = [];
   let highestCount = 1;
 
@@ -36,4 +34,4 @@ module.exports = function mode(key) {
   return values
     .filter(value => value.count === highestCount)
     .map(value => value.key);
-};
+}

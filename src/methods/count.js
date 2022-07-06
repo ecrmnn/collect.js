@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function count() {
+export default function count() {
   let arrayLength = 0;
 
   if (Array.isArray(this.items)) {
@@ -8,4 +6,4 @@ module.exports = function count() {
   }
 
   return Math.max(Object.keys(this.items).length, arrayLength);
-};
+}

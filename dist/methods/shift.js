@@ -1,12 +1,17 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isArray = _require.isArray,
-    isObject = _require.isObject;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = shift;
 
-var deleteKeys = require('../helpers/deleteKeys');
+var _is = require("../helpers/is");
 
-module.exports = function shift() {
+var _deleteKeys = _interopRequireDefault(require("../helpers/deleteKeys"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function shift() {
   var _this = this;
 
   var count = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
@@ -15,7 +20,7 @@ module.exports = function shift() {
     return null;
   }
 
-  if (isArray(this.items)) {
+  if ((0, _is.isArray)(this.items)) {
     if (count === 1) {
       return this.items.shift();
     }
@@ -23,7 +28,7 @@ module.exports = function shift() {
     return new this.constructor(this.items.splice(0, count));
   }
 
-  if (isObject(this.items)) {
+  if ((0, _is.isObject)(this.items)) {
     if (count === 1) {
       var key = Object.keys(this.items)[0];
       var value = this.items[key];
@@ -37,9 +42,9 @@ module.exports = function shift() {
       acc[current] = _this.items[current];
       return acc;
     }, {});
-    deleteKeys(this.items, poppedKeys);
+    (0, _deleteKeys["default"])(this.items, poppedKeys);
     return new this.constructor(newObject);
   }
 
   return null;
-};
+}

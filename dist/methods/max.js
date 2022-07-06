@@ -1,4 +1,9 @@
-'use strict';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = max;
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -12,7 +17,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-module.exports = function max(key) {
+function max(key) {
   if (typeof key === 'string') {
     var filtered = this.items.filter(function (item) {
       return item[key] !== undefined;
@@ -23,4 +28,6 @@ module.exports = function max(key) {
   }
 
   return Math.max.apply(Math, _toConsumableArray(this.items));
-};
+}
+
+;

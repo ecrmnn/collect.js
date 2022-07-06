@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function keys() {
+export default function keys() {
   let collection = Object.keys(this.items);
 
   if (Array.isArray(this.items)) {

@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function each(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = each;
+
+function each(fn) {
   var stop = false;
 
   if (Array.isArray(this.items)) {
@@ -20,4 +25,6 @@ module.exports = function each(fn) {
   }
 
   return this;
-};
+}
+
+;

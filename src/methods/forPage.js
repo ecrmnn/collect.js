@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function forPage(page, chunk) {
+export default function forPage(page, chunk) {
   let collection = {};
 
   if (Array.isArray(this.items)) {
@@ -15,4 +13,4 @@ module.exports = function forPage(page, chunk) {
   }
 
   return new this.constructor(collection);
-};
+}

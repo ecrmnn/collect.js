@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function intersect(values) {
+export default function intersect(values) {
   let intersectValues = values;
 
   if (values instanceof this.constructor) {
@@ -11,4 +9,4 @@ module.exports = function intersect(values) {
     .filter(item => intersectValues.indexOf(item) !== -1);
 
   return new this.constructor(collection);
-};
+}

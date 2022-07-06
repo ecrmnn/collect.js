@@ -1,11 +1,13 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isArray = _require.isArray,
-    isObject = _require.isObject,
-    isFunction = _require.isFunction;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = skipWhile;
 
-module.exports = function skipWhile(valueOrFunction) {
+var _is = require("../helpers/is");
+
+function skipWhile(valueOrFunction) {
   var _this = this;
 
   var previous = null;
@@ -15,11 +17,11 @@ module.exports = function skipWhile(valueOrFunction) {
     return value === valueOrFunction;
   };
 
-  if (isFunction(valueOrFunction)) {
+  if ((0, _is.isFunction)(valueOrFunction)) {
     callback = valueOrFunction;
   }
 
-  if (isArray(this.items)) {
+  if ((0, _is.isArray)(this.items)) {
     items = this.items.filter(function (item) {
       if (previous !== true) {
         previous = !callback(item);
@@ -29,7 +31,7 @@ module.exports = function skipWhile(valueOrFunction) {
     });
   }
 
-  if (isObject(this.items)) {
+  if ((0, _is.isObject)(this.items)) {
     items = Object.keys(this.items).reduce(function (acc, key) {
       if (previous !== true) {
         previous = !callback(_this.items[key]);
@@ -44,4 +46,4 @@ module.exports = function skipWhile(valueOrFunction) {
   }
 
   return new this.constructor(items);
-};
+}

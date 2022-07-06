@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function map(fn) {
+export default function map(fn) {
   if (Array.isArray(this.items)) {
     return new this.constructor(this.items.map(fn));
   }
@@ -12,4 +10,4 @@ module.exports = function map(fn) {
   });
 
   return new this.constructor(collection);
-};
+}

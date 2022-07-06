@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function partition(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = partition;
+
+function partition(fn) {
   var _this = this;
 
   var arrays;
@@ -28,4 +33,6 @@ module.exports = function partition(fn) {
   }
 
   return new this.constructor(arrays);
-};
+}
+
+;

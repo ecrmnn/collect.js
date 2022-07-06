@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function reduce(fn, carry) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = reduce;
+
+function reduce(fn, carry) {
   var _this = this;
 
   var reduceCarry = null;
@@ -20,4 +25,6 @@ module.exports = function reduce(fn, carry) {
   }
 
   return reduceCarry;
-};
+}
+
+;

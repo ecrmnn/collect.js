@@ -1,19 +1,25 @@
-'use strict';
+"use strict";
 
-var nestedValue = require('../helpers/nestedValue');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = sortBy;
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+var _nestedValue = _interopRequireDefault(require("../helpers/nestedValue"));
 
-module.exports = function sortBy(valueOrFunction) {
+var _is = require("../helpers/is");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function sortBy(valueOrFunction) {
   var collection = [].concat(this.items);
 
   var getValue = function getValue(item) {
-    if (isFunction(valueOrFunction)) {
+    if ((0, _is.isFunction)(valueOrFunction)) {
       return valueOrFunction(item);
     }
 
-    return nestedValue(item, valueOrFunction);
+    return (0, _nestedValue["default"])(item, valueOrFunction);
   };
 
   collection.sort(function (a, b) {
@@ -39,4 +45,4 @@ module.exports = function sortBy(valueOrFunction) {
     return 0;
   });
   return new this.constructor(collection);
-};
+}

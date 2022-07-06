@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function merge(value) {
+export default function merge(value) {
   let arrayOrObject = value;
 
   if (typeof arrayOrObject === 'string') {

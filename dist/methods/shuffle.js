@@ -1,9 +1,16 @@
-'use strict';
+"use strict";
 
-var values = require('../helpers/values');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = shuffle;
 
-module.exports = function shuffle() {
-  var items = values(this.items);
+var _values = _interopRequireDefault(require("../helpers/values"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function shuffle() {
+  var items = (0, _values["default"])(this.items);
   var j;
   var x;
   var i;
@@ -17,4 +24,4 @@ module.exports = function shuffle() {
 
   this.items = items;
   return this;
-};
+}

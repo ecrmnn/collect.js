@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function transform(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = transform;
+
+function transform(fn) {
   var _this = this;
 
   if (Array.isArray(this.items)) {
@@ -14,4 +19,4 @@ module.exports = function transform(fn) {
   }
 
   return this;
-};
+}

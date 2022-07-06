@@ -1,4 +1,9 @@
-'use strict';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = mapToGroups;
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -12,7 +17,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-module.exports = function mapToGroups(fn) {
+function mapToGroups(fn) {
   var collection = {};
   this.items.forEach(function (item, key) {
     var _fn = fn(item, key),
@@ -27,4 +32,6 @@ module.exports = function mapToGroups(fn) {
     }
   });
   return new this.constructor(collection);
-};
+}
+
+;

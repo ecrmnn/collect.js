@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Values helper
  *
@@ -8,7 +6,7 @@
  * @param items
  * @returns {*}
  */
-module.exports = function values(items) {
+export default function values(items) {
   const valuesArray = [];
 
   if (Array.isArray(items)) {
@@ -20,4 +18,4 @@ module.exports = function values(items) {
   }
 
   return valuesArray;
-};
+}

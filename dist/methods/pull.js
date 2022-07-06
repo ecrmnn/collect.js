@@ -1,13 +1,17 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = pull;
 
-module.exports = function pull(key, defaultValue) {
+var _is = require("../helpers/is");
+
+function pull(key, defaultValue) {
   var returnValue = this.items[key] || null;
 
   if (!returnValue && defaultValue !== undefined) {
-    if (isFunction(defaultValue)) {
+    if ((0, _is.isFunction)(defaultValue)) {
       returnValue = defaultValue();
     } else {
       returnValue = defaultValue;
@@ -16,4 +20,4 @@ module.exports = function pull(key, defaultValue) {
 
   delete this.items[key];
   return returnValue;
-};
+}

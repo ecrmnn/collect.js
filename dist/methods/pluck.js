@@ -1,20 +1,25 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isArray = _require.isArray,
-    isObject = _require.isObject;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = pluck;
 
-var nestedValue = require('../helpers/nestedValue');
+var _is = require("../helpers/is");
+
+var _nestedValue = _interopRequireDefault(require("../helpers/nestedValue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var buildKeyPathMap = function buildKeyPathMap(items) {
   var keyPaths = {};
   items.forEach(function (item, index) {
     function buildKeyPath(val, keyPath) {
-      if (isObject(val)) {
+      if ((0, _is.isObject)(val)) {
         Object.keys(val).forEach(function (prop) {
           buildKeyPath(val[prop], "".concat(keyPath, ".").concat(prop));
         });
-      } else if (isArray(val)) {
+      } else if ((0, _is.isArray)(val)) {
         val.forEach(function (v, i) {
           buildKeyPath(v, "".concat(keyPath, ".").concat(i));
         });
@@ -28,7 +33,7 @@ var buildKeyPathMap = function buildKeyPathMap(items) {
   return keyPaths;
 };
 
-module.exports = function pluck(value, key) {
+function pluck(value, key) {
   if (value.indexOf('*') !== -1) {
     var keyPathMap = buildKeyPathMap(this.items);
     var keyMatches = [];
@@ -78,8 +83,8 @@ module.exports = function pluck(value, key) {
   if (key !== undefined) {
     var _collection = {};
     this.items.forEach(function (item) {
-      if (nestedValue(item, value) !== undefined) {
-        _collection[item[key] || ''] = nestedValue(item, value);
+      if ((0, _nestedValue["default"])(item, value) !== undefined) {
+        _collection[item[key] || ''] = (0, _nestedValue["default"])(item, value);
       } else {
         _collection[item[key] || ''] = null;
       }
@@ -88,10 +93,10 @@ module.exports = function pluck(value, key) {
   }
 
   return this.map(function (item) {
-    if (nestedValue(item, value) !== undefined) {
-      return nestedValue(item, value);
+    if ((0, _nestedValue["default"])(item, value) !== undefined) {
+      return (0, _nestedValue["default"])(item, value);
     }
 
     return null;
   });
-};
+}

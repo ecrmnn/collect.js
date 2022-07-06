@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function diffAssoc(values) {
+export default function diffAssoc(values) {
   let diffValues = values;
 
   if (values instanceof this.constructor) {

@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function tap(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = tap;
+
+function tap(fn) {
   fn(this);
   return this;
-};
+}

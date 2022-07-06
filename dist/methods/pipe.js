@@ -1,5 +1,10 @@
-'use strict';
+"use strict";
 
-module.exports = function pipe(fn) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = pipe;
+
+function pipe(fn) {
   return fn(this);
-};
+}

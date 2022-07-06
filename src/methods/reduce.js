@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function reduce(fn, carry) {
+export default function reduce(fn, carry) {
   let reduceCarry = null;
 
   if (carry !== undefined) {

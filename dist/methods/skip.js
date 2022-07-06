@@ -1,12 +1,16 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isObject = _require.isObject;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = skip;
 
-module.exports = function skip(number) {
+var _is = require("../helpers/is");
+
+function skip(number) {
   var _this = this;
 
-  if (isObject(this.items)) {
+  if ((0, _is.isObject)(this.items)) {
     return new this.constructor(Object.keys(this.items).reduce(function (accumulator, key, index) {
       if (index + 1 > number) {
         accumulator[key] = _this.items[key];
@@ -17,4 +21,4 @@ module.exports = function skip(number) {
   }
 
   return new this.constructor(this.items.slice(number));
-};
+}

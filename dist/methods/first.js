@@ -1,10 +1,14 @@
-'use strict';
+"use strict";
 
-var _require = require('../helpers/is'),
-    isFunction = _require.isFunction;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = first;
 
-module.exports = function first(fn, defaultValue) {
-  if (isFunction(fn)) {
+var _is = require("../helpers/is");
+
+function first(fn, defaultValue) {
+  if ((0, _is.isFunction)(fn)) {
     var keys = Object.keys(this.items);
 
     for (var i = 0; i < keys.length; i += 1) {
@@ -16,7 +20,7 @@ module.exports = function first(fn, defaultValue) {
       }
     }
 
-    if (isFunction(defaultValue)) {
+    if ((0, _is.isFunction)(defaultValue)) {
       return defaultValue();
     }
 
@@ -32,9 +36,9 @@ module.exports = function first(fn, defaultValue) {
     return this.items[firstKey];
   }
 
-  if (isFunction(defaultValue)) {
+  if ((0, _is.isFunction)(defaultValue)) {
     return defaultValue();
   }
 
   return defaultValue;
-};
+}

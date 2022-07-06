@@ -1,6 +1,11 @@
-'use strict';
+"use strict";
 
-module.exports = function zip(array) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = zip;
+
+function zip(array) {
   var _this = this;
 
   var values = array;
@@ -13,4 +18,4 @@ module.exports = function zip(array) {
     return new _this.constructor([item, values[index]]);
   });
   return new this.constructor(collection);
-};
+}

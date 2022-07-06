@@ -1,8 +1,6 @@
-'use strict';
+import { isObject } from '../helpers/is';
 
-const { isObject } = require('../helpers/is');
-
-module.exports = function skip(number) {
+export default function skip(number) {
   if (isObject(this.items)) {
     return new this.constructor(
       Object.keys(this.items)
@@ -17,4 +15,4 @@ module.exports = function skip(number) {
   }
 
   return new this.constructor(this.items.slice(number));
-};
+}
