@@ -17,7 +17,7 @@ module.exports = (it, expect, collect) => {
   it('should also work when collection is based on an object', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
       club: 'Liverpool FC',
     });
 
@@ -29,7 +29,7 @@ module.exports = (it, expect, collect) => {
         club: 'Liverpool FC',
       }),
       collect({
-        number: 19,
+        number: 27,
       }),
     ]);
   });

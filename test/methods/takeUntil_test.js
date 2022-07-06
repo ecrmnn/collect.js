@@ -22,17 +22,17 @@ module.exports = (it, expect, collect) => {
   it('should work with collection based on an object', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     });
 
     expect(collection.takeUntil('Liverpool FC')).to.eql(collect({
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
     }));
     expect(collection.takeUntil('Liverpool FC').all()).to.eql({
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
     });
 
     expect(collection.takeUntil('Darwin Núñez').isEmpty()).to.eql(true);
@@ -42,7 +42,7 @@ module.exports = (it, expect, collect) => {
   it('should work when multidimentional', () => {
     const data = [{
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     }, {
       name: 'Mohamed Salah',

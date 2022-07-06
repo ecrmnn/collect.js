@@ -19,32 +19,32 @@ module.exports = (it, expect, collect) => {
   it('should work with collection based on an object', () => {
     const collection = collect({
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     });
 
     expect(collection.skipWhile('Liverpool FC')).to.eql(collect({
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     }));
     expect(collection.skipWhile('Liverpool FC').all()).to.eql({
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     });
 
     expect(collection.skipWhile('Darwin Núñez').isNotEmpty()).to.eql(true);
     expect(collection.skipWhile('Darwin Núñez').all()).to.eql({
       club: 'Liverpool FC',
-      number: 10,
+      number: 27,
     });
   });
 
   it('should work when multidimentional', () => {
     const data = [{
       name: 'Darwin Núñez',
-      number: 10,
+      number: 27,
       club: 'Liverpool FC',
     }, {
       name: 'Mohamed Salah',

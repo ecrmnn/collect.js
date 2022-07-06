@@ -853,7 +853,7 @@ The flatMap method iterates through the collection and passes each value to the 
 const collection = collect([
   {
     name: 'Darwin Núñez',
-    number: 10,
+    number: 27,
   },
   {
     name: 'Mohamed Salah',
@@ -924,7 +924,7 @@ The flip method swaps the collection's keys with their corresponding values:
 ```js
 const collection = collect({
   name: 'Darwin Núñez',
-  number: 10,
+  number: 27,
 });
 
 const flipped = collection.flip();
@@ -933,7 +933,7 @@ flipped.all();
 
 // {
 //   'Darwin Núñez': 'name',
-//   '10': 'number',
+//   '27': 'number',
 // }
 ```
 
@@ -959,7 +959,7 @@ The forget method removes an item from the collection by its key:
 ```js
 const collection = collect({
   name: 'Darwin Núñez',
-  number: 10,
+  number: 27,
 });
 
 collection.forget('number');

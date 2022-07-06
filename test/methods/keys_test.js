@@ -4,7 +4,7 @@ module.exports = (it, expect, collect) => {
   it('should return the collection keys', () => {
     const player = {
       name: 'Darwin Núñez',
-      number: 19,
+      number: 27,
       club: 'Liverpool FC',
     };
 
