@@ -65,7 +65,7 @@ module.exports = (it, expect, collect) => {
   it('should only keep one items per key', () => {
     const collection = collect([
       {
-        name: 'Sadio Mané',
+        name: 'Darwin Núñez',
         club: 'Liverpool FC',
       },
       {
@@ -113,7 +113,7 @@ module.exports = (it, expect, collect) => {
         },
       },
       {
-        name: 'Sadio Mané',
+        name: 'Darwin Núñez',
         club: {
           name: 'Liverpool FC',
         },
@@ -123,7 +123,7 @@ module.exports = (it, expect, collect) => {
     const keyed = collection.keyBy('club.name');
 
     expect(keyed.first()).to.eql({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       club: {
         name: 'Liverpool FC',
       },

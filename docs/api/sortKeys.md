@@ -5,8 +5,8 @@ The sortKeys method sorts the collection by the keys of the underlying associati
 ```js
 const collection = collect({
   id: 10,
-  first: 'Sadio',
-  last: 'Mané',
+  first: 'Darwin',
+  last: 'Núñez',
 });
 
 const sorted = collection.sortKeys();
@@ -14,9 +14,9 @@ const sorted = collection.sortKeys();
 sorted.all();
 
 // {
-//   first: 'Sadio',
+//   first: 'Darwin',
 //   id: 10,
-//   last: 'Mané',
+//   last: 'Núñez',
 // }
 ```
 

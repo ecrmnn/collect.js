@@ -10,13 +10,13 @@ collect([1, 2, 3]).all();
 
 ```js
 collect({
-  firstname: 'Sadio',
-  lastname: 'Mané',
+  firstname: 'Darwin',
+  lastname: 'Núñez',
 }).all();
 
 // {
-//   firstname: 'Sadio',
-//   lastname: 'Mané',
+//   firstname: 'Darwin',
+//   lastname: 'Núñez',
 // }
 ```
 

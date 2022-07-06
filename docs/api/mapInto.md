@@ -9,7 +9,7 @@ const Player = function (name) {
 
 const collection = collect([
   'Roberto Firmino',
-  'Sadio Mané',
+  'Darwin Núñez',
 ]);
 
 const players = collection.mapInto(Player);
@@ -18,7 +18,7 @@ players.all();
 
 // [
 //   Player { name: 'Roberto Firmino' },
-//   Player { name: 'Sadio Mané' },
+//   Player { name: 'Darwin Núñez' },
 // ]
 ```
 

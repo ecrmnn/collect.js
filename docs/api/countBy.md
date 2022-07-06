@@ -21,7 +21,7 @@ However, you pass a callback to the countBy method to count all items by a custo
 ```js
 const collection = collect([
   'mohamed.salah@gmail.com',
-  'sadio.mane@yahoo.com',
+  'darwin.nunez@yahoo.com',
   'roberto.firmino@gmail.com',
 ]);
 

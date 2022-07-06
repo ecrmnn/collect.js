@@ -1,15 +1,15 @@
 'use strict';
 
 const data = {
-  firstname: 'Sadio',
-  lastname: 'Mané',
+  firstname: 'Darwin',
+  lastname: 'Núñez',
 };
 
 module.exports = (it, expect, collect) => {
   const collection = collect(data);
 
   it('should return the item at a given key', () => {
-    expect(collection.get('firstname')).to.eql('Sadio');
+    expect(collection.get('firstname')).to.eql('Darwin');
     expect(collection.get('name')).to.eql(null);
     expect(collection.all()).to.eql(data);
   });

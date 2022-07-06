@@ -191,15 +191,16 @@ collect([1, 2, 3]).all();
 
 ```js
 collect({
-  firstname: 'Sadio',
-  lastname: 'Mané',
+  firstname: 'Darwin',
+  lastname: 'Núñez',
 }).all();
 
 // {
-//   firstname: 'Sadio',
-//   lastname: 'Mané',
+//   firstname: 'Darwin',
+//   lastname: 'Núñez',
 // }
 ```
+
 
 
 #### `average()`
@@ -447,7 +448,7 @@ However, you pass a callback to the countBy method to count all items by a custo
 ```js
 const collection = collect([
   'mohamed.salah@gmail.com',
-  'sadio.mane@yahoo.com',
+  'darwin.nunez@yahoo.com',
   'roberto.firmino@gmail.com',
 ]);
 
@@ -460,6 +461,7 @@ counted.all();
 //   'yahoo.com': 1,
 // }
 ```
+
 
 #### `crossJoin()`
 
@@ -581,7 +583,7 @@ const collection = collect({
 collection.doesntContain('Mohamed Salah');
 // false
 
-collection.doesntContain('Sadio Mané');
+collection.doesntContain('Darwin Núñez');
 // true
 ```
 
@@ -593,9 +595,10 @@ const collection = collect({
   number: 11,
 });
 
-collection.doesntContain('name', 'Sadio Mané');
+collection.doesntContain('name', 'Darwin Núñez');
 // true
 ```
+
 
 #### `dump()`
 
@@ -849,7 +852,7 @@ The flatMap method iterates through the collection and passes each value to the 
 ```js
 const collection = collect([
   {
-    name: 'Sadio Mané',
+    name: 'Darwin Núñez',
     number: 10,
   },
   {
@@ -862,8 +865,9 @@ const flatMapped = collection.flatMap(value => value.name.toUpperCase());
 
 flatMapped.all();
 
-// ['SADIO MANÉ', 'MOHAMED SALAH']
+// ['DARWIN NÚÑEZ', 'MOHAMED SALAH']
 ```
+
 
 #### `flatten()`
 
@@ -872,14 +876,14 @@ The flatten method flattens a multi-dimensional collection into a single dimensi
 ```js
 const collection = collect({
   club: 'Liverpool',
-  players: ['Salah', 'Firmino', 'Mané'],
+  players: ['Salah', 'Firmino', 'Núñez'],
 });
 
 const flattened = collection.flatten();
 
 flattened.all();
 
-// ['Liverpool', 'Salah', 'Firmino', 'Mané'];
+// ['Liverpool', 'Salah', 'Firmino', 'Núñez'];
 ```
 
 You may optionally pass the function a "depth" argument:
@@ -912,13 +916,14 @@ flattened.all();
 
 In this example, calling flatten without providing the depth would have also flattened the nested arrays, resulting in `['iPhone 6S', 'Apple', 'Galaxy S7', 'Samsung']`. Providing a depth allows you to restrict the levels of nested arrays that will be flattened.
 
+
 #### `flip()`
 
 The flip method swaps the collection's keys with their corresponding values:
 
 ```js
 const collection = collect({
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
   number: 10,
 });
 
@@ -927,10 +932,11 @@ const flipped = collection.flip();
 flipped.all();
 
 // {
-//   'Sadio Mané': 'name',
+//   'Darwin Núñez': 'name',
 //   '10': 'number',
 // }
 ```
+
 
 #### `forPage()`
 
@@ -952,7 +958,7 @@ The forget method removes an item from the collection by its key:
 
 ```js
 const collection = collect({
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
   number: 10,
 });
 
@@ -961,11 +967,12 @@ collection.forget('number');
 collection.all();
 
 // {
-//   name: 'Sadio Mané',
+//   name: 'Darwin Núñez',
 // }
 ```
 
 > Unlike most other collection methods, forget does not return a new modified collection; it modifies the collection it is called on.
+
 
 #### `get()`
 
@@ -1429,7 +1436,7 @@ const Player = function (name) {
 
 const collection = collect([
   'Roberto Firmino',
-  'Sadio Mané',
+  'Darwin Núñez',
 ]);
 
 const players = collection.mapInto(Player);
@@ -1438,9 +1445,10 @@ players.all();
 
 // [
 //   Player { name: 'Roberto Firmino' },
-//   Player { name: 'Sadio Mané' },
+//   Player { name: 'Darwin Núñez' },
 // ]
 ```
+
 
 #### `mapSpread()`
 
@@ -2096,7 +2104,7 @@ const collection = collect([
   'Matip',
   'van Dijk',
   [
-    'Mané',
+    'Núñez',
     'Firmino',
     'Salah',
   ],
@@ -2112,9 +2120,10 @@ replaced.all();
 // {
 //   0: 'Gomez',
 //   1: 'van Dijk',
-//   2: { 0: 'Mané', 1: 'Origi', 2: 'Salah' },
+//   2: { 0: 'Núñez', 1: 'Origi', 2: 'Salah' },
 // }
 ```
+
 
 #### `reverse()`
 
@@ -2506,8 +2515,8 @@ The sortKeys method sorts the collection by the keys of the underlying associati
 ```js
 const collection = collect({
   id: 10,
-  first: 'Sadio',
-  last: 'Mané',
+  first: 'Darwin',
+  last: 'Núñez',
 });
 
 const sorted = collection.sortKeys();
@@ -2515,11 +2524,12 @@ const sorted = collection.sortKeys();
 sorted.all();
 
 // {
-//   first: 'Sadio',
+//   first: 'Darwin',
 //   id: 10,
-//   last: 'Mané',
+//   last: 'Núñez',
 // }
 ```
+
 
 #### `sortKeysDesc()`
 This method has the same signature as the [sortKeys](#sortkeys) method, but will sort the collection in the opposite order.
@@ -2969,7 +2979,7 @@ collection.all();
 ```
 
 ```js
-const collection = collect(['Sadio Mané']);
+const collection = collect(['Darwin Núñez']);
 
 collection.whenEmpty(
   c => c.push('Mohamed Salah'),
@@ -2979,30 +2989,31 @@ collection.whenEmpty(
 collection.all();
 
 // [
-//   'Sadio Mané',
+//   'Darwin Núñez',
 //   'Xherdan Shaqiri',
 // ];
 ```
+
 
 #### `whenNotEmpty()`
 
 The `whenNotEmpty` method will execute the given callback when the collection is not empty:
 
 ```js
-const collection = collect(['Sadio Mané']);
+const collection = collect(['Darwin Núñez']);
 
 collection.whenNotEmpty(c => c.push('Mohamed Salah'));
 
 collection.all();
 
 // [
-//   'Sadio Mané',
+//   'Darwin Núñez',
 //   'Mohamed Salah',
 // ]
 ```
 
 ```js
-const collection = collect(['Sadio Mané']);
+const collection = collect(['Darwin Núñez']);
 
 collection.whenNotEmpty(
   c => c.push('Mohamed Salah'),
@@ -3012,10 +3023,11 @@ collection.whenNotEmpty(
 collection.all();
 
 // [
-//   'Sadio Mané',
+//   'Darwin Núñez',
 //   'Mohamed Salah',
 // ];
 ```
+
 
 #### `where()`
 
@@ -3249,7 +3261,7 @@ const collection = collect([{
 }, {
   name: null,
 }, {
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
 }]);
 
 const filtered = collection.whereNotNull();
@@ -3258,9 +3270,10 @@ filtered.all();
 
 // [
 //   { name: 'Mohamed Salah' },
-//   { name: 'Sadio Mané' },
+//   { name: 'Darwin Núñez' },
 // ]
 ```
+
 
 #### `whereNull()`
 
@@ -3272,7 +3285,7 @@ const collection = collect([{
 }, {
   name: null,
 }, {
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
 }]);
 
 const filtered = collection.whereNull();
@@ -3283,6 +3296,7 @@ filtered.all();
 //   { name: null },
 // ]
 ```
+
 
 #### `wrap()`
 
