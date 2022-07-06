@@ -3,7 +3,7 @@
 module.exports = (it, expect, collect) => {
   it('should return the collection keys', () => {
     const player = {
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       number: 19,
       club: 'Liverpool FC',
     };
@@ -25,7 +25,7 @@ module.exports = (it, expect, collect) => {
 
   it('should return indexes as keys when array with objects', () => {
     const players = [{
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
     }, {
       name: 'Roberto Firmino',
     }];

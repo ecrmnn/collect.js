@@ -48,7 +48,7 @@ module.exports = (it, expect, collect) => {
 
   it('should stop iterating, when returning false with objects', () => {
     const collection = collect({
-      player1: 'Sadio Mané',
+      player1: 'Darwin Núñez',
       player2: 'Roberto Firmino',
       player3: 'Mohamed Salah',
     });
@@ -64,7 +64,7 @@ module.exports = (it, expect, collect) => {
     });
 
     expect(result).to.eql({
-      player1: 'Sadio Mané',
+      player1: 'Darwin Núñez',
       player2: 'Roberto Firmino',
     });
   });

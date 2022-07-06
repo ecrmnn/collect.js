@@ -89,7 +89,7 @@ module.exports = (it, expect, collect) => {
         },
       },
       {
-        name: 'Sadio Mané',
+        name: 'Darwin Núñez',
         club: {
           name: 'Liverpool FC',
         },

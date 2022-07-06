@@ -19,11 +19,11 @@ module.exports = (it, expect, collect) => {
 
   it('should when the collection is an object', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       club: 'Liverpool FC',
     });
 
-    expect(collection.first()).to.eql('Sadio Mané');
+    expect(collection.first()).to.eql('Darwin Núñez');
   });
 
   it('should accept a callback', () => {
@@ -36,14 +36,14 @@ module.exports = (it, expect, collect) => {
 
   it('should accept a callback when the collection is an object', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       club: 'Liverpool FC',
     });
     const first = collection.first((item, key) => key === 'club');
 
     expect(first).to.eql('Liverpool FC');
     expect(collection.all()).to.eql({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       club: 'Liverpool FC',
     });
   });

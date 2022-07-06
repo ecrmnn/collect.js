@@ -15,10 +15,10 @@ module.exports = (it, expect, collect) => {
   it('should work when the collection is a string', () => {
     const collection = collect('name');
     const combine = collection.combine('Steven Gerrard');
-    const combine2 = collection.combine(['Sadio Mané']);
+    const combine2 = collection.combine(['Darwin Núñez']);
 
     expect(combine.all()).to.eql({ name: 'Steven Gerrard' });
-    expect(combine2.all()).to.eql({ name: 'Sadio Mané' });
+    expect(combine2.all()).to.eql({ name: 'Darwin Núñez' });
     expect(collection.all()).to.eql(['name']);
   });
 

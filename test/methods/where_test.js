@@ -175,12 +175,12 @@ module.exports = (it, expect, collect) => {
   it('should work with nested properties', () => {
     const collection2 = collect([
       { name: { firstname: 'Mohamed', lastname: 'Salah' } },
-      { name: { firstname: 'Sadio', lastname: 'Mané' } },
+      { name: { firstname: 'Darwin', lastname: 'Núñez' } },
       { name: { firstname: 'Roberto', lastname: 'Firmino' } },
     ]);
 
-    expect(collection2.where('name.lastname', 'Mané').all()).to.eql([
-      { name: { firstname: 'Sadio', lastname: 'Mané' } },
+    expect(collection2.where('name.lastname', 'Núñez').all()).to.eql([
+      { name: { firstname: 'Darwin', lastname: 'Núñez' } },
     ]);
   });
 };

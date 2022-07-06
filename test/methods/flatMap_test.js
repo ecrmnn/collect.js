@@ -44,7 +44,7 @@ module.exports = (it, expect, collect) => {
 
   it('should override the value of the key already exists', () => {
     const collection = collect([
-      ['Sadio Mané'],
+      ['Darwin Núñez'],
       ['Roberto Firmino'],
       ['Mohamed Salah'],
     ]);
@@ -52,7 +52,7 @@ module.exports = (it, expect, collect) => {
     const flatMapped = collection.flatMap(values => values[0].toUpperCase());
 
     expect(flatMapped.all()).to.eql([
-      'SADIO MANÉ',
+      'DARWIN NÚÑEZ',
       'ROBERTO FIRMINO',
       'MOHAMED SALAH',
     ]);

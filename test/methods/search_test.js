@@ -21,7 +21,7 @@ module.exports = (it, expect, collect) => {
 
   it('should return false if no items were found in objec', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       number: 19,
       club: 'Liverpool FC',
     });
@@ -48,13 +48,13 @@ module.exports = (it, expect, collect) => {
 
   it('should work when collection is based on an object', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       number: 19,
       club: 'Liverpool FC',
     });
 
-    expect(collection.search('Sadio Mané')).to.eql('name');
-    expect(collection.search('Sadio Mane')).to.eql(false);
+    expect(collection.search('Darwin Núñez')).to.eql('name');
+    expect(collection.search('Darwin Nunez')).to.eql(false);
 
     expect(collection.search(19)).to.eql('number');
     expect(collection.search('19')).to.eql('number');

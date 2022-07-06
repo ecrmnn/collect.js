@@ -7,7 +7,7 @@ module.exports = (it, expect, collect) => {
     }, {
       name: null,
     }, {
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
     }]);
 
     expect(collection.whereNull('name').all()).to.eql([{ name: null }]);

@@ -8,7 +8,7 @@ const collection = collect([{
 }, {
   name: null,
 }, {
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
 }]);
 
 const filtered = collection.whereNull();

@@ -5,14 +5,14 @@ The flatten method flattens a multi-dimensional collection into a single dimensi
 ```js
 const collection = collect({
   club: 'Liverpool',
-  players: ['Salah', 'Firmino', 'Mané'],
+  players: ['Salah', 'Firmino', 'Núñez'],
 });
 
 const flattened = collection.flatten();
 
 flattened.all();
 
-// ['Liverpool', 'Salah', 'Firmino', 'Mané'];
+// ['Liverpool', 'Salah', 'Firmino', 'Núñez'];
 ```
 
 You may optionally pass the function a "depth" argument:

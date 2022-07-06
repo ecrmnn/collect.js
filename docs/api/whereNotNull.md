@@ -8,7 +8,7 @@ const collection = collect([{
 }, {
   name: null,
 }, {
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
 }]);
 
 const filtered = collection.whereNotNull();
@@ -17,7 +17,7 @@ filtered.all();
 
 // [
 //   { name: 'Mohamed Salah' },
-//   { name: 'Sadio Mané' },
+//   { name: 'Darwin Núñez' },
 // ]
 ```
 

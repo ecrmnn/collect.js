@@ -19,26 +19,26 @@ module.exports = (it, expect, collect) => {
 
   it('should return all items when collection is an object', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
     });
 
     expect(collection.all()).to.eql({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
     });
   });
 
   it('should return all items when containing objects', () => {
     const collection = collect({
       name: {
-        first: 'Sadio',
-        last: 'Mané',
+        first: 'Darwin',
+        last: 'Núñez',
       },
     });
 
     expect(collection.all()).to.eql({
       name: {
-        first: 'Sadio',
-        last: 'Mané',
+        first: 'Darwin',
+        last: 'Núñez',
       },
     });
   });
