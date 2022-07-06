@@ -1,8 +1,8 @@
 'use strict';
 
 const player = {
-  firstname: 'Sadio',
-  lastname: 'Mané',
+  firstname: 'Darwin',
+  lastname: 'Núñez',
 };
 
 module.exports = (it, expect, collect) => {
@@ -10,8 +10,8 @@ module.exports = (it, expect, collect) => {
     const a = collect(player);
     const b = collect(player);
 
-    expect(a.pull('firstname')).to.eql('Sadio');
-    expect(a.all()).to.eql({ lastname: 'Mané' });
+    expect(a.pull('firstname')).to.eql('Darwin');
+    expect(a.all()).to.eql({ lastname: 'Núñez' });
     expect(b.all()).to.eql(player);
   });
 

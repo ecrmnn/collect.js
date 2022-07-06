@@ -5,7 +5,7 @@ The flatMap method iterates through the collection and passes each value to the 
 ```js
 const collection = collect([
   {
-    name: 'Sadio Mané',
+    name: 'Darwin Núñez',
     number: 10,
   },
   {
@@ -18,7 +18,7 @@ const flatMapped = collection.flatMap(value => value.name.toUpperCase());
 
 flatMapped.all();
 
-// ['SADIO MANÉ', 'MOHAMED SALAH']
+// ['DARWIN NÚÑEZ', 'MOHAMED SALAH']
 ```
 
 [View source on GitHub](https://github.com/ecrmnn/collect.js/blob/master/src/methods/flatMap.js)

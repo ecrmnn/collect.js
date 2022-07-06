@@ -65,11 +65,11 @@
 ```js
 // Before 4.12.0
 collect('').isEmpty();
-//=> true
+//= > true
 
 // After 4.12.0
 collect('').isEmpty();
-//=> false
+//= > false
 ```
 
 # 4.4.0
@@ -155,20 +155,20 @@ const collection = collect([
 collection.pluck('product', 'manufacturer').dump();
 
 // Prior to 4.0.0
-//=> {
-//=>   IKEA: 'Bookcase',
-//=>   'Herman Miller': 'Chair',
-//=>   '': 'Door'
-//=> }
+//= > {
+//= >   IKEA: 'Bookcase',
+//= >   'Herman Miller': 'Chair',
+//= >   '': 'Door'
+//= > }
 
 // After 4.0.0
-//=> Collection {
-//=>   items: {
-//=>     IKEA: 'Bookcase',
-//=>     'Herman Miller': 'Chair',
-//=>     '': 'Door'
-//=>   }
-//=> }
+//= > Collection {
+//= >   items: {
+//= >     IKEA: 'Bookcase',
+//= >     'Herman Miller': 'Chair',
+//= >     '': 'Door'
+//= >   }
+//= > }
 ```
 
 #### ``except()``
@@ -178,13 +178,13 @@ collection.pluck('product', 'manufacturer').dump();
 - Also works when the collection is based on an object.
 ```js
 const collection = collect({
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
   club: 'Liverpool FC',
 });
 
 collection.first();
 
-//=> Sadio Mané
+//= > Darwin Núñez
 ```
 
 #### ``flatMap()``
@@ -215,20 +215,20 @@ This is done because ``collect.js`` should give the same result as Laravel Colle
 - No longer checks if any object in the given array has the specified key.
 This is done because ``collect.js`` should give the same result as Laravel Collections.
 ```js
-// Previously this would return true. It now returns false. 
+// Previously this would return true. It now returns false.
 
 const collection = collect([{
   animal: 'unicorn',
-  ability: 'magical'
+  ability: 'magical',
 }, {
   animal: 'pig',
-  ability: 'filthy'
+  ability: 'filthy',
 }]);
 
 collection.has('ability');
 
-//=> true (Prior to 4.0.0)
-//=> false (After 4.0.0)
+//= > true (Prior to 4.0.0)
+//= > false (After 4.0.0)
 ```
 
 #### ``keyBy()``
@@ -238,30 +238,30 @@ collection.has('ability');
 - Returns indexes as keys when based on an array. Indexes are mapped to ``Number``.
 ```js
 const collection = collect([{
- name: 'Sadio Mané',
+  name: 'Darwin Núñez',
 }, {
- name: 'Roberto Firmino',
+  name: 'Roberto Firmino',
 }]);
 const keys = collection.keys();
 
 // Prior to 4.0.0
-//=> ['name', 'name']
+//= > ['name', 'name']
 
 // After 4.0.0
-//=> [0, 1]
+//= > [0, 1]
 ``` 
 
 #### ``last()``
 - Also works when the collection is based on an object.
 ```js
 const collection = collect({
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
   club: 'Liverpool FC',
 });
 
 collection.last();
 
-//=> Liverpool FC
+//= > Liverpool FC
 ```
 
 #### ``merge()``
@@ -289,13 +289,13 @@ const pluck = collection.pluck('non-existing-key');
 
 pluck.all();
 
-//=> [null, null, null, null]
+//= > [null, null, null, null]
 
 const manufacturers = collection.pluck('manufacturer');
 
 manufacturers.all();
 
-//=> ['IKEA', 'Herman Miller', 'IKEA', null]
+//= > ['IKEA', 'Herman Miller', 'IKEA', null]
 ```
 - Objects that don't have the key that we're plucking by will get an empty string as its key. 
 This is changed from being ``undefined``.
@@ -311,11 +311,11 @@ const pluck = collection.pluck('product', 'manufacturer');
 
 pluck.all();
 
-//=> {
-//=>   IKEA: 'Bookcase',
-//=>   'Herman Miller': 'Chair',
-//=>   '': 'Door',
-//=> }
+//= > {
+//= >   IKEA: 'Bookcase',
+//= >   'Herman Miller': 'Chair',
+//= >   '': 'Door',
+//= > }
 ```
 
 #### ``pop()``
@@ -341,22 +341,22 @@ const collection = collect([1, 2, 3, 4, 5]);
 collection.split(2).dump();
 
 // Prior to 4.0.0
-//=> [
-//=>   [1, 2, 3],
-//=>   [4, 5],
-//=> ]
+//= > [
+//= >   [1, 2, 3],
+//= >   [4, 5],
+//= > ]
 
 // After 4.0.0
-//=> Collection {
-//=>   items: {
-//=>     Collection {
-//=>       items: [1, 2, 3]
-//=>     },
-//=>     Collection {
-//=>       items: [4, 5]
-//=>     },
-//=>   }
-//=> }
+//= > Collection {
+//= >   items: {
+//= >     Collection {
+//= >       items: [1, 2, 3]
+//= >     },
+//= >     Collection {
+//= >       items: [4, 5]
+//= >     },
+//= >   }
+//= > }
 ```
 
 #### ``take()``

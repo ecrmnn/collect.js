@@ -19,19 +19,19 @@ module.exports = (it, expect, collect) => {
 
   it('should work when the collection is based on an object', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       number: 19,
       club: 'Liverpool FC',
     });
 
     const chunk = collection.take(1);
-    expect(chunk.all()).to.eql({ name: 'Sadio Mané' });
+    expect(chunk.all()).to.eql({ name: 'Darwin Núñez' });
 
     const chunk2 = collection.take(-1);
     expect(chunk2.all()).to.eql({ club: 'Liverpool FC' });
 
     expect(collection.all()).to.eql({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       number: 19,
       club: 'Liverpool FC',
     });

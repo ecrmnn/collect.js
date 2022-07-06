@@ -16,14 +16,14 @@ module.exports = (it, expect, collect) => {
 
   it('should also work when collection is an object', () => {
     const collection = collect({
-      p1: 'Sadio Mané',
+      p1: 'Darwin Núñez',
       p2: 'Roberto Firmino',
     });
 
     const nameIsNeverSalah = collection.every(name => name !== 'Mohamed Salah');
     expect(nameIsNeverSalah).to.eql(true);
 
-    const alwaysMane = collection.every(name => name === 'Sadio Mané');
+    const alwaysMane = collection.every(name => name === 'Darwin Núñez');
     expect(alwaysMane).to.eql(false);
   });
 

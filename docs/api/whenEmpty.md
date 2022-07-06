@@ -13,7 +13,7 @@ collection.all();
 ```
 
 ```js
-const collection = collect(['Sadio Mané']);
+const collection = collect(['Darwin Núñez']);
 
 collection.whenEmpty(
   c => c.push('Mohamed Salah'),
@@ -23,7 +23,7 @@ collection.whenEmpty(
 collection.all();
 
 // [
-//   'Sadio Mané',
+//   'Darwin Núñez',
 //   'Xherdan Shaqiri',
 // ];
 ```

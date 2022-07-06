@@ -28,7 +28,7 @@ const collection = collect({
 collection.doesntContain('Mohamed Salah');
 // false
 
-collection.doesntContain('Sadio Mané');
+collection.doesntContain('Darwin Núñez');
 // true
 ```
 
@@ -40,7 +40,7 @@ const collection = collect({
   number: 11,
 });
 
-collection.doesntContain('name', 'Sadio Mané');
+collection.doesntContain('name', 'Darwin Núñez');
 // true
 ```
 

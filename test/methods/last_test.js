@@ -17,7 +17,7 @@ module.exports = (it, expect, collect) => {
 
   it('should when the collection is an object', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       club: 'Liverpool FC',
     });
 
@@ -26,7 +26,7 @@ module.exports = (it, expect, collect) => {
 
   it('should when the collection is an object with a custom callback', () => {
     const collection = collect({
-      name: 'Sadio Mané',
+      name: 'Darwin Núñez',
       club: 'Liverpool FC',
     });
 

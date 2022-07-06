@@ -161,7 +161,7 @@ module.exports = (it, expect, collect) => {
       'Matip',
       'van Dijk',
       [
-        'Mané',
+        'Núñez',
         'Firmino',
         'Salah',
       ],
@@ -175,14 +175,14 @@ module.exports = (it, expect, collect) => {
     expect(replaced.all()).to.eql({
       0: 'Gomez',
       1: 'van Dijk',
-      2: { 0: 'Mané', 1: 'Origi', 2: 'Salah' },
+      2: { 0: 'Núñez', 1: 'Origi', 2: 'Salah' },
     });
 
     expect(replaced.values().all()).to.eql([
       'Gomez',
       'van Dijk',
       {
-        0: 'Mané',
+        0: 'Núñez',
         1: 'Origi',
         2: 'Salah',
       },

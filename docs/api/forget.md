@@ -4,7 +4,7 @@ The forget method removes an item from the collection by its key:
 
 ```js
 const collection = collect({
-  name: 'Sadio Mané',
+  name: 'Darwin Núñez',
   number: 10,
 });
 
@@ -13,7 +13,7 @@ collection.forget('number');
 collection.all();
 
 // {
-//   name: 'Sadio Mané',
+//   name: 'Darwin Núñez',
 // }
 ```
 

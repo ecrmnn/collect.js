@@ -18,7 +18,7 @@ module.exports = (it, expect, collect) => {
   it('should work when collection is an array of objects', () => {
     const collection = collect([
       {
-        name: 'Sadio Mané',
+        name: 'Darwin Núñez',
         club: 'Liverpool FC',
       },
       {
@@ -38,7 +38,7 @@ module.exports = (it, expect, collect) => {
 
     expect(collection.all()).to.eql([
       {
-        name: 'Sadio Mané',
+        name: 'Darwin Núñez',
         club: 'Liverpool FC',
       },
       {

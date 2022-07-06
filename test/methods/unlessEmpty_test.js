@@ -20,14 +20,14 @@ module.exports = (it, expect, collect) => {
   it('should not execute the callback when the collection is not empty', () => {
     const collection = collect([
       'Roberto Firmino',
-      'Sadio Mané',
+      'Darwin Núñez',
     ]);
 
     collection.unlessEmpty(c => c.push('Mohamed Salah'));
 
     expect(collection.all()).to.eql([
       'Roberto Firmino',
-      'Sadio Mané',
+      'Darwin Núñez',
       'Mohamed Salah',
     ]);
   });
@@ -35,27 +35,27 @@ module.exports = (it, expect, collect) => {
   it('should not execute the callback when the collection object is not empty', () => {
     const collection = collect({
       player1: 'Roberto Firmino',
-      player2: 'Sadio Mané',
+      player2: 'Darwin Núñez',
     });
 
     collection.unlessEmpty(c => c.put('player3', 'Mohamed Salah'));
 
     expect(collection.all()).to.eql({
       player1: 'Roberto Firmino',
-      player2: 'Sadio Mané',
+      player2: 'Darwin Núñez',
       player3: 'Mohamed Salah',
     });
   });
 
   it('should execute the default when the collection is not empty', () => {
     const collection = collect([
-      'Sadio Mané',
+      'Darwin Núñez',
     ]);
 
     collection.unlessEmpty(c => c.push('Mohamed Salah'), c => c.push('Xherdan Shaqiri'));
 
     expect(collection.all()).to.eql([
-      'Sadio Mané',
+      'Darwin Núñez',
       'Mohamed Salah',
     ]);
   });
