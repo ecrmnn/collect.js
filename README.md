@@ -293,6 +293,16 @@ collapsed.all();
 // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
+```js
+const collection = collect([collect([1, 2, 3]), collect([4, 5, 6])]);
+
+const collapsed = collection.collapse();
+
+collapsed.all();
+
+// [1, 2, 3, 4, 5, 6]
+```
+
 #### `combine()`
 
 The combine method combines the keys of the collection with the values of another array or collection:
