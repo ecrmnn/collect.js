@@ -15,5 +15,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 module.exports = function collapse() {
   var _ref;
 
-  return new this.constructor((_ref = []).concat.apply(_ref, _toConsumableArray(this.items)));
+  return new this.constructor((_ref = []).concat.apply(_ref, _toConsumableArray(this.items.map(function (items) {
+    if (items.constructor.name === 'Collection') {
+      return items.all();
+    }
+
+    return items;
+  }))));
 };
