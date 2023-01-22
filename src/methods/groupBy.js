@@ -5,7 +5,7 @@ const { isFunction } = require('../helpers/is');
 
 module.exports = function groupBy(key) {
   const collection = {};
-  
+
   if (Array.isArray(this.items)) {
     this.items.forEach((item, index) => {
       let resolvedKey;
@@ -27,7 +27,7 @@ module.exports = function groupBy(key) {
   } else {
     Object.keys(this.items).forEach((index) => {
       let resolvedKey;
-      
+
       if (isFunction(key)) {
         resolvedKey = key(this.items[index], index);
       } else if (nestedValue(this.items[index], key) || nestedValue(this.items[index], key) === 0) {
@@ -35,11 +35,11 @@ module.exports = function groupBy(key) {
       } else {
         resolvedKey = '';
       }
-      
+
       if (collection[resolvedKey] === undefined) {
         collection[resolvedKey] = new this.constructor([]);
       }
-      
+
       collection[resolvedKey].push(this.items[index]);
     });
   }
