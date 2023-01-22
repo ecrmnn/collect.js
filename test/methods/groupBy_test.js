@@ -16,7 +16,7 @@ module.exports = (it, expect, collect) => {
     expect(Object.keys(grouped.all())).to.eql(['IKEA', 'Herman Miller']);
     expect(collection.all()).to.eql(products);
   });
-  
+
   it('should group the objects items by the given key', () => {
     const collection = collect(Object.assign({}, products));
     const grouped = collection.groupBy('manufacturer');
