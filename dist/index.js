@@ -67,6 +67,7 @@ Collection.prototype.forget = require('./methods/forget');
 Collection.prototype.get = require('./methods/get');
 Collection.prototype.groupBy = require('./methods/groupBy');
 Collection.prototype.has = require('./methods/has');
+Collection.prototype.hasAny = require('./methods/hasAny');
 Collection.prototype.implode = require('./methods/implode');
 Collection.prototype.intersect = require('./methods/intersect');
 Collection.prototype.intersectByKeys = require('./methods/intersectByKeys');
