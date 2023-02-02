@@ -78,6 +78,7 @@ All available methods
 - [get](#get)
 - [groupBy](#groupby)
 - [has](#has)
+- [hasAny](#hasany)
 - [implode](#implode)
 - [intersect](#intersect)
 - [intersectByKeys](#intersectbykeys)
@@ -1136,7 +1137,7 @@ grouped.all();
 
 #### `has()`
 
-The has method determines if one or more keys exists in the collection:
+The has method determines if all given keys exists in the collection:
 
 ```js
 const collection = collect({
@@ -1153,6 +1154,33 @@ collection.has(['animal', 'ability']);
 // true
 
 collection.has(['animal', 'ability', 'name']);
+
+// false
+```
+
+#### `hasAny()`
+
+The hasAny method determines whether one or more of the given keys exist in the collection:
+
+```js
+const collection = collect({
+  animal: 'unicorn',
+  ability: 'magical',
+});
+
+collection.hasAny('ability');
+
+// true
+
+collection.hasAny(['animal', 'ability']);
+
+// true
+
+collection.hasAny(['animal', 'ability', 'name']);
+
+// true
+
+collection.hasAny(['name']);
 
 // false
 ```
