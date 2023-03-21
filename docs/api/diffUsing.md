@@ -4,15 +4,15 @@ The diffUsing method compares the collection against another collection or a pla
 
 ```js
 const collection = collect([
-    { name: 'Alice', age: 25 },
-    { name: 'Bob', age: 30 },
-    { name: 'Charlie', age: 35 },
+  { name: 'Alice', age: 25 },
+  { name: 'Bob', age: 30 },
+  { name: 'Charlie', age: 35 },
 ]);
 
 const users = [
-    { name: 'Bob', age: 30 },
-    { name: 'Charlie', age: 35 },
-    { name: 'David', age: 40 },
+  { name: 'Bob', age: 30 },
+  { name: 'Charlie', age: 35 },
+  { name: 'David', age: 40 },
 ];
 
 const diff = collection.diffUsing(users, (a, b) => a.age - b.age);
