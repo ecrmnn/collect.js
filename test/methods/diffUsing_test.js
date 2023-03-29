@@ -11,6 +11,14 @@ module.exports = (it, expect, collect) => {
     expect(collection.all()).to.eql(['fr', 'en_gb', 'hr']);
   });
 
+  it('should compare with null', () => {
+    const collection = collect(['fr', 'en_gb', 'hr']);
+
+    const diff = collection.diffUsing(null, (a, b) => a.localeCompare(b));
+
+    expect(diff.all()).to.eql(collection.all());
+  });
+
   it('should compare the collection against another collection using on a callback', () => {
     const collection = collect([
       { name: 'Alice', age: 25 },
