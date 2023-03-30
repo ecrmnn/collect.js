@@ -3,7 +3,7 @@ name: Collect.js CI
 on:
   push:
     branches:
-      - main
+      - master
       - 'feature/*'
       - 'hotfix/*'
   pull_request:
