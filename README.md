@@ -170,7 +170,7 @@ All available methods
 
 ### Strictness and comparisons
 
-All comparisons in `collect.js` are done using strict equality. Using loose equality comparisons are generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offer several "strict" comparison methods. These methods have not been implemented in `collect.js` because all methods are strict by default.
+All comparisons in `collect.js` are done using strict equality. Using loose equality comparisons is generally frowned upon in JavaScript. Laravel only performs "loose" comparisons by default and offers several "strict" comparison methods. These methods have not been implemented in `collect.js` because all methods are strict by default.
 
 ##### Methods that have not been implemented:
 
@@ -429,7 +429,7 @@ collection.count();
 
 #### `countBy()`
 
-The countBy method counts the occurences of values in the collection. By default, the method counts the occurrences of every element:
+The countBy method counts the occurrences of values in the collection. By default, the method counts the occurrences of every element:
 
 ```js
 const collection = collect([1, 2, 2, 2, 3]);
@@ -1945,7 +1945,7 @@ collection.all();
 // => [1, 2, 3, 4]
 ```
 
-You may provide number of items to pop. This will return the popped items in a new collection:
+You may provide a number of items to pop. This will return the popped items in a new collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
 
@@ -1974,7 +1974,7 @@ collection.all();
 
 You may also pass a second argument to set the key of the prepended item:
 
-> Pro tip: Order of properties in objects is not guaranteed in JavaScript; When calling prepend with a key, the Collection uses the underlying `put` method behind the scenes. This is only supported so that collect.js have the same api as Laravel Collections.
+> Pro tip: Order of properties in objects is not guaranteed in JavaScript; When calling prepend with a key, the Collection uses the underlying `put` method behind the scenes. This is only supported so that collect.js has the same api as Laravel Collections.
 
 ```js
 const collection = collect({
@@ -2210,7 +2210,7 @@ collection.all();
 // [2, 3, 4, 5]
 ```
 
-You may provide number of items to shift. This will return the shifted items in a new collection:
+You may provide a number of items to shift. This will return the shifted items in a new collection:
 ```js
 const collection = collect([1, 2, 3, 4, 5]);
 
