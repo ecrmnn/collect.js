@@ -2,7 +2,7 @@
 
 > Convenient and dependency free wrapper for working with arrays and objects
 
-[![Travis](https://img.shields.io/travis/com/ecrmnn/collect.js?style=flat-square)](https://app.travis-ci.com/github/ecrmnn/collect.js/builds)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fecrmnn%2Fcollect.js%2Fbadge%3Fref%3Dhotfix%252F4.35.2&style=flat-square&label=build)](https://actions-badge.atrox.dev/ecrmnn/collect.js)
 [![npm version](https://img.shields.io/npm/v/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
 [![npm downloads](https://img.shields.io/npm/dm/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
 [![npm license](https://img.shields.io/npm/l/collect.js.svg?style=flat-square)](http://badge.fury.io/js/collect.js)
@@ -10,6 +10,7 @@
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/ecrmnn/collect.js/blob/master/package.json)
 [![eslint](https://img.shields.io/badge/code_style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
 [![cdnjs version](https://img.shields.io/cdnjs/v/collect.js.svg?style=flat-square)](https://cdnjs.com/libraries/collect.js)
+
 
 ### Installation
 
