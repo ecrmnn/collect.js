@@ -9,12 +9,20 @@ const products = [
 ];
 
 module.exports = (it, expect, collect) => {
-  it('should group the collections items by the given key', () => {
+  it('should group the arrays items by the given key', () => {
     const collection = collect(products);
     const grouped = collection.groupBy('manufacturer');
 
     expect(Object.keys(grouped.all())).to.eql(['IKEA', 'Herman Miller']);
     expect(collection.all()).to.eql(products);
+  });
+
+  it('should group the objects items by the given key', () => {
+    const collection = collect(Object.assign({}, products));
+    const grouped = collection.groupBy('manufacturer');
+
+    expect(Object.keys(grouped.all())).to.eql(['IKEA', 'Herman Miller']);
+    expect(collection.all()).to.eql(Object.assign({}, products));
   });
 
   it('should accept a custom callback to group by', () => {
