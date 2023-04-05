@@ -303,9 +303,9 @@ declare module 'collect.js' {
     pull<K>(key: keyof Item | K): Item | null;
 
     /**
-     * The push method appends an item to the end of the collection.
+     * The push method appends items to the end of the collection.
      */
-    push(item: Item): this;
+    push(...item: Item[]): this;
 
     /**
      * The put method sets the given key and value in the collection.
