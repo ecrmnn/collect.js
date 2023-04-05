@@ -32,6 +32,7 @@ Collection.prototype.toJSON = function toJSON() {
   return this.items;
 };
 
+Collection.prototype.add = require('./methods/add');
 Collection.prototype.all = require('./methods/all');
 Collection.prototype.average = require('./methods/average');
 Collection.prototype.avg = require('./methods/avg');
