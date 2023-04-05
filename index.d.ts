@@ -7,9 +7,9 @@ declare module 'collect.js' {
     constructor(collection?: Item[] | Object);
 
     /**
-     * The all method returns the underlying array represented by the collection.
+     * The all method returns the underlying array or object represented by the collection.
      */
-    all(): Item[];
+    all(): Item[] | Record<string,Item>;
 
     /**
      * Alias for the avg() method.
