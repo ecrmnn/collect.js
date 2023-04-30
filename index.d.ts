@@ -385,6 +385,12 @@ declare module 'collect.js' {
     sortByDesc(fn: (item: Item) => number): Collection<Item>;
 
     /**
+     * The sortKeysUsing method sorts the collection 
+     * by the keys of the object literal using a callback function
+     */
+    sortKeysUsing(fn: (a: keyof Item, b: keyof Item) => number): Collection<Item>;
+
+    /**
      * The splice method removes and returns a slice of items starting at the specified index.
      * You may pass a second argument to limit the size of the resulting chunk.
      */

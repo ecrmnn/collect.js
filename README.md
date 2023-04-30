@@ -135,6 +135,7 @@ All available methods
 - [sortDesc](#sortdesc)
 - [sortKeys](#sortkeys)
 - [sortKeysDesc](#sortkeysdesc)
+- [sortKeysUsing](#sortkeysusing)
 - [splice](#splice)
 - [split](#split)
 - [sum](#sum)
@@ -2560,6 +2561,32 @@ sorted.all();
 
 #### `sortKeysDesc()`
 This method has the same signature as the [sortKeys](#sortkeys) method, but will sort the collection in the opposite order.
+
+#### `sortKeysUsing()`
+
+The sortKeysUsing method sorts the collection by the keys of the object literal using a callback function:
+
+```js
+const collection = collect({
+  orange: 100,
+  strawberry: 200,
+  peach: 300,
+});
+
+const sorted = collection.sortKeysUsing((a, b) => b.length - a.length);
+
+sorted.all();
+
+// {
+//   strawberry: 200,
+//   orange: 100,
+//   peach: 300,
+// }
+```
+
+This method accepts a callback function which determines the sorting order. The callback should return a negative, zero, or positive value, depending on the sort order of the two keys being compared.
+
+If the collection contains an array instead of an object literal, the sortKeysUsing method will return the collection unchanged.
 
 #### `splice()`
 
