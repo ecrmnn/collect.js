@@ -123,6 +123,7 @@ Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');
 Collection.prototype.sortKeys = require('./methods/sortKeys');
 Collection.prototype.sortKeysDesc = require('./methods/sortKeysDesc');
+Collection.prototype.sortKeysUsing = require('./methods/sortKeysUsing');
 Collection.prototype.splice = require('./methods/splice');
 Collection.prototype.split = require('./methods/split');
 Collection.prototype.sum = require('./methods/sum');
