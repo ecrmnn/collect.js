@@ -385,6 +385,18 @@ declare module 'collect.js' {
     sortByDesc(fn: (item: Item) => number): Collection<Item>;
 
     /**
+     * The sortByMany method sorts the collection by the given keys.
+     * The sorted collection keeps the original array keys.
+     */
+    sortByMany<V>(keys: V): Collection<Item>;
+
+    /**
+     * The sortByMany method sorts the collection by the given callbacks.
+     * The sorted collection keeps the original array keys.
+     */
+    sortByMany(fns: ((item: Item) => number)[]): Collection<Item>;
+
+    /**
      * The splice method removes and returns a slice of items starting at the specified index.
      * You may pass a second argument to limit the size of the resulting chunk.
      */

@@ -22,6 +22,8 @@ var SymbolIterator = require('./methods/symbol.iterator');
 if (typeof Symbol !== 'undefined') {
   Collection.prototype[Symbol.iterator] = SymbolIterator;
 }
+
+
 /**
  * Support JSON.stringify
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
@@ -121,6 +123,7 @@ Collection.prototype.sort = require('./methods/sort');
 Collection.prototype.sortDesc = require('./methods/sortDesc');
 Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');
+Collection.prototype.sortByMany = require('./methods/sortByMany');
 Collection.prototype.sortKeys = require('./methods/sortKeys');
 Collection.prototype.sortKeysDesc = require('./methods/sortKeysDesc');
 Collection.prototype.splice = require('./methods/splice');
