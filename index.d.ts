@@ -373,6 +373,18 @@ declare module 'collect.js' {
     sortBy(fn: (item: Item) => number): Collection<Item>;
 
     /**
+     * The sortByMany method sorts the collection by the given keys.
+     * The sorted collection keeps the original array keys.
+     */
+    sortBy<V>(keys: V[]): Collection<Item>;
+
+    /**
+     * The sortByMany method sorts the collection by the given callbacks.
+     * The sorted collection keeps the original array keys.
+     */
+    sortBy(fns: ((item: Item) => number)[]): Collection<Item>;
+
+    /**
      * This method has the same signature as the sortBy method,
      * but will sort the collection in the opposite order.
      */

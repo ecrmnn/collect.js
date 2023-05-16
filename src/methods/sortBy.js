@@ -1,9 +1,13 @@
 'use strict';
 
 const nestedValue = require('../helpers/nestedValue');
-const { isFunction } = require('../helpers/is');
+const { isArray, isFunction } = require('../helpers/is');
 
 module.exports = function sortBy(valueOrFunction) {
+  if (isArray(valueOrFunction)) {
+    return this.sortByMany(valueOrFunction);
+  }
+
   const collection = [].concat(this.items);
   const getValue = (item) => {
     if (isFunction(valueOrFunction)) {

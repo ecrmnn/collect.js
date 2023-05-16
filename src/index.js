@@ -117,6 +117,7 @@ Collection.prototype.sort = require('./methods/sort');
 Collection.prototype.sortDesc = require('./methods/sortDesc');
 Collection.prototype.sortBy = require('./methods/sortBy');
 Collection.prototype.sortByDesc = require('./methods/sortByDesc');
+Collection.prototype.sortByMany = require('./methods/sortByMany');
 Collection.prototype.sortKeys = require('./methods/sortKeys');
 Collection.prototype.sortKeysDesc = require('./methods/sortKeysDesc');
 Collection.prototype.splice = require('./methods/splice');

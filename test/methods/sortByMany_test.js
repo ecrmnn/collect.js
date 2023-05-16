@@ -9,7 +9,7 @@ module.exports = (it, expect, collect) => {
 
   it('should sort the collection by the given key', () => {
     const collection = collect(data);
-    const sorted = collection.sortBy('price');
+    const sorted = collection.sortByMany(['price']);
 
     expect(sorted.all()).to.eql([
       { name: 'Chair', price: 100 },
@@ -20,7 +20,7 @@ module.exports = (it, expect, collect) => {
 
   it('should not modify the collection', () => {
     const collection = collect(data);
-    const sorted = collection.sortBy('price');
+    const sorted = collection.sortByMany(['price']);
 
     expect(sorted.all()).to.eql([
       { name: 'Chair', price: 100 },
@@ -37,7 +37,7 @@ module.exports = (it, expect, collect) => {
       { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
     ]);
 
-    const sorted = collection.sortBy(product => product.colors.length);
+    const sorted = collection.sortByMany([product => product.colors.length]);
 
     expect(sorted.all()).to.eql([
       { name: 'Chair', colors: ['Black'] },
@@ -59,7 +59,7 @@ module.exports = (it, expect, collect) => {
       { order: 1 },
     ]);
 
-    const sorted = collection.sortBy('order');
+    const sorted = collection.sortByMany(['order']);
 
     expect(sorted.all()).to.eql([
       { order: '1971-11-13T23:00:00.000000Z' },
@@ -75,7 +75,7 @@ module.exports = (it, expect, collect) => {
       { order: 1 },
     ]);
 
-    const sorted = collection.sortBy('order');
+    const sorted = collection.sortByMany(['order']);
 
     expect(sorted.all()).to.eql([
       { order: '1' },
@@ -84,98 +84,7 @@ module.exports = (it, expect, collect) => {
     ]);
   });
 
-  it('should sort strings before integers and integers before null when using a callback function', () => {
-    const collection = collect([
-      { order: '1971-11-13T23:00:00.000000Z' },
-      { order: null },
-      { order: 1 },
-    ]);
-
-    const sorted = collection.sortBy(item => item.order);
-
-    expect(sorted.all()).to.eql([
-      { order: '1971-11-13T23:00:00.000000Z' },
-      { order: 1 },
-      { order: null },
-    ]);
-  });
-
-  it('should sort nested data with dot notation', () => {
-    const collection = collect([
-      { nested: { data: '1971-11-13T23:00:00.000000Z' } },
-      { nested: { data: null } },
-      { nested: { data: 1 } },
-    ]);
-
-    const sorted = collection.sortBy('nested.data');
-
-    expect(sorted.all()).to.eql([
-      { nested: { data: '1971-11-13T23:00:00.000000Z' } },
-      { nested: { data: 1 } },
-      { nested: { data: null } },
-    ]);
-  });
-
-  it('should sort the collection by the given array of keys', () => {
-    const collection = collect(data);
-    const sorted = collection.sortBy(['price']);
-
-    expect(sorted.all()).to.eql([
-      { name: 'Chair', price: 100 },
-      { name: 'Bookcase', price: 150 },
-      { name: 'Desk', price: 200 },
-    ]);
-  });
-
-  it('should accept an array of custom sort function', () => {
-    const collection = collect([
-      { name: 'Desk', colors: ['Black', 'Mahogany'] },
-      { name: 'Chair', colors: ['Black'] },
-      { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
-    ]);
-
-    const sorted = collection.sortBy([product => product.colors.length]);
-
-    expect(sorted.all()).to.eql([
-      { name: 'Chair', colors: ['Black'] },
-      { name: 'Desk', colors: ['Black', 'Mahogany'] },
-      { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
-    ]);
-  });
-
-  it('should sort strings before integers and integers before null when sorted by array of keys', () => {
-    const collection = collect([
-      { order: '1971-11-13T23:00:00.000000Z' },
-      { order: null },
-      { order: 1 },
-    ]);
-
-    const sorted = collection.sortBy(['order']);
-
-    expect(sorted.all()).to.eql([
-      { order: '1971-11-13T23:00:00.000000Z' },
-      { order: 1 },
-      { order: null },
-    ]);
-  });
-
-  it('should sort strings before integers and integers before null when sorted by array of keys', () => {
-    const collection = collect([
-      { order: '1' },
-      { order: null },
-      { order: 1 },
-    ]);
-
-    const sorted = collection.sortBy(['order']);
-
-    expect(sorted.all()).to.eql([
-      { order: '1' },
-      { order: 1 },
-      { order: null },
-    ]);
-  });
-
-  it('should sort the collection by 2nd criteria if first criteria has same value when sorted by array of keys', () => {
+  it('should sort the collection by 2nd criteria if first criteria has same value', () => {
     const collection = collect([
       { name: 'Desk', price: 200 },
       { name: 'Table', price: 200 },
@@ -183,7 +92,7 @@ module.exports = (it, expect, collect) => {
       { name: 'Bookcase', price: 150 },
     ]);
 
-    const sorted = collection.sortBy(['price', 'name']);
+    const sorted = collection.sortByMany(['price', 'name']);
 
     expect(sorted.all()).to.eql([
       { name: 'Chair', price: 100 },
@@ -200,7 +109,7 @@ module.exports = (it, expect, collect) => {
       { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
     ]);
 
-    const sorted = collection.sortBy([
+    const sorted = collection.sortByMany([
       product => product.colors.length,
       product => product.name,
     ]);
@@ -212,14 +121,14 @@ module.exports = (it, expect, collect) => {
     ]);
   });
 
-  it('should sort strings before integers and integers before null when using array of callback functions', () => {
+  it('should sort strings before integers and integers before null when using a callback function', () => {
     const collection = collect([
       { order: '1971-11-13T23:00:00.000000Z' },
       { order: null },
       { order: 1 },
     ]);
 
-    const sorted = collection.sortBy([item => item.order]);
+    const sorted = collection.sortByMany([item => item.order]);
 
     expect(sorted.all()).to.eql([
       { order: '1971-11-13T23:00:00.000000Z' },
@@ -235,7 +144,7 @@ module.exports = (it, expect, collect) => {
       { nested: { data: 1 } },
     ]);
 
-    const sorted = collection.sortBy(['nested.data']);
+    const sorted = collection.sortByMany(['nested.data']);
 
     expect(sorted.all()).to.eql([
       { nested: { data: '1971-11-13T23:00:00.000000Z' } },
