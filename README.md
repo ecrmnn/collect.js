@@ -2516,13 +2516,7 @@ sorted.all();
 // ]
 ```
 
-#### `sortByDesc()`
-
-This method has the same signature as the `sortBy` method, but will sort the collection in the opposite order.
-
-#### `sortByMany()`
-
-The sortByMany method sorts the collection by the given key. The sorted collection keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
+You can also pass array of criteria or callbacks to determine how to sort the collection values:
 
 ```js
 const collection = collect([
@@ -2531,7 +2525,7 @@ const collection = collect([
   { name: 'Bookcase', price: 150 },
 ]);
 
-const sorted = collection.sortByMany(['price']);
+const sorted = collection.sortBy(['price']);
 
 sorted.all();
 
@@ -2552,7 +2546,7 @@ const collection = collect([
   { name: 'Bookcase', price: 150 },
 ]);
 
-const sorted = collection.sortByMany(['price', 'name']);
+const sorted = collection.sortBy(['price', 'name']);
 
 sorted.all();
 
@@ -2590,7 +2584,7 @@ const collection = collect([
   },
 ]);
 
-const sorted = collection.sortByMany(['manufacturer.name']);
+const sorted = collection.sortBy(['manufacturer.name']);
 
 sorted.all();
 
@@ -2628,7 +2622,7 @@ const collection = collect([
   { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
 ]);
 
-const sorted = collection.sortByMany([(product, key) => product.colors.length]);
+const sorted = collection.sortBy([(product, key) => product.colors.length]);
 
 sorted.all();
 
@@ -2647,7 +2641,7 @@ const collection = collect([
   { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
 ]);
 
-const sorted = collection.sortByMany([
+const sorted = collection.sortBy([
   (product, key) => product.colors.length,
   (product, key) => product.name,
 ]);
@@ -2660,6 +2654,15 @@ sorted.all();
 //   { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
 // ]
 ```
+
+
+#### `sortByDesc()`
+
+This method has the same signature as the `sortBy` method, but will sort the collection in the opposite order.
+
+#### `sortByMany()`
+
+The sortByMany method sorts the collection by the given key. The sorted collection keeps the original array keys, so in this example we'll use the values method to reset the keys to consecutively numbered indexes:
 
 
 #### `sortDesc()`

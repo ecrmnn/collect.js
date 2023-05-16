@@ -115,4 +115,132 @@ module.exports = (it, expect, collect) => {
       { nested: { data: null } },
     ]);
   });
+
+  it('should sort the collection by the given array of keys', () => {
+    const collection = collect(data);
+    const sorted = collection.sortBy(['price']);
+
+    expect(sorted.all()).to.eql([
+      { name: 'Chair', price: 100 },
+      { name: 'Bookcase', price: 150 },
+      { name: 'Desk', price: 200 },
+    ]);
+  });
+
+  it('should accept an array of custom sort function', () => {
+    const collection = collect([
+      { name: 'Desk', colors: ['Black', 'Mahogany'] },
+      { name: 'Chair', colors: ['Black'] },
+      { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
+    ]);
+
+    const sorted = collection.sortBy([product => product.colors.length]);
+
+    expect(sorted.all()).to.eql([
+      { name: 'Chair', colors: ['Black'] },
+      { name: 'Desk', colors: ['Black', 'Mahogany'] },
+      { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
+    ]);
+  });
+
+  it('should sort strings before integers and integers before null when sorted by array of keys', () => {
+    const collection = collect([
+      { order: '1971-11-13T23:00:00.000000Z' },
+      { order: null },
+      { order: 1 },
+    ]);
+
+    const sorted = collection.sortBy(['order']);
+
+    expect(sorted.all()).to.eql([
+      { order: '1971-11-13T23:00:00.000000Z' },
+      { order: 1 },
+      { order: null },
+    ]);
+  });
+
+  it('should sort strings before integers and integers before null when sorted by array of keys', () => {
+    const collection = collect([
+      { order: '1' },
+      { order: null },
+      { order: 1 },
+    ]);
+
+    const sorted = collection.sortBy(['order']);
+
+    expect(sorted.all()).to.eql([
+      { order: '1' },
+      { order: 1 },
+      { order: null },
+    ]);
+  });
+
+  it('should sort the collection by 2nd criteria if first criteria has same value when sorted by array of keys', () => {
+    const collection = collect([
+      { name: 'Desk', price: 200 },
+      { name: 'Table', price: 200 },
+      { name: 'Chair', price: 100 },
+      { name: 'Bookcase', price: 150 },
+    ]);
+
+    const sorted = collection.sortBy(['price', 'name']);
+
+    expect(sorted.all()).to.eql([
+      { name: 'Chair', price: 100 },
+      { name: 'Bookcase', price: 150 },
+      { name: 'Desk', price: 200 },
+      { name: 'Table', price: 200 },
+    ]);
+  });
+
+  it('should sort the collection by 2nd criteria function if first criteria function returns same value', () => {
+    const collection = collect([
+      { name: 'Desk', colors: ['Black', 'Mahogany'] },
+      { name: 'Chair', colors: ['Black', 'Mahogany'] },
+      { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
+    ]);
+
+    const sorted = collection.sortBy([
+      product => product.colors.length,
+      product => product.name,
+    ]);
+
+    expect(sorted.all()).to.eql([
+      { name: 'Chair', colors: ['Black', 'Mahogany'] },
+      { name: 'Desk', colors: ['Black', 'Mahogany'] },
+      { name: 'Bookcase', colors: ['Red', 'Beige', 'Brown'] },
+    ]);
+  });
+
+  it('should sort strings before integers and integers before null when using array of callback functions', () => {
+    const collection = collect([
+      { order: '1971-11-13T23:00:00.000000Z' },
+      { order: null },
+      { order: 1 },
+    ]);
+
+    const sorted = collection.sortBy([item => item.order]);
+
+    expect(sorted.all()).to.eql([
+      { order: '1971-11-13T23:00:00.000000Z' },
+      { order: 1 },
+      { order: null },
+    ]);
+  });
+
+  it('should sort nested data with dot notation', () => {
+    const collection = collect([
+      { nested: { data: '1971-11-13T23:00:00.000000Z' } },
+      { nested: { data: null } },
+      { nested: { data: 1 } },
+    ]);
+
+    const sorted = collection.sortBy(['nested.data']);
+
+    expect(sorted.all()).to.eql([
+      { nested: { data: '1971-11-13T23:00:00.000000Z' } },
+      { nested: { data: 1 } },
+      { nested: { data: null } },
+    ]);
+  });
 };
