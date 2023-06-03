@@ -330,6 +330,13 @@ declare module 'collect.js' {
     reject(fn: (item: Item) => boolean): Collection<Item>;
 
     /**
+     * The replace method behaves similarly to merge; 
+     * however, in addition to overwriting matching items with string keys,
+     * the replace method will also overwrite items in the collection that have matching numeric keys
+     */
+    replace(items: (Item | any)[] | Collection<Item> | Object): Collection<Item>;
+    
+    /**
      * The reverse method reverses the order of the collection's items.
      */
     reverse(): Collection<Item>;
