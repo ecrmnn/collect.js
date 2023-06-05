@@ -199,7 +199,7 @@ declare module 'collect.js' {
     /**
      * The keys method returns all of the collection's keys.
      */
-    keys(): Collection<string>;
+    keys<T = string>(): Collection<T>;
 
     /**
      * The last method returns the last element in the collection that passes a given truth test.
