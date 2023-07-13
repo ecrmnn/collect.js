@@ -104,7 +104,7 @@ declare module 'collect.js' {
      * The filter method filters the collection using the given callback,
      * keeping only those items that pass a given truth test.
      */
-    filter(fn: (item: Item) => boolean): Collection<Item>;
+    filter(fn?: (item: Item) => boolean): Collection<Item>;
     filter(fn: (item: Item, key?: any) => boolean): Collection<Item>;
 
     /**
