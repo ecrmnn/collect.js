@@ -295,7 +295,7 @@ declare module 'collect.js' {
     /**
      * The prepend method adds an item to the beginning of the collection.
      */
-    prepend<K, V>(value: V, key?: K): this;
+    prepend<K, V>(value: V, key?: K): Collection<Item>;
 
     /**
      * The pull method removes and returns an item from the collection by its key.
@@ -418,7 +418,7 @@ declare module 'collect.js' {
     /**
      * The times method creates a new collection by invoking the callback a given amount of times.
      */
-    times<T>(times: number, fn: (time: number) => T): T[];
+    times<T>(times: number, fn: (time: number) => T): Collection<T>;
 
     /**
      * The toArray method converts the collection into a plain array.
@@ -452,7 +452,7 @@ declare module 'collect.js' {
     /**
      * The unless method will execute the given callback when the first argument given to the method evaluates to false.
      */
-    unless(value: boolean, fn: (this: any) => any, defaultFn: (this: any) => any): void;
+    unless(condition: boolean, fn: (collection: Collection<Item>) => Collection<Item>, defaultFn?: (collection: Collection<Item>) => Collection<Item>): Collection<Item>;
 
     /**
      * The unwrap method will unwrap the given collection.
@@ -467,7 +467,7 @@ declare module 'collect.js' {
     /**
      * The when method will execute the given callback when the first argument given to the method evaluates to true.
      */
-    when(condition: boolean, fn: (this: any) => any, defaultFn: (this: any) => any): void;
+    when(condition: boolean, fn: (collection: Collection<Item>) => Collection<Item>, defaultFn?: (collection: Collection<Item>) => Collection<Item>): Collection<Item>;
 
     /**
      * The where method filters the collection by a given key / value pair.
